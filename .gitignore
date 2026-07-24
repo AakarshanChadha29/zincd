@@ -1,0 +1,55 @@
+# === Zinc'd root .gitignore ===
+
+# Private client material (never commit)
+source/client/
+
+# Reference implementations (local only, reference-only)
+reference/
+
+# Installed Cursor skill files (keep .cursor rules/config, exclude skills)
+.cursor/skills/
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Next.js build output
+.next/
+**/.next/
+out/
+**/out/
+
+# Production build artifacts
+build/
+dist/
+
+# Environment files (allow only the example)
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing / coverage
+coverage/
+
+# TypeScript build info
+*.tsbuildinfo
+next-env.d.ts
+
+# Operating-system metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor / IDE
+*.swp
+*.swo
