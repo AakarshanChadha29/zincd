@@ -1,26 +1,263 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Controlled Aquatic Engineering — Zinc'd design tokens */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primitives */
+  --blue-900: #0b1f33;
+  --blue-700: #0c4a6e;
+  --blue-600: #0369a1;
+  --aqua-600: #0e7490;
+  --aqua-400: #22d3ee;
+  --green-700: #0f766e;
+  --steel-400: #94a3b8;
+  --steel-200: #e2e8f0;
+  --steel-50: #f8fafc;
+  --white: #ffffff;
+  --ink: #0f172a;
+  --muted-ink: #475569;
+
+  /* Semantic surfaces */
+  --background: var(--steel-50);
+  --foreground: var(--ink);
+  --surface: var(--white);
+  --surface-elevated: var(--white);
+  --surface-muted: #eef2f6;
+  --border: var(--steel-200);
+  --border-strong: #cbd5e1;
+
+  /* Brand / actions */
+  --primary: var(--blue-600);
+  --primary-hover: var(--blue-700);
+  --primary-foreground: var(--white);
+  --secondary: var(--surface-muted);
+  --secondary-foreground: var(--blue-900);
+
+  --accent-aquatic: var(--aqua-600);
+  --accent-ecological: var(--green-700);
+  --accent-steel: var(--steel-400);
+
+  --success: #047857;
+  --warning: #b45309;
+  --danger: #b91c1c;
+  --focus-ring: var(--aqua-600);
+
+  /* shadcn bridge */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+  --muted: var(--surface-muted);
+  --muted-foreground: var(--muted-ink);
+  --accent: #e0f2fe;
+  --accent-foreground: var(--blue-900);
+  --destructive: var(--danger);
+  --input: var(--border);
+  --ring: var(--focus-ring);
+
+  /* Layout */
+  --container-narrow: 42rem;
+  --container-default: 72rem;
+  --container-wide: 80rem;
+  --page-gutter: 1.25rem;
+  --section-space-sm: 2.5rem;
+  --section-space-md: 4rem;
+  --section-space-lg: 6rem;
+  --nav-height: 4.25rem;
+
+  /* Radius — engineered, not pill-heavy */
+  --radius: 0.5rem;
+  --radius-control: 0.25rem;
+  --radius-panel: 0.5rem;
+
+  /* Elevation */
+  --shadow-1: 0 1px 2px rgb(15 23 42 / 0.04);
+  --shadow-2: 0 8px 24px rgb(15 23 42 / 0.06);
+
+  /* Glass — nav / rare overlays only */
+  --glass-bg: rgb(255 255 255 / 0.72);
+  --glass-border: rgb(226 232 240 / 0.9);
+  --glass-blur: 12px;
+
+  /* Motion */
+  --duration-micro: 160ms;
+  --duration-entrance: 400ms;
+  --ease-out-premium: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Charts unused — keep shadcn happy */
+  --chart-1: var(--blue-600);
+  --chart-2: var(--aqua-600);
+  --chart-3: var(--green-700);
+  --chart-4: var(--steel-400);
+  --chart-5: var(--blue-900);
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--surface-muted);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent-aquatic: var(--accent-aquatic);
+  --color-accent-ecological: var(--accent-ecological);
+  --color-accent-steel: var(--accent-steel);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-focus-ring: var(--focus-ring);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
+  --font-heading: var(--font-plex-sans);
+
+  --radius-sm: var(--radius-control);
+  --radius-md: var(--radius-panel);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.25);
+  --radius-2xl: calc(var(--radius) * 1.5);
+  --radius-3xl: calc(var(--radius) * 1.75);
+  --radius-4xl: calc(var(--radius) * 2);
+
+  --shadow-elevated: var(--shadow-2);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply font-sans scroll-smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading text-[color:var(--blue-900)] tracking-tight;
+    line-height: 1.2;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-display {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h1 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h2 {
+    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+    font-weight: 600;
+  }
+
+  .text-h3 {
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    font-weight: 600;
+  }
+
+  .text-body-large {
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+
+  .text-body {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .text-small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .text-technical {
+    font-family: var(--font-plex-mono), ui-monospace, monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .text-button {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .glass-surface {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground;
+  }
 }

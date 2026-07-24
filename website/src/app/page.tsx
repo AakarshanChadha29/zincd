@@ -1,65 +1,154 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+import { AudienceChip } from "@/components/ui/audience-chip";
+import { Button } from "@/components/ui/button";
+import { GlassPanel } from "@/components/ui/glass-panel";
+import { Section } from "@/components/layout/section";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { StatusNote } from "@/components/ui/status-note";
+import { TechnicalLabel } from "@/components/ui/technical-label";
+import { Reveal } from "@/components/motion/reveal";
+import { siteConfig } from "@/content/site-config";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({
+  title: "Zinc'd | Pool Water Technology",
+  description: siteConfig.brand.description,
+  path: "/",
+});
+
+const storyboardSections = [
+  "Core product value",
+  "How the technology works",
+  "Product / component visualization",
+  "Application sectors",
+  "Technical confidence / specifications",
+  "Installation and maintenance",
+  "Wholesale / distributor opportunity",
+  "FAQ preview",
+  "Conversion / contact",
+] as const;
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      <Section
+        id="hero"
+        spacing="lg"
+        background="surface"
+        className="border-b border-border"
+      >
+        <Reveal>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end">
+            <div className="space-y-6">
+              <TechnicalLabel>Homepage foundation</TechnicalLabel>
+              <h1 className="text-display max-w-xl text-[color:var(--blue-900)]">
+                {siteConfig.brand.name}
+              </h1>
+              <p className="text-body-large max-w-xl text-muted-foreground">
+                Temporary hero shell for architecture and visual rhythm. Final
+                positioning copy, product imagery, and conversion design land in
+                a later phase—without unsupported claims.
+              </p>
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button
+                  size="lg"
+                  className="rounded-[var(--radius-control)]"
+                  render={<Link href={siteConfig.ctas.assessment.href} />}
+                >
+                  {siteConfig.ctas.assessment.label}
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="rounded-[var(--radius-control)]"
+                  render={<Link href={siteConfig.ctas.distributor.href} />}
+                >
+                  {siteConfig.ctas.distributor.label}
+                </Button>
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="rounded-[var(--radius-control)]"
+                  render={<Link href={siteConfig.ctas.technology.href} />}
+                >
+                  {siteConfig.ctas.technology.label}
+                </Button>
+              </div>
+            </div>
+            <GlassPanel className="space-y-4">
+              <TechnicalLabel>Shell status</TechnicalLabel>
+              <p className="text-body text-muted-foreground">
+                This homepage confirms navigation, tokens, CTA hierarchy, and
+                section order. It is not the finished public design.
+              </p>
+              <StatusNote>
+                No product performance claims, certifications, savings figures,
+                testimonials, or 3D scenes are rendered in this phase.
+              </StatusNote>
+            </GlassPanel>
+          </div>
+        </Reveal>
+      </Section>
+
+      <Section id="audience-routing" spacing="md" background="muted">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Audience routing"
+            title="Choose your path"
+            description="Temporary dual-path shell separating wholesale partners from residential assessment seekers—without splitting the site."
+          />
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <Link
+              href="/distributors"
+              className="rounded-[var(--radius-panel)] border border-border bg-surface p-6 shadow-[var(--shadow-1)] transition-colors hover:border-border-strong focus-visible:outline-none"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <AudienceChip label="B2B / Partner" variant="partner" />
+              <h3 className="text-h3 mt-4">Wholesale & partners</h3>
+              <p className="text-small mt-2 text-muted-foreground">
+                Distributors, builders, installers, and commercial operators.
+              </p>
+            </Link>
+            <Link
+              href="/applications/residential"
+              className="rounded-[var(--radius-panel)] border border-border bg-surface p-6 shadow-[var(--shadow-1)] transition-colors hover:border-border-strong focus-visible:outline-none"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              <AudienceChip label="B2C / Residential" variant="residential" />
+              <h3 className="text-h3 mt-4">Home & residential</h3>
+              <p className="text-small mt-2 text-muted-foreground">
+                Homeowners seeking clearer guidance and a pool assessment path.
+              </p>
+            </Link>
+          </div>
+        </Reveal>
+      </Section>
+
+      <Section id="storyboard" spacing="md" background="default">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Storyboard placeholders"
+            title="Remaining homepage sections"
+            description="Labels match the approved Phase 2 storyboard order. Content and motion storytelling are intentionally deferred."
+          />
+          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {storyboardSections.map((label, index) => (
+              <li
+                key={label}
+                className="rounded-[var(--radius-panel)] border border-border bg-surface px-4 py-4"
+              >
+                <p className="text-technical text-muted-foreground">
+                  Section {String(index + 4).padStart(2, "0")}
+                </p>
+                <p className="text-small mt-2 font-medium text-foreground">
+                  {label}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+      </Section>
+    </>
   );
 }
