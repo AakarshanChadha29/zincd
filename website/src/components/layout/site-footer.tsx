@@ -20,13 +20,13 @@ function FooterLinkList({
 }) {
   return (
     <div>
-      <h2 className="text-technical mb-3 text-white/55">{title}</h2>
+      <h2 className="text-technical mb-3 !text-white/70">{title}</h2>
       <ul className="space-y-2">
         {links.map((link) => (
           <li key={link.href + link.label}>
             <Link
               href={link.href}
-              className="text-small text-foreground/90 hover:text-primary underline-offset-4 hover:underline"
+              className="text-small text-white/85 underline-offset-4 transition-colors hover:text-white hover:underline"
             >
               {link.label}
             </Link>
