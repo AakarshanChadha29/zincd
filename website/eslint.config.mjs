@@ -13,6 +13,13 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // The Zinc'd brand spelling uses a straight apostrophe in visible copy;
+      // allow it directly in JSX text rather than escaping every occurrence.
+      "react/no-unescaped-entities": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

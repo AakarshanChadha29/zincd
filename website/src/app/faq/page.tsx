@@ -1,22 +1,50 @@
-import { PageShell } from "@/components/layout/page-shell";
-import { routePlaceholders } from "@/content/route-placeholders";
+import { Section } from "@/components/layout/section";
+import { Reveal } from "@/components/motion/reveal";
+import { PageHero } from "@/components/blocks/page-hero";
+import { FaqList } from "@/components/blocks/faq-list";
+import { CtaBand } from "@/components/blocks/cta-band";
+import { siteConfig } from "@/content/site-config";
+import { faqs } from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
-const route = routePlaceholders["/faq"];
-
 export const metadata = createPageMetadata({
-  title: route.title,
-  description: route.description,
-  path: route.path,
+  title: "FAQ",
+  description:
+    "Straight, source-backed answers about Zinc'd copper–silver–zinc ionization, maintenance, chemistry and pool sizing.",
+  path: "/faq",
 });
 
 export default function FaqPage() {
   return (
-    <PageShell
-      title={route.title}
-      description={route.description}
-      eyebrow="FAQ"
-      related={route.related}
-    />
+    <>
+      <PageHero
+        eyebrow="FAQ"
+        title={
+          <>
+            Straight answers,{" "}
+            <span className="text-gradient-aqua">source-backed</span>
+          </>
+        }
+        description="We publish claims only when we can stand behind them with documentation. Here's what we can say clearly today."
+        actions={[
+          { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
+          { label: "Explore the technology", href: "/technology", variant: "outline" },
+        ]}
+      />
+
+      <Section spacing="lg" background="default" containerWidth="narrow">
+        <Reveal>
+          <FaqList faqs={faqs} />
+        </Reveal>
+      </Section>
+
+      <CtaBand
+        eyebrow="Still have questions?"
+        title="Talk to a pool specialist"
+        body="Ask about your specific pool, chemistry program or installation. We'll give you a clear, documented answer."
+        primary={siteConfig.ctas.specialist}
+        secondary={siteConfig.ctas.assessment}
+      />
+    </>
   );
 }

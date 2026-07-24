@@ -1,22 +1,13 @@
-import { PageShell } from "@/components/layout/page-shell";
-import { routePlaceholders } from "@/content/route-placeholders";
+import { ApplicationTemplate } from "@/components/blocks/application-template";
 import { createPageMetadata } from "@/lib/metadata";
 
-const route = routePlaceholders["/applications/fitness-wellness"];
-
 export const metadata = createPageMetadata({
-  title: route.title,
-  description: route.description,
-  path: route.path,
+  title: "Fitness & Wellness",
+  description:
+    "Zinc'd for fitness, wellness and aquatic-therapy environments — a lower-chemical water experience within a responsible, monitored program.",
+  path: "/applications/fitness-wellness",
 });
 
 export default function FitnessWellnessApplicationsPage() {
-  return (
-    <PageShell
-      title={route.title}
-      description={route.description}
-      eyebrow="Fitness & Wellness"
-      related={route.related}
-    />
-  );
+  return <ApplicationTemplate slug="fitness-wellness" />;
 }

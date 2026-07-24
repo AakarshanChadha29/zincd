@@ -1,36 +1,226 @@
-import { PageShell } from "@/components/layout/page-shell";
-import {
-  routePlaceholders,
-} from "@/content/route-placeholders";
+import Link from "next/link";
+
+import { Section } from "@/components/layout/section";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { TechnicalLabel } from "@/components/ui/technical-label";
+import { StatusNote } from "@/components/ui/status-note";
+import { Reveal } from "@/components/motion/reveal";
+import { PageHero } from "@/components/blocks/page-hero";
+import { ProcessSteps } from "@/components/blocks/process-steps";
+import { SpecTable } from "@/components/blocks/spec-table";
+import { FeatureGrid } from "@/components/blocks/feature-grid";
+import { CtaBand } from "@/components/blocks/cta-band";
+import { IonizationCell } from "@/components/graphics/ionization-cell";
 import { siteConfig } from "@/content/site-config";
+import {
+  chemistryTargets,
+  howItWorksSteps,
+  technicalSpecs,
+  valuePillars,
+} from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
-const route = routePlaceholders["/technology"];
-
 export const metadata = createPageMetadata({
-  title: route.title,
-  description: route.description,
-  path: route.path,
+  title: "Technology",
+  description:
+    "How Zinc'd copper–silver–zinc ionization works within a responsible, monitored pool chemistry program — with documented specifications.",
+  path: "/technology",
 });
+
+const electrodes = [
+  {
+    metal: "Copper",
+    symbol: "Cu",
+    role: "Helps control algae in the circulating water.",
+    color: "var(--aqua-600)",
+  },
+  {
+    metal: "Silver",
+    symbol: "Ag",
+    role: "The primary ionizing metal in copper–silver ionization.",
+    color: "var(--blue-600)",
+  },
+  {
+    metal: "Zinc",
+    symbol: "Zn",
+    role: "Contributes to biofilm control across the system.",
+    color: "var(--green-700)",
+  },
+];
 
 export default function TechnologyPage() {
   return (
-    <PageShell
-      title={route.title}
-      description={route.description}
-      eyebrow="Technology"
-      related={route.related}
-      actions={[
-        {
-          label: siteConfig.ctas.assessment.label,
-          href: siteConfig.ctas.assessment.href,
-        },
-        {
-          label: siteConfig.ctas.distributor.label,
-          href: siteConfig.ctas.distributor.href,
-          variant: "outline",
-        },
-      ]}
-    />
+    <>
+      <PageHero
+        eyebrow="Technology"
+        title={
+          <>
+            Copper–silver–zinc ionization,{" "}
+            <span className="text-gradient-aqua">under control</span>
+          </>
+        }
+        description="Zinc'd introduces copper and silver ions into your circulation loop at a controlled rate, using microcontroller-based PWM control — designed to reduce chlorine dependency while a residual of free chlorine remains part of responsible operation."
+        actions={[
+          { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
+          { label: "See the product", href: "/product", variant: "outline" },
+        ]}
+        aside={
+          <div className="rounded-[var(--radius)] border border-border bg-gradient-to-b from-white to-[color:var(--steel-50)] p-6 shadow-[var(--shadow-2)] md:p-8">
+            <div className="mb-4 flex items-center justify-between">
+              <span className="text-technical text-accent-aquatic">Ionization cell</span>
+              <span className="text-technical text-accent-steel normal-case tracking-normal">
+                cross-section
+              </span>
+            </div>
+            <IonizationCell />
+          </div>
+        }
+      />
+
+      {/* Electrode metals */}
+      <Section spacing="lg" background="default">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="The electrodes"
+            title="Three metals, one engineered cell"
+            description="A stainless-steel housing carries copper, silver and zinc alloy anodes. Each plays a defined role in the water program."
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {electrodes.map((e, i) => (
+            <Reveal key={e.symbol} delay={i * 0.05}>
+              <div className="flex h-full flex-col rounded-[var(--radius-panel)] border border-border bg-surface p-7">
+                <div
+                  className="flex size-14 items-center justify-center rounded-[var(--radius-control)] text-technical text-lg font-semibold text-white normal-case tracking-normal"
+                  style={{ background: e.color }}
+                >
+                  {e.symbol}
+                </div>
+                <h3 className="text-h3 mt-5 text-[color:var(--blue-900)]">{e.metal}</h3>
+                <p className="text-body mt-2 text-muted-foreground">{e.role}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* How it works process */}
+      <Section spacing="lg" background="muted">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">
+          <Reveal>
+            <div className="lg:sticky lg:top-28">
+              <SectionHeading
+                as="h2"
+                eyebrow="The process"
+                title="From flow to controlled ionization"
+                description="Four stages describe how treated water moves through the system."
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ProcessSteps steps={howItWorksSteps} />
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* Chemistry / chlorine honesty */}
+      <Section spacing="lg" background="default">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+          <Reveal>
+            <div>
+              <SectionHeading
+                as="h2"
+                eyebrow="Responsible operation"
+                title="Why residual chlorine is still part of the program"
+                description="Ionization is designed to reduce chlorine dependency — not to remove it. Technical documentation recommends maintaining a residual of free chlorine so the water stays reliably sanitized."
+              />
+              <div className="mt-8 rounded-[var(--radius)] border border-border bg-[color:var(--steel-50)] p-7">
+                <TechnicalLabel>Recommended chemistry</TechnicalLabel>
+                <dl className="mt-5 space-y-3">
+                  {chemistryTargets.map((t) => (
+                    <div
+                      key={t.label}
+                      className="flex items-baseline justify-between border-b border-border pb-3 last:border-0 last:pb-0"
+                    >
+                      <dt className="text-body text-[color:var(--blue-900)]">{t.label}</dt>
+                      <dd className="text-technical normal-case tracking-normal text-accent-aquatic">
+                        {t.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="lg:pt-16 space-y-6">
+              <StatusNote>
+                Zinc'd is not a &ldquo;chemical-free&rdquo; system. A residual of free
+                chlorine (typically ~1.0 ppm) remains part of responsible operation,
+                and the water is tested regularly to stay in range.
+              </StatusNote>
+              <div className="rounded-[var(--radius)] border border-border bg-surface p-7">
+                <TechnicalLabel>Historical note</TechnicalLabel>
+                <p className="text-body mt-3 text-muted-foreground">
+                  Silver-ion disinfection was used historically in spacecraft
+                  drinking-water systems; copper–silver ionization developed later.
+                  This is shared scientific lineage — not an endorsement of Zinc'd
+                  by any space agency.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* Value pillars */}
+      <Section spacing="lg" background="muted">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="What it delivers"
+            title="Engineered, monitored, built to last"
+          />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <FeatureGrid features={valuePillars} className="mt-10" />
+        </Reveal>
+      </Section>
+
+      {/* Specs */}
+      <Section spacing="lg" background="default">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Specifications"
+            title="Core technical specifications"
+            description="From the Zinc'd technical documentation. Values are typical and subject to model."
+            className="max-w-2xl"
+          />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            <SpecTable rows={technicalSpecs.slice(0, 4)} />
+            <SpecTable rows={technicalSpecs.slice(4)} />
+          </div>
+        </Reveal>
+        <p className="text-small mt-6 text-muted-foreground">
+          Looking for model-by-model details?{" "}
+          <Link href="/product" className="text-primary underline-offset-4 hover:underline">
+            See the product range
+          </Link>
+          .
+        </p>
+      </Section>
+
+      <CtaBand
+        eyebrow="Next step"
+        title="See how it fits your pool"
+        body="A pool assessment confirms the right series and what a responsible, lower-chemical program looks like for your system."
+        primary={siteConfig.ctas.assessment}
+        secondary={siteConfig.ctas.technology}
+      />
+    </>
   );
 }

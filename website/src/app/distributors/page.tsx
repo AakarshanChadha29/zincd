@@ -1,34 +1,150 @@
-import { PageShell } from "@/components/layout/page-shell";
-import { routePlaceholders } from "@/content/route-placeholders";
+import { Check } from "lucide-react";
+
+import { Section } from "@/components/layout/section";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { AudienceChip } from "@/components/ui/audience-chip";
+import { StatusNote } from "@/components/ui/status-note";
+import { Reveal } from "@/components/motion/reveal";
+import { PageHero } from "@/components/blocks/page-hero";
+import { ProcessSteps } from "@/components/blocks/process-steps";
+import { CtaBand } from "@/components/blocks/cta-band";
 import { siteConfig } from "@/content/site-config";
+import { partnerValue, productSeries } from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
-const route = routePlaceholders["/distributors"];
-
 export const metadata = createPageMetadata({
-  title: route.title,
-  description: route.description,
-  path: route.path,
+  title: "Distributors & Partners",
+  description:
+    "Partner with Zinc'd — add an engineered pool ionization system to your line, with documented specifications and a residential-to-commercial series range.",
+  path: "/distributors",
 });
+
+const partnerTypes = [
+  "Distributors & wholesalers",
+  "Pool builders",
+  "Installers & service pros",
+  "Commercial & hospitality operators",
+];
+
+const partnerProcess = [
+  { title: "Introduce your business", body: "Tell us about your market, the pools you serve, and the categories you carry today." },
+  { title: "Review fit & specifications", body: "We share documented product specifications and confirm how the series range maps to your customers." },
+  { title: "Plan the partnership", body: "We align on how Zinc'd fits your line and what support looks like as you bring it to market." },
+];
 
 export default function DistributorsPage() {
   return (
-    <PageShell
-      title={route.title}
-      description={route.description}
-      eyebrow="B2B"
-      related={route.related}
-      actions={[
-        {
-          label: siteConfig.ctas.distributor.label,
-          href: "/contact?intent=partner",
-        },
-        {
-          label: siteConfig.ctas.specialist.label,
-          href: siteConfig.ctas.specialist.href,
-          variant: "outline",
-        },
-      ]}
-    />
+    <>
+      <PageHero
+        eyebrow="Distributors & Partners"
+        title={
+          <>
+            Add an engineered category to{" "}
+            <span className="text-gradient-aqua">your line</span>
+          </>
+        }
+        description="Zinc'd is an engineered ionization system for residential and commercial pools — a documented, specifiable product category for distributors, builders and installers, not a marketing pitch."
+        actions={[
+          { label: siteConfig.ctas.distributor.label, href: "/contact?intent=partner" },
+          { label: "See the product", href: "/product", variant: "outline" },
+        ]}
+      />
+
+      {/* Who it's for */}
+      <Section spacing="md" background="default">
+        <Reveal>
+          <div className="flex flex-wrap items-center gap-3">
+            <AudienceChip label="For partners" variant="partner" />
+            {partnerTypes.map((type) => (
+              <span
+                key={type}
+                className="text-small rounded-[var(--radius-control)] border border-border bg-surface px-3 py-1.5 text-muted-foreground"
+              >
+                {type}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* Value props */}
+      <Section spacing="lg" background="muted">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Why partner"
+            title="A category built on documentation, not hype"
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {partnerValue.map((v, i) => (
+            <Reveal key={v.title} delay={i * 0.05}>
+              <div className="flex h-full gap-4 rounded-[var(--radius-panel)] border border-border bg-surface p-7">
+                <Check className="mt-0.5 size-5 shrink-0 text-accent-ecological" aria-hidden />
+                <div>
+                  <h3 className="text-h3 text-[color:var(--blue-900)]">{v.title}</h3>
+                  <p className="text-body mt-2 text-muted-foreground">{v.body}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* Series range recap */}
+      <Section spacing="lg" background="default">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Range"
+            title="One line, domestic to Olympic-size"
+            description="Four series let you serve private pools through large commercial and hospitality facilities."
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {productSeries.map((series, i) => (
+            <Reveal key={series.name} delay={i * 0.05}>
+              <div className="flex h-full flex-col rounded-[var(--radius-panel)] border border-border bg-surface p-6">
+                <div className="text-technical text-accent-aquatic">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="text-h3 mt-3 text-[color:var(--blue-900)]">{series.name}</h3>
+                <p className="text-small mt-1 font-medium text-accent-steel">{series.scope}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* Process */}
+      <Section spacing="lg" background="muted">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">
+          <Reveal>
+            <div className="lg:sticky lg:top-28">
+              <SectionHeading
+                as="h2"
+                eyebrow="How it works"
+                title="A straightforward partner path"
+              />
+              <StatusNote className="mt-6">
+                Specific partner terms, pricing and territory arrangements are shared
+                directly during conversations — not published here.
+              </StatusNote>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ProcessSteps steps={partnerProcess} />
+          </Reveal>
+        </div>
+      </Section>
+
+      <CtaBand
+        eyebrow="For partners"
+        title="Start a partnership conversation"
+        body="Tell us about your business and market. We'll follow up to discuss fit, specifications and next steps."
+        primary={{ label: "Become a Distributor / Partner", href: "/contact?intent=partner" }}
+        secondary={siteConfig.ctas.technology}
+      />
+    </>
   );
 }

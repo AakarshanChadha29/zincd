@@ -1,8 +1,29 @@
 # Project Status
 
-## Current Phase: Bootstrap
+## Current Phase: Design + content build (claims-safe draft)
 
-The workspace has been initialized. No product features have been built yet.
+All public routes now ship a finished visual design and claims-safe draft
+content, implementing the "Controlled Aquatic Engineering" system
+(`docs/design-system.md`, `docs/motion-system.md`) and staying within
+`docs/claims-register.md` allowances. See `docs/route-status.md` for the
+per-route matrix. Highlights:
+
+- Finished homepage (hero, value pillars, how-it-works, specs, series,
+  applications, distributor band, FAQ, conversion band) with an original
+  animated Cu–Ag–Zn ionization-cell SVG graphic (reduced-motion safe).
+- Full designs for Technology, Product, Applications (+4 sectors),
+  Distributors, Installation & Maintenance, FAQ, About, Contact (validated
+  RHF + zod form with honeypot; submission backend still deferred), and the
+  legal set (Legal, Privacy, Terms, Product Disclaimer, Warranty).
+- All copy/specs centralized and claims-annotated in
+  `website/src/content/product-data.ts`. No blocked/contradictory claims are
+  published. Content remains a **draft pending client confirmation + legal
+  green-list** before it is treated as approved.
+- `npm run build`, `npm run lint`, and all 19 routes (HTTP 200) verified.
+
+### Earlier: Bootstrap
+
+The workspace was initialized.
 
 ### Completed in this phase
 
