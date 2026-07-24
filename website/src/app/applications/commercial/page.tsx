@@ -1,22 +1,13 @@
-import { PageShell } from "@/components/layout/page-shell";
-import { routePlaceholders } from "@/content/route-placeholders";
+import { ApplicationTemplate } from "@/components/blocks/application-template";
 import { createPageMetadata } from "@/lib/metadata";
 
-const route = routePlaceholders["/applications/commercial"];
-
 export const metadata = createPageMetadata({
-  title: route.title,
-  description: route.description,
-  path: route.path,
+  title: "Commercial Applications",
+  description:
+    "Zinc'd for community and commercial pool operators — engineered control and monitoring for higher-volume water, with documented specifications.",
+  path: "/applications/commercial",
 });
 
 export default function CommercialApplicationsPage() {
-  return (
-    <PageShell
-      title={route.title}
-      description={route.description}
-      eyebrow="Commercial"
-      related={route.related}
-    />
-  );
+  return <ApplicationTemplate slug="commercial" />;
 }

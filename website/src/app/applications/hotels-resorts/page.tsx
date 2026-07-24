@@ -1,22 +1,13 @@
-import { PageShell } from "@/components/layout/page-shell";
-import { routePlaceholders } from "@/content/route-placeholders";
+import { ApplicationTemplate } from "@/components/blocks/application-template";
 import { createPageMetadata } from "@/lib/metadata";
 
-const route = routePlaceholders["/applications/hotels-resorts"];
-
 export const metadata = createPageMetadata({
-  title: route.title,
-  description: route.description,
-  path: route.path,
+  title: "Hotels & Resorts",
+  description:
+    "Zinc'd for hospitality pools and aquatic amenities — a guest-facing water experience backed by monitored, engineered operation.",
+  path: "/applications/hotels-resorts",
 });
 
 export default function HotelsResortsApplicationsPage() {
-  return (
-    <PageShell
-      title={route.title}
-      description={route.description}
-      eyebrow="Hotels & Resorts"
-      related={route.related}
-    />
-  );
+  return <ApplicationTemplate slug="hotels-resorts" />;
 }

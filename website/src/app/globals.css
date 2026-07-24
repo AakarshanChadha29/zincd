@@ -260,4 +260,102 @@
   .skip-link {
     @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground;
   }
+
+  /* Engineered blueprint grid — subtle technical texture behind hero/tech sections */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(15 23 42 / 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(15 23 42 / 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .bg-grid-dark {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* Radial aquatic glow — atmosphere, not a full blue field */
+  .hero-aura {
+    background:
+      radial-gradient(60% 55% at 78% 18%, rgb(34 211 238 / 0.16), transparent 60%),
+      radial-gradient(48% 50% at 12% 92%, rgb(14 116 144 / 0.12), transparent 62%);
+  }
+
+  .deep-aura {
+    background:
+      radial-gradient(55% 60% at 82% 12%, rgb(34 211 238 / 0.16), transparent 60%),
+      radial-gradient(50% 55% at 8% 96%, rgb(3 105 161 / 0.28), transparent 60%);
+  }
+
+  /* Gradient text for a single accent word — used sparingly */
+  .text-gradient-aqua {
+    background: linear-gradient(100deg, var(--blue-600), var(--aqua-600) 60%, var(--aqua-400));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .fade-edge-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent);
+    mask-image: linear-gradient(to bottom, black 72%, transparent);
+  }
+
+  /* Water-flow line: slow dash drift along an SVG stroke (decorative only) */
+  .flow-line {
+    stroke-dasharray: 6 10;
+    animation: flow-drift 3.2s linear infinite;
+  }
+
+  .ion-pulse {
+    animation: ion-pulse 3.4s var(--ease-out-premium) infinite;
+  }
+
+  .ion-rise {
+    animation: ion-rise 4.5s ease-in-out infinite;
+  }
+}
+
+@keyframes flow-drift {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+
+@keyframes ion-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes ion-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-line,
+  .ion-pulse,
+  .ion-rise {
+    animation: none;
+  }
 }

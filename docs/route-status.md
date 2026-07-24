@@ -1,33 +1,48 @@
-# Route Status — Zinc'd (Phase 3)
+# Route Status — Zinc'd (Phase 4 — design + content implemented)
+
+> **Update:** All public routes now ship a finished visual design and
+> claims-safe draft content built to `docs/design-system.md`,
+> `docs/motion-system.md`, `docs/content-tone-and-messaging.md` and the
+> `docs/claims-register.md` allowances. Copy is a conservative, claims-safe
+> **draft** — it still requires client confirmation and legal green-list before
+> being treated as final/approved. No blocked or contradictory claims are
+> published (efficacy %, savings figures, EPA/patent/NASA-endorsement, lab
+> results, testimonials, ratings, "chemical-free"). Placeholder scaffolding
+> (`page-shell`, `route-placeholders`) has been removed.
+>
+> New building blocks live in `website/src/components/blocks/*`,
+> `website/src/components/graphics/*` (original ionization-cell schematic), and
+> all claims-safe copy/specs are centralized in
+> `website/src/content/product-data.ts`.
 
 Legend:
 
-- **shell-complete** — route file, metadata, PageShell or homepage shell present
-- **content-pending** — final copy / claims-safe body not written
-- **design-pending** — finished visual design not implemented
+- **design-implemented** — finished visual design shipped
+- **content-draft** — claims-safe draft copy shipped (pending client/legal sign-off)
+- **shell-complete** — route file, metadata, shell present
 - **backend-not-required** — static marketing route
 - **backend-later** — will need API/storage/email later
 
 | Route | Shell | Content | Design | Backend |
 |---|---|---|---|---|
-| `/` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/technology` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/product` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/applications` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/applications/residential` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/applications/hotels-resorts` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/applications/commercial` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/applications/fitness-wellness` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/distributors` | shell-complete | content-pending | design-pending | backend-later (partner lead) |
-| `/installation-maintenance` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/faq` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/about` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/contact` | shell-complete | content-pending | design-pending | backend-later (form submit) |
-| `/legal` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/privacy` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/terms` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/product-disclaimer` | shell-complete | content-pending | design-pending | backend-not-required |
-| `/warranty` | shell-complete | content-pending | design-pending | backend-not-required |
+| `/` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/technology` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/product` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/applications` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/applications/residential` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/applications/hotels-resorts` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/applications/commercial` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/applications/fitness-wellness` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/distributors` | shell-complete | content-draft | design-implemented | backend-later (partner lead) |
+| `/installation-maintenance` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/faq` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/about` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/contact` | shell-complete | content-draft | design-implemented | backend-later (form submit) |
+| `/legal` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/privacy` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/terms` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/product-disclaimer` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/warranty` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `not-found` | shell-complete | n/a | shell design | backend-not-required |
 
 Deferred routes (not created): `/cost-savings`, `/case-studies`, `/pricing`, `/book`, `/shop`, `/amazon`, `/resources`.
