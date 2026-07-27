@@ -4,52 +4,55 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Controlled Aquatic Engineering — Zinc'd design tokens */
+/* Zinc'd — sunlit mineral water (light premium) */
 
 :root {
-  /* Primitives */
-  --blue-900: #0b1f33;
-  --blue-700: #0c4a6e;
-  --blue-600: #0369a1;
-  --aqua-600: #0e7490;
-  --aqua-400: #22d3ee;
-  --green-700: #0f766e;
-  --steel-400: #94a3b8;
-  --steel-200: #e2e8f0;
-  --steel-50: #f8fafc;
+  /* Primitives — cool pearl + living teal, not dead navy */
+  --ink: #0c1f24;
+  --ink-soft: #2a4a52;
+  --pearl: #f5fafb;
+  --pearl-deep: #e8f3f4;
   --white: #ffffff;
-  --ink: #0f172a;
-  --muted-ink: #475569;
+  --teal-900: #0a3d42;
+  --teal-800: #0f555c;
+  --teal-700: #0d7377;
+  --teal-600: #0f8a8f;
+  --aqua-500: #14b8a6;
+  --aqua-400: #2dd4bf;
+  --eco-700: #047857;
+  --eco-500: #10b981;
+  --steel-400: #7a939c;
+  --steel-200: #d5e4e7;
+  --steel-50: #f0f7f8;
 
-  /* Semantic surfaces — premium dark.
-     The site reads as a lit instrument in deep water rather than a white
-     brochure. Every component consumes these tokens, so the whole surface
-     treatment is defined here and nowhere else. Contrast values are noted
-     where they matter; all body text clears WCAG AA and most clears AAA. */
-  --background: #060d17; /* page — near-black navy */
-  --foreground: #eaf1f8; /* 16.8:1 on background */
-  --surface: #0c1725; /* panel */
-  --surface-elevated: #132234; /* raised panel */
-  --surface-muted: #091320; /* recessed band */
-  --border: #1e3348;
-  --border-strong: #2f4c69;
+  /* Semantic surfaces — bright, living, resort-clear */
+  --background: var(--pearl);
+  --foreground: var(--ink); /* ~14:1 on pearl */
+  --surface: var(--white);
+  --surface-elevated: #ffffff;
+  --surface-muted: var(--pearl-deep);
+  --border: #c9dde1;
+  --border-strong: #9bb8bf;
 
-  /* Brand / actions. Cyan carries the CTA on dark — the old blue-600 is too
-     dim to hold a primary button against a near-black field. */
-  --primary: var(--aqua-400);
-  --primary-hover: #67e8f9;
-  --primary-foreground: #04141b; /* 14:1 on primary */
-  --secondary: var(--surface-elevated);
-  --secondary-foreground: var(--foreground);
+  /* Brand / actions — teal with ecological lift */
+  --primary: var(--teal-700);
+  --primary-hover: var(--teal-600);
+  --primary-foreground: #ffffff;
+  --secondary: var(--pearl-deep);
+  --secondary-foreground: var(--ink);
 
-  --accent-aquatic: #4dd8f0;
-  --accent-ecological: #34d399;
-  --accent-steel: #8AA1B8; /* 6.4:1 on surface */
+  --accent-aquatic: var(--teal-700);
+  --accent-ecological: var(--eco-700);
+  --accent-steel: #5a737a; /* 4.6:1+ on white */
 
-  --success: #34d399;
-  --warning: #fbbf24;
-  --danger: #f87171;
-  --focus-ring: var(--aqua-400);
+  --success: var(--eco-500);
+  --warning: #d97706;
+  --danger: #dc2626;
+  --focus-ring: var(--teal-600);
+
+  /* Intentional deep band (CTA / footer accent) — mineral teal, not navy void */
+  --band-deep: var(--teal-900);
+  --band-deep-foreground: #f0fbfb;
 
   /* shadcn bridge */
   --card: var(--surface);
@@ -57,9 +60,9 @@
   --popover: var(--surface);
   --popover-foreground: var(--foreground);
   --muted: var(--surface-muted);
-  --muted-foreground: #9AB0C6; /* 8.1:1 on surface */
-  --accent: #123043;
-  --accent-foreground: var(--foreground);
+  --muted-foreground: #4a6670; /* ~5.5:1 on pearl */
+  --accent: #dff3f4;
+  --accent-foreground: var(--ink);
   --destructive: var(--danger);
   --input: var(--border);
   --ring: var(--focus-ring);
@@ -79,46 +82,40 @@
   --radius-control: 0.25rem;
   --radius-panel: 0.5rem;
 
-  /* Elevation */
-  /* On a near-black field a soft grey shadow does nothing. Depth comes from a
-     deeper cast shadow plus a 1px top highlight, which is how physical panels
-     catch light. */
-  --shadow-1:
-    0 1px 2px rgb(0 0 0 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.04);
-  --shadow-2:
-    0 18px 48px -12px rgb(0 0 0 / 0.7), inset 0 1px 0 rgb(255 255 255 / 0.06);
+  /* Elevation — soft daylight shadows */
+  --shadow-1: 0 1px 2px rgb(12 31 36 / 0.06), 0 1px 3px rgb(12 31 36 / 0.04);
+  --shadow-2: 0 16px 40px -16px rgb(12 31 36 / 0.18);
 
-  /* Glass — nav / rare overlays only */
-  --glass-bg: rgb(6 13 23 / 0.72);
-  --glass-border: rgb(255 255 255 / 0.08);
-  --glass-blur: 14px;
+  /* Glass — frosted light nav over video */
+  --glass-bg: rgb(245 250 251 / 0.78);
+  --glass-border: rgb(12 31 36 / 0.08);
+  --glass-blur: 16px;
 
-  /* Hero video scrim — keeps type AA+ over cinematic media */
+  /* Hero video scrim — readable type without killing the film */
   --hero-scrim: linear-gradient(
     105deg,
-    rgb(6 13 23 / 0.92) 0%,
-    rgb(6 13 23 / 0.72) 42%,
-    rgb(6 13 23 / 0.45) 68%,
-    rgb(6 13 23 / 0.55) 100%
+    rgb(10 61 66 / 0.78) 0%,
+    rgb(10 61 66 / 0.45) 48%,
+    rgb(10 61 66 / 0.22) 100%
   );
   --hero-scrim-bottom: linear-gradient(
     to top,
-    rgb(6 13 23 / 0.95) 0%,
-    rgb(6 13 23 / 0.35) 45%,
+    rgb(245 250 251 / 0.95) 0%,
+    rgb(245 250 251 / 0.35) 42%,
     transparent 100%
   );
 
   /* Motion */
   --duration-micro: 160ms;
-  --duration-entrance: 400ms;
+  --duration-entrance: 500ms;
   --ease-out-premium: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Charts unused — keep shadcn happy */
-  --chart-1: var(--blue-600);
-  --chart-2: var(--aqua-600);
-  --chart-3: var(--green-700);
+  --chart-1: var(--teal-700);
+  --chart-2: var(--aqua-500);
+  --chart-3: var(--eco-700);
   --chart-4: var(--steel-400);
-  --chart-5: var(--blue-900);
+  --chart-5: var(--teal-900);
   --sidebar: var(--surface);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
@@ -294,81 +291,76 @@
     @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground;
   }
 
-  /* Engineered blueprint grid — subtle technical texture behind hero/tech sections */
-  /* Faint light rule grid — the dark-ink version is invisible now the page
-     itself is near-black. */
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+      linear-gradient(to right, rgb(12 31 36 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(12 31 36 / 0.045) 1px, transparent 1px);
     background-size: 56px 56px;
   }
 
   .bg-grid-dark {
     background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+      linear-gradient(to right, rgb(255 255 255 / 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.08) 1px, transparent 1px);
     background-size: 56px 56px;
   }
 
-  /* Radial aquatic glow — atmosphere, not a full blue field */
+  /* Soft daylight aquatic glow */
   .hero-aura {
     background:
-      radial-gradient(60% 55% at 78% 18%, rgb(34 211 238 / 0.16), transparent 60%),
-      radial-gradient(48% 50% at 12% 92%, rgb(14 116 144 / 0.12), transparent 62%);
+      radial-gradient(60% 55% at 78% 18%, rgb(45 212 191 / 0.22), transparent 60%),
+      radial-gradient(48% 50% at 12% 92%, rgb(16 185 129 / 0.14), transparent 62%);
   }
 
   .deep-aura {
     background:
-      radial-gradient(55% 60% at 82% 12%, rgb(34 211 238 / 0.16), transparent 60%),
-      radial-gradient(50% 55% at 8% 96%, rgb(3 105 161 / 0.28), transparent 60%);
+      radial-gradient(55% 60% at 82% 12%, rgb(45 212 191 / 0.22), transparent 60%),
+      radial-gradient(50% 55% at 8% 96%, rgb(16 185 129 / 0.18), transparent 60%);
   }
 
-  /* Interim hero imagery: layered pool water. Stands in for licensed
-     photography without looking like an unfilled placeholder. Built from
-     existing primitives only. */
   .pool-water {
     background:
-      radial-gradient(80% 60% at 30% 20%, rgb(34 211 238 / 0.55), transparent 70%),
-      radial-gradient(70% 70% at 80% 80%, rgb(14 116 144 / 0.6), transparent 72%),
-      linear-gradient(165deg, #1d7fa8 0%, #0e6a8e 45%, #0b3d5c 100%);
+      radial-gradient(80% 60% at 30% 20%, rgb(45 212 191 / 0.45), transparent 70%),
+      radial-gradient(70% 70% at 80% 80%, rgb(15 138 143 / 0.5), transparent 72%),
+      linear-gradient(165deg, #1aa6ab 0%, #0d7377 45%, #0a3d42 100%);
   }
 
   .pool-caustics {
     background-image:
       repeating-linear-gradient(
         102deg,
-        rgb(255 255 255 / 0.09) 0px,
-        rgb(255 255 255 / 0.09) 2px,
+        rgb(255 255 255 / 0.12) 0px,
+        rgb(255 255 255 / 0.12) 2px,
         transparent 2px,
         transparent 26px
       ),
       repeating-linear-gradient(
         -74deg,
-        rgb(255 255 255 / 0.07) 0px,
-        rgb(255 255 255 / 0.07) 3px,
+        rgb(255 255 255 / 0.08) 0px,
+        rgb(255 255 255 / 0.08) 3px,
         transparent 3px,
         transparent 34px
       );
     mask-image: radial-gradient(75% 65% at 45% 35%, black, transparent 78%);
   }
 
-  /* Backdrop for the WebGL ion field — a lit chamber in deep water. Composed
-     from existing primitives (--blue-900, --aqua-400, --blue-600); no new
-     tokens. Sits behind the transparent canvas. */
   .ion-chamber {
     background:
-      radial-gradient(70% 60% at 50% 42%, rgb(3 105 161 / 0.38), transparent 68%),
-      radial-gradient(40% 45% at 82% 8%, rgb(34 211 238 / 0.22), transparent 62%),
-      linear-gradient(180deg, #0d2a44 0%, var(--blue-900) 100%);
+      radial-gradient(70% 60% at 50% 42%, rgb(13 115 119 / 0.35), transparent 68%),
+      radial-gradient(40% 45% at 82% 8%, rgb(45 212 191 / 0.28), transparent 62%),
+      linear-gradient(180deg, #12686d 0%, var(--teal-900) 100%);
   }
 
-  /* Gradient text for a single accent word — used sparingly */
   .text-gradient-aqua {
-    background: linear-gradient(100deg, var(--blue-600), var(--aqua-600) 60%, var(--aqua-400));
+    background: linear-gradient(100deg, var(--teal-700), var(--aqua-500) 55%, var(--eco-500));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  .band-deep {
+    background: var(--band-deep);
+    color: var(--band-deep-foreground);
   }
 
   .fade-edge-b {
@@ -388,6 +380,19 @@
 
   .ion-rise {
     animation: ion-rise 4.5s ease-in-out infinite;
+  }
+
+  .ion-drift-a {
+    animation: ion-drift-a 7.5s ease-in-out infinite;
+  }
+
+  .ion-drift-b {
+    animation: ion-drift-b 9s ease-in-out infinite;
+  }
+
+  .eco-ripple-ring {
+    transform-origin: 200px 200px;
+    animation: eco-ripple 4.2s var(--ease-out-premium) infinite;
   }
 }
 
@@ -426,10 +431,52 @@
   }
 }
 
+@keyframes ion-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(6px, -14px);
+    opacity: 0.9;
+  }
+}
+
+@keyframes ion-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-8px, -10px);
+    opacity: 0.85;
+  }
+}
+
+@keyframes eco-ripple {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .flow-line,
   .ion-pulse,
-  .ion-rise {
+  .ion-rise,
+  .ion-drift-a,
+  .ion-drift-b,
+  .eco-ripple-ring {
     animation: none;
   }
 }

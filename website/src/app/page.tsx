@@ -16,7 +16,10 @@ import { SpecTable } from "@/components/blocks/spec-table";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { FaqList } from "@/components/blocks/faq-list";
 import { IonizationCell } from "@/components/graphics/ionization-cell";
+import { EcoRipple } from "@/components/graphics/eco-ripple";
 import { HeroVideo } from "@/components/media/hero-video";
+import { AmbientIons } from "@/components/motion/ambient-ions";
+import { ScrollParallax } from "@/components/motion/scroll-parallax";
 import { siteConfig } from "@/content/site-config";
 import { homepageHeroClips } from "@/content/media";
 import {
@@ -32,7 +35,7 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Zinc'd | Engineered Pool Water Technology",
+  title: "Zinc'd | Ecological Mineral Ionization for Pools",
   description: siteConfig.brand.description,
   path: "/",
 });
@@ -48,9 +51,7 @@ const IMAGE_BY_SLUG: Record<string, string> = {
 export default function HomePage() {
   return (
     <>
-      {/* ============================ HERO ============================
-          Full-bleed cinematic villa/pool video — WeAreBrand concepts
-          (atmosphere, brand-first, sparse first viewport), not a clone. */}
+      {/* ============================ HERO ============================ */}
       <section className="relative flex min-h-[calc(100svh-var(--nav-height))] flex-col justify-end overflow-hidden border-b border-border">
         <HeroVideo clips={homepageHeroClips} />
         <div aria-hidden className="absolute inset-0 hero-scrim" />
@@ -58,12 +59,15 @@ export default function HomePage() {
         <Container className="relative pb-16 pt-28 md:pb-24 md:pt-36">
           <Reveal>
             <div className="max-w-xl space-y-7">
-              <TechnicalLabel>{heroContent.eyebrow}</TechnicalLabel>
+              <TechnicalLabel className="text-[color:var(--aqua-400)]">
+                {heroContent.eyebrow}
+              </TechnicalLabel>
               <h1 className="text-display text-white">
-                Engineered water treatment for the{" "}
-                <span className="text-gradient-aqua">modern pool</span>.
+                A quieter{" "}
+                <span className="text-gradient-aqua">revolution</span> in pool
+                water.
               </h1>
-              <p className="text-body-large max-w-lg text-white/80">
+              <p className="text-body-large max-w-lg text-white/85">
                 {heroContent.subhead}
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -78,13 +82,13 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="rounded-[var(--radius-control)] border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                  className="rounded-[var(--radius-control)] border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
                   render={<Link href={siteConfig.ctas.distributor.href} />}
                 >
                   {siteConfig.ctas.distributor.label}
                 </Button>
               </div>
-              <p className="text-small text-white/55">
+              <p className="text-small text-white/60">
                 <Link
                   href={siteConfig.ctas.technology.href}
                   className="underline underline-offset-4 hover:text-white"
@@ -102,13 +106,14 @@ export default function HomePage() {
       </section>
 
       {/* ============================ VALUE PILLARS ============================ */}
-      <Section id="value" spacing="lg" background="default">
+      <Section id="value" spacing="lg" background="default" className="relative">
+        <AmbientIons density="sparse" />
         <Reveal>
           <SectionHeading
             as="h2"
             eyebrow="Why Zinc'd"
-            title="A quieter chemistry program, engineered end to end"
-            description="Ionization is designed to reduce chlorine dependency — while a residual of free chlorine remains part of responsible, monitored operation."
+            title="Ecological mineral ionization, engineered end to end"
+            description="A modern approach to pool chemistry — designed to reduce chlorine dependency while a residual of free chlorine remains part of responsible, monitored operation."
           />
         </Reveal>
         <Reveal delay={0.05}>
@@ -116,8 +121,49 @@ export default function HomePage() {
         </Reveal>
       </Section>
 
+      {/* ============================ ECOLOGICAL STORY ============================ */}
+      <Section id="ecological" spacing="lg" background="muted" className="relative overflow-hidden">
+        <AmbientIons tone="ecological" density="sparse" />
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+          <Reveal variant="left">
+            <AudienceChip label="Ecological" variant="ecological" />
+            <h2 className="text-h1 mt-4 text-foreground">
+              Clearer water with a lighter chemical footprint
+            </h2>
+            <p className="text-body-large mt-4 max-w-xl text-muted-foreground">
+              Zinc&apos;d uses copper, silver and zinc ions — minerals released
+              under microcontroller control — so day-to-day chlorine demand can
+              drop while sanitizer residual stays in the program. That is the
+              quieter revolution: less harsh chemistry, not empty &ldquo;chemical-free&rdquo;
+              claims.
+            </p>
+            <ul className="mt-8 space-y-3">
+              {[
+                "Mineral ions help control algae and biofilm in the circulation loop",
+                "PWM regulation keeps release precise — not guesswork dosing",
+                "Residual free chlorine remains ~1.0 ppm for responsible care",
+              ].map((item) => (
+                <li key={item} className="text-small flex gap-3 text-foreground">
+                  <Check
+                    className="mt-0.5 size-4 shrink-0 text-accent-ecological"
+                    aria-hidden
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal variant="scale" delay={0.1}>
+            <ScrollParallax offset={32} className="mx-auto max-w-md">
+              <EcoRipple className="h-auto w-full" />
+            </ScrollParallax>
+          </Reveal>
+        </div>
+      </Section>
+
       {/* ============================ HOW IT WORKS ============================ */}
-      <Section id="how-it-works" spacing="lg" background="muted">
+      <Section id="how-it-works" spacing="lg" background="default" className="relative">
+        <AmbientIons density="medium" className="opacity-60" />
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
           <Reveal>
             <div className="lg:sticky lg:top-28">
@@ -132,10 +178,10 @@ export default function HomePage() {
               </div>
             </div>
           </Reveal>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} variant="right">
             <ProcessSteps steps={howItWorksSteps} />
             <StatusNote className="mt-8">
-              Zinc'd works alongside your sanitizer program, not instead of it.
+              Zinc&apos;d works alongside your sanitizer program, not instead of it.
               Technical documentation recommends maintaining a residual of free
               chlorine (~1.0 ppm) for responsible operation.
             </StatusNote>
@@ -260,13 +306,17 @@ export default function HomePage() {
                 className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface shadow-[var(--shadow-1)] transition-colors hover:border-border-strong"
               >
                 <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image
-                    src={IMAGE_BY_SLUG[app.slug] ?? "/img/pool-residential.jpg"}
-                    alt=""
-                    fill
-                    sizes="(min-width: 1024px) 30vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
+                  <ScrollParallax offset={28} className="absolute inset-0">
+                    <div className="relative h-[120%] w-full -translate-y-[8%]">
+                      <Image
+                        src={IMAGE_BY_SLUG[app.slug] ?? "/img/pool-residential.jpg"}
+                        alt=""
+                        fill
+                        sizes="(min-width: 1024px) 30vw, 100vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  </ScrollParallax>
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <div className="flex items-center justify-between">

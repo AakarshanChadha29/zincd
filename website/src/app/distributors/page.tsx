@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { AudienceChip } from "@/components/ui/audience-chip";
 import { StatusNote } from "@/components/ui/status-note";
 import { Reveal } from "@/components/motion/reveal";
+import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessSteps } from "@/components/blocks/process-steps";
 import { CtaBand } from "@/components/blocks/cta-band";
@@ -58,7 +59,8 @@ export default function DistributorsPage() {
       />
 
       {/* Who it's for */}
-      <Section spacing="md" background="default">
+      <Section spacing="md" background="default" className="relative">
+        <AmbientIons tone="ecological" density="sparse" />
         <Reveal>
           <div className="flex flex-wrap items-center gap-3">
             <AudienceChip label="For partners" variant="partner" />

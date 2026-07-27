@@ -63,8 +63,17 @@ export function PageHero({
         >
           <Reveal>
             <div className="space-y-6">
-              <TechnicalLabel>{eyebrow}</TechnicalLabel>
-              <h1 className="text-display text-foreground">{title}</h1>
+              <TechnicalLabel className={cinematic ? "text-[color:var(--aqua-400)]" : undefined}>
+                {eyebrow}
+              </TechnicalLabel>
+              <h1
+                className={cn(
+                  "text-display",
+                  cinematic ? "text-white" : "text-foreground"
+                )}
+              >
+                {title}
+              </h1>
               <p
                 className={cn(
                   "text-body-large max-w-2xl",
@@ -75,20 +84,28 @@ export function PageHero({
               </p>
               {actions && actions.length > 0 ? (
                 <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap">
-                  {actions.map((action, i) => (
-                    <Button
-                      key={action.href + action.label}
-                      size="lg"
-                      variant={action.variant ?? "default"}
-                      className="rounded-[var(--radius-control)]"
-                      render={<Link href={action.href} />}
-                    >
-                      {action.label}
-                      {i === 0 && (action.variant ?? "default") === "default" ? (
-                        <ArrowRight className="size-4" aria-hidden />
-                      ) : null}
-                    </Button>
-                  ))}
+                  {actions.map((action, i) => {
+                    const variant = action.variant ?? "default";
+                    const isOutlineOnFilm = cinematic && variant === "outline";
+                    return (
+                      <Button
+                        key={action.href + action.label}
+                        size="lg"
+                        variant={variant}
+                        className={cn(
+                          "rounded-[var(--radius-control)]",
+                          isOutlineOnFilm &&
+                            "border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                        )}
+                        render={<Link href={action.href} />}
+                      >
+                        {action.label}
+                        {i === 0 && variant === "default" ? (
+                          <ArrowRight className="size-4" aria-hidden />
+                        ) : null}
+                      </Button>
+                    );
+                  })}
                 </div>
               ) : null}
             </div>

@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { TechnicalLabel } from "@/components/ui/technical-label";
 import { StatusNote } from "@/components/ui/status-note";
 import { Reveal } from "@/components/motion/reveal";
+import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
 import { SpecTable } from "@/components/blocks/spec-table";
 import { CtaBand } from "@/components/blocks/cta-band";
@@ -59,7 +60,8 @@ export default function ProductPage() {
       />
 
       {/* Series range */}
-      <Section spacing="lg" background="default">
+      <Section spacing="lg" background="default" className="relative">
+        <AmbientIons density="sparse" />
         <Reveal>
           <SectionHeading
             as="h2"

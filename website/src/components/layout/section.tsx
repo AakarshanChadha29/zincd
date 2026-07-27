@@ -24,7 +24,7 @@ const backgroundClass = {
   default: "bg-background",
   surface: "bg-surface",
   muted: "bg-surface-muted",
-  deep: "bg-surface-elevated text-white",
+  deep: "band-deep",
 } as const;
 
 export function Section({

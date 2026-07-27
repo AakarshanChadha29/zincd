@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { TechnicalLabel } from "@/components/ui/technical-label";
 import { StatusNote } from "@/components/ui/status-note";
 import { Reveal } from "@/components/motion/reveal";
+import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessSteps } from "@/components/blocks/process-steps";
 import { SpecTable } from "@/components/blocks/spec-table";
@@ -32,19 +33,19 @@ const electrodes = [
     metal: "Copper",
     symbol: "Cu",
     role: "Helps control algae in the circulating water.",
-    color: "var(--aqua-600)",
+    color: "var(--teal-700)",
   },
   {
     metal: "Silver",
     symbol: "Ag",
     role: "The primary ionizing metal in copper–silver ionization.",
-    color: "var(--blue-600)",
+    color: "var(--teal-800)",
   },
   {
     metal: "Zinc",
     symbol: "Zn",
     role: "Contributes to biofilm control across the system.",
-    color: "var(--green-700)",
+    color: "var(--eco-700)",
   },
 ];
 
@@ -59,7 +60,7 @@ export default function TechnologyPage() {
             <span className="text-gradient-aqua">under control</span>
           </>
         }
-        description="Zinc'd introduces copper and silver ions into your circulation loop at a controlled rate, using microcontroller-based PWM control — designed to reduce chlorine dependency while a residual of free chlorine remains part of responsible operation."
+        description="Zinc'd introduces copper and silver ions into your circulation loop at a controlled rate — an ecological mineral approach designed to reduce chlorine dependency while a residual of free chlorine remains part of responsible operation."
         actions={[
           { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
           { label: "See the product", href: "/product", variant: "outline" },
@@ -67,25 +68,25 @@ export default function TechnologyPage() {
         aside={
           <div className="overflow-hidden rounded-[var(--radius)] border border-border bg-surface-elevated p-6 shadow-[var(--shadow-2)] md:p-8">
             <div className="mb-4 flex items-center justify-between">
-              <span className="text-technical text-[color:var(--aqua-400)]">
+              <span className="text-technical text-accent-aquatic">
                 Ionization field
               </span>
-              <span className="text-technical text-white/45 normal-case tracking-normal">
+              <span className="text-technical text-muted-foreground normal-case tracking-normal">
                 Cu · Ag · Zn
               </span>
             </div>
             <IonFieldStage />
             <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border pt-4">
               {[
-                { k: "Copper", v: "algae control", c: "#e0996f" },
-                { k: "Silver", v: "ionization", c: "#e8edf3" },
-                { k: "Zinc", v: "biofilm control", c: "#a8c4d6" },
+                { k: "Copper", v: "algae control", c: "var(--teal-700)" },
+                { k: "Silver", v: "ionization", c: "var(--teal-800)" },
+                { k: "Zinc", v: "biofilm control", c: "var(--eco-700)" },
               ].map((m) => (
                 <div key={m.k}>
                   <div className="text-small font-medium" style={{ color: m.c }}>
                     {m.k}
                   </div>
-                  <div className="text-small text-white/60">{m.v}</div>
+                  <div className="text-small text-muted-foreground">{m.v}</div>
                 </div>
               ))}
             </div>
@@ -94,7 +95,8 @@ export default function TechnologyPage() {
       />
 
       {/* Electrode metals */}
-      <Section spacing="lg" background="default">
+      <Section spacing="lg" background="default" className="relative">
+        <AmbientIons density="sparse" />
         <Reveal>
           <SectionHeading
             as="h2"

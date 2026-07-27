@@ -9,9 +9,9 @@ export const siteConfig = {
      * Do not expand into efficacy, savings, or certification claims here.
      */
     description:
-      "Zinc'd is a US swimming-pool water-treatment technology brand focused on engineered ionization systems for residential and commercial pools.",
+      "Zinc'd is a US swimming-pool water-treatment brand focused on ecological mineral ionization — engineered Cu–Ag–Zn systems for residential and commercial pools.",
     tagline:
-      "Engineered pool water technology for clearer operation and professional partners.",
+      "Ecological mineral ionization for clearer pools and professional partners.",
   },
   /**
    * Contact details are intentionally null until client confirmation (C-017).

@@ -111,7 +111,7 @@ export function IonFieldStage() {
           </p>
           <span
             aria-hidden
-            className="text-technical pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-[var(--radius-control)] border border-border bg-surface-elevated/50 px-2.5 py-1 text-[0.65rem] text-white/70 backdrop-blur-sm"
+            className="text-technical pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-[var(--radius-control)] border border-border bg-surface/80 px-2.5 py-1 text-[0.65rem] text-muted-foreground backdrop-blur-sm"
           >
             Drag to orbit
           </span>

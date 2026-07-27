@@ -12,10 +12,10 @@
  */
 
 export const heroContent = {
-  eyebrow: "Cu · Ag · Zn ionization",
-  headline: "Engineered water treatment for the modern pool.",
+  eyebrow: "Ecological mineral ionization",
+  headline: "A quieter revolution in pool water.",
   subhead:
-    "Zinc'd is a US pool water-treatment technology built around a copper–silver–zinc ionization cell and microcontroller-based PWM control — designed to reduce chlorine dependency as part of a responsible, monitored chemistry program.",
+    "Zinc'd brings copper–silver–zinc ionization and precision PWM control to modern pools — designed for a lower-chemical, clearer water experience while a residual sanitizer remains part of responsible care.",
   primaryCta: { label: "Request a Pool Assessment", href: "/contact?intent=assessment" },
   secondaryCta: { label: "Explore the Technology", href: "/technology" },
 } as const;
@@ -23,10 +23,10 @@ export const heroContent = {
 /** Three top-level value pillars — claims-aware, non-absolute. */
 export const valuePillars = [
   {
-    id: "clearer",
-    label: "Clearer experience",
-    title: "A gentler, lower-chemical water experience",
-    body: "Ionization is designed to reduce day-to-day chlorine dependency, for water many operators find easier to live with — while a residual of free chlorine remains part of responsible operation.",
+    id: "ecological",
+    label: "Ecological by design",
+    title: "Lower-chemical pool care, without empty promises",
+    body: "Mineral ionization is designed to reduce day-to-day chlorine dependency — for water many people find gentler to live with — while a residual of free chlorine remains part of responsible operation.",
     icon: "droplets",
   },
   {

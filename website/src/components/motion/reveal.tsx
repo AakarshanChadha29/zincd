@@ -9,28 +9,45 @@ type RevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  /** Entrance direction / treatment. */
+  variant?: "up" | "left" | "right" | "scale" | "fade";
 };
 
+const INITIAL = {
+  up: { opacity: 0, y: 20 },
+  left: { opacity: 0, x: -24 },
+  right: { opacity: 0, x: 24 },
+  scale: { opacity: 0, scale: 0.96 },
+  fade: { opacity: 0 },
+} as const;
+
+const SHOWN = {
+  up: { opacity: 1, y: 0 },
+  left: { opacity: 1, x: 0 },
+  right: { opacity: 1, x: 0 },
+  scale: { opacity: 1, scale: 1 },
+  fade: { opacity: 1 },
+} as const;
+
 /**
- * Lightweight entrance reveal (opacity + small Y). Uses an IntersectionObserver
- * for a scroll-triggered effect, with two safeguards so content is never left
- * invisible:
- *  - reduced-motion users get a plain, fully-visible element (no animation);
- *  - a short fallback timer reveals content even if the observer never fires.
+ * Scroll-triggered entrance. Variants keep motion intentional across pages
+ * without scrolljacking. Reduced-motion and a fallback timer keep content visible.
  */
-export function Reveal({ children, className, delay = 0 }: RevealProps) {
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+  variant = "up",
+}: RevealProps) {
   const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Reduced-motion renders a plain, already-visible element (below), so the
-    // observer path only matters for the animated case.
     if (reduceMotion) return;
     const el = ref.current;
     if (!el) return;
 
-    // Fallback: reveal even if the observer never fires (hidden tab, no support).
     const fallback = window.setTimeout(() => setVisible(true), 900);
 
     const observer = new IntersectionObserver(
@@ -41,7 +58,7 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     );
     observer.observe(el);
 
@@ -59,9 +76,9 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
     <motion.div
       ref={ref}
       className={cn(className)}
-      initial={{ opacity: 0, y: 12 }}
-      animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-      transition={{ duration: 0.4, delay, ease: [0.16, 1, 0.3, 1] }}
+      initial={INITIAL[variant]}
+      animate={visible ? SHOWN[variant] : INITIAL[variant]}
+      transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
