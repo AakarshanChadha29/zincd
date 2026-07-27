@@ -57,3 +57,6 @@ Thumbs.db
 # Agent skills installed via `npx skills add` (vendor-managed, not our source)
 .agents/
 .claude/skills/
+
+# Local Vercel CLI link metadata (never commit)
+.vercel/
