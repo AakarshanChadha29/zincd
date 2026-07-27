@@ -2,33 +2,32 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { StatusNote } from "@/components/ui/status-note";
 import { cn } from "@/lib/cn";
+import {
+  leadIntents,
+  leadSchema,
+  poolTypes,
+  type LeadInput,
+  type LeadResponse,
+} from "@/lib/leads/schema";
 
-const intents = [
-  { value: "assessment", label: "Pool assessment" },
-  { value: "specialist", label: "Talk to a specialist" },
-  { value: "partner", label: "Distributor / partner" },
-] as const;
+type FormValues = LeadInput;
 
-const schema = z.object({
-  intent: z.enum(["assessment", "specialist", "partner"]),
-  name: z.string().min(2, "Please enter your name."),
-  email: z.string().email("Please enter a valid email address."),
-  organization: z.string().optional(),
-  poolType: z.string().optional(),
-  message: z.string().min(10, "A little more detail helps us respond well."),
-  // Honeypot — must stay empty.
-  company_website: z.string().max(0).optional(),
-});
-
-type FormValues = z.infer<typeof schema>;
+/**
+ * Outcome of a submission. `sent` and `acknowledged` are both successes from
+ * the visitor's point of view, but only `sent` means a message actually left
+ * the building — the copy differs so we never claim delivery that didn't happen.
+ */
+type Outcome =
+  | { kind: "sent" }
+  | { kind: "acknowledged"; message: string }
+  | { kind: "error"; message: string };
 
 const fieldClass =
   "w-full rounded-[var(--radius-control)] border border-border bg-surface px-3.5 py-2.5 text-body text-foreground shadow-[var(--shadow-1)] outline-none transition-colors placeholder:text-accent-steel focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/40 aria-invalid:border-destructive";
@@ -37,47 +36,104 @@ export function ContactForm() {
   const params = useSearchParams();
   const intentParam = params.get("intent");
   const defaultIntent =
-    intents.find((i) => i.value === intentParam)?.value ?? "assessment";
+    leadIntents.find((i) => i.value === intentParam)?.value ?? "assessment";
 
-  const [submitted, setSubmitted] = useState(false);
+  const [outcome, setOutcome] = useState<Outcome | null>(null);
 
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     setValue,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(leadSchema),
     defaultValues: { intent: defaultIntent, company_website: "" },
   });
 
-  const selectedIntent = watch("intent");
+  // `useWatch` rather than `watch()` — the latter returns a fresh function on
+  // every render, which React Compiler cannot memoize safely.
+  const selectedIntent = useWatch({ control, name: "intent" });
 
-  const onSubmit = async () => {
-    // Submission backend (email / CRM) is a later phase. We validate and
-    // acknowledge locally without sending or storing data.
-    await new Promise((r) => setTimeout(r, 500));
-    setSubmitted(true);
+  const onSubmit = async (values: FormValues) => {
+    setOutcome(null);
+
+    let response: Response;
+    try {
+      response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+    } catch {
+      setOutcome({
+        kind: "error",
+        message:
+          "We couldn't reach the server. Please check your connection and try again.",
+      });
+      return;
+    }
+
+    const data = (await response.json().catch(() => null)) as LeadResponse | null;
+
+    // Server-side validation disagreed with the client. Surface it per-field.
+    if (response.status === 400 && data?.errors) {
+      for (const [field, messages] of Object.entries(data.errors)) {
+        if (messages?.[0]) {
+          setError(field as keyof FormValues, {
+            type: "server",
+            message: messages[0],
+          });
+        }
+      }
+      return;
+    }
+
+    if (response.ok && data?.delivered) {
+      setOutcome({ kind: "sent" });
+      return;
+    }
+
+    // Delivery isn't wired up yet (503) — a success for the visitor's input,
+    // but explicitly not a claim that anything was sent.
+    if (data && !data.configured) {
+      setOutcome({ kind: "acknowledged", message: data.message });
+      return;
+    }
+
+    setOutcome({
+      kind: "error",
+      message:
+        data?.message ??
+        "Something went wrong on our end. Please try again in a moment.",
+    });
   };
 
-  if (submitted) {
+  if (outcome?.kind === "sent" || outcome?.kind === "acknowledged") {
+    const sent = outcome.kind === "sent";
     return (
       <div className="rounded-[var(--radius)] border border-border bg-surface p-8 text-center shadow-[var(--shadow-1)]">
-        <CheckCircle2 className="mx-auto size-10 text-accent-ecological" strokeWidth={1.5} aria-hidden />
-        <h2 className="text-h2 mt-4 text-[color:var(--blue-900)]">Thanks — details captured</h2>
+        <CheckCircle2
+          className="mx-auto size-10 text-accent-ecological"
+          strokeWidth={1.5}
+          aria-hidden
+        />
+        <h2 className="text-h2 mt-4 text-[color:var(--blue-900)]">
+          {sent ? "Thanks — enquiry sent" : "Thanks — details captured"}
+        </h2>
         <p className="text-body mt-3 text-muted-foreground">
-          Your enquiry has been validated in your browser. Message delivery and
-          official contact channels are being finalized and will be connected here
-          shortly — no message has been sent or stored yet.
+          {sent
+            ? "Your enquiry is on its way to the Zinc'd team. We'll get back to you at the email address you provided."
+            : outcome.message}
         </p>
         <Button
           variant="outline"
           size="lg"
           className="mt-6 rounded-[var(--radius-control)]"
-          onClick={() => setSubmitted(false)}
+          onClick={() => setOutcome(null)}
         >
-          Edit your enquiry
+          {sent ? "Send another enquiry" : "Edit your enquiry"}
         </Button>
       </div>
     );
@@ -91,9 +147,9 @@ export function ContactForm() {
     >
       {/* Intent selector */}
       <fieldset>
-        <legend className="text-technical text-accent-aquatic">I'm here to…</legend>
+        <legend className="text-technical text-accent-aquatic">I&apos;m here to…</legend>
         <div className="mt-3 grid gap-2 sm:grid-cols-3">
-          {intents.map((intent) => (
+          {leadIntents.map((intent) => (
             <button
               key={intent.value}
               type="button"
@@ -115,10 +171,25 @@ export function ContactForm() {
       <div className="mt-6 grid gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Name" error={errors.name?.message} htmlFor="name">
-            <input id="name" autoComplete="name" className={fieldClass} aria-invalid={!!errors.name} {...register("name")} />
+            <input
+              id="name"
+              autoComplete="name"
+              className={fieldClass}
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "name-error" : undefined}
+              {...register("name")}
+            />
           </Field>
           <Field label="Email" error={errors.email?.message} htmlFor="email">
-            <input id="email" type="email" autoComplete="email" className={fieldClass} aria-invalid={!!errors.email} {...register("email")} />
+            <input
+              id="email"
+              type="email"
+              autoComplete="email"
+              className={fieldClass}
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              {...register("email")}
+            />
           </Field>
         </div>
 
@@ -131,11 +202,9 @@ export function ContactForm() {
               <option value="" disabled>
                 Select…
               </option>
-              <option>Residential / home</option>
-              <option>Hotel / resort</option>
-              <option>Commercial / community</option>
-              <option>Fitness / wellness</option>
-              <option>Other</option>
+              {poolTypes.map((type) => (
+                <option key={type}>{type}</option>
+              ))}
             </select>
           </Field>
         </div>
@@ -146,6 +215,7 @@ export function ContactForm() {
             rows={5}
             className={cn(fieldClass, "resize-y")}
             aria-invalid={!!errors.message}
+            aria-describedby={errors.message ? "message-error" : undefined}
             placeholder="Tell us about your pool, circulation system, or partnership interest."
             {...register("message")}
           />
@@ -158,6 +228,15 @@ export function ContactForm() {
         </div>
       </div>
 
+      {/* Persistent live region so the failure is announced when it appears. */}
+      <div aria-live="assertive">
+        {outcome?.kind === "error" ? (
+          <StatusNote tone="warning" className="mt-6">
+            {outcome.message}
+          </StatusNote>
+        ) : null}
+      </div>
+
       <div className="mt-7">
         <Button type="submit" size="lg" disabled={isSubmitting} className="w-full rounded-[var(--radius-control)] sm:w-auto">
           {isSubmitting ? "Submitting…" : "Submit enquiry"}
@@ -165,8 +244,8 @@ export function ContactForm() {
       </div>
 
       <StatusNote className="mt-6">
-        Message delivery isn't connected yet — official contact channels are being
-        confirmed. Your details are validated in-browser and are not sent or stored.
+        We use your details only to respond to this enquiry. Official contact
+        channels are still being confirmed.
       </StatusNote>
     </form>
   );
@@ -194,7 +273,11 @@ function Field({
         {hint ? <span className="text-small text-accent-steel">{hint}</span> : null}
       </div>
       {children}
-      {error ? <p className="text-small mt-1.5 text-[color:var(--danger)]">{error}</p> : null}
+      {error ? (
+        <p id={`${htmlFor}-error`} className="text-small mt-1.5 text-[color:var(--danger)]">
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 }

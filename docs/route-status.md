@@ -22,6 +22,10 @@ Legend:
 - **shell-complete** — route file, metadata, shell present
 - **backend-not-required** — static marketing route
 - **backend-later** — will need API/storage/email later
+- **backend-wired** — server endpoint implemented and verified
+
+Non-page route: `POST /api/leads` — lead intake for the contact form (all three
+intents). See `docs/project-status.md` for behaviour and required env vars.
 
 | Route | Shell | Content | Design | Backend |
 |---|---|---|---|---|
@@ -33,11 +37,11 @@ Legend:
 | `/applications/hotels-resorts` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `/applications/commercial` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `/applications/fitness-wellness` | shell-complete | content-draft | design-implemented | backend-not-required |
-| `/distributors` | shell-complete | content-draft | design-implemented | backend-later (partner lead) |
+| `/distributors` | shell-complete | content-draft | design-implemented | backend-not-required (links to `/contact?intent=partner`; no form of its own) |
 | `/installation-maintenance` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `/faq` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `/about` | shell-complete | content-draft | design-implemented | backend-not-required |
-| `/contact` | shell-complete | content-draft | design-implemented | backend-later (form submit) |
+| `/contact` | shell-complete | content-draft | design-implemented | **backend-wired** (`POST /api/leads`; delivery off until env vars set) |
 | `/legal` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `/privacy` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `/terms` | shell-complete | content-draft | design-implemented | backend-not-required |

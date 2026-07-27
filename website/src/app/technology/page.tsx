@@ -10,7 +10,7 @@ import { ProcessSteps } from "@/components/blocks/process-steps";
 import { SpecTable } from "@/components/blocks/spec-table";
 import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBand } from "@/components/blocks/cta-band";
-import { IonizationCell } from "@/components/graphics/ionization-cell";
+import { IonFieldStage } from "@/components/graphics/ion-field-stage";
 import { siteConfig } from "@/content/site-config";
 import {
   chemistryTargets,
@@ -65,14 +65,30 @@ export default function TechnologyPage() {
           { label: "See the product", href: "/product", variant: "outline" },
         ]}
         aside={
-          <div className="rounded-[var(--radius)] border border-border bg-gradient-to-b from-white to-[color:var(--steel-50)] p-6 shadow-[var(--shadow-2)] md:p-8">
+          <div className="overflow-hidden rounded-[var(--radius)] border border-[color:var(--blue-900)]/25 bg-[color:var(--blue-900)] p-6 shadow-[var(--shadow-2)] md:p-8">
             <div className="mb-4 flex items-center justify-between">
-              <span className="text-technical text-accent-aquatic">Ionization cell</span>
-              <span className="text-technical text-accent-steel normal-case tracking-normal">
-                cross-section
+              <span className="text-technical text-[color:var(--aqua-400)]">
+                Ionization field
+              </span>
+              <span className="text-technical text-white/45 normal-case tracking-normal">
+                Cu · Ag · Zn
               </span>
             </div>
-            <IonizationCell />
+            <IonFieldStage />
+            <div className="mt-4 grid grid-cols-3 gap-3 border-t border-white/12 pt-4">
+              {[
+                { k: "Copper", v: "algae control", c: "#e0996f" },
+                { k: "Silver", v: "ionization", c: "#e8edf3" },
+                { k: "Zinc", v: "biofilm control", c: "#a8c4d6" },
+              ].map((m) => (
+                <div key={m.k}>
+                  <div className="text-small font-medium" style={{ color: m.c }}>
+                    {m.k}
+                  </div>
+                  <div className="text-small text-white/60">{m.v}</div>
+                </div>
+              ))}
+            </div>
           </div>
         }
       />

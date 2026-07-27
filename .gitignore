@@ -53,3 +53,7 @@ Thumbs.db
 # Editor / IDE
 *.swp
 *.swo
+
+# Agent skills installed via `npx skills add` (vendor-managed, not our source)
+.agents/
+.claude/skills/

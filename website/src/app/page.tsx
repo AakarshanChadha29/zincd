@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 
@@ -35,6 +36,14 @@ export const metadata = createPageMetadata({
 });
 
 const heroChips = ["Cu · Ag · Zn", "24 V DC PWM", "Stainless housing", "Domestic → Olympic"];
+
+/** Which environment photograph fronts each application card. */
+const IMAGE_BY_SLUG: Record<string, string> = {
+  residential: "/img/pool-residential.jpg",
+  "hotels-resorts": "/img/pool-resort.jpg",
+  commercial: "/img/pool-commercial.jpg",
+  "fitness-wellness": "/img/pool-wellness.jpg",
+};
 
 export default function HomePage() {
   return (
@@ -86,30 +95,29 @@ export default function HomePage() {
               </div>
             </Reveal>
 
+            {/* The homepage hero is photography-led, not diagram-led — the
+                ionization schematic and the 3D field both live on /technology.
+                These are generated environment photographs (see
+                docs/asset-register.md): they depict settings, never the
+                product, so they make no claim about the hardware. */}
             <Reveal delay={0.1}>
-              <div className="relative">
-                <div className="rounded-[var(--radius)] border border-border bg-gradient-to-b from-white to-[color:var(--steel-50)] p-6 shadow-[var(--shadow-2)] md:p-8">
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="text-technical text-accent-aquatic">Ionization cell</span>
-                    <span className="text-technical text-accent-steel normal-case tracking-normal">
-                      schematic
-                    </span>
-                  </div>
-                  <IonizationCell />
-                  <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border pt-4">
-                    {[
-                      { k: "Copper", v: "algae control" },
-                      { k: "Silver", v: "ionization" },
-                      { k: "Zinc", v: "biofilm control" },
-                    ].map((m) => (
-                      <div key={m.k}>
-                        <div className="text-small font-medium text-[color:var(--blue-900)]">
-                          {m.k}
-                        </div>
-                        <div className="text-small text-muted-foreground">{m.v}</div>
-                      </div>
-                    ))}
-                  </div>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius)] border border-border shadow-[var(--shadow-2)]">
+                <Image
+                  src="/img/pool-residential.jpg"
+                  alt=""
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 46vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[color:var(--blue-900)]/85 to-transparent p-6">
+                  <p className="text-technical text-[color:var(--aqua-400)]">
+                    Residential · Hospitality · Commercial
+                  </p>
+                  <p className="text-body mt-1 text-white/90">
+                    One engineered system, sized from domestic pools to
+                    Olympic-scale circulation.
+                  </p>
                 </div>
               </div>
             </Reveal>
@@ -273,18 +281,29 @@ export default function HomePage() {
             <Reveal key={app.slug} delay={i * 0.05}>
               <Link
                 href={`/applications/${app.slug}`}
-                className="group flex h-full flex-col rounded-[var(--radius-panel)] border border-border bg-surface p-7 shadow-[var(--shadow-1)] transition-colors hover:border-border-strong"
+                className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface shadow-[var(--shadow-1)] transition-colors hover:border-border-strong"
               >
-                <div className="flex items-center justify-between">
-                  <AudienceChip
-                    label={app.audience === "commercial" ? "Commercial" : "Residential"}
-                    variant={app.audience}
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={IMAGE_BY_SLUG[app.slug] ?? "/img/pool-residential.jpg"}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 30vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
-                  <ArrowUpRight className="size-5 text-accent-steel transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
                 </div>
-                <h3 className="text-h2 mt-5 text-[color:var(--blue-900)]">{app.title}</h3>
-                <p className="text-small mt-1 font-medium text-accent-steel">{app.tagline}</p>
-                <p className="text-body mt-3 text-muted-foreground">{app.body}</p>
+                <div className="flex flex-1 flex-col p-7">
+                  <div className="flex items-center justify-between">
+                    <AudienceChip
+                      label={app.audience === "commercial" ? "Commercial" : "Residential"}
+                      variant={app.audience}
+                    />
+                    <ArrowUpRight className="size-5 text-accent-steel transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+                  </div>
+                  <h3 className="text-h2 mt-5 text-[color:var(--blue-900)]">{app.title}</h3>
+                  <p className="text-small mt-1 font-medium text-accent-steel">{app.tagline}</p>
+                  <p className="text-body mt-3 text-muted-foreground">{app.body}</p>
+                </div>
               </Link>
             </Reveal>
           ))}

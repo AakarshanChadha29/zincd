@@ -289,6 +289,45 @@
       radial-gradient(50% 55% at 8% 96%, rgb(3 105 161 / 0.28), transparent 60%);
   }
 
+  /* Interim hero imagery: layered pool water. Stands in for licensed
+     photography without looking like an unfilled placeholder. Built from
+     existing primitives only. */
+  .pool-water {
+    background:
+      radial-gradient(80% 60% at 30% 20%, rgb(34 211 238 / 0.55), transparent 70%),
+      radial-gradient(70% 70% at 80% 80%, rgb(14 116 144 / 0.6), transparent 72%),
+      linear-gradient(165deg, #1d7fa8 0%, #0e6a8e 45%, #0b3d5c 100%);
+  }
+
+  .pool-caustics {
+    background-image:
+      repeating-linear-gradient(
+        102deg,
+        rgb(255 255 255 / 0.09) 0px,
+        rgb(255 255 255 / 0.09) 2px,
+        transparent 2px,
+        transparent 26px
+      ),
+      repeating-linear-gradient(
+        -74deg,
+        rgb(255 255 255 / 0.07) 0px,
+        rgb(255 255 255 / 0.07) 3px,
+        transparent 3px,
+        transparent 34px
+      );
+    mask-image: radial-gradient(75% 65% at 45% 35%, black, transparent 78%);
+  }
+
+  /* Backdrop for the WebGL ion field — a lit chamber in deep water. Composed
+     from existing primitives (--blue-900, --aqua-400, --blue-600); no new
+     tokens. Sits behind the transparent canvas. */
+  .ion-chamber {
+    background:
+      radial-gradient(70% 60% at 50% 42%, rgb(3 105 161 / 0.38), transparent 68%),
+      radial-gradient(40% 45% at 82% 8%, rgb(34 211 238 / 0.22), transparent 62%),
+      linear-gradient(180deg, #0d2a44 0%, var(--blue-900) 100%);
+  }
+
   /* Gradient text for a single accent word — used sparingly */
   .text-gradient-aqua {
     background: linear-gradient(100deg, var(--blue-600), var(--aqua-600) 60%, var(--aqua-400));
