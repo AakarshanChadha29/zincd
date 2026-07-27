@@ -34,7 +34,17 @@ export default function FaqPage() {
 
       <Section spacing="lg" background="default" containerWidth="narrow">
         <Reveal>
-          <FaqList faqs={faqs} />
+          {/* The accordion emits <h3> per question. Without an <h2> above it
+              the document jumps h1 → h3, which fails heading order. */}
+          <h2 className="text-h1 text-foreground">Common questions</h2>
+          <p className="text-body-large mt-3 text-muted-foreground">
+            What we can answer today, and what is still awaiting documentation.
+          </p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <div className="mt-8">
+            <FaqList faqs={faqs} />
+          </div>
         </Reveal>
       </Section>
 

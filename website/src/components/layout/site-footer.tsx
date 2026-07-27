@@ -41,11 +41,11 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border bg-[color:var(--blue-900)] text-white">
+    <footer className="mt-auto border-t border-border bg-surface-elevated text-white">
       <Container className="py-12 md:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1 space-y-4">
-            <div className="rounded-[var(--radius-control)] bg-white px-3 py-2 inline-flex">
+            <div className="inline-flex">
               <ZincdLogo href="/" className="h-7 sm:h-8" />
             </div>
             <p className="text-small text-white/80 max-w-xs">
@@ -60,7 +60,7 @@ export function SiteFooter() {
           <FooterLinkList title="Residential" links={footerB2cLinks} />
           <FooterLinkList title="Legal" links={footerLegalLinks} />
         </div>
-        <Separator className="my-8 bg-white/15" />
+        <Separator className="my-8 bg-[color:var(--surface-elevated)]/15" />
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-small text-white/60">
             © {year} {siteConfig.brand.name}. All rights reserved. Brand legal

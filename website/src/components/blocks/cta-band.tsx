@@ -25,7 +25,7 @@ export function CtaBand({
   secondary?: CtaAction;
 }) {
   return (
-    <section className="relative overflow-hidden bg-[color:var(--blue-900)] text-white">
+    <section className="relative overflow-hidden bg-surface-elevated text-white">
       <div aria-hidden className="absolute inset-0 deep-aura" />
       <div aria-hidden className="absolute inset-0 bg-grid-dark opacity-40" />
       <IonMotif className="pointer-events-none absolute -right-10 top-1/2 hidden h-72 -translate-y-1/2 text-white/10 lg:block" />
@@ -37,7 +37,7 @@ export function CtaBand({
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button
               size="lg"
-              className="rounded-[var(--radius-control)] bg-white text-[color:var(--blue-900)] hover:bg-white/90"
+              className="rounded-[var(--radius-control)] bg-primary text-primary-foreground hover:bg-[color:var(--primary-hover)]"
               render={<Link href={primary.href} />}
             >
               {primary.label}
@@ -47,7 +47,7 @@ export function CtaBand({
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-[var(--radius-control)] border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                className="rounded-[var(--radius-control)] border-white/25 bg-transparent text-white hover:bg-[color:var(--surface-elevated)]/10 hover:text-white"
                 render={<Link href={secondary.href} />}
               >
                 {secondary.label}

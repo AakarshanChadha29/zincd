@@ -65,7 +65,7 @@ export default function TechnologyPage() {
           { label: "See the product", href: "/product", variant: "outline" },
         ]}
         aside={
-          <div className="overflow-hidden rounded-[var(--radius)] border border-[color:var(--blue-900)]/25 bg-[color:var(--blue-900)] p-6 shadow-[var(--shadow-2)] md:p-8">
+          <div className="overflow-hidden rounded-[var(--radius)] border border-border bg-surface-elevated p-6 shadow-[var(--shadow-2)] md:p-8">
             <div className="mb-4 flex items-center justify-between">
               <span className="text-technical text-[color:var(--aqua-400)]">
                 Ionization field
@@ -75,7 +75,7 @@ export default function TechnologyPage() {
               </span>
             </div>
             <IonFieldStage />
-            <div className="mt-4 grid grid-cols-3 gap-3 border-t border-white/12 pt-4">
+            <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border pt-4">
               {[
                 { k: "Copper", v: "algae control", c: "#e0996f" },
                 { k: "Silver", v: "ionization", c: "#e8edf3" },
@@ -113,7 +113,7 @@ export default function TechnologyPage() {
                 >
                   {e.symbol}
                 </div>
-                <h3 className="text-h3 mt-5 text-[color:var(--blue-900)]">{e.metal}</h3>
+                <h3 className="text-h3 mt-5 text-foreground">{e.metal}</h3>
                 <p className="text-body mt-2 text-muted-foreground">{e.role}</p>
               </div>
             </Reveal>
@@ -151,7 +151,7 @@ export default function TechnologyPage() {
                 title="Why residual chlorine is still part of the program"
                 description="Ionization is designed to reduce chlorine dependency — not to remove it. Technical documentation recommends maintaining a residual of free chlorine so the water stays reliably sanitized."
               />
-              <div className="mt-8 rounded-[var(--radius)] border border-border bg-[color:var(--steel-50)] p-7">
+              <div className="mt-8 rounded-[var(--radius)] border border-border bg-surface-elevated p-7">
                 <TechnicalLabel>Recommended chemistry</TechnicalLabel>
                 <dl className="mt-5 space-y-3">
                   {chemistryTargets.map((t) => (
@@ -159,7 +159,7 @@ export default function TechnologyPage() {
                       key={t.label}
                       className="flex items-baseline justify-between border-b border-border pb-3 last:border-0 last:pb-0"
                     >
-                      <dt className="text-body text-[color:var(--blue-900)]">{t.label}</dt>
+                      <dt className="text-body text-foreground">{t.label}</dt>
                       <dd className="text-technical normal-case tracking-normal text-accent-aquatic">
                         {t.value}
                       </dd>
@@ -223,7 +223,7 @@ export default function TechnologyPage() {
         </Reveal>
         <p className="text-small mt-6 text-muted-foreground">
           Looking for model-by-model details?{" "}
-          <Link href="/product" className="text-primary underline-offset-4 hover:underline">
+          <Link href="/product" className="text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary">
             See the product range
           </Link>
           .

@@ -1,4 +1,5 @@
-import { Check } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Check } from "lucide-react";
 
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -9,7 +10,12 @@ import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessSteps } from "@/components/blocks/process-steps";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { siteConfig } from "@/content/site-config";
-import { partnerValue, productSeries } from "@/content/product-data";
+import { distributorsHeroClip } from "@/content/media";
+import {
+  partnerPropositions,
+  partnerValue,
+  productSeries,
+} from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -48,6 +54,7 @@ export default function DistributorsPage() {
           { label: siteConfig.ctas.distributor.label, href: "/contact?intent=partner" },
           { label: "See the product", href: "/product", variant: "outline" },
         ]}
+        video={distributorsHeroClip}
       />
 
       {/* Who it's for */}
@@ -67,6 +74,51 @@ export default function DistributorsPage() {
         </Reveal>
       </Section>
 
+      {/* Why carry it — the dealership case, stated plainly. Kept separate
+          from the direct-purchase path on /product so the two audiences never
+          compete for the same call to action. */}
+      <Section spacing="lg" background="default">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="The case for carrying it"
+            title="What you'd actually be selling"
+            description="Not a chemical program to re-order, but an engineered system with a defined component list, documented operating parameters, and a service relationship after the install."
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {partnerPropositions.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.05}>
+              <div className="flex h-full flex-col rounded-[var(--radius-panel)] border border-border bg-surface p-7 transition-colors hover:border-border-strong">
+                <div className="text-technical text-accent-aquatic">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="text-h3 mt-3 text-foreground">{p.title}</h3>
+                <p className="text-body mt-3 text-muted-foreground">{p.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal>
+          <div className="mt-8 rounded-[var(--radius-panel)] border border-border bg-surface p-6">
+            <p className="text-body text-foreground">
+              Buying a single system for your own pool?
+            </p>
+            <p className="text-small mt-2 text-muted-foreground">
+              You don&rsquo;t need a partner agreement — the complete system is
+              available direct.
+            </p>
+            <Link
+              href="/product"
+              className="text-small mt-4 inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
+            >
+              See the product and pricing
+              <ArrowUpRight className="size-4" aria-hidden />
+            </Link>
+          </div>
+        </Reveal>
+      </Section>
+
       {/* Value props */}
       <Section spacing="lg" background="muted">
         <Reveal>
@@ -82,7 +134,7 @@ export default function DistributorsPage() {
               <div className="flex h-full gap-4 rounded-[var(--radius-panel)] border border-border bg-surface p-7">
                 <Check className="mt-0.5 size-5 shrink-0 text-accent-ecological" aria-hidden />
                 <div>
-                  <h3 className="text-h3 text-[color:var(--blue-900)]">{v.title}</h3>
+                  <h3 className="text-h3 text-foreground">{v.title}</h3>
                   <p className="text-body mt-2 text-muted-foreground">{v.body}</p>
                 </div>
               </div>
@@ -108,7 +160,7 @@ export default function DistributorsPage() {
                 <div className="text-technical text-accent-aquatic">
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3 className="text-h3 mt-3 text-[color:var(--blue-900)]">{series.name}</h3>
+                <h3 className="text-h3 mt-3 text-foreground">{series.name}</h3>
                 <p className="text-small mt-1 font-medium text-accent-steel">{series.scope}</p>
               </div>
             </Reveal>

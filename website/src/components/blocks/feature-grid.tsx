@@ -35,13 +35,13 @@ export function FeatureGrid({
         return (
           <div
             key={feature.id}
-            className="group flex flex-col gap-4 bg-surface p-7 transition-colors hover:bg-[color:var(--steel-50)]"
+            className="group flex flex-col gap-4 bg-surface p-7 transition-colors hover:bg-surface-elevated"
           >
-            <div className="flex size-11 items-center justify-center rounded-[var(--radius-control)] border border-border bg-[color:var(--steel-50)] text-accent-aquatic">
+            <div className="flex size-11 items-center justify-center rounded-[var(--radius-control)] border border-border bg-surface-elevated text-accent-aquatic">
               <Icon strokeWidth={1.5} className="size-5" aria-hidden />
             </div>
             <div className="text-technical text-accent-aquatic">{feature.label}</div>
-            <h3 className="text-h3 text-[color:var(--blue-900)]">{feature.title}</h3>
+            <h3 className="text-h3 text-foreground">{feature.title}</h3>
             <p className="text-small text-muted-foreground">{feature.body}</p>
           </div>
         );

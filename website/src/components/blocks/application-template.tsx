@@ -68,7 +68,7 @@ export function ApplicationTemplate({ slug }: { slug: string }) {
                 href={`/applications/${o.slug}`}
                 className="group flex items-center justify-between rounded-[var(--radius-panel)] border border-border bg-surface p-5 transition-colors hover:border-border-strong"
               >
-                <span className="text-body font-medium text-[color:var(--blue-900)]">
+                <span className="text-body font-medium text-foreground">
                   {otherLabel[o.slug]}
                 </span>
                 <ArrowRight

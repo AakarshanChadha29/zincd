@@ -6,12 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { TechnicalLabel } from "@/components/ui/technical-label";
 import { Reveal } from "@/components/motion/reveal";
+import { HeroVideo, type HeroVideoClip } from "@/components/media/hero-video";
+import { cn } from "@/lib/cn";
 
 type HeroAction = { label: string; href: string; variant?: "default" | "outline" };
 
 /**
- * Interior-page hero with the engineered grid + aquatic aura treatment.
- * Optional right-hand slot for a graphic or spec panel.
+ * Interior-page hero. Optional cinematic video background (Product /
+ * Distributors) or classic engineered grid + aura with an aside slot.
  */
 export function PageHero({
   eyebrow,
@@ -19,21 +21,42 @@ export function PageHero({
   description,
   actions,
   aside,
+  video,
 }: {
   eyebrow: string;
   title: ReactNode;
   description: string;
   actions?: HeroAction[];
   aside?: ReactNode;
+  /** When set, full-bleed video replaces grid/aura treatment. */
+  video?: HeroVideoClip | HeroVideoClip[];
 }) {
+  const clips = video ? (Array.isArray(video) ? video : [video]) : null;
+  const cinematic = Boolean(clips?.length);
+
   return (
-    <section className="relative overflow-hidden border-b border-border bg-surface">
-      <div aria-hidden className="absolute inset-0 bg-grid" />
-      <div aria-hidden className="absolute inset-0 hero-aura" />
+    <section
+      className={cn(
+        "relative overflow-hidden border-b border-border",
+        cinematic ? "min-h-[min(72vh,40rem)]" : "bg-surface"
+      )}
+    >
+      {cinematic && clips ? (
+        <>
+          <HeroVideo clips={clips} />
+          <div aria-hidden className="absolute inset-0 hero-scrim" />
+          <div aria-hidden className="absolute inset-x-0 bottom-0 h-32 hero-scrim-bottom" />
+        </>
+      ) : (
+        <>
+          <div aria-hidden className="absolute inset-0 bg-grid" />
+          <div aria-hidden className="absolute inset-0 hero-aura" />
+        </>
+      )}
       <Container className="relative py-14 md:py-20">
         <div
           className={
-            aside
+            aside && !cinematic
               ? "grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]"
               : "max-w-3xl"
           }
@@ -41,8 +64,13 @@ export function PageHero({
           <Reveal>
             <div className="space-y-6">
               <TechnicalLabel>{eyebrow}</TechnicalLabel>
-              <h1 className="text-display text-[color:var(--blue-900)]">{title}</h1>
-              <p className="text-body-large max-w-2xl text-muted-foreground">
+              <h1 className="text-display text-foreground">{title}</h1>
+              <p
+                className={cn(
+                  "text-body-large max-w-2xl",
+                  cinematic ? "text-white/80" : "text-muted-foreground"
+                )}
+              >
                 {description}
               </p>
               {actions && actions.length > 0 ? (
@@ -65,8 +93,14 @@ export function PageHero({
               ) : null}
             </div>
           </Reveal>
-          {aside ? <Reveal delay={0.1}>{aside}</Reveal> : null}
+          {aside && !cinematic ? <Reveal delay={0.1}>{aside}</Reveal> : null}
         </div>
+        {/* Product spin stays below cinematic text when both requested */}
+        {aside && cinematic ? (
+          <Reveal delay={0.1}>
+            <div className="mt-10 max-w-lg">{aside}</div>
+          </Reveal>
+        ) : null}
       </Container>
     </section>
   );

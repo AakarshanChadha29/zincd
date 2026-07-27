@@ -62,7 +62,7 @@ export default function AboutPage() {
                 <div className="text-technical text-accent-aquatic">
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3 className="text-h3 mt-3 text-[color:var(--blue-900)]">{p.title}</h3>
+                <h3 className="text-h3 mt-3 text-foreground">{p.title}</h3>
                 <p className="text-body mt-2 text-muted-foreground">{p.body}</p>
               </div>
             </Reveal>

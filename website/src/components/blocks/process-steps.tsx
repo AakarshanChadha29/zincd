@@ -33,7 +33,7 @@ export function ProcessSteps({
             ) : null}
           </span>
           <div className="pt-1">
-            <h3 className="text-h3 text-[color:var(--blue-900)]">{step.title}</h3>
+            <h3 className="text-h3 text-foreground">{step.title}</h3>
             <p className="text-body mt-2 text-muted-foreground">{step.body}</p>
           </div>
         </li>

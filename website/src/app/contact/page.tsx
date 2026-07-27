@@ -47,11 +47,11 @@ export default function ContactPage() {
                     key={p.title}
                     className="flex gap-4 rounded-[var(--radius-panel)] border border-border bg-surface p-5"
                   >
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-[var(--radius-control)] border border-border bg-[color:var(--steel-50)] text-accent-aquatic">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-[var(--radius-control)] border border-border bg-surface-elevated text-accent-aquatic">
                       <Icon strokeWidth={1.5} className="size-5" aria-hidden />
                     </div>
                     <div>
-                      <p className="text-body font-medium text-[color:var(--blue-900)]">{p.title}</p>
+                      <p className="text-body font-medium text-foreground">{p.title}</p>
                       <p className="text-small mt-1 text-muted-foreground">{p.body}</p>
                     </div>
                   </div>

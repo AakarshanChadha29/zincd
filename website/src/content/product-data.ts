@@ -94,7 +94,7 @@ export const chemistryTargets = [
 /** System components — from TS. */
 export const systemComponents = [
   { name: "Cu–Ag–Zn ionization cell", detail: "Stainless housing with copper, silver and zinc alloy electrodes." },
-  { name: "Control panel", detail: "Microcontroller-based PWM control with LCD readout." },
+  { name: "Control electronics", detail: "Microcontroller-based PWM control with LCD readout, integrated with the anode assembly." },
   { name: "Electronic monitoring", detail: "Signals status and when routine anode cleaning is due." },
   { name: "Rechargeable battery & charger", detail: "Supports controlled, consistent operation." },
   { name: "Water testing kit", detail: "For copper, free chlorine and pH — the metrics that keep chemistry in range." },
@@ -293,4 +293,55 @@ export const installSteps = [
 export const warrantySummary = [
   { part: "Cu–Ag–Zn anode", term: "5–10 years", note: "Model- and condition-dependent" },
   { part: "Electrical / electronic components", term: "3 years", note: "Against manufacturing defects" },
+] as const;
+
+/**
+ * Direct purchase offer — the commercial path.
+ *
+ * Price CLIENT-CONFIRMED at $5,000 USD (2026-07). Included line items remain
+ * the published commercial representation; treat changes as binding updates.
+ * Checkout URL is supplied by env (`NEXT_PUBLIC_STRIPE_CHECKOUT_URL`) and the
+ * buy button is hidden entirely when unset — never a dead payment link.
+ */
+export const directOffer = {
+  priceUsd: 5000,
+  priceDisplay: "$5,000",
+  currency: "USD",
+  /** Client-confirmed published direct price. */
+  priceConfirmed: true,
+  name: "Zinc'd ionization system",
+  summary:
+    "The complete system: stainless Cu–Ag–Zn ionization cell, control electronics with LCD and monitoring, rechargeable battery and charger, and the water-testing kit.",
+  includes: [
+    "Cu–Ag–Zn ionization cell in stainless housing",
+    "Control electronics with LCD and status monitoring",
+    "Rechargeable battery and charger",
+    "Water-testing kit — copper, free chlorine and pH",
+    "Installation handbook and water-chemistry maintenance chart",
+  ],
+  notes: [
+    "Series is confirmed to your pool volume and circulation flow rate before dispatch.",
+    "Installation is arranged separately with a qualified installer.",
+    "Anode warranty 5–10 years by model; electrical and electronic components 3 years.",
+  ],
+} as const;
+
+/** Why a partner would carry the line — the dealership path. */
+export const partnerPropositions = [
+  {
+    title: "A defined product, not a chemistry program",
+    body: "One engineered system with documented specifications, four series covering domestic through Olympic-size, and a fixed component list.",
+  },
+  {
+    title: "Recurring service, not one-off supply",
+    body: "Routine care centres on periodic anode cleaning and water testing — a predictable service relationship after the install.",
+  },
+  {
+    title: "Documentation that supports the sale",
+    body: "Installer handbook, capacity formulas, operating standards and a water-chemistry maintenance chart ship with every system.",
+  },
+  {
+    title: "Backed hardware",
+    body: "Anode warranty of 5–10 years by model and condition; electrical and electronic components carry 3 years against manufacturing defects. Replacement rather than repair.",
+  },
 ] as const;

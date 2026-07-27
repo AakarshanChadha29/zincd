@@ -75,7 +75,7 @@ export default function InstallationMaintenancePage() {
                       key={t.label}
                       className="flex items-baseline justify-between border-b border-border pb-3 last:border-0 last:pb-0"
                     >
-                      <dt className="text-body text-[color:var(--blue-900)]">{t.label}</dt>
+                      <dt className="text-body text-foreground">{t.label}</dt>
                       <dd className="text-technical normal-case tracking-normal text-accent-aquatic">
                         {t.value}
                       </dd>
@@ -91,14 +91,17 @@ export default function InstallationMaintenancePage() {
                 <TechnicalLabel>Warranty summary</TechnicalLabel>
                 <dl className="mt-5 space-y-4">
                   {warrantySummary.map((w) => (
-                    <div key={w.part} className="border-b border-border pb-4 last:border-0 last:pb-0">
-                      <div className="flex items-baseline justify-between gap-4">
-                        <dt className="text-body text-[color:var(--blue-900)]">{w.part}</dt>
-                        <dd className="text-technical normal-case tracking-normal text-accent-aquatic">
-                          {w.term}
-                        </dd>
-                      </div>
-                      <p className="text-small mt-1 text-muted-foreground">{w.note}</p>
+                    <div
+                      key={w.part}
+                      className="grid grid-cols-[1fr_auto] items-baseline gap-x-4 border-b border-border pb-4 last:border-0 last:pb-0"
+                    >
+                      <dt className="text-body text-foreground">{w.part}</dt>
+                      <dd className="text-technical normal-case tracking-normal text-accent-aquatic">
+                        {w.term}
+                        <span className="text-small mt-1 block font-sans normal-case tracking-normal text-muted-foreground">
+                          {w.note}
+                        </span>
+                      </dd>
                     </div>
                   ))}
                 </dl>

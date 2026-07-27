@@ -16,7 +16,9 @@ import { SpecTable } from "@/components/blocks/spec-table";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { FaqList } from "@/components/blocks/faq-list";
 import { IonizationCell } from "@/components/graphics/ionization-cell";
+import { HeroVideo } from "@/components/media/hero-video";
 import { siteConfig } from "@/content/site-config";
+import { homepageHeroClips } from "@/content/media";
 import {
   applications,
   chemistryTargets,
@@ -35,8 +37,6 @@ export const metadata = createPageMetadata({
   path: "/",
 });
 
-const heroChips = ["Cu · Ag · Zn", "24 V DC PWM", "Stainless housing", "Domestic → Olympic"];
-
 /** Which environment photograph fronts each application card. */
 const IMAGE_BY_SLUG: Record<string, string> = {
   residential: "/img/pool-residential.jpg",
@@ -48,80 +48,56 @@ const IMAGE_BY_SLUG: Record<string, string> = {
 export default function HomePage() {
   return (
     <>
-      {/* ============================ HERO ============================ */}
-      <section className="relative overflow-hidden border-b border-border bg-surface">
-        <div aria-hidden className="absolute inset-0 bg-grid" />
-        <div aria-hidden className="absolute inset-0 hero-aura" />
-        <Container className="relative py-16 md:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
-            <Reveal>
-              <div className="space-y-7">
-                <TechnicalLabel>{heroContent.eyebrow}</TechnicalLabel>
-                <h1 className="text-display max-w-xl text-[color:var(--blue-900)]">
-                  Engineered water treatment for the{" "}
-                  <span className="text-gradient-aqua">modern pool</span>.
-                </h1>
-                <p className="text-body-large max-w-xl text-muted-foreground">
-                  {heroContent.subhead}
-                </p>
-                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <Button
-                    size="lg"
-                    className="rounded-[var(--radius-control)]"
-                    render={<Link href={heroContent.primaryCta.href} />}
-                  >
-                    {heroContent.primaryCta.label}
-                    <ArrowRight className="size-4" aria-hidden />
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="rounded-[var(--radius-control)]"
-                    render={<Link href={heroContent.secondaryCta.href} />}
-                  >
-                    {heroContent.secondaryCta.label}
-                  </Button>
-                </div>
-                <ul className="flex flex-wrap gap-2 pt-2">
-                  {heroChips.map((chip) => (
-                    <li
-                      key={chip}
-                      className="text-technical rounded-[var(--radius-control)] border border-border bg-[color:var(--steel-50)] px-3 py-1.5 text-muted-foreground normal-case tracking-normal"
-                    >
-                      {chip}
-                    </li>
-                  ))}
-                </ul>
+      {/* ============================ HERO ============================
+          Full-bleed cinematic villa/pool video — WeAreBrand concepts
+          (atmosphere, brand-first, sparse first viewport), not a clone. */}
+      <section className="relative flex min-h-[calc(100svh-var(--nav-height))] flex-col justify-end overflow-hidden border-b border-border">
+        <HeroVideo clips={homepageHeroClips} />
+        <div aria-hidden className="absolute inset-0 hero-scrim" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 hero-scrim-bottom" />
+        <Container className="relative pb-16 pt-28 md:pb-24 md:pt-36">
+          <Reveal>
+            <div className="max-w-xl space-y-7">
+              <TechnicalLabel>{heroContent.eyebrow}</TechnicalLabel>
+              <h1 className="text-display text-white">
+                Engineered water treatment for the{" "}
+                <span className="text-gradient-aqua">modern pool</span>.
+              </h1>
+              <p className="text-body-large max-w-lg text-white/80">
+                {heroContent.subhead}
+              </p>
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button
+                  size="lg"
+                  className="rounded-[var(--radius-control)]"
+                  render={<Link href={siteConfig.ctas.assessment.href} />}
+                >
+                  {siteConfig.ctas.assessment.label}
+                  <ArrowRight className="size-4" aria-hidden />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="rounded-[var(--radius-control)] border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                  render={<Link href={siteConfig.ctas.distributor.href} />}
+                >
+                  {siteConfig.ctas.distributor.label}
+                </Button>
               </div>
-            </Reveal>
-
-            {/* The homepage hero is photography-led, not diagram-led — the
-                ionization schematic and the 3D field both live on /technology.
-                These are generated environment photographs (see
-                docs/asset-register.md): they depict settings, never the
-                product, so they make no claim about the hardware. */}
-            <Reveal delay={0.1}>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius)] border border-border shadow-[var(--shadow-2)]">
-                <Image
-                  src="/img/pool-residential.jpg"
-                  alt=""
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 46vw, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[color:var(--blue-900)]/85 to-transparent p-6">
-                  <p className="text-technical text-[color:var(--aqua-400)]">
-                    Residential · Hospitality · Commercial
-                  </p>
-                  <p className="text-body mt-1 text-white/90">
-                    One engineered system, sized from domestic pools to
-                    Olympic-scale circulation.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
+              <p className="text-small text-white/55">
+                <Link
+                  href={siteConfig.ctas.technology.href}
+                  className="underline underline-offset-4 hover:text-white"
+                >
+                  {siteConfig.ctas.technology.label}
+                </Link>
+                <span className="mx-2" aria-hidden>
+                  ·
+                </span>
+                Residential · Hospitality · Commercial
+              </p>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
@@ -185,7 +161,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="lg:pt-16">
-              <div className="rounded-[var(--radius)] border border-border bg-[color:var(--steel-50)] p-7">
+              <div className="rounded-[var(--radius)] border border-border bg-surface-elevated p-7">
                 <TechnicalLabel>Recommended chemistry</TechnicalLabel>
                 <p className="text-small mt-3 text-muted-foreground">
                   A supplied testing kit covers the three metrics that keep the
@@ -197,7 +173,7 @@ export default function HomePage() {
                       key={t.label}
                       className="flex items-baseline justify-between border-b border-border pb-3 last:border-0 last:pb-0"
                     >
-                      <dt className="text-body text-[color:var(--blue-900)]">{t.label}</dt>
+                      <dt className="text-body text-foreground">{t.label}</dt>
                       <dd className="text-technical normal-case tracking-normal text-accent-aquatic">
                         {t.value}
                       </dd>
@@ -246,7 +222,7 @@ export default function HomePage() {
                 <div className="text-technical text-accent-aquatic">
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3 className="text-h3 mt-3 text-[color:var(--blue-900)]">{series.name}</h3>
+                <h3 className="text-h3 mt-3 text-foreground">{series.name}</h3>
                 <p className="text-small mt-1 font-medium text-accent-steel">{series.scope}</p>
                 <p className="text-small mt-3 text-muted-foreground">{series.body}</p>
               </div>
@@ -269,7 +245,7 @@ export default function HomePage() {
           <Reveal>
             <Link
               href="/applications"
-              className="text-small inline-flex items-center gap-1 font-medium text-primary underline-offset-4 hover:underline"
+              className="text-small inline-flex items-center gap-1 font-medium text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
             >
               All applications
               <ArrowRight className="size-4" aria-hidden />
@@ -300,7 +276,7 @@ export default function HomePage() {
                     />
                     <ArrowUpRight className="size-5 text-accent-steel transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
                   </div>
-                  <h3 className="text-h2 mt-5 text-[color:var(--blue-900)]">{app.title}</h3>
+                  <h3 className="text-h2 mt-5 text-foreground">{app.title}</h3>
                   <p className="text-small mt-1 font-medium text-accent-steel">{app.tagline}</p>
                   <p className="text-body mt-3 text-muted-foreground">{app.body}</p>
                 </div>
@@ -316,7 +292,7 @@ export default function HomePage() {
           <div className="grid gap-8 rounded-[var(--radius)] border border-border bg-surface p-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:p-10">
             <div>
               <AudienceChip label="For partners" variant="partner" />
-              <h2 className="text-h1 mt-4 text-[color:var(--blue-900)]">
+              <h2 className="text-h1 mt-4 text-foreground">
                 Add an engineered category to your line
               </h2>
               <p className="text-body-large mt-3 max-w-2xl text-muted-foreground">

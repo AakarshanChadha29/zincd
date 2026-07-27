@@ -371,6 +371,57 @@ four images served and referenced, image optimizer confirmed working.
 but it needs a decision on what the Zinc'd unit should look like, which is a
 branding call, not a web-build one.
 
+### 2026-07-27 — Zinc'd-branded product imagery and 360° spin
+
+**The Arroyo branding blocker is resolved.** Client confirmed the direction:
+keep the existing form factor, replace the Arroyo labelling with Zinc'd.
+
+**Spend: 44.2 credits** (balance 1200 → 1155.8) against a client cap of 120.
+
+| Step | Model | Credits |
+|---|---|---|
+| Rebrand pass, 2 variants | `nano_banana_pro` (image-to-image) | 4 |
+| Single-object 3D trial | `sam_3_3d` | 1 |
+| 4K upscale of the still | `bytedance_image_upscale` | 2 |
+| 3 isolated chamber views | `nano_banana_pro` | 6 |
+| Multi-view textured mesh | `multi_image_to_3d` | 30 |
+| (earlier) 10 environment photos | `soul_location` | ~1.2 |
+
+**Assets added**
+
+- `public/img/product-zincd.jpg` — both units, Zinc'd-branded, on white (189 KB)
+- `public/img/product-chamber.jpg` — isolated chamber, straight-on (212 KB)
+- `public/models/zincd-chamber.glb` — textured mesh, **757 KB**
+
+**Two findings worth keeping**
+
+1. **`sam_3_3d` costs 1 credit; `image_to_3d` costs 20–30.** But single-image
+   reconstruction smeared the label texture badly — unusable where branding
+   accuracy is the point. Generating three isolated views and running
+   `multi_image_to_3d` (30 credits) produced a clean, legible mesh. Worth the
+   30× price difference *for the product*; `sam_3_3d` remains fine for rough
+   geometry.
+2. **`@gltf-transform/cli` cut the mesh 3.04 MB → 757 KB (75%)** with
+   `--compress quantize --texture-compress webp`, requiring no extra runtime.
+   Draco reached 265 KB but needs a ~200 KB decoder shipped and wired, so the
+   net saving did not justify the complexity. Three.js supports
+   `KHR_mesh_quantization` and `EXT_texture_webp` natively.
+
+**Components:** `product-spin-scene.tsx` (R3F + GLTFLoader, hand-rolled
+turntable, material metalness tuned because photogrammetry bakes lighting into
+the albedo and arrives matte white) and `product-spin.tsx` (the gate). Gating is
+identical to the ion field — reduced-motion, WebGL, device capability,
+near-viewport — with the isolated product still as the fallback. `/product`
+hero now carries the spin instead of the schematic.
+
+**Claims note:** unlike the abstract ion field, this *is* the product. The mesh
+and stills must only ever be regenerated from client-approved artwork. The
+current set derives from the client's own product photography with the label
+changed — no geometry was invented.
+
+**Verified:** lint clean, build passes, all 18 routes 200 / unknown 404, GLB and
+optimized images serve correctly (product still is 17 KB as WebP at 828w).
+
 ## Next Phase (proposed, not yet started)
 
 Design foundation and branding, informed by confirmed client discovery.

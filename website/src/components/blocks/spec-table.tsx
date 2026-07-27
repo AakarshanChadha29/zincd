@@ -28,7 +28,7 @@ export function SpecTable({
           >
             <dt className="text-small text-muted-foreground">{row.label}</dt>
             <dd className="flex items-baseline gap-3 sm:justify-end">
-              <span className="text-technical text-[color:var(--blue-900)] normal-case tracking-normal text-[0.95rem]">
+              <span className="text-technical text-foreground normal-case tracking-normal text-[0.95rem]">
                 {row.value}
               </span>
               {row.note ? (

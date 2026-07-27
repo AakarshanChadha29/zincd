@@ -119,7 +119,7 @@ export function ContactForm() {
           strokeWidth={1.5}
           aria-hidden
         />
-        <h2 className="text-h2 mt-4 text-[color:var(--blue-900)]">
+        <h2 className="text-h2 mt-4 text-foreground">
           {sent ? "Thanks — enquiry sent" : "Thanks — details captured"}
         </h2>
         <p className="text-body mt-3 text-muted-foreground">
@@ -158,7 +158,7 @@ export function ContactForm() {
               className={cn(
                 "rounded-[var(--radius-control)] border px-3 py-2.5 text-small font-medium transition-colors",
                 selectedIntent === intent.value
-                  ? "border-primary bg-[color:var(--accent)] text-[color:var(--blue-900)]"
+                  ? "border-primary bg-[color:var(--accent)] text-foreground"
                   : "border-border bg-surface text-muted-foreground hover:border-border-strong"
               )}
             >
@@ -267,7 +267,7 @@ function Field({
   return (
     <div>
       <div className="mb-1.5 flex items-baseline justify-between gap-2">
-        <label htmlFor={htmlFor} className="text-small font-medium text-[color:var(--blue-900)]">
+        <label htmlFor={htmlFor} className="text-small font-medium text-foreground">
           {label}
         </label>
         {hint ? <span className="text-small text-accent-steel">{hint}</span> : null}

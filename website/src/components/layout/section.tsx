@@ -24,7 +24,7 @@ const backgroundClass = {
   default: "bg-background",
   surface: "bg-surface",
   muted: "bg-surface-muted",
-  deep: "bg-[color:var(--blue-900)] text-white",
+  deep: "bg-surface-elevated text-white",
 } as const;
 
 export function Section({

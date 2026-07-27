@@ -33,7 +33,7 @@ export function LegalLayout({
         <div aria-hidden className="absolute inset-0 hero-aura" />
         <Container className="relative py-12 md:py-16">
           <TechnicalLabel>{eyebrow}</TechnicalLabel>
-          <h1 className="text-h1 mt-4 text-[color:var(--blue-900)]">{title}</h1>
+          <h1 className="text-h1 mt-4 text-foreground">{title}</h1>
           <p className="text-body-large mt-3 max-w-2xl text-muted-foreground">{intro}</p>
         </Container>
       </section>
@@ -53,7 +53,7 @@ export function LegalLayout({
                       aria-current={active ? "page" : undefined}
                       className={
                         active
-                          ? "text-small block rounded-[var(--radius-control)] bg-[color:var(--accent)] px-3 py-2 font-medium text-[color:var(--blue-900)]"
+                          ? "text-small block rounded-[var(--radius-control)] bg-[color:var(--accent)] px-3 py-2 font-medium text-foreground"
                           : "text-small block rounded-[var(--radius-control)] px-3 py-2 text-muted-foreground hover:bg-surface-muted hover:text-foreground"
                       }
                     >
@@ -79,7 +79,7 @@ export function LegalLayout({
 export function LegalBlock({ heading, children }: { heading: string; children: ReactNode }) {
   return (
     <section>
-      <h2 className="text-h3 text-[color:var(--blue-900)]">{heading}</h2>
+      <h2 className="text-h3 text-foreground">{heading}</h2>
       <div className="text-body mt-3 space-y-3 text-muted-foreground">{children}</div>
     </section>
   );

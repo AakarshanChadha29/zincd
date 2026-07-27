@@ -1,10 +1,13 @@
-# Asset Usage Log — Zinc'd (Phase 3)
+# Asset Usage Log — Zinc'd
 
 ## Used in website
 
 | Public path | Source | Classification | Notes |
 |---|---|---|---|
-| `website/public/brand/zincd-logo.jpg` | `source/client/images/PHOTO-2026-06-15-16-27-49.jpg` | approved-logo-candidate + final-production-approval-required | Copied for development. Raster JPG 1600×666. Vector master still preferred before production polish. Used via `next/image` in `ZincdLogo`. |
+| `website/public/brand/zincd-logo.jpg` | `source/client/images/PHOTO-2026-06-15-16-27-49.jpg` | approved-logo-candidate + final-production-approval-required | Exact client JPG on a light brand plate via `ZincdLogo`. Vector master still outstanding — do not redraw the wordmark. |
+| `website/public/video/villa-ocean.mp4` (+ `.jpg` poster) | Vecteezy luxury villa infinity pool overlooking ocean | stock-environment-media | Re-encoded ~720p for web. Homepage hero rotation; ffmpeg poster. Depicts setting only — not the product. |
+| `website/public/video/villa-bali.mp4` (+ `.jpg` poster) | Vecteezy Bali infinity pool villa | stock-environment-media | Homepage rotation + Distributors page hero. |
+| `website/public/video/villa-modern.mp4` (+ `.jpg` poster) | Vecteezy modern house with pool (AI render stock) | stock-environment-media | Homepage rotation + Product page hero. |
 
 ## Explicitly not used
 
@@ -14,11 +17,12 @@
 | Marketing flyers / packaging with blocked claims | Layout reference only; claims blocked |
 | Oversized `Pool Care New Design..jpg` | Unsuitable for web as-is |
 | Default Next.js `public/*.svg` demos | Not part of Zinc'd brand UI (left in public folder unused by app shell) |
+| Higgsfield logo redraw / cutout | Budget reserved; original JPG on plate used instead |
 
 ## Favicon
 
 Default Next.js `src/app/favicon.ico` remains until a Zinc'd-approved favicon is supplied. No unverified mark invented.
 
-## 3D / product media
+## Pricing note
 
-None. Phase 3 does not implement WebGL or product turntables.
+Direct offer `$5,000 USD` is client-confirmed. Stripe checkout remains env-gated (`NEXT_PUBLIC_STRIPE_CHECKOUT_URL`).

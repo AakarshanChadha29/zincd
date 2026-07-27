@@ -53,7 +53,7 @@ export default function ApplicationsPage() {
                     aria-hidden
                   />
                 </div>
-                <h2 className="text-h2 mt-5 text-[color:var(--blue-900)]">{app.title}</h2>
+                <h2 className="text-h2 mt-5 text-foreground">{app.title}</h2>
                 <p className="text-small mt-1 font-medium text-accent-steel">{app.tagline}</p>
                 <p className="text-body mt-3 text-muted-foreground">{app.body}</p>
               </Link>
