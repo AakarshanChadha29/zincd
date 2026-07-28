@@ -35,6 +35,22 @@ export const distributorsHeroClip = heroVideos.estate;
 export const applicationsHeroClip = heroVideos.swimmer;
 export const aboutHeroClip = heroVideos.estate;
 
+/** Higgsfield motion graphics — ambient section films (≤75 credit budget). */
+export const motionGraphics = {
+  ionsWater: {
+    src: "/video/mg-ions-water.mp4",
+    poster: "/video/mg-ions-water.jpg",
+  },
+  chamber: {
+    src: "/video/mg-chamber.mp4",
+    poster: "/video/mg-chamber.jpg",
+  },
+  mineralType: {
+    src: "/video/mg-mineral-type.mp4",
+    poster: "/video/mg-mineral-type.jpg",
+  },
+} as const;
+
 /** Still photography for application cards — environment only, never the product. */
 export const applicationImages: Record<string, string> = {
   residential: "/img/pool-residential.jpg",

@@ -20,10 +20,15 @@ import { EcoRipple } from "@/components/graphics/eco-ripple";
 import { IonFieldStage } from "@/components/graphics/ion-field-stage";
 import { ProductSpin } from "@/components/graphics/product-spin";
 import { HeroVideo } from "@/components/media/hero-video";
+import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { ScrollParallax } from "@/components/motion/scroll-parallax";
 import { siteConfig } from "@/content/site-config";
-import { applicationImages, homepageHeroClips } from "@/content/media";
+import {
+  applicationImages,
+  homepageHeroClips,
+  motionGraphics,
+} from "@/content/media";
 import {
   applications,
   chemistryTargets,
@@ -125,6 +130,14 @@ export default function HomePage() {
         </Reveal>
       </Section>
 
+      <MotionGraphicBand
+        src={motionGraphics.ionsWater.src}
+        poster={motionGraphics.ionsWater.poster}
+        eyebrow="Ecological clarity"
+        title="Mineral ions, moving with the water"
+        body="Copper, silver and zinc released under control — a quieter chemistry program visualized as living film, not brochure graphics."
+      />
+
       {/* ============================ ECOLOGICAL STORY ============================ */}
       <Section id="ecological" spacing="lg" background="muted" className="relative overflow-hidden">
         <AmbientIons tone="ecological" density="sparse" />
@@ -165,6 +178,14 @@ export default function HomePage() {
         </div>
       </Section>
 
+      <MotionGraphicBand
+        src={motionGraphics.mineralType.src}
+        poster={motionGraphics.mineralType.poster}
+        eyebrow="Kinetic story"
+        title="Words that move with the system"
+        body="Premium motion graphics for the mineral story — calm, cinematic, and built for the scroll without gimmicks."
+      />
+
       {/* ============================ HOW IT WORKS ============================ */}
       <Section id="how-it-works" spacing="lg" background="default" className="relative">
         <AmbientIons density="medium" className="opacity-60" />
@@ -192,6 +213,14 @@ export default function HomePage() {
           </Reveal>
         </div>
       </Section>
+
+      <MotionGraphicBand
+        src={motionGraphics.chamber.src}
+        poster={motionGraphics.chamber.poster}
+        eyebrow="Inside the system"
+        title="An engineered chamber, illuminated"
+        body="Abstract visualization of ionization energy across the cell — complementary to the interactive product model below."
+      />
 
       {/* ============================ SYSTEM VISUALIZATION ============================ */}
       <Section id="system" spacing="lg" background="default" className="relative">

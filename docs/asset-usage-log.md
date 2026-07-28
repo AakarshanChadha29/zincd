@@ -8,7 +8,9 @@
 | `website/public/video/villa-ocean.mp4` (+ `.jpg` poster) | Vecteezy luxury villa infinity pool overlooking ocean | stock-environment-media | Re-encoded ~720p for web. Homepage hero rotation; ffmpeg poster. Depicts setting only — not the product. |
 | `website/public/video/villa-bali.mp4` (+ `.jpg` poster) | Vecteezy Bali infinity pool villa | stock-environment-media | Homepage rotation + Distributors page hero. |
 | `website/public/video/estate-pool.mp4` (+ `.jpg` poster) | Vecteezy large house with swimming pool | stock-environment-media | Homepage rotation + Distributors/About heroes. |
-| `website/public/video/swimmer-palm.mp4` (+ `.jpg` poster) | Vecteezy woman swimming tranquil pool beneath palms | stock-environment-media | Homepage rotation + Applications heroes. |
+| `website/public/video/mg-ions-water.mp4` (+ poster) | Higgsfield Kling 3.0 Turbo | generated-motion-graphics | ~7.5 credits. Ambient homepage band. |
+| `website/public/video/mg-chamber.mp4` (+ poster) | Higgsfield Kling 3.0 Turbo | generated-motion-graphics | ~7.5 credits. System visualization band. |
+| `website/public/video/mg-mineral-type.mp4` (+ poster) | Higgsfield Kling 3.0 Turbo | generated-motion-graphics | ~7.5 credits. Kinetic typography band. Total ≈22.5 / 75 budget. |
 
 ## Explicitly not used
 

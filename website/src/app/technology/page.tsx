@@ -12,7 +12,9 @@ import { SpecTable } from "@/components/blocks/spec-table";
 import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { IonFieldStage } from "@/components/graphics/ion-field-stage";
+import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { siteConfig } from "@/content/site-config";
+import { motionGraphics } from "@/content/media";
 import {
   chemistryTargets,
   howItWorksSteps,
@@ -127,6 +129,14 @@ export default function TechnologyPage() {
           ))}
         </div>
       </Section>
+
+      <MotionGraphicBand
+        src={motionGraphics.chamber.src}
+        poster={motionGraphics.chamber.poster}
+        eyebrow="Field visualization"
+        title="Ionization as living light"
+        body="Higgsfield motion graphics of the chamber field — abstract, claims-safe, and built to feel premium on scroll."
+      />
 
       {/* How it works process */}
       <Section spacing="lg" background="muted">

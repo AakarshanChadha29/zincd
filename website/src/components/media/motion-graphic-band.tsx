@@ -1,0 +1,103 @@
+"use client";
+
+import { useReducedMotion } from "motion/react";
+import Image from "next/image";
+
+import { cn } from "@/lib/cn";
+import { Container } from "@/components/layout/container";
+import { TechnicalLabel } from "@/components/ui/technical-label";
+import { Reveal } from "@/components/motion/reveal";
+
+type MotionGraphicBandProps = {
+  src: string;
+  poster: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  className?: string;
+  /** Darker scrim for lighter source film. */
+  tone?: "deep" | "soft";
+};
+
+/**
+ * Full-bleed Higgsfield motion-graphic band — looping muted video with
+ * restrained copy. Poster fallback under reduced-motion.
+ */
+export function MotionGraphicBand({
+  src,
+  poster,
+  eyebrow,
+  title,
+  body,
+  className,
+  tone = "deep",
+}: MotionGraphicBandProps) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <section
+      className={cn(
+        "relative flex min-h-[min(70vh,32rem)] items-end overflow-hidden border-y border-border",
+        className
+      )}
+    >
+      {reduceMotion ? (
+        <Image
+          src={poster}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+          aria-hidden
+        />
+      ) : (
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={src}
+          poster={poster}
+          muted
+          playsInline
+          loop
+          autoPlay
+          preload="metadata"
+          aria-hidden
+        />
+      )}
+      <div
+        aria-hidden
+        className={cn(
+          "absolute inset-0",
+          tone === "deep" ? "hero-scrim" : "bg-[color:var(--pearl)]/55"
+        )}
+      />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 hero-scrim-bottom" />
+      <Container className="relative pb-14 pt-24 md:pb-20">
+        <Reveal>
+          <div className="max-w-xl space-y-4">
+            <TechnicalLabel
+              className={tone === "deep" ? "text-[color:var(--aqua-400)]" : undefined}
+            >
+              {eyebrow}
+            </TechnicalLabel>
+            <h2
+              className={cn(
+                "text-h1",
+                tone === "deep" ? "text-white" : "text-foreground"
+              )}
+            >
+              {title}
+            </h2>
+            <p
+              className={cn(
+                "text-body-large max-w-lg",
+                tone === "deep" ? "text-white/80" : "text-muted-foreground"
+              )}
+            >
+              {body}
+            </p>
+          </div>
+        </Reveal>
+      </Container>
+    </section>
+  );
+}
