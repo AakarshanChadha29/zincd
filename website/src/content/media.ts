@@ -53,12 +53,29 @@ export const motionGraphics = {
     src: "/video/mg-water-story.mp4",
     poster: "/video/mg-water-story.jpg",
   },
+  /** Premium stainless chamber orbit — replaces Minecraft GLB look. */
+  chamberOrbit: {
+    src: "/video/mg-chamber-orbit.mp4",
+    poster: "/video/mg-chamber-orbit.jpg",
+  },
+  /** Living pearl/teal particle atmosphere for interactive sections. */
+  livingField: {
+    src: "/video/mg-living-field.mp4",
+    poster: "/video/mg-living-field.jpg",
+  },
+  /** US luxury pool water → mineral ions story. */
+  waterIons: {
+    src: "/video/mg-water-ions.mp4",
+    poster: "/video/mg-water-ions.jpg",
+  },
 } as const;
 
 /** Product / install stills — Zinc'd branded (no Arroyo). */
 export const productStills = {
   flowDiagram: "/img/product/flow-diagram.png",
   manifold: "/img/product/manifold-zincd.png",
+  chamberPremium: "/img/product/chamber-premium.png",
+  chamberHeroVertical: "/img/product/chamber-hero-vertical.png",
 } as const;
 
 /** Still photography for application cards — environment only, never the product. */

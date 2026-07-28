@@ -12,10 +12,10 @@
  */
 
 export const heroContent = {
-  eyebrow: "Ecological mineral ionization",
+  eyebrow: "Mineral ionization for US pools",
   headline: "A quieter revolution in pool water.",
   subhead:
-    "Copper–silver–zinc ionization for estates, hospitality, and commercial pools — quieter chemistry, clearer water.",
+    "Copper–silver–zinc ionization with precision PWM control — built for American estates, hotels, and commercial aquatic facilities. Designed to reduce day-to-day chlorine demand while residual sanitizer stays in the program.",
   primaryCta: { label: "Request a Pool Assessment", href: "/contact?intent=assessment" },
   secondaryCta: { label: "Become a Distributor", href: "/distributors" },
 } as const;

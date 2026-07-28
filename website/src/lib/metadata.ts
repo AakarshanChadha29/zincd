@@ -71,18 +71,19 @@ export function getRootMetadata(): Metadata {
   return {
     metadataBase: new URL(siteUrl),
     title: {
-      default: `${siteConfig.brand.name} | Ecological Mineral Ionization for Pools`,
+      default: `${siteConfig.brand.name} | Mineral Ionization Systems for US Pools`,
       template: `%s | ${siteConfig.brand.name}`,
     },
     description: defaultDescription,
     applicationName: siteConfig.brand.name,
     keywords: [
-      "pool ionization",
+      "pool ionization system USA",
       "copper silver zinc ionization",
+      "mineral pool ionizer",
       "ecological pool water treatment",
-      "mineral ionization system",
       "commercial pool equipment",
-      "hospitality pool water",
+      "hotel pool ionization",
+      "residential pool ionizer",
       "Zinc'd",
     ],
     openGraph: {

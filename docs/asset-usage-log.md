@@ -11,9 +11,11 @@
 | `website/public/video/mg-ions-water.mp4` (+ poster) | Higgsfield Kling 3.0 Turbo | generated-motion-graphics | ~7.5 credits. Ambient homepage band. |
 | `website/public/video/mg-chamber.mp4` (+ poster) | Higgsfield Kling 3.0 Turbo | generated-motion-graphics | ~7.5 credits. System visualization band. |
 | `website/public/video/mg-mineral-type.mp4` (+ poster) | Higgsfield Kling 3.0 Turbo | generated-motion-graphics | ~7.5 credits. Kinetic typography band. |
-| `website/public/video/mg-water-story.mp4` (+ poster) | Higgsfield Kling 3.0 Turbo | generated-motion-graphics | ~7.5 credits. Water through-chamber story band. This pass ≈11.5 credits (2+2+7.5) within ≤100 budget. |
-| `website/public/img/product/flow-diagram.png` | Higgsfield Nano Banana Pro (from client install diagram screenshot) | generated-product-diagram | ~2 credits. Filtration → Zinc'd UNIT → pool. No Arroyo. |
-| `website/public/img/product/manifold-zincd.png` | Higgsfield Nano Banana Pro (from client manifold photo; Arroyo stripped) | generated-product-photo | ~2 credits. Three chambers + bypass, Zinc'd WATER CHAMBER labels. |
+| `website/public/video/mg-chamber-orbit.mp4` (+ poster) | Higgsfield Kling 3.0 Turbo | generated-product-cinema | ~7.5 cr. Premium chamber orbit — replaces Minecraft GLB aesthetic. |
+| `website/public/video/mg-living-field.mp4` (+ poster) | Higgsfield Kling 3.0 Turbo | generated-ambient | ~7.5 cr. Pearl/teal living particle atmosphere. |
+| `website/public/video/mg-water-ions.mp4` (+ poster) | Higgsfield Kling 3.0 Turbo | generated-motion-graphics | ~7.5 cr. US pool water → mineral ions story. |
+| `website/public/img/product/chamber-premium.png` | Higgsfield Nano Banana Pro | generated-product-still | ~2 cr. Classy stainless chamber still. |
+| `website/public/img/product/chamber-hero-vertical.png` | Higgsfield Nano Banana Pro | generated-product-still | ~2 cr. Vertical chamber hero. |
 | `website/public/img/product/ref-flow-diagram.png` | Client screenshot | source-reference | Not linked in UI; retained for regen. |
 | Client manifold screenshot (Arroyo-labeled) | Client screenshot | source-reference — do not publish | Kept outside `public/`; used only as Higgsfield edit input. |
 

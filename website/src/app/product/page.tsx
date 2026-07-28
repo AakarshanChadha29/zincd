@@ -8,10 +8,12 @@ import { TechnicalLabel } from "@/components/ui/technical-label";
 import { StatusNote } from "@/components/ui/status-note";
 import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
+import { LivingField } from "@/components/motion/living-field";
 import { PageHero } from "@/components/blocks/page-hero";
 import { SpecTable } from "@/components/blocks/spec-table";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { BuyPanel } from "@/components/blocks/buy-panel";
+import { ChamberStage } from "@/components/graphics/chamber-stage";
 import { ProductJsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/content/site-config";
 import { productHeroClip, productStills } from "@/content/media";
@@ -24,15 +26,16 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Product — Zinc'd Ionization System",
+  title: "Product — Zinc'd Pool Ionization System (US)",
   description:
-    "The Zinc'd pool ionization system: stainless Cu–Ag–Zn cell, PWM control, monitoring and testing kit. Series-1 to Series-3 plus custom multi-unit commercial. $5,000 complete system.",
+    "Buy the Zinc'd copper–silver–zinc pool ionization system: stainless cell, PWM control, monitoring, and testing kit. Series-1 to Series-3 plus custom multi-unit. $5,000 complete system.",
   path: "/product",
   keywords: [
     "Zinc'd product",
-    "pool ionization system buy",
+    "pool ionization system buy USA",
     "Cu Ag Zn ionization cell",
     "commercial pool ionizer",
+    "residential pool ionizer",
   ],
 });
 
@@ -48,32 +51,35 @@ export default function ProductPage() {
             <span className="text-gradient-aqua">ionization system</span>
           </>
         }
-        description="A complete, engineered system: a stainless copper–silver–zinc ionization cell, a microcontroller PWM control panel with LCD, electronic monitoring, and a supplied water-testing kit — sized Series-1 through Series-3, with custom multi-unit layouts for larger commercial volumes."
+        description="A complete, engineered system for US pools: a stainless copper–silver–zinc ionization cell, microcontroller PWM control with LCD and monitoring, and a water-testing kit — sized Series-1 through Series-3, with custom multi-unit layouts for larger commercial volumes."
         actions={[
           { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
           { label: "How it works", href: "/technology", variant: "outline" },
         ]}
         video={productHeroClip}
         aside={
-          <div className="overflow-hidden rounded-[var(--radius)] border border-white/15 bg-[color:var(--surface)]/80 shadow-[var(--shadow-2)] backdrop-blur-md">
-            <div className="flex items-center justify-between px-5 pt-5 md:px-6 md:pt-6">
-              <span className="text-technical text-accent-aquatic">Install path</span>
-              <span className="text-technical text-accent-steel normal-case tracking-normal">
-                Filtration → Zinc&apos;d → pool
-              </span>
-            </div>
-            <Image
-              src={productStills.flowDiagram}
-              alt="Zinc'd unit between filtration plant and swimming pool"
-              width={1376}
-              height={768}
-              className="mt-4 h-auto w-full"
-              sizes="(max-width: 1024px) 100vw, 480px"
-              priority
-            />
+          <div className="overflow-hidden rounded-[var(--radius)] border border-white/15 bg-[color:var(--surface)]/80 p-3 shadow-[var(--shadow-2)] backdrop-blur-md md:p-4">
+            <ChamberStage />
           </div>
         }
       />
+
+      <Section spacing="md" background="muted" className="relative">
+        <LivingField density="sparse" className="opacity-50" />
+        <Reveal>
+          <figure className="relative mx-auto max-w-4xl overflow-hidden rounded-[var(--radius)] border border-border bg-surface shadow-[var(--shadow-1)]">
+            <Image
+              src={productStills.chamberPremium}
+              alt="Premium studio view of the Zinc'd stainless ionization chamber"
+              width={1376}
+              height={768}
+              className="h-auto w-full"
+              sizes="(max-width: 1200px) 100vw, 900px"
+              priority
+            />
+          </figure>
+        </Reveal>
+      </Section>
 
       {/* Series range */}
       <Section id="series" spacing="lg" background="default" className="relative">
