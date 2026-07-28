@@ -61,10 +61,10 @@ export function HeroVideo({
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  useEffect(() => {
-    setActive(0);
-    setIsPlaying(false);
-  }, [narrow]);
+  // No reset effect on `narrow`: `pool[active % pool.length]` already keeps the
+  // index in range when the pool shrinks on mobile, and the clip-change effect
+  // below resets `isPlaying`. Setting state synchronously here was redundant
+  // and triggered a cascading render.
 
   useEffect(() => {
     if (reduceMotion || pool.length < 2) return;

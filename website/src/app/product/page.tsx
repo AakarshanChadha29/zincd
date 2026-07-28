@@ -2,18 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 
+import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechnicalLabel } from "@/components/ui/technical-label";
 import { StatusNote } from "@/components/ui/status-note";
 import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
-import { LivingField } from "@/components/motion/living-field";
 import { PageHero } from "@/components/blocks/page-hero";
 import { SpecTable } from "@/components/blocks/spec-table";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { BuyPanel } from "@/components/blocks/buy-panel";
-import { ChamberStage } from "@/components/graphics/chamber-stage";
 import { ProductJsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/content/site-config";
 import { productHeroClip, productStills } from "@/content/media";
@@ -58,28 +57,72 @@ export default function ProductPage() {
         ]}
         video={productHeroClip}
         aside={
-          <div className="overflow-hidden rounded-[var(--radius)] border border-white/15 bg-[color:var(--surface)]/80 p-3 shadow-[var(--shadow-2)] backdrop-blur-md md:p-4">
-            <ChamberStage />
+          <div className="relative aspect-[3/4] w-full">
+            <Image
+              src="/img/product-zincd.png"
+              alt="The Zinc'd ionization system: the stainless water chamber alongside the ionization cell tube."
+              fill
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              className="object-contain drop-shadow-[0_30px_60px_rgba(8,47,73,0.45)]"
+              priority
+            />
           </div>
         }
       />
 
-      <Section spacing="md" background="muted" className="relative">
-        <LivingField density="sparse" className="opacity-50" />
-        <Reveal>
-          <figure className="relative mx-auto max-w-4xl overflow-hidden rounded-[var(--radius)] border border-border bg-surface shadow-[var(--shadow-1)]">
-            <Image
-              src={productStills.chamberPremium}
-              alt="Premium studio view of the Zinc'd stainless ionization chamber"
-              width={1376}
-              height={768}
-              className="h-auto w-full"
-              sizes="(max-width: 1200px) 100vw, 900px"
-              priority
-            />
-          </figure>
-        </Reveal>
-      </Section>
+      {/* Full-bleed context band. This replaces a centred generated render
+          floating in a muted field — the page dropped into a void straight
+          after a cinematic hero. Real environment film + the real unit keeps
+          the atmosphere continuous. */}
+      <section className="relative overflow-hidden border-y border-border">
+        <Image
+          src="/img/pool-resort.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          aria-hidden
+          className="object-cover"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-r from-[color:var(--teal-900)]/92 via-[color:var(--teal-900)]/70 to-[color:var(--teal-900)]/35"
+        />
+        <Container className="relative py-16 md:py-20">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]">
+            <Reveal variant="left">
+              <div className="max-w-xl">
+                <TechnicalLabel className="text-[color:var(--aqua-400)]">
+                  Built for the loop
+                </TechnicalLabel>
+                <h2 className="text-h1 mt-4 text-white">
+                  Engineered to sit in the plant room, not on a shelf
+                </h2>
+                <p className="text-body-large mt-4 text-white/85">
+                  A stainless chamber rated to 30&nbsp;psi, 24&nbsp;V DC
+                  operation, and a 100&nbsp;mm electrode assembly — specified to
+                  run continuously alongside the filtration you already have.
+                </p>
+                <p className="text-small mt-5 text-white/60">
+                  Ionization is designed to reduce chlorine dependency. A
+                  residual of free chlorine (~1.0&nbsp;ppm) remains part of
+                  responsible operation.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal variant="scale" delay={0.08}>
+              <div className="relative aspect-[4/3] w-full">
+                <Image
+                  src="/img/product-chamber.png"
+                  alt="The Zinc'd stainless water chamber with copper, silver and zinc badges."
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+                />
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
 
       {/* Series range */}
       <Section id="series" spacing="lg" background="default" className="relative">

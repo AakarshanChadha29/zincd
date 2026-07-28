@@ -67,18 +67,25 @@ export function MotionGraphicBand({
     if (!el) return;
     armAutoplay(el);
 
+    // `pause` drives the state so nothing is set synchronously in the effect.
     const onPlaying = () => setIsPlaying(true);
+    const onPause = () => setIsPlaying(false);
     el.addEventListener("playing", onPlaying);
+    el.addEventListener("pause", onPause);
+
+    const cleanup = () => {
+      el.removeEventListener("playing", onPlaying);
+      el.removeEventListener("pause", onPause);
+    };
 
     if (!inView) {
       el.pause();
-      setIsPlaying(false);
-      return () => el.removeEventListener("playing", onPlaying);
+      return cleanup;
     }
 
     void el.play().catch(() => setPlaybackFailed(true));
 
-    return () => el.removeEventListener("playing", onPlaying);
+    return cleanup;
   }, [inView, showVideo, src]);
 
   return (

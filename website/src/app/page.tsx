@@ -10,12 +10,11 @@ import { TechnicalLabel } from "@/components/ui/technical-label";
 import { Reveal } from "@/components/motion/reveal";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { ZincdLogo } from "@/components/brand/zincd-logo";
-import { ChamberStage } from "@/components/graphics/chamber-stage";
 import { HeroVideo } from "@/components/media/hero-video";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { AmbientCinema } from "@/components/motion/ambient-cinema";
 import { LivingField } from "@/components/motion/living-field";
-import { ScrollFlipStory } from "@/components/motion/scroll-flip-story";
+import { CinematicChapters } from "@/components/motion/cinematic-chapters";
 import { siteConfig } from "@/content/site-config";
 import {
   homepageHeroClips,
@@ -56,8 +55,12 @@ const storyStages = [
     eyebrow: "02 — Through Zinc'd",
     title: "Mineral ions, metered into the circulation loop",
     body: "Pool water passes a stainless copper–silver–zinc chamber. Microcontroller PWM releases mineral ions at a controlled rate — engineered hardware, not a chemistry guess.",
-    image: productStills.flowDiagram,
-    imageAlt: "Zinc'd ionization chamber installed between filtration and the pool",
+    // Photography, not the schematic. The flow diagram is a white technical
+    // drawing — full-bleed under a scrim it crops badly and its callout labels
+    // collide with the headline. It reads properly in the install section,
+    // contained on white.
+    image: "/video/swimmer-palm.jpg",
+    imageAlt: "Swimmer moving through clear, sunlit pool water",
   },
   {
     id: "after",
@@ -78,11 +81,17 @@ export default function HomePage() {
         <div aria-hidden className="absolute inset-0 hero-scrim" />
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-44 hero-scrim-bottom lg:h-56" />
         <LivingField density="sparse" tone="deep" className="opacity-40 mix-blend-screen" />
-        <Container className="relative pb-14 pt-24 md:pb-20 md:pt-28 lg:grid lg:min-h-[calc(100svh-var(--nav-height))] lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:items-end lg:gap-10 lg:pb-24 lg:pt-32">
+        {/* One full-bleed composition. The film runs edge to edge and the type
+            sits on it — no inset media card competing with the footage. */}
+        <Container className="relative pb-14 pt-24 md:pb-20 md:pt-28 lg:pb-28 lg:pt-32">
           <Reveal>
-            <div className="max-w-xl space-y-6 lg:max-w-2xl lg:space-y-7">
-              <ZincdLogo size="hero" href={null} priority />
-              <TechnicalLabel className="text-[color:var(--aqua-400)]">
+            <div className="max-w-xl space-y-6 lg:max-w-3xl lg:space-y-7">
+              {/* The logo renders as an inline-flex span, so it needs a block
+                  wrapper here or the eyebrow flows alongside it. */}
+              <div>
+                <ZincdLogo size="hero" href={null} priority />
+              </div>
+              <TechnicalLabel className="block text-[color:var(--aqua-400)]">
                 {heroContent.eyebrow}
               </TechnicalLabel>
               <h1 className="text-display text-white">
@@ -116,18 +125,20 @@ export default function HomePage() {
               </p>
             </div>
           </Reveal>
-          <Reveal delay={0.1} className="mt-10 hidden lg:mt-0 lg:block">
-            <div className="overflow-hidden rounded-[var(--radius)] border border-white/20 bg-white/10 p-2 shadow-[var(--shadow-2)] backdrop-blur-md">
-              <ChamberStage />
-            </div>
-          </Reveal>
         </Container>
       </section>
 
       {/* ============================ SCROLL STORY ============================ */}
-      <ScrollFlipStory stages={[...storyStages]} />
+      <CinematicChapters
+        chapters={[...storyStages]}
+        label="How Zinc'd changes a pool's chemistry program"
+      />
 
-      {/* ============================ INTERACTIVE CHAMBER ============================ */}
+      {/* ============================ PRODUCT TRUTH ============================
+          Real photography of the actual unit. The previous procedural WebGL
+          chamber did not resemble the hardware and undercut a $5,000 product;
+          a straight product photograph is more convincing than an approximate
+          mesh. */}
       <Section
         id="experience"
         spacing="lg"
@@ -144,9 +155,9 @@ export default function HomePage() {
           <Reveal variant="left">
             <SectionHeading
               as="h2"
-              eyebrow="Interactive system"
-              title="Tilt the chamber. Watch the mineral field."
-              description="A cinematic, pointer-reactive visualization of the stainless Cu–Ag–Zn ionization cell — built for desktop presence and mobile touch. Specs and series sizing live on the product page."
+              eyebrow="The hardware"
+              title="A stainless cell, not a chemistry guess"
+              description="Copper, silver, and zinc alloy anodes in a stainless housing, plumbed into the circulation loop and metered by microcontroller PWM. Specifications and series sizing live on the product page."
             />
             <ul className="mt-8 space-y-3 text-small text-muted-foreground">
               {[
@@ -183,20 +194,73 @@ export default function HomePage() {
             </div>
           </Reveal>
           <Reveal variant="scale" delay={0.08}>
-            <div className="rounded-[var(--radius)] border border-border bg-surface/75 p-3 shadow-[var(--shadow-2)] backdrop-blur-sm md:p-5">
-              <ChamberStage />
+            <div className="relative aspect-[4/3] w-full">
+              <Image
+                src="/img/product-chamber.png"
+                alt="The Zinc'd water chamber: a stainless steel cylinder with two capped ports, marked with the copper, silver and zinc badges."
+                fill
+                sizes="(min-width: 1024px) 52vw, 100vw"
+                className="object-contain drop-shadow-[0_28px_48px_rgba(12,74,110,0.28)]"
+              />
             </div>
           </Reveal>
         </div>
       </Section>
 
-      <MotionGraphicBand
-        src={motionGraphics.chamberOrbit.src}
-        poster={motionGraphics.chamberOrbit.poster}
-        eyebrow="Engineered presence"
-        title="Polished stainless. Living light."
-        body="Premium product cinema for the Zinc'd chamber — the classy counterpart to the interactive scene above."
-      />
+      {/* ============================ INSTALL CLARITY ============================
+          Edge-to-edge so the diagram reads at full width rather than sitting in
+          a small card. */}
+      <section className="relative overflow-hidden border-y border-border bg-[color:var(--pearl)]">
+        <Container className="py-16 md:py-20">
+          <Reveal>
+            <div className="max-w-2xl">
+              <TechnicalLabel className="text-accent-aquatic">
+                Where it sits
+              </TechnicalLabel>
+              <h2 className="text-h1 mt-4 text-foreground">
+                Inline with your existing circulation
+              </h2>
+              <p className="text-body-large mt-4 text-muted-foreground">
+                The chamber is plumbed into the filtration return so treated
+                water rejoins the pool on every turnover. Larger sites run
+                multiple units on a manifold with a bypass for service.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+              <figure className="relative overflow-hidden rounded-[var(--radius)] border border-border bg-white">
+                <div className="relative aspect-[16/10]">
+                  <Image
+                    src={productStills.flowDiagram}
+                    alt="Flow diagram showing the Zinc'd chamber fitted into the pool circulation loop between the filter and the return line."
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-contain p-4"
+                  />
+                </div>
+                <figcaption className="text-small border-t border-border px-5 py-3 text-muted-foreground">
+                  Single-unit install — chamber inline on the filter return.
+                </figcaption>
+              </figure>
+              <figure className="relative overflow-hidden rounded-[var(--radius)] border border-border bg-white">
+                <div className="relative aspect-[16/10]">
+                  <Image
+                    src={productStills.manifold}
+                    alt="Manifold layout showing multiple Zinc'd chambers in parallel with a service bypass line."
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-contain p-4"
+                  />
+                </div>
+                <figcaption className="text-small border-t border-border px-5 py-3 text-muted-foreground">
+                  Multi-unit manifold with bypass — commercial volumes.
+                </figcaption>
+              </figure>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
 
       <MotionGraphicBand
         src={motionGraphics.waterIons.src}
@@ -247,7 +311,7 @@ export default function HomePage() {
           <Reveal variant="left">
             <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[var(--radius)] border border-border p-8 md:min-h-[22rem] md:p-10">
               <Image
-                src={productStills.chamberPremium}
+                src="/img/pool-residential.jpg"
                 alt=""
                 fill
                 sizes="50vw"

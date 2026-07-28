@@ -35,7 +35,13 @@ export function CtaBand({
       <div aria-hidden className="absolute inset-0 bg-grid-dark opacity-35" />
       <AmbientIons tone="ecological" density="sparse" className="opacity-70" />
       <IonMotif className="pointer-events-none absolute -right-10 top-1/2 hidden h-72 -translate-y-1/2 text-white/10 lg:block" />
-      <Container className="relative py-16 md:py-20">
+      {/* Dissolves the band into the light footer below rather than ending on
+          a hard dark-to-white edge. */}
+      <div
+        aria-hidden
+        className="band-tideline pointer-events-none absolute inset-x-0 bottom-0 h-24 md:h-32"
+      />
+      <Container className="relative py-16 pb-24 md:py-20 md:pb-32">
         <div className="max-w-2xl">
           <TechnicalLabel className="text-[color:var(--aqua-400)]">
             {eyebrow}

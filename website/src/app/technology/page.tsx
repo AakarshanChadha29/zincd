@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Section } from "@/components/layout/section";
@@ -11,7 +12,6 @@ import { ProcessSteps } from "@/components/blocks/process-steps";
 import { SpecTable } from "@/components/blocks/spec-table";
 import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBand } from "@/components/blocks/cta-band";
-import { IonFieldStage } from "@/components/graphics/ion-field-stage";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { siteConfig } from "@/content/site-config";
 import { motionGraphics } from "@/content/media";
@@ -82,7 +82,19 @@ export default function TechnologyPage() {
                 Cu · Ag · Zn
               </span>
             </div>
-            <IonFieldStage />
+            {/* Real product photography. The previous WebGL "ionization field"
+                rendered three rectangular bars and a particle drift — it read
+                as a toy and told a visitor nothing true about the hardware. */}
+            <div className="relative aspect-[4/3] w-full">
+              <Image
+                src="/img/product-chamber.png"
+                alt="The Zinc'd stainless water chamber with its copper, silver and zinc badges."
+                fill
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="object-contain"
+                priority
+              />
+            </div>
             <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border pt-4">
               {[
                 { k: "Copper", v: "algae control", c: "var(--teal-700)" },

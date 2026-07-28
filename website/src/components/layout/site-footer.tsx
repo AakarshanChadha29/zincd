@@ -41,8 +41,13 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border bg-surface">
-      <Container className="py-12 md:py-16">
+    <footer className="relative mt-auto bg-surface">
+      {/* Texture only on the handoff; content below sits on solid surface. */}
+      <div
+        aria-hidden
+        className="footer-tide-strip pointer-events-none absolute inset-x-0 top-0 h-24"
+      />
+      <Container className="relative py-12 md:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="space-y-4 lg:col-span-1">
             <div className="inline-flex">

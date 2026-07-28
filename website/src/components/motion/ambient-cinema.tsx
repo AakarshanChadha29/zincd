@@ -59,17 +59,26 @@ export function AmbientCinema({
     el.setAttribute("playsinline", "");
     el.setAttribute("webkit-playsinline", "");
 
+    // Drive `isPlaying` from media events rather than setting it inside the
+    // effect: calling `el.pause()` fires `pause`, so the handler updates state
+    // for us and there is no synchronous setState cascading a re-render.
     const onPlaying = () => setIsPlaying(true);
+    const onPause = () => setIsPlaying(false);
     el.addEventListener("playing", onPlaying);
+    el.addEventListener("pause", onPause);
+
+    const cleanup = () => {
+      el.removeEventListener("playing", onPlaying);
+      el.removeEventListener("pause", onPause);
+    };
 
     if (!inView) {
       el.pause();
-      setIsPlaying(false);
-      return () => el.removeEventListener("playing", onPlaying);
+      return cleanup;
     }
 
     void el.play().catch(() => setFailed(true));
-    return () => el.removeEventListener("playing", onPlaying);
+    return cleanup;
   }, [inView, reduceMotion, failed, src]);
 
   return (

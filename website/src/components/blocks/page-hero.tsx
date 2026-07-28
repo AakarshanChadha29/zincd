@@ -49,6 +49,15 @@ export function PageHero({
         <>
           <HeroVideo clips={clips} />
           <div aria-hidden className="absolute inset-0 hero-scrim" />
+          {/* Extra protection under the copy column. Interior heroes run
+              brighter clips than the homepage (sunlit glass architecture), and
+              the diagonal scrim alone leaves headline and body sitting on
+              near-white highlights. Falls off well before mid-frame so the
+              film still reads. */}
+          <div
+            aria-hidden
+            className="absolute inset-y-0 left-0 w-full bg-[linear-gradient(to_right,rgb(4_32_38/0.72)_0%,rgb(4_32_38/0.5)_34%,rgb(4_32_38/0.12)_62%,transparent_82%)] lg:w-3/4"
+          />
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-32 hero-scrim-bottom" />
         </>
       ) : (

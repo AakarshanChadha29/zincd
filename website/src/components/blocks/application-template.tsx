@@ -105,18 +105,23 @@ export function ApplicationTemplate({ slug }: { slug: string }) {
           ))}
         </div>
         <Reveal delay={0.1}>
-          <ul className="mt-12 space-y-3 rounded-[var(--radius)] border border-border bg-surface p-7 md:p-8">
+          {/* The label captions the list, so it sits outside the <ul>. As a
+              direct child it made a <div> a list item, which breaks the list
+              semantics screen readers rely on to announce item counts. */}
+          <div className="mt-12 rounded-[var(--radius)] border border-border bg-surface p-7 md:p-8">
             <TechnicalLabel>Decision checkpoints</TechnicalLabel>
-            {detail.decisionPoints.map((point) => (
-              <li key={point} className="text-small flex gap-3 pt-3 text-foreground first:pt-4">
-                <Check
-                  className="mt-0.5 size-4 shrink-0 text-accent-ecological"
-                  aria-hidden
-                />
-                {point}
-              </li>
-            ))}
-          </ul>
+            <ul className="mt-4 space-y-3">
+              {detail.decisionPoints.map((point) => (
+                <li key={point} className="text-small flex gap-3 text-foreground">
+                  <Check
+                    className="mt-0.5 size-4 shrink-0 text-accent-ecological"
+                    aria-hidden
+                  />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
         </Reveal>
       </Section>
 
