@@ -16,13 +16,13 @@ type MotionGraphicBandProps = {
   title: string;
   body: string;
   className?: string;
-  /** Darker scrim for lighter source film. */
   tone?: "deep" | "soft";
 };
 
 function armAutoplay(el: HTMLVideoElement) {
   el.muted = true;
   el.defaultMuted = true;
+  el.volume = 0;
   el.playsInline = true;
   el.setAttribute("playsinline", "");
   el.setAttribute("webkit-playsinline", "");
@@ -30,8 +30,8 @@ function armAutoplay(el: HTMLVideoElement) {
 }
 
 /**
- * Full-bleed Higgsfield motion-graphic band — looping muted video with
- * restrained copy. Poster underlay + in-view play for mobile Safari.
+ * Full-bleed motion band. Poster is always visible; video fades in only after
+ * `playing` so mobile never shows a black plate.
  */
 export function MotionGraphicBand({
   src,
@@ -47,16 +47,15 @@ export function MotionGraphicBand({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [inView, setInView] = useState(false);
   const [playbackFailed, setPlaybackFailed] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const showVideo = !reduceMotion && !playbackFailed;
 
   useEffect(() => {
     const node = sectionRef.current;
     if (!node || reduceMotion) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInView(entry.isIntersecting);
-      },
-      { rootMargin: "120px 0px", threshold: 0.15 }
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "80px 0px", threshold: 0.12 }
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -68,14 +67,18 @@ export function MotionGraphicBand({
     if (!el) return;
     armAutoplay(el);
 
+    const onPlaying = () => setIsPlaying(true);
+    el.addEventListener("playing", onPlaying);
+
     if (!inView) {
       el.pause();
-      return;
+      setIsPlaying(false);
+      return () => el.removeEventListener("playing", onPlaying);
     }
 
-    void el.play().catch(() => {
-      setPlaybackFailed(true);
-    });
+    void el.play().catch(() => setPlaybackFailed(true));
+
+    return () => el.removeEventListener("playing", onPlaying);
   }, [inView, showVideo, src]);
 
   return (
@@ -97,7 +100,10 @@ export function MotionGraphicBand({
       {showVideo ? (
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover"
+          className={cn(
+            "absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
+            isPlaying ? "opacity-100" : "opacity-0"
+          )}
           src={src}
           poster={poster}
           muted

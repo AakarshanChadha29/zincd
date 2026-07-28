@@ -76,7 +76,7 @@ export default function ProductPage() {
       />
 
       {/* Series range */}
-      <Section spacing="lg" background="default" className="relative">
+      <Section id="series" spacing="lg" background="default" className="relative">
         <AmbientIons density="sparse" />
         <Reveal>
           <SectionHeading

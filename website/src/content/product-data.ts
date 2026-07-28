@@ -15,7 +15,7 @@ export const heroContent = {
   eyebrow: "Ecological mineral ionization",
   headline: "A quieter revolution in pool water.",
   subhead:
-    "Zinc'd brings copper–silver–zinc ionization and precision PWM control to estates, hospitality, and commercial aquatic facilities — a lower-chemical water experience with the documentation operators expect.",
+    "Copper–silver–zinc ionization for estates, hospitality, and commercial pools — quieter chemistry, clearer water.",
   primaryCta: { label: "Request a Pool Assessment", href: "/contact?intent=assessment" },
   secondaryCta: { label: "Become a Distributor", href: "/distributors" },
 } as const;

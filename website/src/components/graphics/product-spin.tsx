@@ -32,10 +32,8 @@ type NavigatorWithMemory = Navigator & { deviceMemory?: number };
 
 function deviceCanAfford3D(): boolean {
   const nav = navigator as NavigatorWithMemory;
-  if (typeof nav.deviceMemory === "number" && nav.deviceMemory <= 4) return false;
-  if (nav.hardwareConcurrency && nav.hardwareConcurrency <= 4) return false;
-  const coarse = matchMedia("(pointer: coarse)").matches;
-  if (coarse && window.innerWidth < 1024) return false;
+  // Keep 3D on phones — only skip extremely constrained devices.
+  if (typeof nav.deviceMemory === "number" && nav.deviceMemory <= 2) return false;
   return true;
 }
 
