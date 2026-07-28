@@ -49,12 +49,13 @@ export const motionGraphics = {
   },
 } as const;
 
-/** Real product photography (prefer JPG for payload). */
+/** Real product photography — cutouts have transparent backgrounds for film overlays. */
 export const productPhotos = {
-  system: "/img/product-zincd.jpg",
-  chamber: "/img/product-chamber.jpg",
-  systemPng: "/img/product-zincd.png",
-  chamberPng: "/img/product-chamber.png",
+  system: "/img/product-zincd-cutout.png",
+  chamber: "/img/product-chamber-cutout.png",
+  /** Opaque studio stills (for light sections / cards only). */
+  systemStudio: "/img/product-zincd.jpg",
+  chamberStudio: "/img/product-chamber.jpg",
 } as const;
 
 /** Product / install stills — Zinc'd branded (no Arroyo). */

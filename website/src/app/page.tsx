@@ -12,6 +12,7 @@ import { CtaBand } from "@/components/blocks/cta-band";
 import { ZincdLogo } from "@/components/brand/zincd-logo";
 import { HeroVideo } from "@/components/media/hero-video";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
+import { ProductFloat } from "@/components/media/product-float";
 import { CinematicChapters } from "@/components/motion/cinematic-chapters";
 import { siteConfig } from "@/content/site-config";
 import {
@@ -80,7 +81,7 @@ export default function HomePage() {
         />
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[color:var(--pearl)] via-[color:var(--pearl)]/45 to-transparent lg:h-44"
+          className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[color:var(--pearl)]/90 via-[color:var(--pearl)]/25 to-transparent lg:h-36"
         />
         <Container className="relative flex flex-1 flex-col justify-end pb-4 pt-24 md:pb-6 md:pt-28 lg:justify-center lg:pb-8 lg:pt-32">
           <div className="grid items-end gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-10">
@@ -124,14 +125,12 @@ export default function HomePage() {
               </div>
             </Reveal>
             <Reveal delay={0.08} className="relative lg:self-end">
-              <div className="relative mx-auto aspect-[3/4] w-full max-w-sm lg:max-w-none lg:translate-y-8 xl:translate-y-10">
-                <Image
+              <div className="relative mx-auto w-full max-w-sm lg:max-w-md lg:translate-y-6 xl:max-w-lg xl:translate-y-8">
+                <ProductFloat
                   src={productPhotos.system}
                   alt="The Zinc'd ionization system: stainless cell tube and water chamber"
-                  fill
                   priority
-                  sizes="(min-width: 1024px) 40vw, 70vw"
-                  className="object-contain drop-shadow-[0_28px_55px_rgba(8,47,73,0.5)]"
+                  sizes="(min-width: 1280px) 28vw, (min-width: 1024px) 36vw, 70vw"
                 />
               </div>
             </Reveal>
@@ -203,12 +202,11 @@ export default function HomePage() {
           </Reveal>
           <Reveal variant="scale" delay={0.08}>
             <div className="relative aspect-[4/3] w-full">
-              <Image
+              <ProductFloat
                 src={productPhotos.chamber}
                 alt="The Zinc'd water chamber: stainless steel cylinder with copper, silver and zinc badges."
-                fill
+                aspectClassName="aspect-[4/3]"
                 sizes="(min-width: 1024px) 52vw, 100vw"
-                className="object-contain drop-shadow-[0_28px_48px_rgba(12,74,110,0.22)]"
               />
             </div>
           </Reveal>

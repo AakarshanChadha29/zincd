@@ -62,7 +62,7 @@ export function PageHero({
           />
           <div
             aria-hidden
-            className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[color:var(--pearl)] via-[color:var(--pearl)]/50 to-transparent lg:h-48"
+            className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[color:var(--pearl)]/90 via-[color:var(--pearl)]/30 to-transparent lg:h-40"
           />
         </>
       ) : (

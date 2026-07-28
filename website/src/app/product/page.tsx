@@ -14,6 +14,7 @@ import { SpecTable } from "@/components/blocks/spec-table";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { BuyPanel } from "@/components/blocks/buy-panel";
 import { ProductJsonLd } from "@/components/seo/json-ld";
+import { ProductFloat } from "@/components/media/product-float";
 import { siteConfig } from "@/content/site-config";
 import { productHeroClip, productPhotos, productStills } from "@/content/media";
 import {
@@ -57,16 +58,12 @@ export default function ProductPage() {
         ]}
         video={productHeroClip}
         aside={
-          <div className="relative aspect-[3/4] w-full">
-            <Image
-              src={productPhotos.system}
-              alt="The Zinc'd ionization system: the stainless water chamber alongside the ionization cell tube."
-              fill
-              sizes="(min-width: 1024px) 42vw, 80vw"
-              className="object-contain drop-shadow-[0_30px_60px_rgba(8,47,73,0.45)]"
-              priority
-            />
-          </div>
+          <ProductFloat
+            src={productPhotos.system}
+            alt="The Zinc'd ionization system: the stainless water chamber alongside the ionization cell tube."
+            priority
+            sizes="(min-width: 1024px) 40vw, 80vw"
+          />
         }
       />
 
@@ -111,12 +108,11 @@ export default function ProductPage() {
             </Reveal>
             <Reveal variant="scale" delay={0.08}>
               <div className="relative aspect-[4/3] w-full">
-                <Image
+                <ProductFloat
                   src={productPhotos.chamber}
                   alt="The Zinc'd stainless water chamber with copper, silver and zinc badges."
-                  fill
+                  aspectClassName="aspect-[4/3]"
                   sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
                 />
               </div>
             </Reveal>
