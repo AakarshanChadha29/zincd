@@ -22,9 +22,6 @@ import { ProductSpin } from "@/components/graphics/product-spin";
 import { HeroVideo } from "@/components/media/hero-video";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { ScrollParallax } from "@/components/motion/scroll-parallax";
-import { KineticHeroTitle, KineticSectionTitle } from "@/components/motion/kinetic-title";
-import { KineticMetalBand } from "@/components/motion/kinetic-metal-band";
-import { ScrollTilt } from "@/components/motion/scroll-spin";
 import { siteConfig } from "@/content/site-config";
 import { applicationImages, homepageHeroClips } from "@/content/media";
 import {
@@ -69,11 +66,11 @@ export default function HomePage() {
               <TechnicalLabel className="text-[color:var(--aqua-400)]">
                 {heroContent.eyebrow}
               </TechnicalLabel>
-              <KineticHeroTitle
-                lead="A quieter"
-                accent="revolution"
-                trail="in pool water."
-              />
+              <h1 className="text-display text-white">
+                A quieter{" "}
+                <span className="text-gradient-aqua">revolution</span> in pool
+                water.
+              </h1>
               <p className="text-body-large max-w-lg text-white/85">
                 {heroContent.subhead}
               </p>
@@ -116,26 +113,17 @@ export default function HomePage() {
       <Section id="value" spacing="lg" background="default" className="relative">
         <AmbientIons density="sparse" />
         <Reveal>
-          <div className="space-y-4">
-            <TechnicalLabel>Why Zinc&apos;d</TechnicalLabel>
-            <KineticSectionTitle
-              as="h2"
-              mode="spin"
-              title="Ecological mineral ionization, engineered end to end"
-            />
-            <p className="text-body-large max-w-2xl text-muted-foreground">
-              A modern approach to pool chemistry — designed to reduce chlorine
-              dependency while a residual of free chlorine remains part of
-              responsible, monitored operation.
-            </p>
-          </div>
+          <SectionHeading
+            as="h2"
+            eyebrow="Why Zinc'd"
+            title="Ecological mineral ionization, engineered end to end"
+            description="A modern approach to pool chemistry — designed to reduce chlorine dependency while a residual of free chlorine remains part of responsible, monitored operation."
+          />
         </Reveal>
         <Reveal delay={0.05}>
           <FeatureGrid features={valuePillars} className="mt-10" />
         </Reveal>
       </Section>
-
-      <KineticMetalBand />
 
       {/* ============================ ECOLOGICAL STORY ============================ */}
       <Section id="ecological" spacing="lg" background="muted" className="relative overflow-hidden">
@@ -143,12 +131,9 @@ export default function HomePage() {
         <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
           <Reveal variant="left">
             <AudienceChip label="Ecological" variant="ecological" />
-            <KineticSectionTitle
-              as="h2"
-              mode="cascade"
-              className="mt-4 !text-h1"
-              title="Clearer water with a lighter chemical footprint"
-            />
+            <h2 className="text-h1 mt-4 text-foreground">
+              Clearer water with a lighter chemical footprint
+            </h2>
             <p className="text-body-large mt-4 max-w-xl text-muted-foreground">
               Zinc&apos;d uses copper, silver and zinc ions — minerals released
               under microcontroller control — so day-to-day chlorine demand can
@@ -212,45 +197,35 @@ export default function HomePage() {
       <Section id="system" spacing="lg" background="default" className="relative">
         <AmbientIons density="medium" className="opacity-50" />
         <Reveal>
-          <div className="space-y-4">
-            <TechnicalLabel>See the system</TechnicalLabel>
-            <KineticSectionTitle
-              as="h2"
-              mode="rise"
-              title="Engineered clarity — cell, field, and control"
-            />
-            <p className="text-body-large max-w-2xl text-muted-foreground">
-              Visualize the ionization cell and the mineral field your circulation
-              loop will carry. Specs stay documented; the story stays honest.
-            </p>
-          </div>
+          <SectionHeading
+            as="h2"
+            eyebrow="See the system"
+            title="Engineered clarity — cell, field, and control"
+            description="Visualize the ionization cell and the mineral field your circulation loop will carry. Specs stay documented; the story stays honest."
+          />
         </Reveal>
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
           <Reveal variant="left">
-            <ScrollTilt>
-              <div className="rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow-1)] md:p-8">
-                <div className="mb-4 flex items-center justify-between">
-                  <TechnicalLabel>System core</TechnicalLabel>
-                  <span className="text-technical text-accent-steel normal-case tracking-normal">
-                    Cu · Ag · Zn
-                  </span>
-                </div>
-                <ProductSpin />
+            <div className="rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow-1)] md:p-8">
+              <div className="mb-4 flex items-center justify-between">
+                <TechnicalLabel>System core</TechnicalLabel>
+                <span className="text-technical text-accent-steel normal-case tracking-normal">
+                  Cu · Ag · Zn
+                </span>
               </div>
-            </ScrollTilt>
+              <ProductSpin />
+            </div>
           </Reveal>
           <Reveal variant="right" delay={0.08}>
-            <ScrollTilt>
-              <div className="rounded-[var(--radius)] border border-border bg-surface-elevated p-6 shadow-[var(--shadow-1)] md:p-8">
-                <div className="mb-4 flex items-center justify-between">
-                  <TechnicalLabel>Ionization field</TechnicalLabel>
-                  <span className="text-technical text-accent-steel normal-case tracking-normal">
-                    PWM regulated
-                  </span>
-                </div>
-                <IonFieldStage />
+            <div className="rounded-[var(--radius)] border border-border bg-surface-elevated p-6 shadow-[var(--shadow-1)] md:p-8">
+              <div className="mb-4 flex items-center justify-between">
+                <TechnicalLabel>Ionization field</TechnicalLabel>
+                <span className="text-technical text-accent-steel normal-case tracking-normal">
+                  PWM regulated
+                </span>
               </div>
-            </ScrollTilt>
+              <IonFieldStage />
+            </div>
           </Reveal>
         </div>
       </Section>
