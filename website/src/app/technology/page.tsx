@@ -87,7 +87,7 @@ export default function TechnologyPage() {
                 as a toy and told a visitor nothing true about the hardware. */}
             <div className="relative aspect-[4/3] w-full">
               <Image
-                src="/img/product-chamber.png"
+                src="/img/product-chamber.jpg"
                 alt="The Zinc'd stainless water chamber with its copper, silver and zinc badges."
                 fill
                 sizes="(min-width: 1024px) 42vw, 100vw"

@@ -15,7 +15,7 @@ import { CtaBand } from "@/components/blocks/cta-band";
 import { BuyPanel } from "@/components/blocks/buy-panel";
 import { ProductJsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/content/site-config";
-import { productHeroClip, productStills } from "@/content/media";
+import { productHeroClip, productPhotos, productStills } from "@/content/media";
 import {
   chemistryTargets,
   productSeries,
@@ -59,10 +59,10 @@ export default function ProductPage() {
         aside={
           <div className="relative aspect-[3/4] w-full">
             <Image
-              src="/img/product-zincd.png"
+              src={productPhotos.system}
               alt="The Zinc'd ionization system: the stainless water chamber alongside the ionization cell tube."
               fill
-              sizes="(min-width: 1024px) 42vw, 100vw"
+              sizes="(min-width: 1024px) 42vw, 80vw"
               className="object-contain drop-shadow-[0_30px_60px_rgba(8,47,73,0.45)]"
               priority
             />
@@ -112,7 +112,7 @@ export default function ProductPage() {
             <Reveal variant="scale" delay={0.08}>
               <div className="relative aspect-[4/3] w-full">
                 <Image
-                  src="/img/product-chamber.png"
+                  src={productPhotos.chamber}
                   alt="The Zinc'd stainless water chamber with copper, silver and zinc badges."
                   fill
                   sizes="(min-width: 1024px) 40vw, 100vw"

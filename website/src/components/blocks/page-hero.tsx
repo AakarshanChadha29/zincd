@@ -16,8 +16,11 @@ type HeroAction = {
 };
 
 /**
- * Interior-page hero. Optional cinematic video background (Product /
- * Distributors) or classic engineered grid + aura with an aside slot.
+ * Interior-page hero.
+ *
+ * Cinematic + product aside matches the target composition: full-bleed villa
+ * film, copy on the left, real product photography large on the right /
+ * bottom — not a tiny card stacked under the type.
  */
 export function PageHero({
   eyebrow,
@@ -32,33 +35,35 @@ export function PageHero({
   description: string;
   actions?: HeroAction[];
   aside?: ReactNode;
-  /** When set, full-bleed video replaces grid/aura treatment. */
   video?: HeroVideoClip | HeroVideoClip[];
 }) {
   const clips = video ? (Array.isArray(video) ? video : [video]) : null;
   const cinematic = Boolean(clips?.length);
+  const splitCinematic = Boolean(cinematic && aside);
 
   return (
     <section
       className={cn(
         "relative overflow-hidden border-b border-border",
-        cinematic ? "min-h-[min(72vh,40rem)]" : "bg-surface"
+        cinematic
+          ? splitCinematic
+            ? "min-h-[min(88vh,52rem)]"
+            : "min-h-[min(72vh,40rem)]"
+          : "bg-surface"
       )}
     >
       {cinematic && clips ? (
         <>
           <HeroVideo clips={clips} />
           <div aria-hidden className="absolute inset-0 hero-scrim" />
-          {/* Extra protection under the copy column. Interior heroes run
-              brighter clips than the homepage (sunlit glass architecture), and
-              the diagonal scrim alone leaves headline and body sitting on
-              near-white highlights. Falls off well before mid-frame so the
-              film still reads. */}
           <div
             aria-hidden
-            className="absolute inset-y-0 left-0 w-full bg-[linear-gradient(to_right,rgb(4_32_38/0.72)_0%,rgb(4_32_38/0.5)_34%,rgb(4_32_38/0.12)_62%,transparent_82%)] lg:w-3/4"
+            className="absolute inset-y-0 left-0 w-full bg-[linear-gradient(to_right,rgb(4_32_38/0.78)_0%,rgb(4_32_38/0.55)_36%,rgb(4_32_38/0.18)_62%,transparent_84%)] lg:w-[78%]"
           />
-          <div aria-hidden className="absolute inset-x-0 bottom-0 h-32 hero-scrim-bottom" />
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[color:var(--pearl)] via-[color:var(--pearl)]/50 to-transparent lg:h-48"
+          />
         </>
       ) : (
         <>
@@ -66,74 +71,128 @@ export function PageHero({
           <div aria-hidden className="absolute inset-0 hero-aura" />
         </>
       )}
-      <Container className="relative py-14 md:py-20">
-        <div
-          className={
-            aside && !cinematic
-              ? "grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]"
-              : "max-w-3xl"
-          }
-        >
-          <Reveal>
-            <div className="space-y-6">
-              <TechnicalLabel className={cinematic ? "text-[color:var(--aqua-400)]" : undefined}>
-                {eyebrow}
-              </TechnicalLabel>
-              <h1
-                className={cn(
-                  "text-display",
-                  cinematic ? "text-white" : "text-foreground"
-                )}
-              >
-                {title}
-              </h1>
-              <p
-                className={cn(
-                  "text-body-large max-w-2xl",
-                  cinematic ? "text-white/80" : "text-muted-foreground"
-                )}
-              >
-                {description}
-              </p>
-              {actions && actions.length > 0 ? (
-                <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap">
-                  {actions.map((action, i) => {
-                    const variant = action.variant ?? "default";
-                    const isOutlineOnFilm = cinematic && variant === "outline";
-                    const isPartnerOnFilm = cinematic && variant === "partner";
-                    return (
-                      <Button
-                        key={action.href + action.label}
-                        size="lg"
-                        variant={variant === "partner" ? "partner" : variant}
-                        className={cn(
-                          "rounded-[var(--radius-control)]",
-                          isOutlineOnFilm &&
-                            "border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white",
-                          isPartnerOnFilm &&
-                            "border-white/40 bg-white/15 text-white hover:bg-white hover:text-[color:var(--teal-900)]"
-                        )}
-                        render={<Link href={action.href} />}
-                      >
-                        {action.label}
-                        {i === 0 && variant === "default" ? (
-                          <ArrowRight className="size-4" aria-hidden />
-                        ) : null}
-                      </Button>
-                    );
-                  })}
-                </div>
-              ) : null}
-            </div>
-          </Reveal>
-          {aside && !cinematic ? <Reveal delay={0.1}>{aside}</Reveal> : null}
-        </div>
-        {/* Product spin stays below cinematic text when both requested */}
-        {aside && cinematic ? (
-          <Reveal delay={0.1}>
-            <div className="mt-10 max-w-lg">{aside}</div>
-          </Reveal>
-        ) : null}
+
+      <Container
+        className={cn(
+          "relative",
+          splitCinematic
+            ? "flex min-h-[min(88vh,52rem)] flex-col justify-end pb-6 pt-20 md:pb-8 md:pt-24 lg:justify-center lg:pb-10 lg:pt-28"
+            : "py-14 md:py-20"
+        )}
+      >
+        {splitCinematic ? (
+          <div className="grid items-end gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-8 xl:gap-12">
+            <Reveal>
+              <div className="max-w-xl space-y-6 pb-2 lg:pb-8">
+                <TechnicalLabel className="text-[color:var(--aqua-400)]">
+                  {eyebrow}
+                </TechnicalLabel>
+                <h1 className="text-display text-white">{title}</h1>
+                <p className="text-body-large max-w-xl text-white/85">
+                  {description}
+                </p>
+                {actions && actions.length > 0 ? (
+                  <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap">
+                    {actions.map((action, i) => {
+                      const variant = action.variant ?? "default";
+                      const isOutlineOnFilm = variant === "outline";
+                      const isPartnerOnFilm = variant === "partner";
+                      return (
+                        <Button
+                          key={action.href + action.label}
+                          size="lg"
+                          variant={variant === "partner" ? "partner" : variant}
+                          className={cn(
+                            "rounded-[var(--radius-control)]",
+                            isOutlineOnFilm &&
+                              "border-white/35 bg-transparent text-white hover:bg-white/10 hover:text-white",
+                            isPartnerOnFilm &&
+                              "border-white/40 bg-white/15 text-white hover:bg-white hover:text-[color:var(--teal-900)]"
+                          )}
+                          render={<Link href={action.href} />}
+                        >
+                          {action.label}
+                          {i === 0 && variant === "default" ? (
+                            <ArrowRight className="size-4" aria-hidden />
+                          ) : null}
+                        </Button>
+                      );
+                    })}
+                  </div>
+                ) : null}
+              </div>
+            </Reveal>
+            <Reveal delay={0.08} className="relative lg:self-end">
+              <div className="relative mx-auto w-full max-w-md lg:max-w-none lg:translate-y-6 xl:translate-y-8">
+                {aside}
+              </div>
+            </Reveal>
+          </div>
+        ) : (
+          <div
+            className={
+              aside
+                ? "grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]"
+                : "max-w-3xl"
+            }
+          >
+            <Reveal>
+              <div className="space-y-6">
+                <TechnicalLabel
+                  className={cinematic ? "text-[color:var(--aqua-400)]" : undefined}
+                >
+                  {eyebrow}
+                </TechnicalLabel>
+                <h1
+                  className={cn(
+                    "text-display",
+                    cinematic ? "text-white" : "text-foreground"
+                  )}
+                >
+                  {title}
+                </h1>
+                <p
+                  className={cn(
+                    "text-body-large max-w-2xl",
+                    cinematic ? "text-white/80" : "text-muted-foreground"
+                  )}
+                >
+                  {description}
+                </p>
+                {actions && actions.length > 0 ? (
+                  <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap">
+                    {actions.map((action, i) => {
+                      const variant = action.variant ?? "default";
+                      const isOutlineOnFilm = cinematic && variant === "outline";
+                      const isPartnerOnFilm = cinematic && variant === "partner";
+                      return (
+                        <Button
+                          key={action.href + action.label}
+                          size="lg"
+                          variant={variant === "partner" ? "partner" : variant}
+                          className={cn(
+                            "rounded-[var(--radius-control)]",
+                            isOutlineOnFilm &&
+                              "border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white",
+                            isPartnerOnFilm &&
+                              "border-white/40 bg-white/15 text-white hover:bg-white hover:text-[color:var(--teal-900)]"
+                          )}
+                          render={<Link href={action.href} />}
+                        >
+                          {action.label}
+                          {i === 0 && variant === "default" ? (
+                            <ArrowRight className="size-4" aria-hidden />
+                          ) : null}
+                        </Button>
+                      );
+                    })}
+                  </div>
+                ) : null}
+              </div>
+            </Reveal>
+            {aside ? <Reveal delay={0.1}>{aside}</Reveal> : null}
+          </div>
+        )}
       </Container>
     </section>
   );

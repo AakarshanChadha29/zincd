@@ -146,7 +146,7 @@ export function HeroVideo({
           playsInline
           loop
           autoPlay
-          preload="auto"
+          preload="metadata"
           controls={false}
           disablePictureInPicture
         />

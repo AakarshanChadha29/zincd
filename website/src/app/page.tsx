@@ -12,13 +12,12 @@ import { CtaBand } from "@/components/blocks/cta-band";
 import { ZincdLogo } from "@/components/brand/zincd-logo";
 import { HeroVideo } from "@/components/media/hero-video";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
-import { AmbientCinema } from "@/components/motion/ambient-cinema";
-import { LivingField } from "@/components/motion/living-field";
 import { CinematicChapters } from "@/components/motion/cinematic-chapters";
 import { siteConfig } from "@/content/site-config";
 import {
   homepageHeroClips,
   motionGraphics,
+  productPhotos,
   productStills,
 } from "@/content/media";
 import { heroContent, productSeries } from "@/content/product-data";
@@ -55,10 +54,6 @@ const storyStages = [
     eyebrow: "02 — Through Zinc'd",
     title: "Mineral ions, metered into the circulation loop",
     body: "Pool water passes a stainless copper–silver–zinc chamber. Microcontroller PWM releases mineral ions at a controlled rate — engineered hardware, not a chemistry guess.",
-    // Photography, not the schematic. The flow diagram is a white technical
-    // drawing — full-bleed under a scrim it crops badly and its callout labels
-    // collide with the headline. It reads properly in the install section,
-    // contained on white.
     image: "/video/swimmer-palm.jpg",
     imageAlt: "Swimmer moving through clear, sunlit pool water",
   },
@@ -75,81 +70,94 @@ const storyStages = [
 export default function HomePage() {
   return (
     <>
-      {/* ============================ HERO ============================ */}
-      <section className="relative flex min-h-[calc(100svh-var(--nav-height))] flex-col justify-end overflow-hidden border-b border-border">
+      {/* ============================ HERO — screenshot composition ============================ */}
+      <section className="relative flex min-h-[calc(100svh-var(--nav-height))] flex-col justify-end overflow-hidden border-b border-border lg:min-h-[min(92vh,56rem)]">
         <HeroVideo clips={homepageHeroClips} />
         <div aria-hidden className="absolute inset-0 hero-scrim" />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-44 hero-scrim-bottom lg:h-56" />
-        <LivingField density="sparse" tone="deep" className="opacity-40 mix-blend-screen" />
-        {/* One full-bleed composition. The film runs edge to edge and the type
-            sits on it — no inset media card competing with the footage. */}
-        <Container className="relative pb-14 pt-24 md:pb-20 md:pt-28 lg:pb-28 lg:pt-32">
-          <Reveal>
-            <div className="max-w-xl space-y-6 lg:max-w-3xl lg:space-y-7">
-              {/* The logo renders as an inline-flex span, so it needs a block
-                  wrapper here or the eyebrow flows alongside it. */}
-              <div>
-                <ZincdLogo size="hero" href={null} priority />
+        <div
+          aria-hidden
+          className="absolute inset-y-0 left-0 w-full bg-[linear-gradient(to_right,rgb(4_32_38/0.78)_0%,rgb(4_32_38/0.52)_38%,rgb(4_32_38/0.15)_65%,transparent_86%)] lg:w-[75%]"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[color:var(--pearl)] via-[color:var(--pearl)]/45 to-transparent lg:h-44"
+        />
+        <Container className="relative flex flex-1 flex-col justify-end pb-4 pt-24 md:pb-6 md:pt-28 lg:justify-center lg:pb-8 lg:pt-32">
+          <div className="grid items-end gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-10">
+            <Reveal>
+              <div className="max-w-xl space-y-6 lg:max-w-2xl lg:space-y-7 lg:pb-10">
+                <div>
+                  <ZincdLogo size="hero" href={null} priority />
+                </div>
+                <TechnicalLabel className="block text-[color:var(--aqua-400)]">
+                  {heroContent.eyebrow}
+                </TechnicalLabel>
+                <h1 className="text-display text-white">
+                  A quieter{" "}
+                  <span className="text-gradient-aqua">revolution</span> in pool
+                  water.
+                </h1>
+                <p className="text-body-large max-w-lg text-white/85">
+                  {heroContent.subhead}
+                </p>
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <Button
+                    size="lg"
+                    className="rounded-[var(--radius-control)]"
+                    render={<Link href={siteConfig.ctas.assessment.href} />}
+                  >
+                    {siteConfig.ctas.assessment.label}
+                    <ArrowRight className="size-4" aria-hidden />
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="partner"
+                    className="rounded-[var(--radius-control)] border-white/40 bg-white/15 text-white hover:bg-white hover:text-[color:var(--teal-900)]"
+                    render={<Link href={siteConfig.ctas.distributor.href} />}
+                  >
+                    {siteConfig.ctas.distributor.label}
+                  </Button>
+                </div>
+                <p className="text-small text-white/55">
+                  US estates · hotels &amp; resorts · commercial aquatics
+                </p>
               </div>
-              <TechnicalLabel className="block text-[color:var(--aqua-400)]">
-                {heroContent.eyebrow}
-              </TechnicalLabel>
-              <h1 className="text-display text-white">
-                A quieter{" "}
-                <span className="text-gradient-aqua">revolution</span> in pool
-                water.
-              </h1>
-              <p className="text-body-large max-w-lg text-white/85">
-                {heroContent.subhead}
-              </p>
-              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Button
-                  size="lg"
-                  className="rounded-[var(--radius-control)]"
-                  render={<Link href={siteConfig.ctas.assessment.href} />}
-                >
-                  {siteConfig.ctas.assessment.label}
-                  <ArrowRight className="size-4" aria-hidden />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="partner"
-                  className="rounded-[var(--radius-control)] border-white/40 bg-white/15 text-white hover:bg-white hover:text-[color:var(--teal-900)]"
-                  render={<Link href={siteConfig.ctas.distributor.href} />}
-                >
-                  {siteConfig.ctas.distributor.label}
-                </Button>
+            </Reveal>
+            <Reveal delay={0.08} className="relative lg:self-end">
+              <div className="relative mx-auto aspect-[3/4] w-full max-w-sm lg:max-w-none lg:translate-y-8 xl:translate-y-10">
+                <Image
+                  src={productPhotos.system}
+                  alt="The Zinc'd ionization system: stainless cell tube and water chamber"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 40vw, 70vw"
+                  className="object-contain drop-shadow-[0_28px_55px_rgba(8,47,73,0.5)]"
+                />
               </div>
-              <p className="text-small text-white/55">
-                US estates · hotels &amp; resorts · commercial aquatics
-              </p>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </Container>
       </section>
 
-      {/* ============================ SCROLL STORY ============================ */}
       <CinematicChapters
         chapters={[...storyStages]}
         label="How Zinc'd changes a pool's chemistry program"
       />
 
-      {/* ============================ PRODUCT TRUTH ============================
-          Real photography of the actual unit. The previous procedural WebGL
-          chamber did not resemble the hardware and undercut a $5,000 product;
-          a straight product photograph is more convincing than an approximate
-          mesh. */}
+      {/* ============================ PRODUCT TRUTH ============================ */}
       <Section
         id="experience"
         spacing="lg"
         background="default"
         className="relative overflow-hidden"
       >
-        <AmbientCinema
-          src={motionGraphics.livingField.src}
-          poster={motionGraphics.livingField.poster}
-          density="rich"
-          tone="pearl"
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-80"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 80% 40%, rgb(45 212 191 / 0.1), transparent 60%)",
+          }}
         />
         <div className="relative grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16">
           <Reveal variant="left">
@@ -196,20 +204,18 @@ export default function HomePage() {
           <Reveal variant="scale" delay={0.08}>
             <div className="relative aspect-[4/3] w-full">
               <Image
-                src="/img/product-chamber.png"
-                alt="The Zinc'd water chamber: a stainless steel cylinder with two capped ports, marked with the copper, silver and zinc badges."
+                src={productPhotos.chamber}
+                alt="The Zinc'd water chamber: stainless steel cylinder with copper, silver and zinc badges."
                 fill
                 sizes="(min-width: 1024px) 52vw, 100vw"
-                className="object-contain drop-shadow-[0_28px_48px_rgba(12,74,110,0.28)]"
+                className="object-contain drop-shadow-[0_28px_48px_rgba(12,74,110,0.22)]"
               />
             </div>
           </Reveal>
         </div>
       </Section>
 
-      {/* ============================ INSTALL CLARITY ============================
-          Edge-to-edge so the diagram reads at full width rather than sitting in
-          a small card. */}
+      {/* ============================ INSTALL ============================ */}
       <section className="relative overflow-hidden border-y border-border bg-[color:var(--pearl)]">
         <Container className="py-16 md:py-20">
           <Reveal>
@@ -233,7 +239,7 @@ export default function HomePage() {
                 <div className="relative aspect-[16/10]">
                   <Image
                     src={productStills.flowDiagram}
-                    alt="Flow diagram showing the Zinc'd chamber fitted into the pool circulation loop between the filter and the return line."
+                    alt="Flow diagram showing the Zinc'd chamber fitted into the pool circulation loop."
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
                     className="object-contain p-4"
@@ -247,7 +253,7 @@ export default function HomePage() {
                 <div className="relative aspect-[16/10]">
                   <Image
                     src={productStills.manifold}
-                    alt="Manifold layout showing multiple Zinc'd chambers in parallel with a service bypass line."
+                    alt="Manifold layout showing multiple Zinc'd chambers in parallel with a bypass."
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
                     className="object-contain p-4"
@@ -263,16 +269,15 @@ export default function HomePage() {
       </section>
 
       <MotionGraphicBand
-        src={motionGraphics.waterIons.src}
-        poster={motionGraphics.waterIons.poster}
+        src={motionGraphics.ionsWater.src}
+        poster={motionGraphics.ionsWater.poster}
         eyebrow="For US pool water"
         title="Clear water. Mineral intelligence."
         body="Estate and hospitality pools deserve a quieter chemistry program — mineral ions under control, residual chlorine still in the plan."
       />
 
       {/* ============================ SERIES ============================ */}
-      <Section id="series" spacing="lg" background="muted" className="relative">
-        <LivingField density="sparse" className="opacity-55" />
+      <Section id="series" spacing="lg" background="muted">
         <Reveal>
           <SectionHeading
             as="h2"
@@ -281,7 +286,7 @@ export default function HomePage() {
             description="Volumes and pipe sizes from the installer handbook. Assessment confirms fit to your circulation — private estate or commercial manifold."
           />
         </Reveal>
-        <div className="relative mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {productSeries.map((series, i) => (
             <Reveal key={series.name} delay={i * 0.05}>
               <Link
@@ -305,9 +310,8 @@ export default function HomePage() {
       </Section>
 
       {/* ============================ PATHS ============================ */}
-      <Section spacing="lg" background="default" className="relative overflow-hidden">
-        <LivingField density="medium" className="opacity-45" />
-        <div className="relative grid gap-6 lg:grid-cols-2 lg:gap-8">
+      <Section spacing="lg" background="default">
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
           <Reveal variant="left">
             <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[var(--radius)] border border-border p-8 md:min-h-[22rem] md:p-10">
               <Image
@@ -315,7 +319,7 @@ export default function HomePage() {
                 alt=""
                 fill
                 sizes="50vw"
-                className="object-cover opacity-[0.18]"
+                className="object-cover opacity-[0.16]"
                 aria-hidden
               />
               <div className="relative">
@@ -340,12 +344,17 @@ export default function HomePage() {
           </Reveal>
           <Reveal variant="right" delay={0.06}>
             <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[var(--radius)] bg-[color:var(--teal-900)] p-8 text-white md:min-h-[22rem] md:p-10">
-              <AmbientCinema
-                src={motionGraphics.livingField.src}
-                poster={motionGraphics.livingField.poster}
-                density="medium"
-                tone="deep"
-                className="opacity-80"
+              <Image
+                src="/video/estate-pool.jpg"
+                alt=""
+                fill
+                sizes="50vw"
+                className="object-cover opacity-30"
+                aria-hidden
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-[color:var(--teal-900)]/55"
               />
               <div className="relative">
                 <TechnicalLabel className="text-[color:var(--aqua-400)]">
