@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import Image from "next/image";
 
@@ -19,9 +20,18 @@ type MotionGraphicBandProps = {
   tone?: "deep" | "soft";
 };
 
+function armAutoplay(el: HTMLVideoElement) {
+  el.muted = true;
+  el.defaultMuted = true;
+  el.playsInline = true;
+  el.setAttribute("playsinline", "");
+  el.setAttribute("webkit-playsinline", "");
+  el.setAttribute("muted", "");
+}
+
 /**
  * Full-bleed Higgsfield motion-graphic band — looping muted video with
- * restrained copy. Poster fallback under reduced-motion.
+ * restrained copy. Poster underlay + in-view play for mobile Safari.
  */
 export function MotionGraphicBand({
   src,
@@ -33,36 +43,70 @@ export function MotionGraphicBand({
   tone = "deep",
 }: MotionGraphicBandProps) {
   const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [inView, setInView] = useState(false);
+  const [playbackFailed, setPlaybackFailed] = useState(false);
+  const showVideo = !reduceMotion && !playbackFailed;
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node || reduceMotion) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { rootMargin: "120px 0px", threshold: 0.15 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [reduceMotion]);
+
+  useEffect(() => {
+    if (!showVideo) return;
+    const el = videoRef.current;
+    if (!el) return;
+    armAutoplay(el);
+
+    if (!inView) {
+      el.pause();
+      return;
+    }
+
+    void el.play().catch(() => {
+      setPlaybackFailed(true);
+    });
+  }, [inView, showVideo, src]);
 
   return (
     <section
+      ref={sectionRef}
       className={cn(
         "relative flex min-h-[min(70vh,32rem)] items-end overflow-hidden border-y border-border",
         className
       )}
     >
-      {reduceMotion ? (
-        <Image
-          src={poster}
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-          aria-hidden
-        />
-      ) : (
+      <Image
+        src={poster}
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover"
+        aria-hidden
+      />
+      {showVideo ? (
         <video
+          ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"
           src={src}
           poster={poster}
           muted
           playsInline
           loop
-          autoPlay
           preload="metadata"
           aria-hidden
         />
-      )}
+      ) : null}
       <div
         aria-hidden
         className={cn(

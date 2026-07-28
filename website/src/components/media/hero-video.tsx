@@ -18,11 +18,22 @@ type HeroVideoProps = {
   intervalSec?: number;
 };
 
+/** iOS Safari needs muted/playsInline set as properties, not only JSX attrs. */
+function armAutoplay(el: HTMLVideoElement) {
+  el.muted = true;
+  el.defaultMuted = true;
+  el.playsInline = true;
+  el.setAttribute("playsinline", "");
+  el.setAttribute("webkit-playsinline", "");
+  el.setAttribute("muted", "");
+}
+
 /**
  * Decorative full-bleed background video.
- * - muted + playsInline for autoplay policies
- * - poster still when reduced-motion is preferred
- * - one active clip at a time with opacity crossfade when multiple clips
+ * - One clip mounted at a time (iOS often blocks multi-video autoplay)
+ * - Poster Image always underneath so mobile never goes black
+ * - Falls back to still if autoplay is blocked (Low Power Mode, data saver)
+ * - Still-only when prefers-reduced-motion is on
  */
 export function HeroVideo({
   clips,
@@ -31,39 +42,57 @@ export function HeroVideo({
 }: HeroVideoProps) {
   const reduceMotion = useReducedMotion();
   const [active, setActive] = useState(0);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [playbackFailed, setPlaybackFailed] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const safeClips = clips.length > 0 ? clips : [];
+  const clip = safeClips[active] ?? safeClips[0];
 
   useEffect(() => {
-    if (reduceMotion || safeClips.length < 2) return;
+    if (reduceMotion || playbackFailed || safeClips.length < 2) return;
     const id = window.setInterval(() => {
       setActive((i) => (i + 1) % safeClips.length);
     }, intervalSec * 1000);
     return () => window.clearInterval(id);
-  }, [reduceMotion, safeClips.length, intervalSec]);
+  }, [reduceMotion, playbackFailed, safeClips.length, intervalSec]);
 
   useEffect(() => {
-    if (reduceMotion) return;
-    videoRefs.current.forEach((el, i) => {
-      if (!el) return;
-      if (i === active) {
-        void el.play().catch(() => {
-          /* autoplay blocked — poster still visible via attribute */
-        });
-      } else {
-        el.pause();
-      }
-    });
-  }, [active, reduceMotion]);
+    if (reduceMotion || playbackFailed || !clip) return;
+    const el = videoRef.current;
+    if (!el) return;
 
-  if (safeClips.length === 0) return null;
+    armAutoplay(el);
 
-  if (reduceMotion) {
-    const poster = safeClips[0].poster;
+    const tryPlay = () => {
+      void el.play().catch(() => {
+        setPlaybackFailed(true);
+      });
+    };
+
+    if (el.readyState >= 2) {
+      tryPlay();
+    } else {
+      el.addEventListener("loadeddata", tryPlay, { once: true });
+      el.addEventListener(
+        "error",
+        () => {
+          setPlaybackFailed(true);
+        },
+        { once: true }
+      );
+    }
+
+    return () => {
+      el.removeEventListener("loadeddata", tryPlay);
+    };
+  }, [active, reduceMotion, playbackFailed, clip]);
+
+  if (!clip) return null;
+
+  if (reduceMotion || playbackFailed) {
     return (
       <div className={cn("absolute inset-0 overflow-hidden", className)} aria-hidden>
         <Image
-          src={poster}
+          src={clip.poster}
           alt=""
           fill
           priority
@@ -76,25 +105,27 @@ export function HeroVideo({
 
   return (
     <div className={cn("absolute inset-0 overflow-hidden", className)} aria-hidden>
-      {safeClips.map((clip, i) => (
-        <video
-          key={clip.src}
-          ref={(el) => {
-            videoRefs.current[i] = el;
-          }}
-          className={cn(
-            "absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-[var(--ease-out-premium)]",
-            i === active ? "opacity-100" : "opacity-0"
-          )}
-          src={clip.src}
-          poster={clip.poster}
-          muted
-          playsInline
-          loop
-          autoPlay={i === 0}
-          preload={i === 0 ? "auto" : "metadata"}
-        />
-      ))}
+      {/* Poster underlay — visible until the first decoded frame paints */}
+      <Image
+        src={clip.poster}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+      <video
+        key={clip.src}
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover"
+        src={clip.src}
+        poster={clip.poster}
+        muted
+        playsInline
+        loop
+        autoPlay
+        preload="auto"
+      />
     </div>
   );
 }
