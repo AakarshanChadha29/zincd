@@ -7,6 +7,8 @@ import { TechnicalLabel } from "@/components/ui/technical-label";
 import { StatusNote } from "@/components/ui/status-note";
 import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
+import { ScrollTilt } from "@/components/motion/scroll-spin";
+import { KineticSectionTitle } from "@/components/motion/kinetic-title";
 import { PageHero } from "@/components/blocks/page-hero";
 import { SpecTable } from "@/components/blocks/spec-table";
 import { CtaBand } from "@/components/blocks/cta-band";
@@ -55,15 +57,17 @@ export default function ProductPage() {
         ]}
         video={productHeroClip}
         aside={
-          <div className="rounded-[var(--radius)] border border-white/15 bg-[color:var(--surface)]/80 p-6 shadow-[var(--shadow-2)] backdrop-blur-md md:p-8">
-            <div className="mb-4 flex items-center justify-between">
-              <span className="text-technical text-accent-aquatic">System core</span>
-              <span className="text-technical text-accent-steel normal-case tracking-normal">
-                Cu · Ag · Zn cell
-              </span>
+          <ScrollTilt>
+            <div className="rounded-[var(--radius)] border border-white/15 bg-[color:var(--surface)]/80 p-6 shadow-[var(--shadow-2)] backdrop-blur-md md:p-8">
+              <div className="mb-4 flex items-center justify-between">
+                <span className="text-technical text-accent-aquatic">System core</span>
+                <span className="text-technical text-accent-steel normal-case tracking-normal">
+                  Cu · Ag · Zn cell
+                </span>
+              </div>
+              <ProductSpin />
             </div>
-            <ProductSpin />
-          </div>
+          </ScrollTilt>
         }
       />
 
@@ -71,12 +75,18 @@ export default function ProductPage() {
       <Section spacing="lg" background="default" className="relative">
         <AmbientIons density="sparse" />
         <Reveal>
-          <SectionHeading
-            as="h2"
-            eyebrow="Product range"
-            title="Four series, domestic to Olympic-size"
-            description="Sized to suit the full spread of circulation flow rates. The right series is confirmed to your system during a pool assessment."
-          />
+          <div className="space-y-4">
+            <TechnicalLabel>Product range</TechnicalLabel>
+            <KineticSectionTitle
+              as="h2"
+              mode="spin"
+              title="Four series, domestic to Olympic-size"
+            />
+            <p className="text-body-large max-w-2xl text-muted-foreground">
+              Sized to suit the full spread of circulation flow rates. The right
+              series is confirmed to your system during a pool assessment.
+            </p>
+          </div>
         </Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {productSeries.map((series, i) => (

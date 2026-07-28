@@ -6,6 +6,9 @@ import { TechnicalLabel } from "@/components/ui/technical-label";
 import { StatusNote } from "@/components/ui/status-note";
 import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
+import { KineticMetalBand } from "@/components/motion/kinetic-metal-band";
+import { KineticSectionTitle } from "@/components/motion/kinetic-title";
+import { ScrollSpin, ScrollTilt } from "@/components/motion/scroll-spin";
 import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessSteps } from "@/components/blocks/process-steps";
 import { SpecTable } from "@/components/blocks/spec-table";
@@ -71,55 +74,67 @@ export default function TechnologyPage() {
           { label: "See the product", href: "/product", variant: "outline" },
         ]}
         aside={
-          <div className="overflow-hidden rounded-[var(--radius)] border border-border bg-surface-elevated p-6 shadow-[var(--shadow-2)] md:p-8">
-            <div className="mb-4 flex items-center justify-between">
-              <span className="text-technical text-accent-aquatic">
-                Ionization field
-              </span>
-              <span className="text-technical text-muted-foreground normal-case tracking-normal">
-                Cu · Ag · Zn
-              </span>
-            </div>
-            <IonFieldStage />
-            <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border pt-4">
-              {[
-                { k: "Copper", v: "algae control", c: "var(--teal-700)" },
-                { k: "Silver", v: "ionization", c: "var(--teal-800)" },
-                { k: "Zinc", v: "biofilm control", c: "var(--eco-700)" },
-              ].map((m) => (
-                <div key={m.k}>
-                  <div className="text-small font-medium" style={{ color: m.c }}>
-                    {m.k}
+          <ScrollTilt>
+            <div className="overflow-hidden rounded-[var(--radius)] border border-border bg-surface-elevated p-6 shadow-[var(--shadow-2)] md:p-8">
+              <div className="mb-4 flex items-center justify-between">
+                <span className="text-technical text-accent-aquatic">
+                  Ionization field
+                </span>
+                <span className="text-technical text-muted-foreground normal-case tracking-normal">
+                  Cu · Ag · Zn
+                </span>
+              </div>
+              <IonFieldStage />
+              <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border pt-4">
+                {[
+                  { k: "Copper", v: "algae control", c: "var(--teal-700)" },
+                  { k: "Silver", v: "ionization", c: "var(--teal-800)" },
+                  { k: "Zinc", v: "biofilm control", c: "var(--eco-700)" },
+                ].map((m) => (
+                  <div key={m.k}>
+                    <div className="text-small font-medium" style={{ color: m.c }}>
+                      {m.k}
+                    </div>
+                    <div className="text-small text-muted-foreground">{m.v}</div>
                   </div>
-                  <div className="text-small text-muted-foreground">{m.v}</div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          </ScrollTilt>
         }
       />
+
+      <KineticMetalBand />
 
       {/* Electrode metals */}
       <Section spacing="lg" background="default" className="relative">
         <AmbientIons density="sparse" />
         <Reveal>
-          <SectionHeading
-            as="h2"
-            eyebrow="The electrodes"
-            title="Three metals, one engineered cell"
-            description="A stainless-steel housing carries copper, silver and zinc alloy anodes. Each plays a defined role in the water program."
-          />
+          <div className="space-y-4">
+            <TechnicalLabel>The electrodes</TechnicalLabel>
+            <KineticSectionTitle
+              as="h2"
+              mode="spin"
+              title="Three metals, one engineered cell"
+            />
+            <p className="text-body-large max-w-2xl text-muted-foreground">
+              A stainless-steel housing carries copper, silver and zinc alloy
+              anodes. Each plays a defined role in the water program.
+            </p>
+          </div>
         </Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {electrodes.map((e, i) => (
             <Reveal key={e.symbol} delay={i * 0.05}>
               <div className="flex h-full flex-col rounded-[var(--radius-panel)] border border-border bg-surface p-7">
-                <div
-                  className="flex size-14 items-center justify-center rounded-[var(--radius-control)] text-technical text-lg font-semibold text-white normal-case tracking-normal"
-                  style={{ background: e.color }}
-                >
-                  {e.symbol}
-                </div>
+                <ScrollSpin degrees={180} axis="y">
+                  <div
+                    className="flex size-14 items-center justify-center rounded-[var(--radius-control)] text-technical text-lg font-semibold text-white normal-case tracking-normal"
+                    style={{ background: e.color }}
+                  >
+                    {e.symbol}
+                  </div>
+                </ScrollSpin>
                 <h3 className="text-h3 mt-5 text-foreground">{e.metal}</h3>
                 <p className="text-body mt-2 text-muted-foreground">{e.role}</p>
               </div>
