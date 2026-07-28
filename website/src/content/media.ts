@@ -35,7 +35,7 @@ export const distributorsHeroClip = heroVideos.estate;
 export const applicationsHeroClip = heroVideos.swimmer;
 export const aboutHeroClip = heroVideos.estate;
 
-/** Higgsfield motion graphics — ambient section films (≤75 credit budget). */
+/** Higgsfield motion graphics — ambient section films. */
 export const motionGraphics = {
   ionsWater: {
     src: "/video/mg-ions-water.mp4",
@@ -49,6 +49,16 @@ export const motionGraphics = {
     src: "/video/mg-mineral-type.mp4",
     poster: "/video/mg-mineral-type.jpg",
   },
+  waterStory: {
+    src: "/video/mg-water-story.mp4",
+    poster: "/video/mg-water-story.jpg",
+  },
+} as const;
+
+/** Product / install stills — Zinc'd branded (no Arroyo). */
+export const productStills = {
+  flowDiagram: "/img/product/flow-diagram.png",
+  manifold: "/img/product/manifold-zincd.png",
 } as const;
 
 /** Still photography for application cards — environment only, never the product. */

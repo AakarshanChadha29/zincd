@@ -30,7 +30,7 @@ export default function InstallationMaintenancePage() {
             <span className="text-gradient-aqua">Light on upkeep.</span>
           </>
         }
-        description="Zinc'd is designed to integrate with existing pool circulation systems. Routine maintenance is minimal — centered on periodic cleaning of the copper–silver–zinc anode when monitoring signals it."
+        description="Zinc'd is designed to integrate with existing pool circulation systems — Series-1 through Series-3, or custom multi-unit layouts for larger commercial inlets. Routine maintenance is minimal — centered on periodic cleaning of the copper–silver–zinc anode when monitoring signals it."
         actions={[
           { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
           { label: "See the product", href: "/product", variant: "outline" },

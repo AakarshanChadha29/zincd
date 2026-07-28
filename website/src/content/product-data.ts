@@ -100,35 +100,47 @@ export const systemComponents = [
   { name: "Water testing kit", detail: "For copper, free chlorine and pH — the metrics that keep chemistry in range." },
 ] as const;
 
-/** Product series — described generically; model specifics pending confirmation. */
+/**
+ * Product series — from HANDBOOK FOR PLUMBER 2.pdf (install sizing).
+ * Volumes are litres; pipe size is the circulation inlet guide. Commercial
+ * volumes above 150,000 L use additional units in parallel with a bypass.
+ */
 export const productSeries = [
   {
-    name: "Domestic series",
-    scope: "Home & residential pools",
-    body: "Sized for private residential pools and smaller water volumes — assessment confirms fit to circulation flow.",
+    name: "Series-1",
+    scope: "Residential · 2″ pipe",
+    volume: "20,000–70,000 L",
+    pipe: "2″",
+    body: "Small to standard residential pools — from compact estate basins through typical private volumes on a 2″ circulation line.",
     audience: "Estate owners · residential builders",
-    decisionNote: "Ideal when the priority is a calmer day-to-day chemistry program without DIY complexity.",
+    decisionNote: "Confirm volume band during assessment: 20–40k L (small) or 40–70k L (standard).",
   },
   {
-    name: "Mid-range series",
-    scope: "Community & light commercial",
-    body: "For community, boutique-hospitality and light commercial circulation systems with steadier traffic.",
-    audience: "HOAs · boutique hotels · clubs",
-    decisionNote: "Specify when guest or member experience matters and uptime must stay predictable.",
+    name: "Series-2",
+    scope: "Large residential / club · 2–4″",
+    volume: "70,000–100,000 L",
+    pipe: "2–4″",
+    body: "Larger residential and club pools where flow and duty cycle sit above a single domestic install.",
+    audience: "Clubs · HOAs · large estates",
+    decisionNote: "Specify when volume and pipe size move past standard residential Series-1.",
   },
   {
-    name: "Commercial series",
-    scope: "Hotels, resorts & commercial",
-    body: "For higher-volume commercial and hospitality aquatic facilities with documented operating parameters.",
-    audience: "Resort operators · facility directors",
+    name: "Series-3",
+    scope: "Luxury / small commercial · 4″",
+    volume: "100,000–150,000 L",
+    pipe: "4″",
+    body: "Luxury residential and small commercial basins on larger circulation — hospitality amenity scale with documented operating parameters.",
+    audience: "Boutique hotels · luxury estates · facility leads",
     decisionNote: "Built for teams that need engineered control, monitoring, and clear maintenance cues.",
   },
   {
-    name: "Large / Olympic series",
-    scope: "Large-format & Olympic-size",
-    body: "Engineered for large-format and Olympic-size pools across the full flow-rate range.",
-    audience: "Municipal · campus · competition venues",
-    decisionNote: "Selected when circulation volume and duty cycle exceed standard commercial sizing.",
+    name: "Custom",
+    scope: "Commercial multi-unit",
+    volume: "Above 150,000 L",
+    pipe: "As required",
+    body: "Commercial volumes use additional Zinc'd units in parallel on the inlet manifold, with a bypass branch — sized to the facility during assessment.",
+    audience: "Resort · municipal · campus operators",
+    decisionNote: "Selected when volume exceeds Series-3; multi-unit layouts follow the installer handbook.",
   },
 ] as const;
 
@@ -343,7 +355,7 @@ export const applicationDetails: Record<
 export const evaluationFramework = [
   {
     title: "For ownership & principals",
-    body: "A capital decision framed around documented specifications, series coverage from domestic to Olympic-size, and a claims-safe ecological story you can stand behind with guests, boards, or family stakeholders.",
+    body: "A capital decision framed around documented specifications, handbook series sizing from residential through commercial multi-unit, and a claims-safe ecological story you can stand behind with guests, boards, or family stakeholders.",
   },
   {
     title: "For operators & the next generation",
@@ -351,7 +363,7 @@ export const evaluationFramework = [
   },
   {
     title: "For partners & channel",
-    body: "A defined product category for distributors, builders and installers: engineered ionization that fits existing circulation, with residential-to-commercial reach.",
+    body: "A defined product category for distributors, builders and installers: engineered ionization that fits existing circulation, with Series-1 through custom commercial reach.",
   },
 ] as const;
 
@@ -363,7 +375,7 @@ export const partnerValue = [
   },
   {
     title: "Installation that fits circulation systems",
-    body: "Designed to integrate with existing pool circulation, across domestic to Olympic-size flow rates.",
+    body: "Designed to integrate with existing pool circulation — Series-1 through Series-3, plus custom multi-unit layouts for larger commercial inlets.",
   },
   {
     title: "Maintenance & support expectations",
@@ -371,7 +383,7 @@ export const partnerValue = [
   },
   {
     title: "Residential and commercial reach",
-    body: "A series range spanning private pools through hospitality and commercial aquatic facilities.",
+    body: "A series range spanning private pools through hospitality and commercial multi-unit layouts.",
   },
 ] as const;
 
@@ -395,7 +407,7 @@ export const faqs = [
   },
   {
     q: "What pool sizes are supported?",
-    a: "The product line spans four series covering domestic pools up to Olympic-size, suitable across the full range of circulation flow rates. A pool assessment confirms the right series for your system.",
+    a: "Sizing follows the installer handbook: Series-1 (2″, roughly 20,000–70,000 L), Series-2 (2–4″, 70,000–100,000 L), Series-3 (4″, 100,000–150,000 L), and custom multi-unit layouts above 150,000 L. A pool assessment confirms the right series for your system.",
   },
   {
     q: "Is there a connection to NASA?",
@@ -468,7 +480,7 @@ export const directOffer = {
 export const partnerPropositions = [
   {
     title: "A defined product, not a chemistry program",
-    body: "One engineered system with documented specifications, four series covering domestic through Olympic-size, and a fixed component list.",
+    body: "One engineered system with documented specifications, Series-1 through Series-3 plus custom multi-unit commercial layouts, and a fixed component list.",
   },
   {
     title: "Recurring service, not one-off supply",

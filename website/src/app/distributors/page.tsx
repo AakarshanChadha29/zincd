@@ -160,8 +160,8 @@ export default function DistributorsPage() {
           <SectionHeading
             as="h2"
             eyebrow="Range"
-            title="One line, domestic to Olympic-size"
-            description="Four series let you serve private pools through large commercial and hospitality facilities."
+            title="One line, Series-1 through custom commercial"
+            description="Handbook sizing lets you serve private pools through multi-unit commercial and hospitality facilities."
           />
         </Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -173,6 +173,9 @@ export default function DistributorsPage() {
                 </div>
                 <h3 className="text-h3 mt-3 text-foreground">{series.name}</h3>
                 <p className="text-small mt-1 font-medium text-accent-steel">{series.scope}</p>
+                <p className="text-technical mt-3 normal-case tracking-normal text-accent-aquatic">
+                  {series.volume}
+                </p>
               </div>
             </Reveal>
           ))}

@@ -15,10 +15,7 @@ import { ProcessSteps } from "@/components/blocks/process-steps";
 import { SpecTable } from "@/components/blocks/spec-table";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { FaqList } from "@/components/blocks/faq-list";
-import { IonizationCell } from "@/components/graphics/ionization-cell";
 import { EcoRipple } from "@/components/graphics/eco-ripple";
-import { IonFieldStage } from "@/components/graphics/ion-field-stage";
-import { ProductSpin } from "@/components/graphics/product-spin";
 import { HeroVideo } from "@/components/media/hero-video";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { AmbientIons } from "@/components/motion/ambient-ions";
@@ -28,6 +25,7 @@ import {
   applicationImages,
   homepageHeroClips,
   motionGraphics,
+  productStills,
 } from "@/content/media";
 import {
   applications,
@@ -189,21 +187,33 @@ export default function HomePage() {
       {/* ============================ HOW IT WORKS ============================ */}
       <Section id="how-it-works" spacing="lg" background="default" className="relative">
         <AmbientIons density="medium" className="opacity-60" />
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
-          <Reveal>
-            <div className="lg:sticky lg:top-28">
-              <SectionHeading
-                as="h2"
-                eyebrow="How it works"
-                title="Ions, released under control"
-                description="A microcontroller regulates a low-voltage current across copper, silver and zinc electrodes — introducing mineral ions at a controlled rate into your circulation loop."
-              />
-              <div className="mt-8 rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow-1)]">
-                <IonizationCell />
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delay={0.1} variant="right">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="How it works"
+            title="Through the Zinc'd unit — then clearer water"
+            description="Filtration feeds the ionization chamber. Copper, silver and zinc ions enter the circulation loop under PWM control. The result is a quieter chemistry program for people, the environment, and the operators who manage it — with residual free chlorine still in the plan."
+          />
+        </Reveal>
+        <Reveal delay={0.06}>
+          <figure className="mt-10 overflow-hidden rounded-[var(--radius)] border border-border bg-surface shadow-[var(--shadow-1)]">
+            <Image
+              src={productStills.flowDiagram}
+              alt="Filtration plant feeding a Zinc'd copper–silver–zinc ionization chamber, then returning treated water to a swimming pool"
+              width={1376}
+              height={768}
+              className="h-auto w-full"
+              sizes="(max-width: 1200px) 100vw, 1100px"
+              priority={false}
+            />
+            <figcaption className="border-t border-border px-5 py-4 text-small text-muted-foreground md:px-6">
+              Install path: filtration → Zinc&apos;d unit (Cu–Ag–Zn chamber) → pool.
+              Inlet and outlet are fixed to the chamber on both sides.
+            </figcaption>
+          </figure>
+        </Reveal>
+        <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
+          <Reveal delay={0.08}>
             <ProcessSteps steps={howItWorksSteps} />
             <StatusNote className="mt-8">
               Zinc&apos;d works alongside your sanitizer program, not instead of it.
@@ -211,52 +221,78 @@ export default function HomePage() {
               chlorine (~1.0 ppm) for responsible operation.
             </StatusNote>
           </Reveal>
+          <Reveal delay={0.12} variant="right">
+            <div className="space-y-4 rounded-[var(--radius)] border border-border bg-surface-elevated p-6 md:p-7">
+              <TechnicalLabel>Who benefits</TechnicalLabel>
+              <ul className="space-y-4">
+                {[
+                  {
+                    title: "People in the water",
+                    body: "A lower day-to-day chemical load for a calmer swimming experience — still sanitized, not chemical-free.",
+                  },
+                  {
+                    title: "The environment around the basin",
+                    body: "Mineral ionization is designed to reduce chlorine dependency, easing the chemical footprint of routine care.",
+                  },
+                  {
+                    title: "Facility & estate operators",
+                    body: "PWM control, monitoring cues for anode care, and handbook-sized series make upkeep predictable.",
+                  },
+                ].map((item) => (
+                  <li key={item.title} className="border-t border-border pt-4 first:border-0 first:pt-0">
+                    <h3 className="text-h3 text-foreground">{item.title}</h3>
+                    <p className="text-small mt-2 text-muted-foreground">{item.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
       </Section>
+
+      <MotionGraphicBand
+        src={motionGraphics.waterStory.src}
+        poster={motionGraphics.waterStory.poster}
+        eyebrow="The water story"
+        title="Chemicals in — minerals through — clearer out"
+        body="A cinematic pass through the Zinc'd chamber: cloudy chemistry gives way to clearer, quieter water for the people who swim and the teams who maintain it."
+      />
 
       <MotionGraphicBand
         src={motionGraphics.chamber.src}
         poster={motionGraphics.chamber.poster}
         eyebrow="Inside the system"
         title="An engineered chamber, illuminated"
-        body="Abstract visualization of ionization energy across the cell — complementary to the interactive product model below."
+        body="Abstract visualization of ionization energy across the stainless cell — the same Cu–Ag–Zn core that sits in the circulation loop."
       />
 
-      {/* ============================ SYSTEM VISUALIZATION ============================ */}
+      {/* ============================ INSTALL LAYOUT ============================ */}
       <Section id="system" spacing="lg" background="default" className="relative">
         <AmbientIons density="medium" className="opacity-50" />
         <Reveal>
           <SectionHeading
             as="h2"
-            eyebrow="See the system"
-            title="Engineered clarity — cell, field, and control"
-            description="Visualize the ionization cell and the mineral field your circulation loop will carry. Specs stay documented; the story stays honest."
+            eyebrow="Installation clarity"
+            title="One unit — or three in parallel with a bypass"
+            description="Residential installs use a single Zinc'd chamber on the filtration return. Larger commercial inlets use parallel chambers with a bypass branch — exactly as the plumber handbook specifies."
           />
         </Reveal>
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          <Reveal variant="left">
-            <div className="rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow-1)] md:p-8">
-              <div className="mb-4 flex items-center justify-between">
-                <TechnicalLabel>System core</TechnicalLabel>
-                <span className="text-technical text-accent-steel normal-case tracking-normal">
-                  Cu · Ag · Zn
-                </span>
-              </div>
-              <ProductSpin />
-            </div>
-          </Reveal>
-          <Reveal variant="right" delay={0.08}>
-            <div className="rounded-[var(--radius)] border border-border bg-surface-elevated p-6 shadow-[var(--shadow-1)] md:p-8">
-              <div className="mb-4 flex items-center justify-between">
-                <TechnicalLabel>Ionization field</TechnicalLabel>
-                <span className="text-technical text-accent-steel normal-case tracking-normal">
-                  PWM regulated
-                </span>
-              </div>
-              <IonFieldStage />
-            </div>
-          </Reveal>
-        </div>
+        <Reveal delay={0.06}>
+          <figure className="mt-10 overflow-hidden rounded-[var(--radius)] border border-border bg-surface shadow-[var(--shadow-1)]">
+            <Image
+              src={productStills.manifold}
+              alt="Zinc'd multi-unit manifold with three water chambers, orange valves, and a bypass branch"
+              width={1400}
+              height={1050}
+              className="h-auto w-full bg-white object-contain"
+              sizes="(max-width: 1200px) 100vw, 1100px"
+            />
+            <figcaption className="border-t border-border px-5 py-4 text-small text-muted-foreground md:px-6">
+              Multi-unit layout for larger inlets: three Zinc&apos;d chambers in
+              parallel plus a bypass — inlet above, outlet below.
+            </figcaption>
+          </figure>
+        </Reveal>
       </Section>
 
       {/* ============================ DUAL AUDIENCE ============================ */}
@@ -350,8 +386,8 @@ export default function HomePage() {
           <SectionHeading
             as="h2"
             eyebrow="Product range"
-            title="Four series, domestic to Olympic-size"
-            description="A sizing range engineered to suit the full spread of circulation flow rates — confirmed to your system during a pool assessment."
+            title="Series-1 to Series-3 — plus custom multi-unit"
+            description="Sizing from the plumber handbook: pipe size and pool volume in litres. The right series is confirmed during a pool assessment."
           />
         </Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -363,6 +399,11 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-h3 mt-3 text-foreground">{series.name}</h3>
                 <p className="text-small mt-1 font-medium text-accent-steel">{series.scope}</p>
+                <p className="text-technical mt-3 normal-case tracking-normal text-accent-aquatic">
+                  {series.volume}
+                  <span className="text-muted-foreground"> · </span>
+                  {series.pipe} inlet
+                </p>
                 <p className="text-small mt-3 text-muted-foreground">{series.body}</p>
                 <p className="text-technical mt-4 normal-case tracking-normal text-accent-ecological">
                   {series.audience}
