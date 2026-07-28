@@ -11,14 +11,37 @@ export const heroVideos = {
     src: "/video/villa-modern.mp4",
     poster: "/video/villa-modern.jpg",
   },
+  estate: {
+    src: "/video/estate-pool.mp4",
+    poster: "/video/estate-pool.jpg",
+  },
+  swimmer: {
+    src: "/video/swimmer-palm.mp4",
+    poster: "/video/swimmer-palm.jpg",
+  },
 } as const;
 
-/** Homepage rotates all three villa/pool clips. */
+/** Homepage rotates cinematic villa, estate, and lifestyle pool clips. */
 export const homepageHeroClips = [
   heroVideos.ocean,
+  heroVideos.estate,
   heroVideos.bali,
+  heroVideos.swimmer,
   heroVideos.modern,
 ];
 
 export const productHeroClip = heroVideos.modern;
-export const distributorsHeroClip = heroVideos.bali;
+export const distributorsHeroClip = heroVideos.estate;
+export const applicationsHeroClip = heroVideos.swimmer;
+export const aboutHeroClip = heroVideos.estate;
+
+/** Still photography for application cards — environment only, never the product. */
+export const applicationImages: Record<string, string> = {
+  residential: "/img/pool-residential.jpg",
+  "hotels-resorts": "/img/pool-resort.jpg",
+  commercial: "/img/pool-commercial.jpg",
+  "fitness-wellness": "/img/pool-wellness.jpg",
+};
+
+/** Default social preview (first villa poster until dedicated OG art exists). */
+export const defaultOgImage = heroVideos.ocean.poster;

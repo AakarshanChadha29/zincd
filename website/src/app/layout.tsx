@@ -5,6 +5,7 @@ import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { MotionProvider } from "@/components/motion/motion-provider";
+import { OrganizationJsonLd } from "@/components/seo/json-ld";
 import { getRootMetadata } from "@/lib/metadata";
 
 import "./globals.css";
@@ -36,6 +37,7 @@ export default function RootLayout({
       className={`${plexSans.variable} ${plexMono.variable} h-full`}
     >
       <body className="flex min-h-full flex-col font-sans">
+        <OrganizationJsonLd />
         <MotionProvider>
           <a href="#main-content" className="skip-link">
             Skip to content

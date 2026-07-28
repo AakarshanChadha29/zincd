@@ -6,6 +6,7 @@ export const metadata = createPageMetadata({
   description:
     "How to interpret Zinc'd product and performance statements, including the role of responsible pool sanitation.",
   path: "/product-disclaimer",
+  noIndex: true,
 });
 
 export default function ProductDisclaimerPage() {

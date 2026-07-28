@@ -22,10 +22,15 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Technology",
+  title: "Technology — Cu–Ag–Zn Pool Ionization",
   description:
-    "How Zinc'd copper–silver–zinc ionization works within a responsible, monitored pool chemistry program — with documented specifications.",
+    "How Zinc'd copper–silver–zinc ionization works within a responsible, monitored pool chemistry program — PWM control, mineral ions, and documented specifications for estates and commercial facilities.",
   path: "/technology",
+  keywords: [
+    "copper silver zinc ionization",
+    "PWM pool ionization",
+    "how pool ionization works",
+  ],
 });
 
 const electrodes = [
@@ -234,10 +239,11 @@ export default function TechnologyPage() {
 
       <CtaBand
         eyebrow="Next step"
-        title="See how it fits your pool"
-        body="A pool assessment confirms the right series and what a responsible, lower-chemical program looks like for your system."
+        title="See how it fits your pool — or your line"
+        body="A pool assessment confirms the right series. Distributors and builders can explore a documented channel path."
         primary={siteConfig.ctas.assessment}
-        secondary={siteConfig.ctas.technology}
+        secondary={siteConfig.ctas.distributor}
+        highlightSecondary
       />
     </>
   );

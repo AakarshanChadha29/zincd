@@ -75,7 +75,7 @@ export function MobileNavigation() {
             {siteConfig.ctas.assessment.label}
           </Button>
           <Button
-            variant="outline"
+            variant="partner"
             className="w-full rounded-[var(--radius-control)]"
             size="lg"
             render={<Link href={siteConfig.ctas.distributor.href} />}

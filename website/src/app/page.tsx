@@ -17,14 +17,17 @@ import { CtaBand } from "@/components/blocks/cta-band";
 import { FaqList } from "@/components/blocks/faq-list";
 import { IonizationCell } from "@/components/graphics/ionization-cell";
 import { EcoRipple } from "@/components/graphics/eco-ripple";
+import { IonFieldStage } from "@/components/graphics/ion-field-stage";
+import { ProductSpin } from "@/components/graphics/product-spin";
 import { HeroVideo } from "@/components/media/hero-video";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { ScrollParallax } from "@/components/motion/scroll-parallax";
 import { siteConfig } from "@/content/site-config";
-import { homepageHeroClips } from "@/content/media";
+import { applicationImages, homepageHeroClips } from "@/content/media";
 import {
   applications,
   chemistryTargets,
+  evaluationFramework,
   faqs,
   heroContent,
   howItWorksSteps,
@@ -36,17 +39,18 @@ import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
   title: "Zinc'd | Ecological Mineral Ionization for Pools",
-  description: siteConfig.brand.description,
+  description:
+    "Zinc'd — ecological copper–silver–zinc ionization with precision PWM control for estate, hospitality and commercial pools. Documented specifications. Distributor and assessment paths.",
   path: "/",
+  keywords: [
+    "pool ionization system",
+    "copper silver zinc ionization",
+    "ecological pool water treatment",
+    "commercial pool ionization",
+    "hotel pool water technology",
+    "Zinc'd",
+  ],
 });
-
-/** Which environment photograph fronts each application card. */
-const IMAGE_BY_SLUG: Record<string, string> = {
-  residential: "/img/pool-residential.jpg",
-  "hotels-resorts": "/img/pool-resort.jpg",
-  commercial: "/img/pool-commercial.jpg",
-  "fitness-wellness": "/img/pool-wellness.jpg",
-};
 
 export default function HomePage() {
   return (
@@ -81,8 +85,8 @@ export default function HomePage() {
                 </Button>
                 <Button
                   size="lg"
-                  variant="outline"
-                  className="rounded-[var(--radius-control)] border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                  variant="partner"
+                  className="rounded-[var(--radius-control)] border-white/40 bg-white/15 text-white hover:bg-white hover:text-[color:var(--teal-900)]"
                   render={<Link href={siteConfig.ctas.distributor.href} />}
                 >
                   {siteConfig.ctas.distributor.label}
@@ -98,7 +102,7 @@ export default function HomePage() {
                 <span className="mx-2" aria-hidden>
                   ·
                 </span>
-                Residential · Hospitality · Commercial
+                Estates · Hospitality · Commercial
               </p>
             </div>
           </Reveal>
@@ -189,6 +193,66 @@ export default function HomePage() {
         </div>
       </Section>
 
+      {/* ============================ SYSTEM VISUALIZATION ============================ */}
+      <Section id="system" spacing="lg" background="default" className="relative">
+        <AmbientIons density="medium" className="opacity-50" />
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="See the system"
+            title="Engineered clarity — cell, field, and control"
+            description="Visualize the ionization cell and the mineral field your circulation loop will carry. Specs stay documented; the story stays honest."
+          />
+        </Reveal>
+        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+          <Reveal variant="left">
+            <div className="rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow-1)] md:p-8">
+              <div className="mb-4 flex items-center justify-between">
+                <TechnicalLabel>System core</TechnicalLabel>
+                <span className="text-technical text-accent-steel normal-case tracking-normal">
+                  Cu · Ag · Zn
+                </span>
+              </div>
+              <ProductSpin />
+            </div>
+          </Reveal>
+          <Reveal variant="right" delay={0.08}>
+            <div className="rounded-[var(--radius)] border border-border bg-surface-elevated p-6 shadow-[var(--shadow-1)] md:p-8">
+              <div className="mb-4 flex items-center justify-between">
+                <TechnicalLabel>Ionization field</TechnicalLabel>
+                <span className="text-technical text-accent-steel normal-case tracking-normal">
+                  PWM regulated
+                </span>
+              </div>
+              <IonFieldStage />
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* ============================ DUAL AUDIENCE ============================ */}
+      <Section id="audiences" spacing="lg" background="muted" className="relative">
+        <AmbientIons tone="ecological" density="sparse" />
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Who this is for"
+            title="Principals, operators, and partners"
+            description="Whether you are specifying CapEx, running day-to-day chemistry, or building a channel — Zinc'd speaks in documented product language."
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {evaluationFramework.map((item, i) => (
+            <Reveal key={item.title} delay={i * 0.06}>
+              <div className="h-full border-t-2 border-accent-aquatic/50 pt-6">
+                <h3 className="text-h3 text-foreground">{item.title}</h3>
+                <p className="text-body mt-3 text-muted-foreground">{item.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
       {/* ============================ SPECS / CONFIDENCE ============================ */}
       <Section id="specifications" spacing="lg" background="default">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
@@ -271,6 +335,10 @@ export default function HomePage() {
                 <h3 className="text-h3 mt-3 text-foreground">{series.name}</h3>
                 <p className="text-small mt-1 font-medium text-accent-steel">{series.scope}</p>
                 <p className="text-small mt-3 text-muted-foreground">{series.body}</p>
+                <p className="text-technical mt-4 normal-case tracking-normal text-accent-ecological">
+                  {series.audience}
+                </p>
+                <p className="text-small mt-2 text-muted-foreground">{series.decisionNote}</p>
               </div>
             </Reveal>
           ))}
@@ -309,7 +377,7 @@ export default function HomePage() {
                   <ScrollParallax offset={28} className="absolute inset-0">
                     <div className="relative h-[120%] w-full -translate-y-[8%]">
                       <Image
-                        src={IMAGE_BY_SLUG[app.slug] ?? "/img/pool-residential.jpg"}
+                        src={applicationImages[app.slug] ?? "/img/pool-residential.jpg"}
                         alt=""
                         fill
                         sizes="(min-width: 1024px) 30vw, 100vw"
@@ -367,11 +435,20 @@ export default function HomePage() {
             <div className="flex md:flex-col md:items-stretch">
               <Button
                 size="lg"
+                variant="partner"
                 className="w-full rounded-[var(--radius-control)]"
                 render={<Link href="/distributors" />}
               >
-                Become a Partner
+                {siteConfig.ctas.distributor.label}
                 <ArrowRight className="size-4" aria-hidden />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="mt-3 w-full rounded-[var(--radius-control)]"
+                render={<Link href={siteConfig.ctas.distributorContact.href} />}
+              >
+                {siteConfig.ctas.distributorContact.label}
               </Button>
             </div>
           </div>
@@ -406,10 +483,11 @@ export default function HomePage() {
       {/* ============================ CTA ============================ */}
       <CtaBand
         eyebrow="Get started"
-        title="Start with a pool assessment"
-        body="Tell us about your pool and circulation system. We'll confirm the right Zinc'd series and walk you through what responsible, lower-chemical operation looks like."
+        title="Start with a pool assessment — or a partner conversation"
+        body="Tell us about your pool and circulation system, or explore how Zinc'd fits your distribution line. Both paths are first-class."
         primary={siteConfig.ctas.assessment}
         secondary={siteConfig.ctas.distributor}
+        highlightSecondary
       />
     </>
   );

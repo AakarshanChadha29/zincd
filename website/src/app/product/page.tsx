@@ -12,6 +12,7 @@ import { SpecTable } from "@/components/blocks/spec-table";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { BuyPanel } from "@/components/blocks/buy-panel";
 import { ProductSpin } from "@/components/graphics/product-spin";
+import { ProductJsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/content/site-config";
 import { productHeroClip } from "@/content/media";
 import {
@@ -23,15 +24,22 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Product",
+  title: "Product — Zinc'd Ionization System",
   description:
-    "The Zinc'd pool ionization system — a stainless Cu–Ag–Zn cell, PWM control panel, monitoring and testing kit. Four series from domestic to Olympic-size.",
+    "The Zinc'd pool ionization system: stainless Cu–Ag–Zn cell, PWM control, monitoring and testing kit. Four series from domestic estates to Olympic-size. $5,000 complete system.",
   path: "/product",
+  keywords: [
+    "Zinc'd product",
+    "pool ionization system buy",
+    "Cu Ag Zn ionization cell",
+    "commercial pool ionizer",
+  ],
 });
 
 export default function ProductPage() {
   return (
     <>
+      <ProductJsonLd />
       <PageHero
         eyebrow="Product"
         title={
@@ -80,6 +88,10 @@ export default function ProductPage() {
                 <h3 className="text-h3 mt-3 text-foreground">{series.name}</h3>
                 <p className="text-small mt-1 font-medium text-accent-steel">{series.scope}</p>
                 <p className="text-small mt-3 text-muted-foreground">{series.body}</p>
+                <p className="text-technical mt-4 normal-case tracking-normal text-accent-ecological">
+                  {series.audience}
+                </p>
+                <p className="text-small mt-2 text-muted-foreground">{series.decisionNote}</p>
               </div>
             </Reveal>
           ))}
@@ -216,10 +228,11 @@ export default function ProductPage() {
 
       <CtaBand
         eyebrow="Get started"
-        title="Find the right series for your pool"
-        body="Share your pool volume and circulation details. We'll confirm the correct Zinc'd series and next steps."
+        title="Find the right series — or become a distributor"
+        body="Share your pool volume and circulation details, or explore carrying Zinc'd as a documented category in your line. Both paths are first-class."
         primary={siteConfig.ctas.assessment}
         secondary={siteConfig.ctas.distributor}
+        highlightSecondary
       />
     </>
   );

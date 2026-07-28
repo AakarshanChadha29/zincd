@@ -5,6 +5,7 @@ export const metadata = createPageMetadata({
   title: "Terms of Use",
   description: "The terms that govern your use of the Zinc'd website.",
   path: "/terms",
+  noIndex: true,
 });
 
 export default function TermsPage() {

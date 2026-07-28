@@ -1,17 +1,22 @@
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { StatusNote } from "@/components/ui/status-note";
+import { AudienceChip } from "@/components/ui/audience-chip";
 import { Reveal } from "@/components/motion/reveal";
+import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { siteConfig } from "@/content/site-config";
+import { evaluationFramework } from "@/content/product-data";
+import { aboutHeroClip } from "@/content/media";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "About Zinc'd",
+  title: "About Zinc'd — Ecological Pool Ionization",
   description:
-    "Zinc'd is a US pool water-treatment technology brand built around engineered copper–silver–zinc ionization — with a commitment to publishing only what it can document.",
+    "Zinc'd is a US pool water-treatment brand built around engineered copper–silver–zinc ionization — publishing only what it can document for estates, hospitality and commercial operators.",
   path: "/about",
+  keywords: ["Zinc'd company", "pool ionization brand", "ecological pool technology"],
 });
 
 const principles = [
@@ -21,11 +26,11 @@ const principles = [
   },
   {
     title: "Honest about chemistry",
-    body: "Ionization reduces chlorine dependency, but a residual of free chlorine stays part of responsible operation. We say so plainly, everywhere.",
+    body: "Ionization reduces chlorine dependency, but a residual of free chlorine stays part of responsible operation. We say so plainly, everywhere — for boards, guests, and the next generation of operators.",
   },
   {
     title: "Claims we can back",
-    body: "Regulatory, performance and testing claims are published only when supported by documentation and review — not before.",
+    body: "Regulatory, performance and testing claims are published only when supported by documentation and review — not before. Trust is the brand.",
   },
 ];
 
@@ -40,19 +45,26 @@ export default function AboutPage() {
             <span className="text-gradient-aqua">shows its work</span>
           </>
         }
-        description="Zinc'd is a US pool water-treatment technology brand focused on engineered ionization systems for residential and commercial pools — with a deliberate commitment to publishing only what it can stand behind."
+        description="Zinc'd is a US pool water-treatment brand focused on ecological mineral ionization for residential estates and commercial aquatic facilities — with a deliberate commitment to publishing only what it can stand behind."
         actions={[
           { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
-          { label: "Explore the technology", href: "/technology", variant: "outline" },
+          {
+            label: siteConfig.ctas.distributor.label,
+            href: siteConfig.ctas.distributor.href,
+            variant: "partner",
+          },
         ]}
+        video={aboutHeroClip}
       />
 
-      <Section spacing="lg" background="default">
+      <Section spacing="lg" background="default" className="relative">
+        <AmbientIons density="sparse" />
         <Reveal>
           <SectionHeading
             as="h2"
             eyebrow="How we operate"
             title="Principles we hold ourselves to"
+            description="The posture behind every page: clarity for principals specifying CapEx, and clarity for operators who live with the water daily."
           />
         </Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -70,7 +82,30 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section spacing="lg" background="muted" containerWidth="narrow">
+      <Section spacing="lg" background="muted" className="relative">
+        <AmbientIons tone="ecological" density="sparse" />
+        <Reveal>
+          <AudienceChip label="Dual audience" variant="partner" />
+          <SectionHeading
+            as="h2"
+            title="Built for ownership and the next generation"
+            description="Seasoned operators and younger leadership taking over facilities both need the same thing: a product story that is technical, calm, and claims-safe."
+            className="mt-5"
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {evaluationFramework.map((item, i) => (
+            <Reveal key={item.title} delay={i * 0.06}>
+              <div className="h-full border-l-2 border-accent-ecological/40 pl-5">
+                <h3 className="text-h3 text-foreground">{item.title}</h3>
+                <p className="text-body mt-3 text-muted-foreground">{item.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section spacing="lg" background="default" containerWidth="narrow">
         <Reveal>
           <SectionHeading
             as="h2"
@@ -79,8 +114,8 @@ export default function AboutPage() {
             description="Zinc'd is positioned as an independent US company and brand. Full company narrative, legal entity details and official contact identity are being confirmed and will be published here."
           />
           <StatusNote className="mt-8">
-            {siteConfig.contact.statusNote} The company's legal entity name and
-            brand spelling are being finalized; you'll find confirmed details on
+            {siteConfig.contact.statusNote} The company&apos;s legal entity name and
+            brand spelling are being finalized; you&apos;ll find confirmed details on
             this page and in the{" "}
             <a href="/legal" className="underline underline-offset-4">
               Legal Center
@@ -92,10 +127,11 @@ export default function AboutPage() {
 
       <CtaBand
         eyebrow="Work with us"
-        title="Start a conversation"
-        body="Whether you're a homeowner exploring options or a partner considering the line, we're glad to talk."
+        title="Start a conversation — assessment or partnership"
+        body="Whether you are specifying for an estate, a hospitality amenity, or a distribution line, both paths are first-class."
         primary={siteConfig.ctas.assessment}
         secondary={siteConfig.ctas.distributor}
+        highlightSecondary
       />
     </>
   );

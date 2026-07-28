@@ -121,10 +121,11 @@ export default function InstallationMaintenancePage() {
 
       <CtaBand
         eyebrow="Get started"
-        title="Plan your installation"
-        body="A pool assessment confirms fit with your circulation system and the right series before anything is installed."
+        title="Plan your installation — or carry the line"
+        body="A pool assessment confirms fit with your circulation system. Partners can explore distribution and install channels separately."
         primary={siteConfig.ctas.assessment}
-        secondary={siteConfig.ctas.specialist}
+        secondary={siteConfig.ctas.distributor}
+        highlightSecondary
       />
     </>
   );

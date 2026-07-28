@@ -114,12 +114,12 @@ export function SiteHeader() {
 
         <div className="ml-auto flex items-center gap-2">
           <Button
-            variant="outline"
+            variant="partner"
             size="sm"
             className="hidden rounded-[var(--radius-control)] md:inline-flex"
             render={<Link href={siteConfig.ctas.distributor.href} />}
           >
-            Partners
+            {siteConfig.ctas.distributor.shortLabel}
           </Button>
           <Button
             size="sm"

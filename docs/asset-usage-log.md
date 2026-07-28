@@ -7,7 +7,8 @@
 | `website/public/brand/zincd-logo.jpg` | `source/client/images/PHOTO-2026-06-15-16-27-49.jpg` | approved-logo-candidate + final-production-approval-required | Exact client JPG on a light brand plate via `ZincdLogo`. Vector master still outstanding — do not redraw the wordmark. |
 | `website/public/video/villa-ocean.mp4` (+ `.jpg` poster) | Vecteezy luxury villa infinity pool overlooking ocean | stock-environment-media | Re-encoded ~720p for web. Homepage hero rotation; ffmpeg poster. Depicts setting only — not the product. |
 | `website/public/video/villa-bali.mp4` (+ `.jpg` poster) | Vecteezy Bali infinity pool villa | stock-environment-media | Homepage rotation + Distributors page hero. |
-| `website/public/video/villa-modern.mp4` (+ `.jpg` poster) | Vecteezy modern house with pool (AI render stock) | stock-environment-media | Homepage rotation + Product page hero. |
+| `website/public/video/estate-pool.mp4` (+ `.jpg` poster) | Vecteezy large house with swimming pool | stock-environment-media | Homepage rotation + Distributors/About heroes. |
+| `website/public/video/swimmer-palm.mp4` (+ `.jpg` poster) | Vecteezy woman swimming tranquil pool beneath palms | stock-environment-media | Homepage rotation + Applications heroes. |
 
 ## Explicitly not used
 

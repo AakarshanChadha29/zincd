@@ -6,6 +6,7 @@ export const metadata = createPageMetadata({
   description:
     "How Zinc'd collects, uses and protects information submitted through this website.",
   path: "/privacy",
+  noIndex: true,
 });
 
 export default function PrivacyPage() {

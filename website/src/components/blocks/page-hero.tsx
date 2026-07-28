@@ -9,7 +9,11 @@ import { Reveal } from "@/components/motion/reveal";
 import { HeroVideo, type HeroVideoClip } from "@/components/media/hero-video";
 import { cn } from "@/lib/cn";
 
-type HeroAction = { label: string; href: string; variant?: "default" | "outline" };
+type HeroAction = {
+  label: string;
+  href: string;
+  variant?: "default" | "outline" | "partner";
+};
 
 /**
  * Interior-page hero. Optional cinematic video background (Product /
@@ -87,15 +91,18 @@ export function PageHero({
                   {actions.map((action, i) => {
                     const variant = action.variant ?? "default";
                     const isOutlineOnFilm = cinematic && variant === "outline";
+                    const isPartnerOnFilm = cinematic && variant === "partner";
                     return (
                       <Button
                         key={action.href + action.label}
                         size="lg"
-                        variant={variant}
+                        variant={variant === "partner" ? "partner" : variant}
                         className={cn(
                           "rounded-[var(--radius-control)]",
                           isOutlineOnFilm &&
-                            "border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                            "border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white",
+                          isPartnerOnFilm &&
+                            "border-white/40 bg-white/15 text-white hover:bg-white hover:text-[color:var(--teal-900)]"
                         )}
                         render={<Link href={action.href} />}
                       >

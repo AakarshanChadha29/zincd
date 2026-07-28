@@ -10,8 +10,8 @@ import { AmbientIons } from "@/components/motion/ambient-ions";
 type CtaAction = { label: string; href: string };
 
 /**
- * Mineral-teal conversion band — intentional deep accent on a light site,
- * not a dead navy canvas.
+ * Mineral-teal conversion band — intentional deep accent on a light site.
+ * Secondary can be highlighted (distributor path) so both audiences are served.
  */
 export function CtaBand({
   eyebrow = "Get started",
@@ -19,12 +19,15 @@ export function CtaBand({
   body,
   primary,
   secondary,
+  highlightSecondary = false,
 }: {
   eyebrow?: string;
   title: string;
   body: string;
   primary: CtaAction;
   secondary?: CtaAction;
+  /** When true, secondary (typically Distributors) gets equal visual weight. */
+  highlightSecondary?: boolean;
 }) {
   return (
     <section className="band-deep relative overflow-hidden">
@@ -53,8 +56,12 @@ export function CtaBand({
             {secondary ? (
               <Button
                 size="lg"
-                variant="outline"
-                className="rounded-[var(--radius-control)] border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                variant={highlightSecondary ? "partner" : "outline"}
+                className={
+                  highlightSecondary
+                    ? "rounded-[var(--radius-control)] border-white/40 bg-white/15 text-white hover:bg-white hover:text-[color:var(--teal-900)]"
+                    : "rounded-[var(--radius-control)] border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                }
                 render={<Link href={secondary.href} />}
               >
                 {secondary.label}

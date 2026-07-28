@@ -20,10 +20,16 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Distributors & Partners",
+  title: "Distributors & Partners — Carry Zinc'd",
   description:
-    "Partner with Zinc'd — add an engineered pool ionization system to your line, with documented specifications and a residential-to-commercial series range.",
+    "Partner with Zinc'd: add an engineered copper–silver–zinc pool ionization system to your line — documented specifications, residential-to-commercial series range, and a clear partnership path.",
   path: "/distributors",
+  keywords: [
+    "pool equipment distributor",
+    "become a pool ionization dealer",
+    "commercial pool partner",
+    "Zinc'd distributor",
+  ],
 });
 
 const partnerTypes = [
@@ -50,9 +56,12 @@ export default function DistributorsPage() {
             <span className="text-gradient-aqua">your line</span>
           </>
         }
-        description="Zinc'd is an engineered ionization system for residential and commercial pools — a documented, specifiable product category for distributors, builders and installers, not a marketing pitch."
+        description="Zinc'd is an engineered ionization system for residential estates and commercial pools — a documented, specifiable product category for distributors, builders and installers. Built for channel partners who sell to ownership groups and the operators who take facilities forward."
         actions={[
-          { label: siteConfig.ctas.distributor.label, href: "/contact?intent=partner" },
+          {
+            label: siteConfig.ctas.distributorContact.label,
+            href: siteConfig.ctas.distributorContact.href,
+          },
           { label: "See the product", href: "/product", variant: "outline" },
         ]}
         video={distributorsHeroClip}
@@ -195,8 +204,8 @@ export default function DistributorsPage() {
       <CtaBand
         eyebrow="For partners"
         title="Start a partnership conversation"
-        body="Tell us about your business and market. We'll follow up to discuss fit, specifications and next steps."
-        primary={{ label: "Become a Distributor / Partner", href: "/contact?intent=partner" }}
+        body="Tell us about your business and market. We will follow up to discuss fit, specifications and next steps — for seasoned channel partners and new operators building a modern line."
+        primary={siteConfig.ctas.distributorContact}
         secondary={siteConfig.ctas.technology}
       />
     </>

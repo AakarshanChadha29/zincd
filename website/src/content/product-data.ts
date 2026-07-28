@@ -15,9 +15,9 @@ export const heroContent = {
   eyebrow: "Ecological mineral ionization",
   headline: "A quieter revolution in pool water.",
   subhead:
-    "Zinc'd brings copper–silver–zinc ionization and precision PWM control to modern pools — designed for a lower-chemical, clearer water experience while a residual sanitizer remains part of responsible care.",
+    "Zinc'd brings copper–silver–zinc ionization and precision PWM control to estates, hospitality, and commercial aquatic facilities — a lower-chemical water experience with the documentation operators expect.",
   primaryCta: { label: "Request a Pool Assessment", href: "/contact?intent=assessment" },
-  secondaryCta: { label: "Explore the Technology", href: "/technology" },
+  secondaryCta: { label: "Become a Distributor", href: "/distributors" },
 } as const;
 
 /** Three top-level value pillars — claims-aware, non-absolute. */
@@ -105,22 +105,30 @@ export const productSeries = [
   {
     name: "Domestic series",
     scope: "Home & residential pools",
-    body: "Sized for private residential pools and smaller water volumes.",
+    body: "Sized for private residential pools and smaller water volumes — assessment confirms fit to circulation flow.",
+    audience: "Estate owners · residential builders",
+    decisionNote: "Ideal when the priority is a calmer day-to-day chemistry program without DIY complexity.",
   },
   {
     name: "Mid-range series",
     scope: "Community & light commercial",
-    body: "For community, boutique-hospitality and light commercial circulation systems.",
+    body: "For community, boutique-hospitality and light commercial circulation systems with steadier traffic.",
+    audience: "HOAs · boutique hotels · clubs",
+    decisionNote: "Specify when guest or member experience matters and uptime must stay predictable.",
   },
   {
     name: "Commercial series",
     scope: "Hotels, resorts & commercial",
-    body: "For higher-volume commercial and hospitality aquatic facilities.",
+    body: "For higher-volume commercial and hospitality aquatic facilities with documented operating parameters.",
+    audience: "Resort operators · facility directors",
+    decisionNote: "Built for teams that need engineered control, monitoring, and clear maintenance cues.",
   },
   {
     name: "Large / Olympic series",
     scope: "Large-format & Olympic-size",
     body: "Engineered for large-format and Olympic-size pools across the full flow-rate range.",
+    audience: "Municipal · campus · competition venues",
+    decisionNote: "Selected when circulation volume and duty cycle exceed standard commercial sizing.",
   },
 ] as const;
 
@@ -164,6 +172,8 @@ export const applicationDetails: Record<
     audienceLabel: string;
     audience: "residential" | "commercial";
     priorities: { title: string; body: string }[];
+    operatorNotes: { title: string; body: string }[];
+    decisionPoints: string[];
     cta: { label: string; href: string };
   }
 > = {
@@ -171,11 +181,39 @@ export const applicationDetails: Record<
     audience: "residential",
     audienceLabel: "Residential",
     intro:
-      "For home and estate pools, Zinc'd is about a clearer, easier-to-live-with water experience — with an assessment-led path rather than a DIY complexity dump.",
+      "For home and estate pools, Zinc'd delivers a calmer chemistry program — assessment-led sizing, monitored ionization, and clear maintenance cues for owners and the next generation taking over the property.",
     priorities: [
-      { title: "A gentler day-to-day experience", body: "Ionization is designed to reduce chlorine dependency for water many homeowners find easier to live with, while a residual of free chlorine keeps the pool responsibly sanitized." },
-      { title: "Understandable maintenance", body: "Routine care centers on periodic anode cleaning when monitoring signals it, plus simple testing for copper, free chlorine and pH." },
-      { title: "Guidance, not guesswork", body: "A pool assessment confirms the right series for your pool and walks you through what to expect — no need to become a chemistry expert." },
+      {
+        title: "A gentler day-to-day experience",
+        body: "Ionization is designed to reduce chlorine dependency for water many homeowners find easier to live with, while a residual of free chlorine keeps the pool responsibly sanitized.",
+      },
+      {
+        title: "Understandable maintenance",
+        body: "Routine care centers on periodic anode cleaning when monitoring signals it, plus simple testing for copper, free chlorine and pH — suitable for owners and family operators alike.",
+      },
+      {
+        title: "Guidance, not guesswork",
+        body: "A pool assessment confirms the right series for your circulation system and walks you through expectations — no need to become a chemistry expert.",
+      },
+    ],
+    operatorNotes: [
+      {
+        title: "Who specifies it",
+        body: "Estate owners, residential pool builders, and family offices consolidating property systems.",
+      },
+      {
+        title: "What you receive",
+        body: "A complete Cu–Ag–Zn system with control electronics, monitoring, and a testing kit — series confirmed before dispatch.",
+      },
+      {
+        title: "How decisions are made",
+        body: "Volume, flow rate and existing circulation determine series. Assessment first; installation with a qualified professional.",
+      },
+    ],
+    decisionPoints: [
+      "Prefer lower day-to-day chlorine dependency without abandoning sanitizer residual",
+      "Want monitored cues for anode care instead of reactive service calls",
+      "Need a documented product path for builders and service partners",
     ],
     cta: { label: "Request a Pool Assessment", href: "/contact?intent=assessment" },
   },
@@ -183,11 +221,39 @@ export const applicationDetails: Record<
     audience: "commercial",
     audienceLabel: "Hospitality",
     intro:
-      "For hospitality pools and aquatic amenities, Zinc'd pairs a guest-facing water experience with monitored, engineered operation your team can rely on.",
+      "For hospitality pools and aquatic amenities, Zinc'd pairs a guest-facing water experience with engineered control — the vocabulary facility directors and ownership groups expect when specifying capital equipment.",
     priorities: [
-      { title: "A guest-facing water experience", body: "A lower-chemical program supports the kind of water experience guests notice, backed by consistent, controlled operation." },
-      { title: "Monitored, engineered operation", body: "Microcontroller PWM control and electronic monitoring signal when routine anode cleaning is due, supporting predictable upkeep." },
-      { title: "Sized for the property", body: "A series range spanning boutique pools to large commercial volumes, confirmed to each property's circulation system." },
+      {
+        title: "A guest-facing water experience",
+        body: "A lower-chemical program supports the kind of water experience guests notice, backed by consistent, controlled operation across high-visibility amenities.",
+      },
+      {
+        title: "Monitored, engineered operation",
+        body: "Microcontroller PWM control and electronic monitoring signal when routine anode cleaning is due, supporting predictable upkeep for lean engineering teams.",
+      },
+      {
+        title: "Sized for the property",
+        body: "A series range spanning boutique pools to large commercial volumes, confirmed to each property's circulation system during assessment.",
+      },
+    ],
+    operatorNotes: [
+      {
+        title: "Who specifies it",
+        body: "Directors of engineering, F&B / amenity leads, owners' reps, and procurement for resort groups.",
+      },
+      {
+        title: "Procurement posture",
+        body: "Documented specifications — voltage, power, pressure, build — so CapEx conversations stay technical, not promotional.",
+      },
+      {
+        title: "Operations impact",
+        body: "Maintenance centers on periodic anode cleaning with monitoring flags; chemistry targets remain copper, free chlorine and pH.",
+      },
+    ],
+    decisionPoints: [
+      "Guest comfort and amenity reputation are strategic priorities",
+      "Engineering needs predictable monitoring rather than ad-hoc chemistry swings",
+      "Multi-property groups want a repeatable series language across sites",
     ],
     cta: { label: "Talk to a Specialist", href: "/contact?intent=specialist" },
   },
@@ -195,11 +261,39 @@ export const applicationDetails: Record<
     audience: "commercial",
     audienceLabel: "Commercial",
     intro:
-      "For community and commercial operators, Zinc'd brings engineered control and monitoring to higher-volume water — with documented specifications, not marketing hype.",
+      "For community and commercial operators, Zinc'd brings engineered ionization to higher-volume water — specifications first, so boards, GMs and next-generation operators can evaluate with confidence.",
     priorities: [
-      { title: "Engineered control at volume", body: "PWM-regulated ionization is designed to integrate with commercial circulation systems across the full flow-rate range." },
-      { title: "Predictable maintenance", body: "Minimal routine maintenance centered on periodic anode cleaning, with monitoring that flags service needs before they escalate." },
-      { title: "Documented specifications", body: "Voltage, power, pressure and build specs are published from technical documentation so operators can plan with confidence." },
+      {
+        title: "Engineered control at volume",
+        body: "PWM-regulated ionization is designed to integrate with commercial circulation systems across the full flow-rate range.",
+      },
+      {
+        title: "Predictable maintenance",
+        body: "Minimal routine maintenance centered on periodic anode cleaning, with monitoring that flags service needs before they escalate.",
+      },
+      {
+        title: "Documented specifications",
+        body: "Voltage, power, pressure and build specs are published from technical documentation so operators can plan with confidence.",
+      },
+    ],
+    operatorNotes: [
+      {
+        title: "Who specifies it",
+        body: "Facility managers, municipal aquatics leads, campus operators, and commercial service contractors.",
+      },
+      {
+        title: "Risk posture",
+        body: "Claims stay conservative: ionization reduces chlorine dependency; residual free chlorine remains part of responsible operation.",
+      },
+      {
+        title: "Partner channel",
+        body: "Distributors and installers can carry Zinc'd as a defined equipment category with residential-to-commercial series coverage.",
+      },
+    ],
+    decisionPoints: [
+      "Board or ownership asks for documented equipment — not brochure claims",
+      "Staffing models favor monitoring-led care over intensive chemistry labor",
+      "Circulation volumes span light commercial through large-format pools",
     ],
     cta: { label: "Talk to a Specialist", href: "/contact?intent=specialist" },
   },
@@ -207,15 +301,59 @@ export const applicationDetails: Record<
     audience: "residential",
     audienceLabel: "Fitness & Wellness",
     intro:
-      "For fitness, wellness and aquatic-therapy environments, Zinc'd supports a lower-chemical water experience within a responsible, monitored program.",
+      "For fitness, wellness and aquatic-therapy environments, Zinc'd supports a lower-chemical water experience within a responsible, monitored program — suited to frequent-use spaces and brand-conscious studios.",
     priorities: [
-      { title: "A lower-chemical experience", body: "Ionization is designed to reduce chlorine dependency for a water experience suited to frequent-use wellness settings." },
-      { title: "Consistent, monitored operation", body: "Electronic monitoring and PWM control support steady day-in, day-out operation for facilities with demanding schedules." },
-      { title: "Right-sized systems", body: "A series range that fits studio plunge pools through larger aquatic facilities, confirmed by assessment." },
+      {
+        title: "A lower-chemical experience",
+        body: "Ionization is designed to reduce chlorine dependency for a water experience suited to frequent-use wellness settings.",
+      },
+      {
+        title: "Consistent, monitored operation",
+        body: "Electronic monitoring and PWM control support steady day-in, day-out operation for facilities with demanding schedules.",
+      },
+      {
+        title: "Right-sized systems",
+        body: "A series range that fits studio plunge pools through larger aquatic facilities, confirmed by assessment.",
+      },
+    ],
+    operatorNotes: [
+      {
+        title: "Who specifies it",
+        body: "Wellness brand operators, club GMs, therapists, and design-build partners for aquatic studios.",
+      },
+      {
+        title: "Member experience",
+        body: "Lower-chemical framing must stay honest: residual sanitizer remains; the goal is a quieter chemistry program, not chemical-free claims.",
+      },
+      {
+        title: "Scale path",
+        body: "Start with assessment for the primary basin; expand series language as the facility adds plunge, therapy, or outdoor water.",
+      },
+    ],
+    decisionPoints: [
+      "Members notice water feel and scent as part of brand experience",
+      "Operators need consistent chemistry with lean staffing",
+      "Design partners want a clean, documentable equipment story",
     ],
     cta: { label: "Talk to a Specialist", href: "/contact?intent=specialist" },
   },
 };
+
+/** How ownership and operators evaluate Zinc'd — dual-audience language. */
+export const evaluationFramework = [
+  {
+    title: "For ownership & principals",
+    body: "A capital decision framed around documented specifications, series coverage from domestic to Olympic-size, and a claims-safe ecological story you can stand behind with guests, boards, or family stakeholders.",
+  },
+  {
+    title: "For operators & the next generation",
+    body: "Day-to-day clarity: PWM control, monitoring that signals anode care, and simple chemistry targets — copper, free chlorine, pH — without a marketing fog of unverifiable percentages.",
+  },
+  {
+    title: "For partners & channel",
+    body: "A defined product category for distributors, builders and installers: engineered ionization that fits existing circulation, with residential-to-commercial reach.",
+  },
+] as const;
 
 /** Distributor / partner value — B2B vocabulary allowed here. */
 export const partnerValue = [

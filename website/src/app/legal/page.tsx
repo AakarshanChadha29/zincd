@@ -6,6 +6,7 @@ export const metadata = createPageMetadata({
   description:
     "Index of Zinc'd legal and policy pages — privacy, terms, product disclaimer and warranty.",
   path: "/legal",
+  noIndex: true,
 });
 
 export default function LegalPage() {
