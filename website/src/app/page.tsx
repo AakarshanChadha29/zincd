@@ -8,6 +8,10 @@ import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechnicalLabel } from "@/components/ui/technical-label";
 import { Reveal } from "@/components/motion/reveal";
+import { ScrollProgress } from "@/components/motion/scroll-progress";
+import { HeroParallax } from "@/components/motion/hero-parallax";
+import { HardwareScrollStage } from "@/components/motion/hardware-scroll-stage";
+import { ScrollParallax } from "@/components/motion/scroll-parallax";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { ZincdLogo } from "@/components/brand/zincd-logo";
 import { HeroVideo } from "@/components/media/hero-video";
@@ -55,23 +59,52 @@ const storyStages = [
     eyebrow: "02 — Through Zinc'd",
     title: "Mineral ions, metered into the circulation loop",
     body: "Pool water passes a stainless copper–silver–zinc chamber. Microcontroller PWM releases mineral ions at a controlled rate — engineered hardware, not a chemistry guess.",
-    image: "/video/swimmer-palm.jpg",
-    imageAlt: "Swimmer moving through clear, sunlit pool water",
+    image: productPhotos.chamberStudio,
+    imageAlt: "Stainless Zinc'd ionization water chamber",
   },
   {
     id: "after",
     eyebrow: "03 — The outcome",
     title: "A quieter chemistry program — still responsibly sanitized",
     body: "Designed to reduce chlorine dependency for water many owners and guests find easier to live with. Residual free chlorine (~1.0 ppm) remains part of responsible operation.",
-    image: "/img/pool-resort.jpg",
-    imageAlt: "Resort swimming pool with clear water",
+    image: productPhotos.install,
+    imageAlt: "Zinc'd system installed beside a residential swimming pool",
+  },
+] as const;
+
+const hardwareBeats = [
+  {
+    id: "chamber",
+    eyebrow: "01 — The chamber",
+    title: "Stainless. Precise. Built for the loop.",
+    body: "A polished copper–silver–zinc cell housing designed to sit inline with filtration — clean hardware, not a chemistry guess.",
+    image: productPhotos.chamber,
+    imageAlt: "Zinc'd stainless water chamber cutout",
+  },
+  {
+    id: "control",
+    eyebrow: "02 — The control",
+    title: "PWM intelligence on the wall",
+    body: "Microcontroller regulation with LCD monitoring — the face of Zinc'd without the plant-room clutter.",
+    image: productPhotos.control,
+    imageAlt: "Zinc'd control enclosure catalog photo",
+  },
+  {
+    id: "together",
+    eyebrow: "03 — The system",
+    title: "Chamber and control, presented cleanly",
+    body: "Two engineered pieces that work as one system — shown here as catalog objects so the product reads premium before anyone sees an install bay.",
+    image: productPhotos.system,
+    imageAlt: "Zinc'd chamber and control as clean catalog products",
   },
 ] as const;
 
 export default function HomePage() {
   return (
     <>
-      {/* ============================ HERO — screenshot composition ============================ */}
+      <ScrollProgress />
+
+      {/* ============================ HERO ============================ */}
       <section className="relative flex min-h-[calc(100svh-var(--nav-height))] flex-col justify-end overflow-hidden border-b border-border lg:min-h-[min(92vh,56rem)]">
         <HeroVideo clips={homepageHeroClips} />
         <div aria-hidden className="absolute inset-0 hero-scrim" />
@@ -124,16 +157,18 @@ export default function HomePage() {
                 </p>
               </div>
             </Reveal>
-            <Reveal delay={0.08} className="relative lg:self-end">
-              <div className="relative mx-auto w-full max-w-sm lg:max-w-md lg:translate-y-6 xl:max-w-lg xl:translate-y-8">
-                <ProductFloat
-                  src={productPhotos.system}
-                  alt="The Zinc'd ionization system: stainless cell tube and water chamber"
-                  priority
-                  sizes="(min-width: 1280px) 28vw, (min-width: 1024px) 36vw, 70vw"
-                />
-              </div>
-            </Reveal>
+            <HeroParallax className="relative lg:self-end">
+              <Reveal delay={0.08}>
+                <div className="relative mx-auto w-full max-w-sm lg:max-w-md lg:translate-y-6 xl:max-w-lg xl:translate-y-8">
+                  <ProductFloat
+                    src={productPhotos.chamber}
+                    alt="The Zinc'd stainless ionization chamber"
+                    priority
+                    sizes="(min-width: 1280px) 28vw, (min-width: 1024px) 36vw, 70vw"
+                  />
+                </div>
+              </Reveal>
+            </HeroParallax>
           </div>
         </Container>
       </section>
@@ -143,95 +178,54 @@ export default function HomePage() {
         label="How Zinc'd changes a pool's chemistry program"
       />
 
-      {/* ============================ PRODUCT TRUTH ============================ */}
-      <Section
-        id="experience"
-        spacing="lg"
-        background="default"
-        className="relative overflow-hidden"
-      >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-80"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 50% at 80% 40%, rgb(45 212 191 / 0.1), transparent 60%)",
-          }}
-        />
-        <div className="relative grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16">
-          <Reveal variant="left">
-            <SectionHeading
-              as="h2"
-              eyebrow="The hardware"
-              title="A stainless cell, not a chemistry guess"
-              description="Copper, silver, and zinc alloy anodes in a stainless housing, plumbed into the circulation loop and metered by microcontroller PWM. Specifications and series sizing live on the product page."
-            />
-            <ul className="mt-8 space-y-3 text-small text-muted-foreground">
-              {[
-                "Cu · Ag · Zn alloy electrodes in a stainless housing",
-                "Microcontroller PWM regulation — not manual guesswork",
-                "Works alongside your sanitizer program (residual free chlorine ~1.0 ppm)",
-              ].map((line) => (
-                <li key={line} className="flex gap-3">
-                  <span
-                    className="mt-2 size-1.5 shrink-0 rounded-full bg-accent-aquatic"
-                    aria-hidden
-                  />
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button
-                size="lg"
-                className="rounded-[var(--radius-control)]"
-                render={<Link href="/product" />}
-              >
-                Product &amp; series sizing
-                <ArrowRight className="size-4" aria-hidden />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-[var(--radius-control)]"
-                render={<Link href="/technology" />}
-              >
-                How the technology works
-              </Button>
-            </div>
-          </Reveal>
-          <Reveal variant="scale" delay={0.08}>
-            <div className="relative aspect-[4/3] w-full">
-              <ProductFloat
-                src={productPhotos.chamber}
-                alt="The Zinc'd water chamber: stainless steel cylinder with copper, silver and zinc badges."
-                aspectClassName="aspect-[4/3]"
-                sizes="(min-width: 1024px) 52vw, 100vw"
-              />
-            </div>
-          </Reveal>
-        </div>
-      </Section>
+      <HardwareScrollStage
+        beats={[...hardwareBeats]}
+        label="Zinc'd hardware — chamber, control, system"
+      />
+
+      {/* ============================ PROCESS FILM ============================ */}
+      <MotionGraphicBand
+        src={motionGraphics.process.src}
+        poster={motionGraphics.process.poster}
+        eyebrow="Inside the chamber"
+        title="Watch mineral ionization in motion"
+        body="Owner process film: circulating water, alloy electrodes, and controlled Cu / Ag / Zn ion release — with residual chlorine still in the plan."
+      />
 
       {/* ============================ INSTALL ============================ */}
       <section className="relative overflow-hidden border-y border-border bg-[color:var(--pearl)]">
         <Container className="py-16 md:py-20">
-          <Reveal>
-            <div className="max-w-2xl">
-              <TechnicalLabel className="text-accent-aquatic">
-                Where it sits
-              </TechnicalLabel>
-              <h2 className="text-h1 mt-4 text-foreground">
-                Inline with your existing circulation
-              </h2>
-              <p className="text-body-large mt-4 text-muted-foreground">
-                The chamber is plumbed into the filtration return so treated
-                water rejoins the pool on every turnover. Larger sites run
-                multiple units on a manifold with a bypass for service.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={0.08}>
+          <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <Reveal>
+              <div className="max-w-2xl">
+                <TechnicalLabel className="text-accent-aquatic">
+                  Where it sits
+                </TechnicalLabel>
+                <h2 className="text-h1 mt-4 text-foreground">
+                  Inline with your existing circulation
+                </h2>
+                <p className="text-body-large mt-4 text-muted-foreground">
+                  The chamber is plumbed into the filtration return so treated
+                  water rejoins the pool on every turnover. Larger sites run
+                  multiple units on a manifold with a bypass for service.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <ScrollParallax offset={36}>
+                <figure className="relative aspect-[16/10] overflow-hidden rounded-[var(--radius-panel)] border border-border">
+                  <Image
+                    src={productPhotos.install}
+                    alt="Zinc'd installed beside a residential pool equipment pad"
+                    fill
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                    className="object-cover"
+                  />
+                </figure>
+              </ScrollParallax>
+            </Reveal>
+          </div>
+          <Reveal delay={0.1}>
             <div className="mt-10 grid gap-6 lg:grid-cols-2">
               <figure className="relative overflow-hidden rounded-[var(--radius)] border border-border bg-white">
                 <div className="relative aspect-[16/10]">
@@ -266,14 +260,6 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <MotionGraphicBand
-        src={motionGraphics.ionsWater.src}
-        poster={motionGraphics.ionsWater.poster}
-        eyebrow="For US pool water"
-        title="Clear water. Mineral intelligence."
-        body="Estate and hospitality pools deserve a quieter chemistry program — mineral ions under control, residual chlorine still in the plan."
-      />
-
       {/* ============================ SERIES ============================ */}
       <Section id="series" spacing="lg" background="muted">
         <Reveal>
@@ -300,7 +286,9 @@ export default function HomePage() {
                 <p className="text-technical mt-3 normal-case tracking-normal text-accent-aquatic">
                   {series.volume}
                 </p>
-                <p className="text-small mt-1 text-muted-foreground">{series.scope}</p>
+                <p className="text-small mt-1 text-muted-foreground">
+                  {series.scope}
+                </p>
               </Link>
             </Reveal>
           ))}
@@ -313,11 +301,11 @@ export default function HomePage() {
           <Reveal variant="left">
             <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[var(--radius)] border border-border p-8 md:min-h-[22rem] md:p-10">
               <Image
-                src="/img/pool-residential.jpg"
+                src={productPhotos.install}
                 alt=""
                 fill
                 sizes="50vw"
-                className="object-cover opacity-[0.16]"
+                className="object-cover opacity-[0.22]"
                 aria-hidden
               />
               <div className="relative">

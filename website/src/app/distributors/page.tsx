@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 
@@ -11,8 +12,10 @@ import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessSteps } from "@/components/blocks/process-steps";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { siteConfig } from "@/content/site-config";
-import { distributorsHeroClip } from "@/content/media";
+import { distributorsHeroClip, productPhotos } from "@/content/media";
 import {
+  partnerEconomics,
+  partnerProfitAngles,
   partnerPropositions,
   partnerValue,
   productSeries,
@@ -85,49 +88,112 @@ export default function DistributorsPage() {
         </Reveal>
       </Section>
 
-      {/* Why carry it — the dealership case, stated plainly. Kept separate
-          from the direct-purchase path on /product so the two audiences never
-          compete for the same call to action. */}
+      {/* Partner economics — profit shape without publishing wholesale/retail figures. */}
       <Section spacing="lg" background="default">
         <Reveal>
           <SectionHeading
             as="h2"
-            eyebrow="The case for carrying it"
-            title="What you'd actually be selling"
-            description="Not a chemical program to re-order, but an engineered system with a defined component list, documented operating parameters, and a service relationship after the install."
+            eyebrow="Partner economics"
+            title="See the profit shape — rates stay private"
+            description="Zinc'd is built as a high-ticket add-on for businesses that already sell into pools and hospitality. Exact partner rates are shared in conversation, not listed publicly."
           />
         </Reveal>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {partnerPropositions.map((p, i) => (
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          {partnerEconomics.map((item, i) => (
+            <Reveal key={item.title} delay={i * 0.05}>
+              <div className="relative flex h-full flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface p-7">
+                {i < partnerEconomics.length - 1 ? (
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute right-4 top-8 hidden text-2xl text-accent-aquatic/40 lg:block"
+                  >
+                    →
+                  </div>
+                ) : null}
+                <div className="text-technical text-accent-aquatic">{item.step}</div>
+                <h3 className="text-h3 mt-3 text-foreground">{item.title}</h3>
+                <p className="text-body mt-3 text-muted-foreground">{item.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {partnerProfitAngles.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.05}>
-              <div className="flex h-full flex-col rounded-[var(--radius-panel)] border border-border bg-surface p-7 transition-colors hover:border-border-strong">
-                <div className="text-technical text-accent-aquatic">
-                  {String(i + 1).padStart(2, "0")}
+              <div className="flex h-full gap-4 rounded-[var(--radius-panel)] border border-border bg-muted/40 p-6">
+                <Check className="mt-0.5 size-5 shrink-0 text-accent-ecological" aria-hidden />
+                <div>
+                  <h3 className="text-h3 text-foreground">{p.title}</h3>
+                  <p className="text-body mt-2 text-muted-foreground">{p.body}</p>
                 </div>
-                <h3 className="text-h3 mt-3 text-foreground">{p.title}</h3>
-                <p className="text-body mt-3 text-muted-foreground">{p.body}</p>
               </div>
             </Reveal>
           ))}
         </div>
         <Reveal>
-          <div className="mt-8 rounded-[var(--radius-panel)] border border-border bg-surface p-6">
-            <p className="text-body text-foreground">
-              Buying a single system for your own pool?
-            </p>
-            <p className="text-small mt-2 text-muted-foreground">
-              You don&rsquo;t need a partner agreement — the complete system is
-              available direct.
-            </p>
-            <Link
-              href="/product"
-              className="text-small mt-4 inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
-            >
-              See the product and pricing
-              <ArrowUpRight className="size-4" aria-hidden />
-            </Link>
-          </div>
+          <StatusNote className="mt-8">
+            Specific partner pricing, territory, and margin details are shared
+            during partnership conversations — intentionally not published here.
+          </StatusNote>
         </Reveal>
+      </Section>
+
+      {/* Why carry it — the dealership case, stated plainly. */}
+      <Section spacing="lg" background="muted">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          <Reveal>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
+              <Image
+                src={productPhotos.systemStudio}
+                alt="Zinc'd ionization system hardware — control electronics and stainless chamber."
+                fill
+                sizes="(min-width: 1024px) 40vw, 90vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
+          <div>
+            <Reveal>
+              <SectionHeading
+                as="h2"
+                eyebrow="The case for carrying it"
+                title="What you'd actually be selling"
+                description="Not a chemical program to re-order, but an engineered system with a defined component list, documented operating parameters, and a service relationship after the install."
+              />
+            </Reveal>
+            <div className="mt-8 grid gap-4">
+              {partnerPropositions.map((p, i) => (
+                <Reveal key={p.title} delay={i * 0.05}>
+                  <div className="flex h-full flex-col rounded-[var(--radius-panel)] border border-border bg-surface p-6 transition-colors hover:border-border-strong">
+                    <div className="text-technical text-accent-aquatic">
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
+                    <h3 className="text-h3 mt-2 text-foreground">{p.title}</h3>
+                    <p className="text-body mt-2 text-muted-foreground">{p.body}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal>
+              <div className="mt-8 rounded-[var(--radius-panel)] border border-border bg-surface p-6">
+                <p className="text-body text-foreground">
+                  Buying a single system for your own pool?
+                </p>
+                <p className="text-small mt-2 text-muted-foreground">
+                  You don&rsquo;t need a partner agreement — the complete system is
+                  available direct.
+                </p>
+                <Link
+                  href="/product"
+                  className="text-small mt-4 inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
+                >
+                  See the product
+                  <ArrowUpRight className="size-4" aria-hidden />
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
       </Section>
 
       {/* Value props */}

@@ -16,7 +16,8 @@ import { BuyPanel } from "@/components/blocks/buy-panel";
 import { ProductJsonLd } from "@/components/seo/json-ld";
 import { ProductFloat } from "@/components/media/product-float";
 import { siteConfig } from "@/content/site-config";
-import { productHeroClip, productPhotos, productStills } from "@/content/media";
+import { productHeroClip, productPhotos, productStills, motionGraphics } from "@/content/media";
+import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import {
   chemistryTargets,
   productSeries,
@@ -73,7 +74,7 @@ export default function ProductPage() {
           the atmosphere continuous. */}
       <section className="relative overflow-hidden border-y border-border">
         <Image
-          src="/img/pool-resort.jpg"
+          src={productPhotos.install}
           alt=""
           fill
           sizes="100vw"
@@ -176,8 +177,45 @@ export default function ProductPage() {
         </StatusNote>
       </Section>
 
-      {/* What's in the system */}
+      {/* Polished product gallery */}
       <Section spacing="lg" background="muted">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Hardware gallery"
+            title="The system, in the light"
+            description="Studio and install photography of the Zinc'd chamber and control electronics — the same hardware that goes into the plant room."
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          {productStills.gallery.map((shot, i) => (
+            <Reveal key={shot.src} delay={i * 0.05}>
+              <figure className="overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
+                <div className="relative aspect-[16/10]">
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <MotionGraphicBand
+        src={motionGraphics.process.src}
+        poster={motionGraphics.process.poster}
+        eyebrow="Inside the chamber"
+        title="See the ionization process"
+        body="Owner process film: circulating water, alloy electrodes, and controlled Cu / Ag / Zn ion release. Illustrative — not a dosing or concentration calculator."
+      />
+
+      {/* What's in the system */}
+      <Section spacing="lg" background="default">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
           <Reveal>
             <div className="lg:sticky lg:top-28">

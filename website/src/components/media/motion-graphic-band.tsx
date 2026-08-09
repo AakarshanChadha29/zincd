@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import Image from "next/image";
+import { Play } from "lucide-react";
 
 import { cn } from "@/lib/cn";
 import { Container } from "@/components/layout/container";
@@ -31,7 +32,8 @@ function armAutoplay(el: HTMLVideoElement) {
 
 /**
  * Full-bleed motion band. Poster is always visible; video fades in only after
- * `playing` so mobile never shows a black plate.
+ * `playing` so mobile never shows a black plate. Tap-to-play recovers when
+ * autoplay is blocked.
  */
 export function MotionGraphicBand({
   src,
@@ -46,9 +48,9 @@ export function MotionGraphicBand({
   const sectionRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [inView, setInView] = useState(false);
-  const [playbackFailed, setPlaybackFailed] = useState(false);
+  const [needsGesture, setNeedsGesture] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const showVideo = !reduceMotion && !playbackFailed;
+  const showVideo = !reduceMotion;
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -67,15 +69,20 @@ export function MotionGraphicBand({
     if (!el) return;
     armAutoplay(el);
 
-    // `pause` drives the state so nothing is set synchronously in the effect.
-    const onPlaying = () => setIsPlaying(true);
+    const onPlaying = () => {
+      setIsPlaying(true);
+      setNeedsGesture(false);
+    };
     const onPause = () => setIsPlaying(false);
+    const onError = () => setNeedsGesture(true);
     el.addEventListener("playing", onPlaying);
     el.addEventListener("pause", onPause);
+    el.addEventListener("error", onError);
 
     const cleanup = () => {
       el.removeEventListener("playing", onPlaying);
       el.removeEventListener("pause", onPause);
+      el.removeEventListener("error", onError);
     };
 
     if (!inView) {
@@ -83,10 +90,23 @@ export function MotionGraphicBand({
       return cleanup;
     }
 
-    void el.play().catch(() => setPlaybackFailed(true));
+    void el.play().catch(() => setNeedsGesture(true));
 
     return cleanup;
   }, [inView, showVideo, src]);
+
+  const retryPlay = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    armAutoplay(el);
+    void el.play().then(
+      () => {
+        setIsPlaying(true);
+        setNeedsGesture(false);
+      },
+      () => setNeedsGesture(true)
+    );
+  };
 
   return (
     <section
@@ -101,14 +121,14 @@ export function MotionGraphicBand({
         alt=""
         fill
         sizes="100vw"
-        className="object-cover"
+        className="pointer-events-none object-cover"
         aria-hidden
       />
       {showVideo ? (
         <video
           ref={videoRef}
           className={cn(
-            "absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
+            "pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
             isPlaying ? "opacity-100" : "opacity-0"
           )}
           src={src}
@@ -123,12 +143,26 @@ export function MotionGraphicBand({
       <div
         aria-hidden
         className={cn(
-          "absolute inset-0",
+          "pointer-events-none absolute inset-0",
           tone === "deep" ? "hero-scrim" : "bg-[color:var(--pearl)]/55"
         )}
       />
-      <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 hero-scrim-bottom" />
-      <Container className="relative pb-14 pt-24 md:pb-20">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 hero-scrim-bottom"
+      />
+      {showVideo && needsGesture ? (
+        <button
+          type="button"
+          onClick={retryPlay}
+          className="absolute bottom-5 right-5 z-[3] inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/45 px-4 py-2 text-sm font-medium text-white backdrop-blur-md transition hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+          aria-label="Play motion graphic"
+        >
+          <Play className="size-4 fill-current" aria-hidden />
+          Play film
+        </button>
+      ) : null}
+      <Container className="relative z-[2] pb-14 pt-24 md:pb-20">
         <Reveal>
           <div className="max-w-xl space-y-4">
             <TechnicalLabel
