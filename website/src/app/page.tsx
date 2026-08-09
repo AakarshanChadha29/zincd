@@ -21,6 +21,7 @@ import { CinematicChapters } from "@/components/motion/cinematic-chapters";
 import { siteConfig } from "@/content/site-config";
 import {
   homepageHeroClips,
+  lifestyleStills,
   motionGraphics,
   productPhotos,
   productStills,
@@ -51,7 +52,7 @@ const storyStages = [
     eyebrow: "01 — The problem",
     title: "Chlorine keeps pools safe — operators still feel the load",
     body: "US estates, clubs, and hospitality pools need reliable sanitation. Day-to-day chemical intensity is what guests notice and facility teams manage.",
-    image: "/img/pool-residential.jpg",
+    image: lifestyleStills.residentialPool,
     imageAlt: "Clear residential swimming pool in the United States",
   },
   {
@@ -59,16 +60,16 @@ const storyStages = [
     eyebrow: "02 — Through Zinc'd",
     title: "Mineral ions, metered into the circulation loop",
     body: "Pool water passes a stainless copper–silver–zinc chamber. Microcontroller PWM releases mineral ions at a controlled rate — engineered hardware, not a chemistry guess.",
-    image: productPhotos.chamberStudio,
-    imageAlt: "Stainless Zinc'd ionization water chamber",
+    image: lifestyleStills.swimmer,
+    imageAlt: "Swimmer moving through clear, sunlit pool water",
   },
   {
     id: "after",
     eyebrow: "03 — The outcome",
     title: "A quieter chemistry program — still responsibly sanitized",
     body: "Designed to reduce chlorine dependency for water many owners and guests find easier to live with. Residual free chlorine (~1.0 ppm) remains part of responsible operation.",
-    image: productPhotos.install,
-    imageAlt: "Zinc'd system installed beside a residential swimming pool",
+    image: lifestyleStills.resortPool,
+    imageAlt: "Resort swimming pool with clear water",
   },
 ] as const;
 
@@ -185,11 +186,11 @@ export default function HomePage() {
 
       {/* ============================ PROCESS FILM ============================ */}
       <MotionGraphicBand
-        src={motionGraphics.process.src}
-        poster={motionGraphics.process.poster}
-        eyebrow="Inside the chamber"
-        title="Watch mineral ionization in motion"
-        body="Owner process film: circulating water, alloy electrodes, and controlled Cu / Ag / Zn ion release — with residual chlorine still in the plan."
+        src={motionGraphics.ionsWater.src}
+        poster={motionGraphics.ionsWater.poster}
+        eyebrow="Mineral field"
+        title="Clear water. Mineral intelligence."
+        body="Abstract motion of ions in water — a lighter chemistry story for estates and hospitality pools, with residual chlorine still in the plan."
       />
 
       {/* ============================ INSTALL ============================ */}
@@ -301,7 +302,7 @@ export default function HomePage() {
           <Reveal variant="left">
             <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[var(--radius)] border border-border p-8 md:min-h-[22rem] md:p-10">
               <Image
-                src={productPhotos.install}
+                src={lifestyleStills.residentialPool}
                 alt=""
                 fill
                 sizes="50vw"
@@ -331,7 +332,7 @@ export default function HomePage() {
           <Reveal variant="right" delay={0.06}>
             <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[var(--radius)] bg-[color:var(--teal-900)] p-8 text-white md:min-h-[22rem] md:p-10">
               <Image
-                src="/video/estate-pool.jpg"
+                src={lifestyleStills.estate}
                 alt=""
                 fill
                 sizes="50vw"

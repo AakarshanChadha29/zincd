@@ -16,7 +16,7 @@ import { BuyPanel } from "@/components/blocks/buy-panel";
 import { ProductJsonLd } from "@/components/seo/json-ld";
 import { ProductFloat } from "@/components/media/product-float";
 import { siteConfig } from "@/content/site-config";
-import { productHeroClip, productPhotos, productStills, motionGraphics } from "@/content/media";
+import { productHeroClip, productPhotos, productStills, motionGraphics, lifestyleStills } from "@/content/media";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import {
   chemistryTargets,
@@ -54,8 +54,8 @@ export default function ProductPage() {
         }
         description="A complete, engineered system for US pools: a stainless copper–silver–zinc ionization cell, microcontroller PWM control with LCD and monitoring, and a water-testing kit — sized Series-1 through Series-3, with custom multi-unit layouts for larger commercial volumes."
         actions={[
-          { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
-          { label: "How it works", href: "/technology", variant: "outline" },
+          { label: "Buy now", href: "/product#buy" },
+          { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href, variant: "outline" },
         ]}
         video={productHeroClip}
         aside={
@@ -74,7 +74,7 @@ export default function ProductPage() {
           the atmosphere continuous. */}
       <section className="relative overflow-hidden border-y border-border">
         <Image
-          src={productPhotos.install}
+          src={lifestyleStills.villaOcean}
           alt=""
           fill
           sizes="100vw"
@@ -207,11 +207,11 @@ export default function ProductPage() {
       </Section>
 
       <MotionGraphicBand
-        src={motionGraphics.process.src}
-        poster={motionGraphics.process.poster}
-        eyebrow="Inside the chamber"
-        title="See the ionization process"
-        body="Owner process film: circulating water, alloy electrodes, and controlled Cu / Ag / Zn ion release. Illustrative — not a dosing or concentration calculator."
+        src={motionGraphics.mineralType.src}
+        poster={motionGraphics.mineralType.poster}
+        eyebrow="Mineral type"
+        title="Copper. Silver. Zinc — in motion"
+        body="Generative mineral-field film for the product story. Pair it with the chamber cutaway on Technology for the full ionization narrative."
       />
 
       {/* What's in the system */}
@@ -259,7 +259,7 @@ export default function ProductPage() {
                 as="h2"
                 eyebrow="Own one"
                 title="Buy the system outright"
-                description="For a single pool, the complete Zinc'd system is available direct. The series is matched to your pool volume and circulation flow rate before anything ships."
+                description="For a single pool, the complete Zinc'd system is available direct at $5,000. Set your Stripe checkout URL to unlock Buy now — or request an assessment and we'll match the series first."
               />
               <div className="mt-8 rounded-[var(--radius-panel)] border border-border bg-surface p-6">
                 <p className="text-body text-foreground">
