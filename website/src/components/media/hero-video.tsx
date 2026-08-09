@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useReducedMotion } from "motion/react";
+import { Play } from "lucide-react";
 
 import { cn } from "@/lib/cn";
 
@@ -35,6 +36,9 @@ function armAutoplay(el: HTMLVideoElement) {
  * on phones often paint a black rectangle over the poster and look “empty”.
  * Only one clip is mounted at a time. On narrow viewports we rotate posters
  * even when video is blocked (Low Power Mode / data saver).
+ *
+ * If autoplay is blocked, a tap/click retries playback instead of freezing
+ * forever on the poster.
  */
 export function HeroVideo({
   clips,
@@ -44,7 +48,7 @@ export function HeroVideo({
   const reduceMotion = useReducedMotion();
   const [active, setActive] = useState(0);
   const [narrow, setNarrow] = useState(false);
-  const [playbackFailed, setPlaybackFailed] = useState(false);
+  const [needsGesture, setNeedsGesture] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -61,35 +65,35 @@ export function HeroVideo({
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  // No reset effect on `narrow`: `pool[active % pool.length]` already keeps the
-  // index in range when the pool shrinks on mobile, and the clip-change effect
-  // below resets `isPlaying`. Setting state synchronously here was redundant
-  // and triggered a cascading render.
-
   useEffect(() => {
     if (reduceMotion || pool.length < 2) return;
     const id = window.setInterval(() => {
       setActive((i) => (i + 1) % pool.length);
       setIsPlaying(false);
+      setNeedsGesture(false);
     }, intervalSec * 1000);
     return () => window.clearInterval(id);
   }, [reduceMotion, pool.length, intervalSec]);
 
   useEffect(() => {
-    if (reduceMotion || playbackFailed || !clip) return;
+    if (reduceMotion || !clip) return;
     const el = videoRef.current;
     if (!el) return;
 
     armAutoplay(el);
     setIsPlaying(false);
+    setNeedsGesture(false);
 
     let cancelled = false;
 
     const onPlaying = () => {
-      if (!cancelled) setIsPlaying(true);
+      if (!cancelled) {
+        setIsPlaying(true);
+        setNeedsGesture(false);
+      }
     };
     const onError = () => {
-      if (!cancelled) setPlaybackFailed(true);
+      if (!cancelled) setNeedsGesture(true);
     };
 
     el.addEventListener("playing", onPlaying);
@@ -97,16 +101,15 @@ export function HeroVideo({
 
     const tryPlay = () => {
       void el.play().catch(() => {
-        if (!cancelled) setPlaybackFailed(true);
+        if (!cancelled) setNeedsGesture(true);
       });
     };
 
     if (el.readyState >= 2) tryPlay();
     else el.addEventListener("loadeddata", tryPlay, { once: true });
 
-    // If nothing starts within 2.5s, keep the poster visible permanently
     const timeout = window.setTimeout(() => {
-      if (!cancelled && el.paused) setPlaybackFailed(true);
+      if (!cancelled && el.paused) setNeedsGesture(true);
     }, 2500);
 
     return () => {
@@ -116,28 +119,47 @@ export function HeroVideo({
       el.removeEventListener("error", onError);
       el.removeEventListener("loadeddata", tryPlay);
     };
-  }, [active, reduceMotion, playbackFailed, clip]);
+  }, [active, reduceMotion, clip]);
+
+  const retryPlay = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    armAutoplay(el);
+    void el.play().then(
+      () => {
+        setIsPlaying(true);
+        setNeedsGesture(false);
+      },
+      () => setNeedsGesture(true)
+    );
+  };
 
   if (!clip) return null;
 
-  const stillOnly = Boolean(reduceMotion) || playbackFailed;
+  const stillOnly = Boolean(reduceMotion);
 
   return (
-    <div className={cn("absolute inset-0 overflow-hidden bg-[color:var(--teal-900)]", className)} aria-hidden>
+    <div
+      className={cn(
+        "absolute inset-0 overflow-hidden bg-[color:var(--teal-900)]",
+        className
+      )}
+      aria-hidden={stillOnly || !needsGesture ? true : undefined}
+    >
       <Image
         src={clip.poster}
         alt=""
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="pointer-events-none object-cover"
       />
       {!stillOnly ? (
         <video
           key={clip.src}
           ref={videoRef}
           className={cn(
-            "absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
+            "pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
             isPlaying ? "opacity-100" : "opacity-0"
           )}
           src={clip.src}
@@ -150,6 +172,17 @@ export function HeroVideo({
           controls={false}
           disablePictureInPicture
         />
+      ) : null}
+      {!stillOnly && needsGesture ? (
+        <button
+          type="button"
+          onClick={retryPlay}
+          className="absolute bottom-5 right-5 z-[2] inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/45 px-4 py-2 text-sm font-medium text-white backdrop-blur-md transition hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+          aria-label="Play background video"
+        >
+          <Play className="size-4 fill-current" aria-hidden />
+          Play film
+        </button>
       ) : null}
     </div>
   );

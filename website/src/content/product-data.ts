@@ -387,6 +387,48 @@ export const partnerValue = [
   },
 ] as const;
 
+/**
+ * Partner economics framing — profit opportunity without publishing
+ * distributor acquisition / suggested-retail dollar figures on-page.
+ * Specific partner rates are shared in conversation.
+ */
+export const partnerEconomics = [
+  {
+    step: "01",
+    title: "Partner acquisition",
+    body: "Authorized partners receive a structured wholesale path on the complete Zinc'd system — details shared during partnership review.",
+  },
+  {
+    step: "02",
+    title: "Suggested retail",
+    body: "A clear retail positioning for estate and commercial buyers, so your team can quote with confidence.",
+  },
+  {
+    step: "03",
+    title: "Your product spread",
+    body: "Meaningful gross product margin per installed system — a high-ticket add-on to the customers you already service or supply.",
+  },
+] as const;
+
+export const partnerProfitAngles = [
+  {
+    title: "Sell into your existing book",
+    body: "Pool service companies, builders, and hospitality suppliers already have the hard part — trusted relationships. Zinc'd rides those conversations.",
+  },
+  {
+    title: "One sale, recurring service",
+    body: "After install, routine anode care and water testing create a predictable service relationship — not a one-and-done chemical drop.",
+  },
+  {
+    title: "Hospitality multiplies the account",
+    body: "Hotel and resort groups can mean multiple systems across a portfolio. Treat engineering and procurement as enterprise conversations.",
+  },
+  {
+    title: "Rates stay in the room",
+    body: "Exact partner pricing and territory terms are shared directly — this page shows the economics shape, not a public price list.",
+  },
+] as const;
+
 /** FAQ — every answer claims-safe and source-anchored. */
 export const faqs = [
   {

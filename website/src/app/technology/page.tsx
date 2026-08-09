@@ -14,7 +14,7 @@ import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { siteConfig } from "@/content/site-config";
-import { motionGraphics } from "@/content/media";
+import { motionGraphics, productPhotos, technologyHeroClip } from "@/content/media";
 import {
   chemistryTargets,
   howItWorksSteps,
@@ -72,6 +72,7 @@ export default function TechnologyPage() {
           { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
           { label: "See the product", href: "/product", variant: "outline" },
         ]}
+        video={technologyHeroClip}
         aside={
           <div className="overflow-hidden rounded-[var(--radius)] border border-border bg-surface-elevated p-6 shadow-[var(--shadow-2)] md:p-8">
             <div className="mb-4 flex items-center justify-between">
@@ -87,8 +88,8 @@ export default function TechnologyPage() {
                 as a toy and told a visitor nothing true about the hardware. */}
             <div className="relative aspect-[4/3] w-full">
               <Image
-                src="/img/product-chamber.jpg"
-                alt="The Zinc'd stainless water chamber with its copper, silver and zinc badges."
+                src={productPhotos.chamberStudio}
+                alt="The Zinc'd stainless water chamber."
                 fill
                 sizes="(min-width: 1024px) 42vw, 100vw"
                 className="object-contain"
@@ -143,11 +144,11 @@ export default function TechnologyPage() {
       </Section>
 
       <MotionGraphicBand
-        src={motionGraphics.chamber.src}
-        poster={motionGraphics.chamber.poster}
-        eyebrow="Field visualization"
-        title="Ionization as living light"
-        body="Higgsfield motion graphics of the chamber field — abstract, claims-safe, and built to feel premium on scroll."
+        src={motionGraphics.process.src}
+        poster={motionGraphics.process.poster}
+        eyebrow="How ionization looks"
+        title="Water through the chamber. Minerals under control."
+        body="Owner process film of the Zinc'd chamber — circulating water, alloy electrodes, and Cu / Ag / Zn ions released under low-voltage PWM. Illustrative, not a dosing calculator."
       />
 
       {/* How it works process */}
