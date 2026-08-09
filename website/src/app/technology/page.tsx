@@ -88,7 +88,7 @@ export default function TechnologyPage() {
                 as a toy and told a visitor nothing true about the hardware. */}
             <div className="relative aspect-[4/3] w-full">
               <Image
-                src={productPhotos.chamberStudio}
+                src={productPhotos.chamberLegacy}
                 alt="The Zinc'd stainless water chamber."
                 fill
                 sizes="(min-width: 1024px) 42vw, 100vw"
@@ -144,11 +144,11 @@ export default function TechnologyPage() {
       </Section>
 
       <MotionGraphicBand
-        src={motionGraphics.process.src}
-        poster={motionGraphics.process.poster}
-        eyebrow="How ionization looks"
-        title="Water through the chamber. Minerals under control."
-        body="Owner process film of the Zinc'd chamber — circulating water, alloy electrodes, and Cu / Ag / Zn ions released under low-voltage PWM. Illustrative, not a dosing calculator."
+        src={motionGraphics.chamberCutaway.src}
+        poster={motionGraphics.chamberCutaway.poster}
+        eyebrow="Chamber cutaway"
+        title="Watch ions leave the alloy electrode"
+        body="Owner chamber-cutaway film: circulating water, Cu²⁺ / Ag⁺ / Zn²⁺ release under low-voltage PWM. Illustrative — not a dosing calculator."
       />
 
       {/* How it works process */}

@@ -429,6 +429,41 @@ export const partnerProfitAngles = [
   },
 ] as const;
 
+/** Priority partner audiences — sharper lure copy for /distributors. */
+export const partnerAudiences = [
+  {
+    title: "Pool service companies",
+    body: "You already know which customers complain about algae, chlorine load, and cloudy water. Add a high-ticket system to the book you service every week.",
+  },
+  {
+    title: "Builders & remodelers",
+    body: "Differentiate new installs and renovations with engineered mineral ionization — a documented category, not another chemical program.",
+  },
+  {
+    title: "Dealers & wholesalers",
+    body: "Put Zinc'd on the shelf beside pumps, filters, and heaters. Clear series sizing and a partner path designed for repeat quotes.",
+  },
+  {
+    title: "Hospitality suppliers",
+    body: "One relationship can open hotels, resorts, clubs, and multi-property groups. Commercial and custom layouts are part of the line.",
+  },
+] as const;
+
+export const partnerSupport = [
+  {
+    title: "Product training",
+    body: "We walk your team through series sizing, install basics, and how to talk about residual chlorine honestly.",
+  },
+  {
+    title: "Technical backup",
+    body: "Specs, handbooks, and chemistry charts ship with every system — so your installers are not guessing in the field.",
+  },
+  {
+    title: "A clean sales story",
+    body: "Engineered hardware with PWM control and monitoring — easy to pitch to owners who are tired of chemistry fog.",
+  },
+] as const;
+
 /** FAQ — every answer claims-safe and source-anchored. */
 export const faqs = [
   {

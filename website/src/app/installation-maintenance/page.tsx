@@ -8,9 +8,13 @@ import { Reveal } from "@/components/motion/reveal";
 import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessSteps } from "@/components/blocks/process-steps";
 import { CtaBand } from "@/components/blocks/cta-band";
+import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { siteConfig } from "@/content/site-config";
 import { chemistryTargets, installSteps, warrantySummary } from "@/content/product-data";
+import { motionGraphics, productPhotos } from "@/content/media";
 import { createPageMetadata } from "@/lib/metadata";
+import Image from "next/image";
+import { Container } from "@/components/layout/container";
 
 export const metadata = createPageMetadata({
   title: "Installation & Maintenance",
@@ -35,6 +39,43 @@ export default function InstallationMaintenancePage() {
           { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
           { label: "See the product", href: "/product", variant: "outline" },
         ]}
+      />
+
+      <section className="relative overflow-hidden border-b border-border">
+        <Container className="grid items-center gap-10 py-14 md:grid-cols-2 md:py-16">
+          <Reveal>
+            <div>
+              <TechnicalLabel>In the plant room</TechnicalLabel>
+              <h2 className="text-h2 mt-4 text-foreground">
+                Designed to sit inline — not fight your existing loop
+              </h2>
+              <p className="text-body mt-4 text-muted-foreground">
+                The stainless chamber plumbed on the filter return, control on
+                the wall, monitoring that signals anode care. Install once;
+                maintain lightly.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
+              <Image
+                src={productPhotos.install}
+                alt="Zinc'd installed beside pool equipment plumbing"
+                fill
+                sizes="(min-width: 768px) 45vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <MotionGraphicBand
+        src={motionGraphics.livingField.src}
+        poster={motionGraphics.livingField.poster}
+        eyebrow="After install"
+        title="A quieter operating rhythm"
+        body="Motion study of the living field around mineral ionization — kept here so Installation carries its own film, separate from Home and Technology."
       />
 
       {/* Process */}

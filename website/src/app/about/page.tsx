@@ -6,9 +6,10 @@ import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
 import { CtaBand } from "@/components/blocks/cta-band";
+import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { siteConfig } from "@/content/site-config";
 import { evaluationFramework } from "@/content/product-data";
-import { aboutHeroClip } from "@/content/media";
+import { aboutHeroClip, motionGraphics } from "@/content/media";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -55,6 +56,14 @@ export default function AboutPage() {
           },
         ]}
         video={aboutHeroClip}
+      />
+
+      <MotionGraphicBand
+        src={motionGraphics.chamberOrbit.src}
+        poster={motionGraphics.chamberOrbit.poster}
+        eyebrow="Living hardware"
+        title="The chamber as a designed object"
+        body="Earlier motion study of the ionization chamber — kept on About so every route carries a distinct film, not a repeat of Home or Technology."
       />
 
       <Section spacing="lg" background="default" className="relative">

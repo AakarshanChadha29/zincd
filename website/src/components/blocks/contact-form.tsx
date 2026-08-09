@@ -113,7 +113,7 @@ export function ContactForm() {
   if (outcome?.kind === "sent" || outcome?.kind === "acknowledged") {
     const sent = outcome.kind === "sent";
     return (
-      <div className="rounded-[var(--radius)] border border-border bg-surface p-8 text-center shadow-[var(--shadow-1)]">
+      <div className="rounded-[var(--radius)] border border-border bg-surface p-8 text-center shadow-[var(--shadow-1)] md:p-10">
         <CheckCircle2
           className="mx-auto size-10 text-accent-ecological"
           strokeWidth={1.5}
@@ -142,7 +142,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow-1)] md:p-8"
+      className="relative rounded-[var(--radius)] bg-surface p-6 md:p-7"
       noValidate
     >
       {/* Intent selector */}
@@ -156,10 +156,10 @@ export function ContactForm() {
               onClick={() => setValue("intent", intent.value)}
               aria-pressed={selectedIntent === intent.value}
               className={cn(
-                "rounded-[var(--radius-control)] border px-3 py-2.5 text-small font-medium transition-colors",
+                "rounded-[var(--radius-control)] border px-3 py-3 text-small font-medium transition-colors",
                 selectedIntent === intent.value
-                  ? "border-primary bg-[color:var(--accent)] text-foreground"
-                  : "border-border bg-surface text-muted-foreground hover:border-border-strong"
+                  ? "border-primary bg-[color:var(--accent)] text-foreground shadow-[var(--shadow-1)]"
+                  : "border-border bg-muted/30 text-muted-foreground hover:border-border-strong hover:bg-surface"
               )}
             >
               {intent.label}

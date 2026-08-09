@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check, Info } from "lucide-react";
+import { ArrowRight, Check, Info, ShoppingBag } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { TechnicalLabel } from "@/components/ui/technical-label";
@@ -8,20 +8,19 @@ import { directOffer } from "@/content/product-data";
 /**
  * The commercial path: buy the system outright.
  *
- * The checkout URL comes from `NEXT_PUBLIC_STRIPE_CHECKOUT_URL`. When it is
- * unset the buy button is replaced with an enquiry route — the page never
- * renders a dead payment link or a placeholder URL, because a broken checkout
- * on a $5,000 product costs more than showing no checkout at all.
- *
- * The price is a client-confirmed commercial representation ($5,000 USD).
- * Checkout remains env-gated via `NEXT_PUBLIC_STRIPE_CHECKOUT_URL`.
+ * Set `NEXT_PUBLIC_STRIPE_CHECKOUT_URL` to your Stripe Payment Link / Checkout
+ * URL (in `.env.local` and in Vercel env). When unset, the Buy now button is
+ * replaced with an assessment route — never a dead payment link.
  */
 export function BuyPanel() {
   const checkoutUrl = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_URL?.trim();
   const canCheckout = Boolean(checkoutUrl);
 
   return (
-    <div className="overflow-hidden rounded-[var(--radius)] border border-border-strong bg-surface-elevated shadow-[var(--shadow-2)]">
+    <div
+      id="buy"
+      className="overflow-hidden rounded-[var(--radius)] border border-border-strong bg-surface-elevated shadow-[var(--shadow-2)] scroll-mt-28"
+    >
       <div className="border-b border-border p-7 md:p-8">
         <TechnicalLabel className="text-accent-aquatic">Buy direct</TechnicalLabel>
 
@@ -40,14 +39,23 @@ export function BuyPanel() {
 
         <div className="mt-7">
           {canCheckout ? (
-            <Button
-              size="lg"
-              className="w-full rounded-[var(--radius-control)] sm:w-auto"
-              render={<a href={checkoutUrl} rel="noopener noreferrer" />}
-            >
-              Buy the system
-              <ArrowRight className="size-4" aria-hidden />
-            </Button>
+            <div className="space-y-3">
+              <Button
+                size="lg"
+                className="w-full rounded-[var(--radius-control)] sm:w-auto"
+                render={
+                  <a href={checkoutUrl} rel="noopener noreferrer" target="_blank" />
+                }
+              >
+                <ShoppingBag className="size-4" aria-hidden />
+                Buy now
+                <ArrowRight className="size-4" aria-hidden />
+              </Button>
+              <p className="text-small text-muted-foreground">
+                Secure checkout via Stripe. Series is confirmed to your pool
+                before dispatch.
+              </p>
+            </div>
           ) : (
             <div className="space-y-3">
               <Button
@@ -60,8 +68,11 @@ export function BuyPanel() {
               </Button>
               <p className="text-small flex gap-2 text-accent-steel">
                 <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
-                Online checkout is not open yet. Start with an assessment and
-                we&rsquo;ll confirm the right series for your pool.
+                Add your Stripe Payment Link as{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5 text-[0.75rem]">
+                  NEXT_PUBLIC_STRIPE_CHECKOUT_URL
+                </code>{" "}
+                to enable Buy now. Until then, start with an assessment.
               </p>
             </div>
           )}

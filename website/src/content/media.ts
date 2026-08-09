@@ -19,29 +19,31 @@ export const heroVideos = {
     src: "/video/swimmer-palm.mp4",
     poster: "/video/swimmer-palm.jpg",
   },
-  /** Owner-provided process film — chamber cutaway with Cu / Ag / Zn ions. */
-  process: {
-    src: "/video/process-ionization.mp4",
-    poster: "/video/process-ionization.jpg",
-  },
 } as const;
 
-/** Homepage — lifestyle villa clips for first paint; process film lives mid-page. */
+/**
+ * Owner 3D chamber cutaway film — named for what it shows (not a generic
+ * "process" label). Used primarily on Technology.
+ */
+export const chamberCutawayFilm = {
+  src: "/video/process-ionization.mp4",
+  poster: "/video/process-ionization.jpg",
+} as const;
+
+/** Homepage — lifestyle villa clips for first paint. */
 export const homepageHeroClips = [heroVideos.modern, heroVideos.ocean];
 
 export const productHeroClip = heroVideos.modern;
 export const distributorsHeroClip = heroVideos.estate;
 export const applicationsHeroClip = heroVideos.swimmer;
-export const aboutHeroClip = heroVideos.estate;
-export const technologyHeroClip = heroVideos.process;
+export const aboutHeroClip = heroVideos.bali;
+export const technologyHeroClip = heroVideos.ocean;
+export const faqHeroClip = heroVideos.swimmer;
+export const contactHeroClip = heroVideos.estate;
 
 /**
- * Lightweight ambient films only. Heavy HF loops (living-field 3MB,
- * water-ions 10MB, water-story 5MB) are excluded from the critical path —
- * use posters / still photography instead for speed.
- *
- * `process` is the owner 3D ionization film — preferred for Technology /
- * Product motion bands over abstract generative clips.
+ * Motion graphic loops — spread across pages so each route has a distinct film.
+ * Heavy loops (water-ions 10MB, water-story 5MB) stay off the critical path.
  */
 export const motionGraphics = {
   ionsWater: {
@@ -56,25 +58,48 @@ export const motionGraphics = {
     src: "/video/mg-mineral-type.mp4",
     poster: "/video/mg-mineral-type.jpg",
   },
-  process: heroVideos.process,
+  chamberOrbit: {
+    src: "/video/mg-chamber-orbit.mp4",
+    poster: "/video/mg-chamber-orbit.jpg",
+  },
+  livingField: {
+    src: "/video/mg-living-field.mp4",
+    poster: "/video/mg-living-field.jpg",
+  },
+  /** Owner chamber cutaway — Technology page primary film. */
+  chamberCutaway: chamberCutawayFilm,
 } as const;
 
 /** Real / polished product photography — prefer wire-free clean catalog assets. */
 export const productPhotos = {
-  /** Transparent cutouts for dark / film overlays. */
   system: "/img/clean/system-cutout.png",
   chamber: "/img/clean/chamber-cutout.png",
-  /** Opaque studio / lifestyle stills (no messy exposed wiring). */
   systemStudio: "/img/clean/system.jpg",
   chamberStudio: "/img/clean/chamber.jpg",
   control: "/img/clean/control.jpg",
   install: "/img/clean/install.jpg",
+  /** Alternate polished stills for pages that should not reuse /clean assets. */
+  systemDark: "/img/polished/system-black.jpg",
+  controlAngled: "/img/polished/control-angled.jpg",
+  chamberLegacy: "/img/product-chamber.jpg",
+} as const;
+
+/** Environment / lifestyle stills — keep product shots off application cards. */
+export const lifestyleStills = {
+  residentialPool: "/img/pool-residential.jpg",
+  resortPool: "/img/pool-resort.jpg",
+  commercialPool: "/img/pool-commercial.jpg",
+  wellnessPool: "/img/pool-wellness.jpg",
+  swimmer: "/video/swimmer-palm.jpg",
+  estate: "/video/estate-pool.jpg",
+  villaOcean: "/video/villa-ocean.jpg",
 } as const;
 
 /** Product / install stills — Zinc'd branded (no Arroyo). */
 export const productStills = {
   flowDiagram: "/img/product/flow-diagram.png",
   manifold: "/img/product/manifold-zincd.png",
+  /** Product page gallery only — no lifestyle/install repeats from Home. */
   gallery: [
     {
       src: "/img/clean/chamber.jpg",
@@ -86,21 +111,21 @@ export const productStills = {
     },
     {
       src: "/img/clean/system.jpg",
-      alt: "Zinc'd chamber and control as separate clean catalog products — no exposed wiring.",
+      alt: "Zinc'd chamber and control as separate clean catalog products.",
     },
     {
-      src: "/img/clean/install.jpg",
-      alt: "Zinc'd installed poolside with wiring dressed into a neat wall conduit.",
+      src: "/img/polished/control-angled.jpg",
+      alt: "Angled view of the Zinc'd control enclosure.",
     },
   ],
 } as const;
 
-/** Still photography for application cards — environment + real install context. */
+/** Still photography for application cards — environment only. */
 export const applicationImages: Record<string, string> = {
-  residential: "/img/clean/install.jpg",
-  "hotels-resorts": "/img/pool-resort.jpg",
-  commercial: "/img/pool-commercial.jpg",
-  "fitness-wellness": "/img/pool-wellness.jpg",
+  residential: lifestyleStills.residentialPool,
+  "hotels-resorts": lifestyleStills.resortPool,
+  commercial: lifestyleStills.commercialPool,
+  "fitness-wellness": lifestyleStills.wellnessPool,
 };
 
 /** Default social preview (first villa poster until dedicated OG art exists). */
