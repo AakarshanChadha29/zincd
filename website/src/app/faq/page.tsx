@@ -160,8 +160,9 @@ export default function FaqPage() {
                 Prefer a human answer?
               </h2>
               <p className="text-body mt-2 max-w-xl text-muted-foreground">
-                Share your pool details or partnership interest — we&apos;ll
-                respond with clarity, not marketing fog.
+                Share your pool details or partnership interest and we&apos;ll
+                come back with a series recommendation and the specifications
+                behind it.
               </p>
             </div>
           </Reveal>

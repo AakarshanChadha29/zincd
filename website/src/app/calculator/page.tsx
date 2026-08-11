@@ -13,16 +13,18 @@ import { productSeries } from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Pool Series Calculator — Zinc'd",
+  title: "Pool Size Calculator — What Size Ionizer Do I Need?",
   description:
-    "Estimate your swimming pool volume and see which Zinc'd series — Series-1, Series-2, Series-3, or custom multi-unit — matches your water. Confirm sizing during a pool assessment.",
+    "Free pool volume calculator in US gallons. Enter your pool's length, width, and average depth to see which Zinc'd copper–silver–zinc ionizer fits — Series-1, Series-2, Series-3, or commercial multi-unit.",
   path: "/calculator",
   keywords: [
-    "Zinc'd pool calculator",
-    "pool series sizing",
-    "swimming pool volume calculator",
-    "pool ionizer size",
-    "Series-1 Series-2 Series-3",
+    "pool volume calculator gallons",
+    "how many gallons is my pool",
+    "what size pool ionizer do I need",
+    "swimming pool size calculator",
+    "pool ionizer sizing chart",
+    "copper silver zinc ionizer size",
+    "commercial pool ionizer sizing",
   ],
 });
 
@@ -43,9 +45,9 @@ export default function CalculatorPage() {
       <MotionGraphicBand
         src={motionGraphics.ionsWater.src}
         poster={motionGraphics.ionsWater.poster}
-        eyebrow="Handbook sizing"
+        eyebrow="How sizing works"
         title="Volume and pipe size decide the series"
-        body="The calculator follows installer handbook bands — from residential Series-1 through commercial multi-unit. Final selection is confirmed against your circulation system during assessment."
+        body="Two numbers drive the match: how much water your pool holds, and the size of your circulation line. The bands below come straight from the installer handbook — we confirm both against your equipment pad before anything ships."
         tone="soft"
       />
 
@@ -53,8 +55,8 @@ export default function CalculatorPage() {
         <SectionHeading
           as="h2"
           eyebrow="Series range"
-          title="What each recommendation means"
-          description="Use the calculator for a first match, then confirm pipe size and duty cycle with a specialist before install."
+          title="What each series covers"
+          description="From a standard backyard pool through resort and municipal water. Your calculator result points to one of these four — a specialist confirms pipe size and duty cycle before install."
         />
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {productSeries.map((series, i) => (
@@ -64,7 +66,10 @@ export default function CalculatorPage() {
                   {series.name}
                 </TechnicalLabel>
                 <p className="text-h3 mt-3 text-foreground">{series.volume}</p>
-                <p className="text-small mt-1 text-accent-steel">{series.scope}</p>
+                <p className="text-small mt-0.5 tabular-nums text-accent-steel">
+                  {series.volumeMetric}
+                </p>
+                <p className="text-small mt-2 text-accent-steel">{series.scope}</p>
                 <p className="text-body mt-4 text-muted-foreground">
                   {series.body}
                 </p>
@@ -77,7 +82,7 @@ export default function CalculatorPage() {
       <CtaBand
         eyebrow="Next step"
         title="Confirm the series for your pool"
-        body="Share your calculator result in a pool assessment. We match volume, pipe size, and circulation before dispatch."
+        body="Send us your result and we'll verify it against your actual circulation system — volume, pipe size, and flow rate — before anything is dispatched."
         primary={{
           label: siteConfig.ctas.assessment.label,
           href: siteConfig.ctas.assessment.href,

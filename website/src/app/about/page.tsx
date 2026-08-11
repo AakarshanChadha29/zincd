@@ -13,7 +13,7 @@ import { aboutHeroClip, motionGraphics } from "@/content/media";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "About Zinc'd — Ecological Pool Ionization",
+  title: "About — Mineral Pool Ionization for US Pools",
   description:
     "Zinc'd is a US pool water-treatment brand built around engineered copper–silver–zinc ionization — publishing only what it can document for estates, hospitality and commercial operators.",
   path: "/about",

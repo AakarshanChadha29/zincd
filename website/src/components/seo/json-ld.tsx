@@ -12,17 +12,21 @@ export function OrganizationJsonLd() {
         url,
         description: siteConfig.brand.description,
         slogan: siteConfig.brand.tagline,
+        // The market this brand serves — helps US queries resolve to this site.
+        areaServed: {
+          "@type": "Country",
+          name: "United States",
+        },
       },
       {
         "@type": "WebSite",
         name: siteConfig.brand.name,
         url,
         description: siteConfig.brand.description,
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `${url}/faq`,
-          "query-input": "required name=search_term_string",
-        },
+        inLanguage: "en-US",
+        // No SearchAction: there is no site-search endpoint. The previous entry
+        // pointed at /faq with a query-input placeholder the URL never used,
+        // which is an invalid action rather than a useful one.
       },
     ],
   };

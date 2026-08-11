@@ -25,7 +25,7 @@ export const valuePillars = [
   {
     id: "ecological",
     label: "Ecological by design",
-    title: "Lower-chemical pool care, without empty promises",
+    title: "A lower-chemical program, honestly stated",
     body: "Mineral ionization is designed to reduce day-to-day chlorine dependency — for water many people find gentler to live with — while a residual of free chlorine remains part of responsible operation.",
     icon: "droplets",
   },
@@ -109,7 +109,8 @@ export const productSeries = [
   {
     name: "Series-1",
     scope: "Residential · 2″ pipe",
-    volume: "20,000–70,000 L",
+    volume: "5,300–18,500 gal",
+    volumeMetric: "20,000–70,000 L",
     pipe: "2″",
     body: "Small to standard residential pools — from compact estate basins through typical private volumes on a 2″ circulation line.",
     audience: "Estate owners · residential builders",
@@ -118,7 +119,8 @@ export const productSeries = [
   {
     name: "Series-2",
     scope: "Large residential / club · 2–4″",
-    volume: "70,000–100,000 L",
+    volume: "18,500–26,400 gal",
+    volumeMetric: "70,000–100,000 L",
     pipe: "2–4″",
     body: "Larger residential and club pools where flow and duty cycle sit above a single domestic install.",
     audience: "Clubs · HOAs · large estates",
@@ -127,7 +129,8 @@ export const productSeries = [
   {
     name: "Series-3",
     scope: "Luxury / small commercial · 4″",
-    volume: "100,000–150,000 L",
+    volume: "26,400–39,600 gal",
+    volumeMetric: "100,000–150,000 L",
     pipe: "4″",
     body: "Luxury residential and small commercial basins on larger circulation — hospitality amenity scale with documented operating parameters.",
     audience: "Boutique hotels · luxury estates · facility leads",
@@ -136,7 +139,8 @@ export const productSeries = [
   {
     name: "Custom",
     scope: "Commercial multi-unit",
-    volume: "Above 150,000 L",
+    volume: "Above 39,600 gal",
+    volumeMetric: "Above 150,000 L",
     pipe: "As required",
     body: "Commercial volumes use additional Zinc'd units in parallel on the inlet manifold, with a bypass branch — sized to the facility during assessment.",
     audience: "Resort · municipal · campus operators",
@@ -294,8 +298,8 @@ export const applicationDetails: Record<
         body: "Facility managers, municipal aquatics leads, campus operators, and commercial service contractors.",
       },
       {
-        title: "Risk posture",
-        body: "Claims stay conservative: ionization reduces chlorine dependency; residual free chlorine remains part of responsible operation.",
+        title: "What we state",
+        body: "Ionization reduces day-to-day chlorine dependency; a residual of free chlorine around 1.0 ppm remains part of responsible operation.",
       },
       {
         title: "Partner channel",
@@ -303,7 +307,7 @@ export const applicationDetails: Record<
       },
     ],
     decisionPoints: [
-      "Board or ownership asks for documented equipment — not brochure claims",
+      "Board or ownership asks for documented equipment with published specifications",
       "Staffing models favor monitoring-led care over intensive chemistry labor",
       "Circulation volumes span light commercial through large-format pools",
     ],
@@ -359,7 +363,7 @@ export const evaluationFramework = [
   },
   {
     title: "For operators & the next generation",
-    body: "Day-to-day clarity: PWM control, monitoring that signals anode care, and simple chemistry targets — copper, free chlorine, pH — without a marketing fog of unverifiable percentages.",
+    body: "Day-to-day clarity: PWM control, monitoring that signals anode care, and three chemistry targets to hold — copper 0.3–0.4 ppm, free chlorine ~1.0 ppm, pH 7.2–7.6.",
   },
   {
     title: "For partners & channel",
@@ -424,8 +428,8 @@ export const partnerProfitAngles = [
     body: "Hotel and resort groups can mean multiple systems across a portfolio. Treat engineering and procurement as enterprise conversations.",
   },
   {
-    title: "Rates stay in the room",
-    body: "Exact partner pricing and territory terms are shared directly — this page shows the economics shape, not a public price list.",
+    title: "Rates shared directly",
+    body: "Exact partner pricing and territory terms are agreed in your partnership review, sized to the markets you already cover.",
   },
 ] as const;
 
@@ -460,7 +464,7 @@ export const partnerSupport = [
   },
   {
     title: "A clean sales story",
-    body: "Engineered hardware with PWM control and monitoring — easy to pitch to owners who are tired of chemistry fog.",
+    body: "Engineered hardware with PWM control and monitoring, documented down to voltage, power and pressure — easy to put in front of an owner or an engineering lead.",
   },
 ] as const;
 

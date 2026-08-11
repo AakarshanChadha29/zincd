@@ -66,13 +66,17 @@ export function BuyPanel() {
                 Request a pool assessment
                 <ArrowRight className="size-4" aria-hidden />
               </Button>
+              {/* Customer-facing copy only. This previously printed the
+                  environment variable name as setup instructions, which both
+                  addressed the wrong audience and — being a 31-character
+                  unbreakable token — forced the grid track wider than a phone
+                  viewport, pushing the whole section into horizontal scroll. */}
               <p className="text-small flex gap-2 text-accent-steel">
                 <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
-                Add your Stripe Payment Link as{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 text-[0.75rem]">
-                  NEXT_PUBLIC_STRIPE_CHECKOUT_URL
-                </code>{" "}
-                to enable Buy now. Until then, start with an assessment.
+                <span>
+                  We confirm the right series for your pool before taking
+                  payment, so every system ships matched to your circulation.
+                </span>
               </p>
             </div>
           )}

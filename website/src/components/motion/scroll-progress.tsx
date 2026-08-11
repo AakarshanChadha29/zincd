@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { motion, useReducedMotion, useScroll } from "motion/react";
+
+const subscribe = () => () => {};
 
 /**
  * Thin top-of-page scroll progress for the homepage cinematic feel.
@@ -10,11 +12,15 @@ import { motion, useReducedMotion, useScroll } from "motion/react";
 export function ScrollProgress() {
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
-  const [mounted, setMounted] = useState(false);
+  // Render nothing until hydration so the server and client agree on markup.
+  // useSyncExternalStore gives us that without a setState-in-effect cascade.
+  const hydrated = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false,
+  );
 
-  useEffect(() => setMounted(true), []);
-
-  if (reduceMotion || !mounted) return null;
+  if (reduceMotion || !hydrated) return null;
 
   return (
     <motion.div

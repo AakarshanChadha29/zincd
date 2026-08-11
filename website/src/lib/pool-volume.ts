@@ -68,10 +68,43 @@ export function gallonsFromLitres(litres: number): number {
   return litres / US_GALLONS_TO_LITRES;
 }
 
+/** Metric litres-per-cubic-metre factors, mirroring the imperial ones. */
+const M_FACTORS = { rectangle: 1000, oval: 785, circle: 785 } as const;
+
 /**
- * Approximate US-gallon volume from imperial (feet) dimensions.
- * Metric path converts to feet first, then applies the same factors —
- * matching the client calculator.
+ * Volume in litres from pool dimensions.
+ *
+ * Each unit system is evaluated with its OWN published factors rather than
+ * converting to feet first. Routing metric input through the imperial factors
+ * made the result disagree with the formula shown on screen — 7.5 gal/ft³ is a
+ * rounding of 7.48052, so a 10 x 5 x 1.5 m pool read 75,193 L against a stated
+ * L x W x D x 1000 = 75,000 L. Now the number on screen is exactly what the
+ * printed formula produces, in both units.
+ */
+export function litresFromDimensions(input: {
+  shape: Exclude<PoolShape, "irregular">;
+  length: number;
+  width: number;
+  depth: number;
+  diameter: number;
+  unit: LengthUnit;
+}): number {
+  const { length, width, depth, diameter, shape, unit } = input;
+
+  if (unit === "m") {
+    const factor = M_FACTORS[shape];
+    return shape === "circle"
+      ? diameter * diameter * depth * factor
+      : length * width * depth * factor;
+  }
+
+  return litresFromGallons(gallonsFromDimensions(input));
+}
+
+/**
+ * US-gallon volume from imperial (feet) dimensions, using the handbook
+ * factors. Metric input is converted to feet first; prefer
+ * `litresFromDimensions` for display, which keeps each unit exact.
  */
 export function gallonsFromDimensions(input: {
   shape: Exclude<PoolShape, "irregular">;
@@ -102,6 +135,43 @@ export function capacityToLitres(
 ): number {
   return unit === "litres" ? value : litresFromGallons(value);
 }
+
+/**
+ * The full series ladder, in order — rendered as a comparison so a visitor can
+ * see where their pool falls against every option, not just the matched one.
+ * US gallons lead because this is a US-market site; litres follow because the
+ * installer handbook bands are published in litres.
+ */
+export const seriesLadder = [
+  {
+    series: "Series-1" as const,
+    category: "Residential",
+    pipe: '2"',
+    gallons: "5,300–18,500 gal",
+    litres: "20,000–70,000 L",
+  },
+  {
+    series: "Series-2" as const,
+    category: "Large residential / club",
+    pipe: '2–4"',
+    gallons: "18,500–26,400 gal",
+    litres: "70,000–100,000 L",
+  },
+  {
+    series: "Series-3" as const,
+    category: "Luxury / small commercial",
+    pipe: '4"',
+    gallons: "26,400–39,600 gal",
+    litres: "100,000–150,000 L",
+  },
+  {
+    series: "Custom" as const,
+    category: "Commercial multi-unit",
+    pipe: "As required",
+    gallons: "Above 39,600 gal",
+    litres: "Above 150,000 L",
+  },
+] as const;
 
 /**
  * Handbook series bands (litres).

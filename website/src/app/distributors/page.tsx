@@ -27,7 +27,7 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Distributors & Partners — Carry Zinc'd",
+  title: "Pool Equipment Distributors & Dealer Partners",
   description:
     "Become a Zinc'd distributor: add a high-ticket copper–silver–zinc ionization system to the pool and hospitality customers you already serve — with training, specs, and a clear partner path.",
   path: "/distributors",
@@ -46,7 +46,7 @@ const partnerProcess = [
   },
   {
     title: "Review fit & margin shape",
-    body: "We share documented specifications and the partner economics shape. Exact rates stay in the conversation, not on a public price list.",
+    body: "We walk through the documented specifications, the series range you would carry, and how the margin works on an installed system. Exact rates are agreed in your partnership review.",
   },
   {
     title: "Launch with support",

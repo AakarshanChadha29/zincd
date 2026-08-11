@@ -10,19 +10,19 @@ import { TechnicalLabel } from "@/components/ui/technical-label";
 import { Reveal } from "@/components/motion/reveal";
 import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { HeroParallax } from "@/components/motion/hero-parallax";
-import { HardwareScrollStage } from "@/components/motion/hardware-scroll-stage";
 import { ScrollParallax } from "@/components/motion/scroll-parallax";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { ZincdLogo } from "@/components/brand/zincd-logo";
 import { HeroVideo } from "@/components/media/hero-video";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { ProductFloat } from "@/components/media/product-float";
-import { CinematicChapters } from "@/components/motion/cinematic-chapters";
+import { PoolStoryPan } from "@/components/motion/pool-story-pan";
 import { siteConfig } from "@/content/site-config";
 import {
   homepageHeroClips,
   lifestyleStills,
   motionGraphics,
+  poolStoryPanorama,
   productPhotos,
   productStills,
 } from "@/content/media";
@@ -30,7 +30,9 @@ import { heroContent, productSeries } from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Zinc'd | Mineral Ionization Systems for US Pools",
+  // The root segment does not inherit the layout's "%s | Zinc'd" template —
+  // that only applies to child segments — so the brand is written in here.
+  title: "Copper–Silver–Zinc Pool Ionization Systems | Zinc'd",
   description:
     "Zinc'd delivers copper–silver–zinc pool ionization with precision PWM control for US estates, hotels, and commercial aquatic facilities. Lower day-to-day chlorine demand — residual sanitizer still required.",
   path: "/",
@@ -46,57 +48,58 @@ export const metadata = createPageMetadata({
   ],
 });
 
-const storyStages = [
+/**
+ * Three points told across one continuous pool panorama. `focus` places each
+ * point over its own stretch of the photograph for the reduced-motion fallback.
+ */
+const storyPoints = [
   {
-    id: "before",
-    eyebrow: "01 — The problem",
-    title: "Chlorine keeps pools safe — operators still feel the load",
-    body: "US estates, clubs, and hospitality pools need reliable sanitation. Day-to-day chemical intensity is what guests notice and facility teams manage.",
-    image: lifestyleStills.residentialPool,
-    imageAlt: "Clear residential swimming pool in the United States",
+    id: "chamber",
+    eyebrow: "01 — The chamber",
+    title: "Stainless cell, inline with your circulation",
+    body: "Pool water passes through a stainless housing carrying copper, silver and zinc alloy electrodes, plumbed into the filtration return so every turnover is treated.",
+    focus: 0,
   },
   {
-    id: "through",
-    eyebrow: "02 — Through Zinc'd",
-    title: "Mineral ions, metered into the circulation loop",
-    body: "Pool water passes a stainless copper–silver–zinc chamber. Microcontroller PWM releases mineral ions at a controlled rate — engineered hardware, not a chemistry guess.",
-    image: lifestyleStills.swimmer,
-    imageAlt: "Swimmer moving through clear, sunlit pool water",
+    id: "control",
+    eyebrow: "02 — The control",
+    title: "PWM regulation, 24 V DC, monitored on an LCD",
+    body: "A microcontroller meters the current by PWM, holding a steady ion release rate. The display reports output level and signals when routine anode cleaning is due.",
+    focus: 0.5,
   },
   {
-    id: "after",
-    eyebrow: "03 — The outcome",
-    title: "A quieter chemistry program — still responsibly sanitized",
-    body: "Designed to reduce chlorine dependency for water many owners and guests find easier to live with. Residual free chlorine (~1.0 ppm) remains part of responsible operation.",
-    image: lifestyleStills.resortPool,
-    imageAlt: "Resort swimming pool with clear water",
+    id: "water",
+    eyebrow: "03 — The water",
+    title: "Copper 0.3–0.4 ppm. Chlorine ~1.0 ppm. pH 7.2–7.6.",
+    body: "Minerals help control algae and support biofilm control, which lowers day-to-day chlorine demand. A residual of free chlorine stays in the program — three numbers, tested with the supplied kit.",
+    focus: 1,
   },
 ] as const;
 
 const hardwareBeats = [
   {
     id: "chamber",
-    eyebrow: "01 — The chamber",
-    title: "Stainless. Precise. Built for the loop.",
-    body: "A polished copper–silver–zinc cell housing designed to sit inline with filtration — clean hardware, not a chemistry guess.",
-    image: productPhotos.chamber,
-    imageAlt: "Zinc'd stainless water chamber cutout",
+    eyebrow: "The chamber",
+    title: "Cu–Ag–Zn electrodes in a stainless housing",
+    body: "A 100 mm electrode assembly in a corrosion-resistant stainless shell, rated to 30 psi and built to sit inline with filtration for the life of the plant room.",
+    image: productPhotos.chamberStudio,
+    imageAlt: "The Zinc'd stainless water chamber on a studio background",
   },
   {
     id: "control",
-    eyebrow: "02 — The control",
-    title: "PWM intelligence on the wall",
-    body: "Microcontroller regulation with LCD monitoring — the face of Zinc'd without the plant-room clutter.",
+    eyebrow: "The control",
+    title: "Microcontroller PWM, 110–230 V in, 75 W peak",
+    body: "Wall-mounted control electronics regulate ionization by PWM and report status on an LCD, with cable glands for a tidy, permanent install.",
     image: productPhotos.control,
-    imageAlt: "Zinc'd control enclosure catalog photo",
+    imageAlt: "The Zinc'd control enclosure showing ionizer status on its LCD",
   },
   {
     id: "together",
-    eyebrow: "03 — The system",
-    title: "Chamber and control, presented cleanly",
-    body: "Two engineered pieces that work as one system — shown here as catalog objects so the product reads premium before anyone sees an install bay.",
+    eyebrow: "The system",
+    title: "Both pieces ship as one commissioned system",
+    body: "Chamber, control electronics, rechargeable battery and charger, and the copper / chlorine / pH testing kit — series confirmed to your volume before dispatch.",
     image: productPhotos.system,
-    imageAlt: "Zinc'd chamber and control as clean catalog products",
+    imageAlt: "The Zinc'd chamber and control together as catalog products",
   },
 ] as const;
 
@@ -163,9 +166,12 @@ export default function HomePage() {
                 <div className="relative mx-auto w-full max-w-sm lg:max-w-md lg:translate-y-6 xl:max-w-lg xl:translate-y-8">
                   <ProductFloat
                     src={productPhotos.chamber}
-                    alt="The Zinc'd stainless ionization chamber"
+                    alt="The Zinc'd stainless ionization chamber, wordmark and Cu–Ag–Zn badges on the housing"
                     priority
-                    sizes="(min-width: 1280px) 28vw, (min-width: 1024px) 36vw, 70vw"
+                    // The branded chamber is a landscape object; the default 3/4
+                    // box would letterbox it into a strip.
+                    aspectClassName="aspect-[8/5]"
+                    sizes="(min-width: 1280px) 32vw, (min-width: 1024px) 40vw, 78vw"
                   />
                 </div>
               </Reveal>
@@ -174,15 +180,52 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <CinematicChapters
-        chapters={[...storyStages]}
-        label="How Zinc'd changes a pool's chemistry program"
+      <PoolStoryPan
+        points={[...storyPoints]}
+        image={poolStoryPanorama.src}
+        imageAlt={poolStoryPanorama.alt}
+        label="How Zinc'd treats a pool — chamber, control, water chemistry"
       />
 
-      <HardwareScrollStage
-        beats={[...hardwareBeats]}
-        label="Zinc'd hardware — chamber, control, system"
-      />
+      {/* ============================ HARDWARE ============================ */}
+      <Section spacing="lg" background="muted" aria-label="Zinc'd hardware">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="The hardware"
+            title="Two engineered pieces, one system"
+            description="Specifications are typical and subject to model; final selection is confirmed against your circulation during assessment."
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {hardwareBeats.map((beat, i) => (
+            <Reveal key={beat.id} delay={i * 0.06}>
+              <article className="flex h-full flex-col overflow-hidden rounded-[var(--radius)] border border-border bg-surface">
+                {/* Landscape on phones so three stacked cards stay short; the
+                    taller catalog crop only kicks in once they sit side by side. */}
+                <div className="relative aspect-[16/9] border-b border-border bg-white md:aspect-[4/5]">
+                  <Image
+                    src={beat.image}
+                    alt={beat.imageAlt}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-contain p-4"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-5 md:p-6">
+                  <TechnicalLabel className="text-accent-aquatic">
+                    {beat.eyebrow}
+                  </TechnicalLabel>
+                  <h3 className="text-h3 mt-3 text-foreground">{beat.title}</h3>
+                  <p className="text-body mt-3 text-muted-foreground">
+                    {beat.body}
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
 
       {/* ============================ PROCESS FILM ============================ */}
       <MotionGraphicBand
@@ -371,7 +414,7 @@ export default function HomePage() {
       <CtaBand
         eyebrow="Next step"
         title="Assess a pool — or open a partner conversation"
-        body="Deep specs, install layouts, warranty, and FAQ live on the inner pages. This homepage is the experience; the rest of Zinc'd is the documentation US buyers and partners expect."
+        body="Send your volume, pipe size, and circulation details and we confirm the series before anything ships. Full specifications, install layouts, and warranty terms are on the product and technology pages."
         primary={siteConfig.ctas.assessment}
         secondary={siteConfig.ctas.distributor}
         highlightSecondary
