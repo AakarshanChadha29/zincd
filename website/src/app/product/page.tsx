@@ -7,6 +7,7 @@ import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechnicalLabel } from "@/components/ui/technical-label";
 import { StatusNote } from "@/components/ui/status-note";
+import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
@@ -55,7 +56,7 @@ export default function ProductPage() {
         description="A complete, engineered system for US pools: a stainless copper–silver–zinc ionization cell, microcontroller PWM control with LCD and monitoring, and a water-testing kit — sized Series-1 through Series-3, with custom multi-unit layouts for larger commercial volumes."
         actions={[
           { label: "Buy now", href: "/product#buy" },
-          { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href, variant: "outline" },
+          { label: siteConfig.ctas.calculator.shortLabel, href: siteConfig.ctas.calculator.href, variant: "outline" },
         ]}
         video={productHeroClip}
         aside={
@@ -155,6 +156,27 @@ export default function ProductPage() {
             </Reveal>
           ))}
         </div>
+        <Reveal delay={0.08}>
+          <div className="mt-8 flex flex-col items-start gap-3 rounded-[var(--radius)] border border-border bg-surface-muted/60 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <TechnicalLabel className="text-accent-aquatic">
+                Not sure which series?
+              </TechnicalLabel>
+              <p className="text-body mt-2 text-muted-foreground">
+                Estimate pool volume and see the handbook match in under a minute.
+              </p>
+            </div>
+            <Button
+              size="lg"
+              variant="outline"
+              className="shrink-0 rounded-[var(--radius-control)]"
+              render={<Link href="/calculator" />}
+            >
+              Open calculator
+              <ArrowUpRight className="size-4" aria-hidden />
+            </Button>
+          </div>
+        </Reveal>
         <Reveal delay={0.1}>
           <figure className="mt-12 overflow-hidden rounded-[var(--radius)] border border-border bg-surface shadow-[var(--shadow-1)]">
             <Image

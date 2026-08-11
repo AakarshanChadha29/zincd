@@ -29,6 +29,11 @@ export const siteConfig = {
       label: "Request a Pool Assessment",
       href: "/contact?intent=assessment",
     },
+    calculator: {
+      label: "Pool Series Calculator",
+      href: "/calculator",
+      shortLabel: "Calculator",
+    },
     distributor: {
       label: "Become a Distributor",
       href: "/distributors",
@@ -62,6 +67,7 @@ export const siteConfig = {
 export const primaryNavigation: NavItem[] = [
   { label: "Technology", href: "/technology" },
   { label: "Product", href: "/product" },
+  { label: "Calculator", href: "/calculator" },
   {
     label: "Applications",
     href: "/applications",
@@ -99,6 +105,7 @@ export const primaryNavigation: NavItem[] = [
 export const desktopPrimaryNav: NavItem[] = [
   { label: "Technology", href: "/technology" },
   { label: "Product", href: "/product" },
+  { label: "Calculator", href: "/calculator" },
   {
     label: "Applications",
     href: "/applications",
@@ -113,9 +120,18 @@ export const desktopPrimaryNav: NavItem[] = [
 export const footerExploreLinks: NavLink[] = [
   { label: "Technology", href: "/technology" },
   { label: "Product", href: "/product" },
+  { label: "Pool Series Calculator", href: "/calculator" },
   { label: "Applications", href: "/applications" },
   { label: "FAQ", href: "/faq" },
   { label: "About", href: "/about" },
+];
+
+export const footerB2cLinks: NavLink[] = [
+  { label: "Residential Applications", href: "/applications/residential" },
+  { label: "Fitness & Wellness", href: "/applications/fitness-wellness" },
+  { label: "Pool Series Calculator", href: "/calculator" },
+  { label: "Request a Pool Assessment", href: "/contact?intent=assessment" },
+  { label: "Talk to a Specialist", href: "/contact?intent=specialist" },
 ];
 
 export const footerB2bLinks: NavLink[] = [
@@ -126,13 +142,6 @@ export const footerB2bLinks: NavLink[] = [
     label: "Installation & Maintenance",
     href: "/installation-maintenance",
   },
-];
-
-export const footerB2cLinks: NavLink[] = [
-  { label: "Residential Applications", href: "/applications/residential" },
-  { label: "Fitness & Wellness", href: "/applications/fitness-wellness" },
-  { label: "Request a Pool Assessment", href: "/contact?intent=assessment" },
-  { label: "Talk to a Specialist", href: "/contact?intent=specialist" },
 ];
 
 export const footerLegalLinks: NavLink[] = [
