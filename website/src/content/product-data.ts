@@ -484,7 +484,7 @@ export const faqs = [
   },
   {
     q: "What pool sizes are supported?",
-    a: "Sizing follows the installer handbook: Series-1 (2″, roughly 20,000–70,000 L), Series-2 (2–4″, 70,000–100,000 L), Series-3 (4″, 100,000–150,000 L), and custom multi-unit layouts above 150,000 L. A pool assessment confirms the right series for your system.",
+    a: "Sizing follows the installer handbook: Series-1 (2″, roughly 20,000–70,000 L), Series-2 (2–4″, 70,000–100,000 L), Series-3 (4″, 100,000–150,000 L), and custom multi-unit layouts above 150,000 L. Use the Pool Series Calculator for a first estimate, then confirm during a pool assessment.",
   },
   {
     q: "Is there a connection to NASA?",

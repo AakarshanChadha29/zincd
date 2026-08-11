@@ -45,7 +45,7 @@ const topics = [
   {
     icon: Ruler,
     title: "Sizing & series",
-    body: "Series-1 through Series-3 plus custom multi-unit layouts — matched to volume and pipe size.",
+    body: "Series-1 through Series-3 plus custom multi-unit — start with the Pool Series Calculator, then confirm in assessment.",
   },
   {
     icon: Shield,
@@ -68,12 +68,8 @@ export default function FaqPage() {
         }
         description="We publish claims only when we can stand behind them with documentation. Clear answers for principals evaluating CapEx and for operators running the water day to day."
         actions={[
-          { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
-          {
-            label: siteConfig.ctas.distributor.label,
-            href: siteConfig.ctas.distributor.href,
-            variant: "partner",
-          },
+          { label: siteConfig.ctas.calculator.label, href: siteConfig.ctas.calculator.href },
+          { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href, variant: "outline" },
         ]}
         video={faqHeroClip}
       />

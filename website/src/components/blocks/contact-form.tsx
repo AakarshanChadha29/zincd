@@ -35,8 +35,17 @@ const fieldClass =
 export function ContactForm() {
   const params = useSearchParams();
   const intentParam = params.get("intent");
+  const seriesParam = params.get("series");
+  const volumeParam = params.get("volume");
   const defaultIntent =
     leadIntents.find((i) => i.value === intentParam)?.value ?? "assessment";
+
+  const defaultMessage =
+    seriesParam && volumeParam
+      ? `Calculator result: recommended ${seriesParam} for approximately ${Number(volumeParam).toLocaleString("en-US")} litres. Please confirm series and next steps for my pool.`
+      : seriesParam
+        ? `Calculator result: recommended ${seriesParam}. Please confirm series and next steps for my pool.`
+        : "";
 
   const [outcome, setOutcome] = useState<Outcome | null>(null);
 
@@ -49,7 +58,11 @@ export function ContactForm() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(leadSchema),
-    defaultValues: { intent: defaultIntent, company_website: "" },
+    defaultValues: {
+      intent: defaultIntent,
+      company_website: "",
+      message: defaultMessage,
+    },
   });
 
   // `useWatch` rather than `watch()` — the latter returns a fresh function on

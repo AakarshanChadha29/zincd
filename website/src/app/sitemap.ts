@@ -6,6 +6,7 @@ const routes = [
   "/",
   "/technology",
   "/product",
+  "/calculator",
   "/distributors",
   "/applications",
   "/applications/residential",
@@ -34,7 +35,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:
       path === "/"
         ? 1
-        : path === "/product" || path === "/distributors" || path === "/technology"
+        : path === "/product" ||
+            path === "/calculator" ||
+            path === "/distributors" ||
+            path === "/technology"
           ? 0.9
           : 0.7,
   }));
