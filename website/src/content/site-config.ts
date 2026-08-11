@@ -53,14 +53,23 @@ export const siteConfig = {
     },
   },
   /**
-   * Production site URL should be supplied via NEXT_PUBLIC_SITE_URL.
-   * Local fallback avoids build failures; do not treat as confirmed domain.
+   * Production site URL, used for canonicals, OG URLs, sitemap and JSON-LD.
+   *
+   * NEXT_PUBLIC_SITE_URL wins. Falling straight through to localhost was a
+   * silent SEO hazard: with the variable unset in production every canonical
+   * tag, sitemap entry and JSON-LD url would have published as
+   * http://localhost:3000. Vercel's own production hostname is used as a
+   * safety net before that fallback — metadata is generated server-side, so
+   * the unprefixed platform variable is readable here.
    */
   getSiteUrl(): string {
-    return (
-      process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-      "http://localhost:3000"
-    );
+    const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+    if (explicit) return explicit.replace(/\/$/, "");
+
+    const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+    if (vercelHost) return `https://${vercelHost.replace(/\/$/, "")}`;
+
+    return "http://localhost:3000";
   },
 } as const;
 

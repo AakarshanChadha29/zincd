@@ -28,7 +28,7 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Product — Zinc'd Pool Ionization System (US)",
+  title: "Pool Ionizer System — Specs, Series & What's Included",
   description:
     "Buy the Zinc'd copper–silver–zinc pool ionization system: stainless cell, PWM control, monitoring, and testing kit. Series-1 to Series-3 plus custom multi-unit. $5,000 complete system.",
   path: "/product",
@@ -281,7 +281,7 @@ export default function ProductPage() {
                 as="h2"
                 eyebrow="Own one"
                 title="Buy the system outright"
-                description="For a single pool, the complete Zinc'd system is available direct at $5,000. Set your Stripe checkout URL to unlock Buy now — or request an assessment and we'll match the series first."
+                description="For a single pool, the complete Zinc'd system is available direct at $5,000 — cell, control electronics, battery and charger, and the water-testing kit. Start with an assessment and we'll match the series to your circulation first."
               />
               <div className="mt-8 rounded-[var(--radius-panel)] border border-border bg-surface p-6">
                 <p className="text-body text-foreground">
