@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="95mm" height="57mm"
+     viewBox="0 0 95 57" role="img" aria-labelledby="title desc">
+  <title id="title">Zinc'd LLC business card back — Sukhvir Singh Josan</title>
+  <desc id="desc">Trim size 89 × 51 mm with 3 mm bleed on every edge. Text remains editable.</desc>
+  <metadata>CMYK intent: charcoal (70, 60, 50, 75); metallic silver spot ink with process fallback (0, 0, 0, 24); electric blue (100, 64, 0, 0).</metadata>
+  <rect width="95" height="57" fill="#202326" data-cmyk="(70, 60, 50, 75)"/>
+  <g fill="#C7CBD0" font-family="Inter, sans-serif" data-ink="Metallic Silver">
+    <text x="10" y="14.8" font-size="3.81" font-weight="600">Sukhvir Singh Josan</text>
+    <text x="10" y="19.2" font-size="2.19" font-weight="500">Founder</text>
+    <text x="10" y="28.6" font-size="2.20">[PHONE]</text>
+    <text x="10" y="32.85" font-size="2.20">[EMAIL]</text>
+    <text x="10" y="37.1" font-size="2.20">www.zincd.net</text>
+    <text x="10" y="40.9" font-size="2.20">13613 Meridian Avenue East, Suite 250</text>
+    <text x="10" y="44.7" font-size="2.20">Puyallup, WA 98373</text>
+  </g>
+  <line x1="10" y1="22.9" x2="30" y2="22.9" stroke="#087CFF" stroke-width="0.55" data-cmyk="(100, 64, 0, 0)"/>
+  <g transform="translate(69.5 20)" fill="none" stroke="#C7CBD0" stroke-width="0.32" data-ink="Metallic Silver">
+    <rect width="17" height="17"/>
+    <rect x="2.04" y="2.04" width="4.25" height="4.25"/>
+    <rect x="10.71" y="2.04" width="4.25" height="4.25"/>
+    <rect x="2.04" y="10.71" width="4.25" height="4.25"/>
+    <rect x="3.23" y="3.23" width="1.87" height="1.87" fill="#C7CBD0" stroke="none"/>
+    <rect x="11.90" y="3.23" width="1.87" height="1.87" fill="#C7CBD0" stroke="none"/>
+    <rect x="3.23" y="11.90" width="1.87" height="1.87" fill="#C7CBD0" stroke="none"/>
+    <text x="8.5" y="9.25" text-anchor="middle" fill="#C7CBD0" stroke="none"
+          font-family="Inter, sans-serif" font-size="1.59" font-weight="500">[QR CODE]</text>
+  </g>
+  <g fill="none" stroke="#C7CBD0" stroke-width="1.15" stroke-linecap="square" data-ink="Metallic Silver">
+    <path d="M77 41H83.5L77 47.5H83.5"/>
+  </g>
+</svg>
