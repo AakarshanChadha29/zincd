@@ -70,18 +70,36 @@ export const motionGraphics = {
   chamberCutaway: chamberCutawayFilm,
 } as const;
 
-/** Real / polished product photography — prefer wire-free clean catalog assets. */
+/**
+ * Product photography — the Zinc'd-branded set.
+ *
+ * Every asset here shows the hardware as it actually ships: the chamber carries
+ * the Zinc'd wordmark and Cu/Ag/Zn badges, and the control's LCD copy is kept
+ * consistent with the published specs in product-data.ts (it must never display
+ * a voltage that contradicts the 24 V DC operating figure).
+ */
 export const productPhotos = {
-  system: "/img/clean/system-cutout.png",
-  chamber: "/img/clean/chamber-cutout.png",
-  systemStudio: "/img/clean/system.jpg",
-  chamberStudio: "/img/clean/chamber.jpg",
-  control: "/img/clean/control.jpg",
-  install: "/img/clean/install.jpg",
-  /** Alternate polished stills for pages that should not reuse /clean assets. */
-  systemDark: "/img/polished/system-black.jpg",
-  controlAngled: "/img/polished/control-angled.jpg",
+  /** Chamber + control as clean catalog objects, true alpha. */
+  system: "/img/clean/system-zincd-cutout.png",
+  /** Branded chamber, true alpha — for floats over film. */
+  chamber: "/img/clean/chamber-zincd-cutout.png",
+  /** Branded chamber on a studio plate. */
+  chamberStudio: "/img/clean/chamber-zincd.jpg",
+  /** Chamber + control on a studio plate. */
+  systemStudio: "/img/clean/system-zincd.jpg",
+  /** Control enclosure — LCD reads status, not a voltage. */
+  control: "/img/clean/control-zincd.jpg",
+  /** Commissioned install: chamber inline on the loop, control wired above. */
+  install: "/img/clean/system-installed.jpg",
+  /** Second control angle for pages that should not repeat the catalog shot. */
+  controlAngled: "/img/clean/control-zincd.jpg",
   chamberLegacy: "/img/product-chamber.jpg",
+} as const;
+
+/** Homepage story panorama — one continuous frame panned across three points. */
+export const poolStoryPanorama = {
+  src: "/img/story/pool-panorama.jpg",
+  alt: "A modern villa's infinity pool running from the deck edge out to the ocean horizon",
 } as const;
 
 /** Environment / lifestyle stills — keep product shots off application cards. */
@@ -102,20 +120,20 @@ export const productStills = {
   /** Product page gallery only — no lifestyle/install repeats from Home. */
   gallery: [
     {
-      src: "/img/clean/chamber.jpg",
-      alt: "Polished stainless Zinc'd water chamber on a clean studio background.",
+      src: "/img/clean/chamber-zincd.jpg",
+      alt: "The Zinc'd stainless water chamber, wordmark and Cu–Ag–Zn badges on the housing.",
     },
     {
-      src: "/img/clean/control.jpg",
-      alt: "Zinc'd control enclosure — catalog view without exposed wiring.",
+      src: "/img/clean/control-zincd.jpg",
+      alt: "The Zinc'd control enclosure, LCD showing ionizer status and output level.",
     },
     {
-      src: "/img/clean/system.jpg",
-      alt: "Zinc'd chamber and control as separate clean catalog products.",
+      src: "/img/clean/system-zincd.jpg",
+      alt: "The Zinc'd chamber and control together as catalog products.",
     },
     {
-      src: "/img/polished/control-angled.jpg",
-      alt: "Angled view of the Zinc'd control enclosure.",
+      src: "/img/clean/system-installed.jpg",
+      alt: "A commissioned Zinc'd install — chamber inline on the circulation loop, control wired above.",
     },
   ],
 } as const;
