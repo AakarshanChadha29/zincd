@@ -16,11 +16,11 @@ import { cn } from "@/lib/cn";
 import {
   capacityToLitres,
   formatVolume,
-  gallonsFromDimensions,
   gallonsFromLitres,
-  litresFromGallons,
+  litresFromDimensions,
   poolShapes,
   recommendSeries,
+  seriesLadder,
   type CapacityUnit,
   type LengthUnit,
   type PoolShape,
@@ -243,7 +243,9 @@ export function PoolSeriesCalculator() {
       return { litres: 0, gallons: 0, recommendation: recommendSeries(0) };
     }
 
-    const gallons = gallonsFromDimensions({
+    // Evaluated in the unit the visitor typed, so the figure shown always
+    // matches the formula printed under the inputs.
+    const litres = litresFromDimensions({
       shape,
       length: values.length,
       width: values.width,
@@ -251,10 +253,9 @@ export function PoolSeriesCalculator() {
       diameter: values.diameter,
       unit: lengthUnit,
     });
-    const litres = litresFromGallons(gallons);
     return {
       litres,
-      gallons,
+      gallons: gallonsFromLitres(litres),
       recommendation: recommendSeries(litres),
     };
   }, [
@@ -283,46 +284,54 @@ export function PoolSeriesCalculator() {
 
   return (
     <div className="relative">
-      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] lg:gap-12 xl:gap-16">
-        {/* Copy column */}
-        <div className="relative min-w-0 lg:pt-4">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -left-16 bottom-0 hidden h-72 w-72 opacity-40 lg:block"
-          >
-            <EcoRipple className="h-full w-full text-accent-aquatic" />
-          </div>
-          <TechnicalLabel className="text-accent-aquatic">
-            Zinc&apos;d system sizing
-          </TechnicalLabel>
-          <h1 className="text-display mt-4 max-w-xl text-foreground">
-            Size the water.{" "}
-            <span className="text-gradient-aqua">Match the system.</span>
-          </h1>
-          <p className="text-body-large mt-5 max-w-md text-muted-foreground">
-            Calculate your pool&apos;s capacity and get the recommended Zinc&apos;d
-            series in under a minute.
-          </p>
-          <div className="mt-10 flex max-w-md items-start gap-3 border-y border-border py-4">
-            <Info
-              className="mt-0.5 size-4 shrink-0 text-accent-aquatic"
-              aria-hidden
-            />
-            <p className="text-small text-muted-foreground">
-              Use average depth: shallow end + deep end, divided by 2.
-            </p>
-          </div>
+      {/* Header runs full width. Previously it sat in its own column beside the
+          form, and because it was much shorter it left a tall empty block on
+          desktop — the two columns below are now both substantial, so neither
+          side runs out of content. */}
+      <header className="relative max-w-3xl">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-20 -top-10 hidden h-64 w-64 opacity-30 lg:block"
+        >
+          <EcoRipple className="h-full w-full text-accent-aquatic" />
         </div>
-
-        {/* Calculator card */}
-        <div className="relative min-w-0">
-          <div
+        <TechnicalLabel className="relative text-accent-aquatic">
+          Zinc&apos;d pool sizing calculator
+        </TechnicalLabel>
+        <h1 className="text-display relative mt-4 text-foreground">
+          What size pool ionizer{" "}
+          <span className="text-gradient-aqua">do I need?</span>
+        </h1>
+        <p className="text-body-large relative mt-5 max-w-2xl text-muted-foreground">
+          Enter your pool&apos;s measurements to estimate its capacity in US
+          gallons, then see which Zinc&apos;d series matches — Series-1 through
+          commercial multi-unit. Takes about a minute.
+        </p>
+        <div className="relative mt-8 flex max-w-2xl items-start gap-3 border-y border-border py-4">
+          <Info
+            className="mt-0.5 size-4 shrink-0 text-accent-aquatic"
             aria-hidden
-            className="pointer-events-none absolute -inset-6 -z-10 rounded-[calc(var(--radius)+1.5rem)] bg-[radial-gradient(ellipse_at_top,rgb(20_184_166/0.12),transparent_55%)]"
           />
-          <div className="overflow-hidden rounded-[var(--radius)] border border-border-strong bg-surface-elevated shadow-[var(--shadow-2)]">
-            {/* Step 01 */}
-            <div className="border-b border-border p-6 md:p-8">
+          <p className="text-small text-muted-foreground">
+            Use <strong className="font-semibold text-foreground">average
+            depth</strong> — shallow end plus deep end, divided by two.
+          </p>
+        </div>
+      </header>
+
+      {/* Form and result are full-width rows rather than side-by-side columns.
+          Two columns of unequal content left ~225px of dead space under the
+          shorter one on desktop; stacked rows cannot develop that gap, and the
+          two halves inside each row share one background so any height
+          difference is absorbed instead of showing as a hole. */}
+      <div className="relative mt-10">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -inset-6 -z-10 rounded-[calc(var(--radius)+1.5rem)] bg-[radial-gradient(ellipse_at_top,rgb(20_184_166/0.12),transparent_55%)]"
+        />
+        <div className="overflow-hidden rounded-[var(--radius)] border border-border-strong bg-surface-elevated shadow-[var(--shadow-2)] lg:grid lg:grid-cols-2">
+          {/* Step 01 */}
+          <div className="border-b border-border p-6 md:p-8 lg:border-b-0 lg:border-r">
               <div className="flex items-baseline gap-3">
                 <span className="text-technical text-accent-aquatic">01</span>
                 <TechnicalLabel>Pool shape</TechnicalLabel>
@@ -493,86 +502,124 @@ export function PoolSeriesCalculator() {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Result band */}
+      {/* Result band — full width, two halves on one shared background. */}
       <div
         aria-live="polite"
-        className="mt-8 overflow-hidden rounded-[var(--radius)] border border-border-strong bg-[linear-gradient(135deg,var(--teal-900)_0%,var(--teal-800)_48%,var(--teal-700)_100%)] shadow-[var(--shadow-2)]"
+        className="relative mt-6 overflow-hidden rounded-[var(--radius)] border border-border-strong bg-[linear-gradient(150deg,var(--teal-900)_0%,var(--teal-800)_52%,var(--teal-700)_100%)] shadow-[var(--shadow-2)]"
       >
-        <div className="grid gap-0 lg:grid-cols-[1fr_1.1fr]">
-          <div className="relative border-b border-white/10 p-7 md:p-8 lg:border-b-0 lg:border-r">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -right-8 -top-8 opacity-20"
-            >
-              <Waves className="size-28 text-white" strokeWidth={1} />
-            </div>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-10 -top-10 opacity-15"
+        >
+          <Waves className="size-40 text-white" strokeWidth={1} />
+        </div>
+
+        <div className="relative grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          {/* Capacity + match — US gallons lead for a US market. */}
+          <div className="border-b border-white/10 p-6 md:p-8 lg:border-b-0 lg:border-r">
             <TechnicalLabel className="text-[color:var(--aqua-400)]">
               Estimated pool capacity
             </TechnicalLabel>
-            <div className="mt-4 flex items-baseline gap-3">
+            <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <strong className="text-display tabular-nums text-white">
-                {hasVolume ? formatVolume(result.litres) : "—"}
+                {hasVolume ? formatVolume(result.gallons) : "—"}
               </strong>
-              <span className="text-technical text-white/70">Litres</span>
+              <span className="text-technical text-white/70">US gallons</span>
             </div>
-            <p className="text-body mt-2 text-white/65">
+            <p className="text-body mt-1 text-white/60">
               {hasVolume
-                ? `${formatVolume(result.gallons)} US gallons`
-                : "Enter valid measurements"}
+                ? `${formatVolume(result.litres)} litres`
+                : "Enter your pool measurements"}
             </p>
-          </div>
 
-          <div className="p-7 md:p-8">
+            <hr className="my-6 border-white/10" />
+
             <TechnicalLabel className="text-[color:var(--aqua-400)]">
-              Recommended Zinc&apos;d system
+              Your recommended system
             </TechnicalLabel>
             <div className="mt-3 flex flex-wrap items-center gap-3">
               <h2 className="text-h1 text-white">
                 {hasVolume ? rec.series : "—"}
               </h2>
               {hasVolume ? (
-                <span className="rounded-full border border-[color:var(--aqua-400)]/40 bg-white/10 px-3 py-1 text-[0.7rem] font-semibold tracking-[0.12em] text-[color:var(--aqua-400)] uppercase">
+                <span className="rounded-full border border-[color:var(--aqua-400)]/40 bg-white/10 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[color:var(--aqua-400)]">
                   Best match
                 </span>
               ) : null}
             </div>
-
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              {[
-                { label: "Pool category", value: hasVolume ? rec.category : "—" },
-                { label: "Pipe size", value: hasVolume ? rec.pipe : "—" },
-                { label: "Volume band", value: hasVolume ? rec.range : "—" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-[var(--radius-control)] border border-white/10 bg-white/5 px-3 py-3"
-                >
-                  <span className="text-technical block text-white/50">
-                    {item.label}
-                  </span>
-                  <b className="text-small mt-1 block font-semibold text-white">
-                    {item.value}
-                  </b>
-                </div>
-              ))}
-            </div>
+            <p className="text-body mt-2 text-white/70">
+              {hasVolume
+                ? `${rec.category} · ${rec.pipe} circulation line`
+                : "Your match appears here as you type."}
+            </p>
 
             {rec.caution && hasVolume ? (
-              <p className="text-small mt-4 text-[color:var(--aqua-400)]">
-                Volume is below the published sizing range. Confirm Series-1
-                suitability during assessment.
+              <p className="text-small mt-4 rounded-[var(--radius-control)] border border-[color:var(--aqua-400)]/30 bg-white/5 px-4 py-3 text-[color:var(--aqua-400)]">
+                This volume sits below the published Series-1 range. We&apos;ll
+                confirm suitability during your assessment.
               </p>
             ) : null}
+          </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          {/* Comparison + next step */}
+          <div className="p-6 md:p-8">
+            {/* The full ladder, so the match is visible in context rather than
+                asserted on its own. */}
+            <div>
+              <TechnicalLabel className="text-white/45">
+                How the series compare
+              </TechnicalLabel>
+              <ul className="mt-3 space-y-1.5">
+                {seriesLadder.map((tier) => {
+                  const active = hasVolume && tier.series === rec.series;
+                  return (
+                    <li
+                      key={tier.series}
+                      aria-current={active ? "true" : undefined}
+                      className={cn(
+                        "flex items-baseline gap-x-3 rounded-[var(--radius-control)] border px-3.5 py-2.5 transition-colors",
+                        active
+                          ? "border-[color:var(--aqua-400)]/50 bg-[color:var(--aqua-400)]/12"
+                          : "border-white/10 bg-white/[0.03]"
+                      )}
+                    >
+                      <b
+                        className={cn(
+                          "text-small shrink-0 font-semibold",
+                          active ? "text-[color:var(--aqua-400)]" : "text-white/85"
+                        )}
+                      >
+                        {tier.series}
+                      </b>
+                      {/* One line per tier. The pipe size drops away on the
+                          narrowest screens rather than wrapping or squeezing
+                          the volume range into an ellipsis — the range is the
+                          number people are matching against. */}
+                      <span
+                        className={cn(
+                          "text-small flex-1 whitespace-nowrap text-right tabular-nums",
+                          active ? "text-white" : "text-white/60"
+                        )}
+                      >
+                        {tier.gallons}
+                      </span>
+                      <span className="text-small hidden w-16 shrink-0 whitespace-nowrap text-right text-white/40 sm:inline">
+                        {tier.pipe}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button
                 size="lg"
                 className="rounded-[var(--radius-control)] bg-white text-[color:var(--teal-900)] hover:bg-white/90"
                 render={<Link href={assessmentHref} />}
               >
-                Request a pool assessment
+                Get my free pool assessment
                 <ArrowRight className="size-4" aria-hidden />
               </Button>
               <Button
@@ -581,17 +628,17 @@ export function PoolSeriesCalculator() {
                 className="rounded-[var(--radius-control)] border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
                 render={<Link href="/product#buy" />}
               >
-                View product
+                View the system
               </Button>
             </div>
+
+            <p className="text-small mt-5 text-white/45">
+              Capacity is an estimate. We confirm measurements, pipe size, and
+              final selection before anything ships.
+            </p>
           </div>
         </div>
       </div>
-
-      <p className="text-small mt-4 text-center text-accent-steel md:text-left">
-        Capacity is an estimate. Confirm measurements, pipe size, and final
-        system selection before installation.
-      </p>
     </div>
   );
 }

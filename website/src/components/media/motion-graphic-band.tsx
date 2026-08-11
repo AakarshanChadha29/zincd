@@ -112,7 +112,10 @@ export function MotionGraphicBand({
     <section
       ref={sectionRef}
       className={cn(
-        "relative flex min-h-[min(70vh,32rem)] items-end overflow-hidden border-y border-border",
+        // Shorter on phones. At 70vh with the copy bottom-aligned, the abstract
+        // footage above it read as dead space on a narrow screen rather than as
+        // a deliberate cinematic band.
+        "relative flex min-h-[min(52vh,22rem)] items-end overflow-hidden border-y border-border md:min-h-[min(70vh,32rem)]",
         className
       )}
     >
@@ -162,7 +165,7 @@ export function MotionGraphicBand({
           Play film
         </button>
       ) : null}
-      <Container className="relative z-[2] pb-14 pt-24 md:pb-20">
+      <Container className="relative z-[2] pb-10 pt-16 md:pb-20 md:pt-24">
         <Reveal>
           <div className="max-w-xl space-y-4">
             <TechnicalLabel
