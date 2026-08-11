@@ -44,7 +44,8 @@ export type PoolStoryPoint = {
   focus: number;
 };
 
-const PANORAMA_ASPECT = 4096 / 1109;
+/** Must match the shipped panorama exactly — the pan distance derives from it. */
+const PANORAMA_ASPECT = 4096 / 1258;
 
 export function PoolStoryPan({
   points,
@@ -142,16 +143,29 @@ export function PoolStoryPan({
           />
         </motion.div>
 
-        {/* Scrim: dense at the base where the type sits, easing off toward the
-            top so the water and sky still read as a photograph. */}
+        {/* Two-part scrim. The vertical pass keeps the base dark enough for
+            type; the horizontal pass weights the left, where the copy column
+            sits, so a headline never lands on a bright patch of water as the
+            panorama travels underneath it. */}
         <div
           aria-hidden
           className="absolute inset-0 bg-[linear-gradient(to_top,rgb(4_32_38/0.94)_0%,rgb(4_32_38/0.82)_30%,rgb(4_32_38/0.42)_60%,rgb(4_32_38/0.16)_100%)]"
         />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-[linear-gradient(to_right,rgb(4_32_38/0.72)_0%,rgb(4_32_38/0.40)_38%,transparent_70%)]"
+        />
 
         <div className="absolute inset-0 flex items-end pb-14 md:pb-20">
           <Container>
-            <div className="relative min-h-[15rem] max-w-2xl md:min-h-[16rem]">
+            {/* Each point is absolutely positioned so they can crossfade in
+                place, which means this box must reserve room for the TALLEST
+                of them. Undersized, the longest point overflowed and its body
+                copy ran straight through the progress rail below, reading as a
+                strikethrough. Measured tallest copy: 319px at 390w, 233px at
+                768w, 362px at 1440w — the display type scales up, so the
+                desktop value is the largest. */}
+            <div className="relative min-h-[21rem] max-w-2xl md:min-h-[16rem] lg:min-h-[24rem]">
               {points.map((point, index) => (
                 <PointCopy
                   key={point.id}

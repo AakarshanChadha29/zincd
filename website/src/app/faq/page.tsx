@@ -144,8 +144,8 @@ export default function FaqPage() {
       </Section>
 
       <MotionGraphicBand
-        src={motionGraphics.ionsWater.src}
-        poster={motionGraphics.ionsWater.poster}
+        src={motionGraphics.waterIons.src}
+        poster={motionGraphics.waterIons.poster}
         eyebrow="Still unsure?"
         title="Ask about your pool, not a brochure"
         body="Every system is matched to volume and circulation. If the FAQ doesn't cover your case, talk to a specialist — or open a partner conversation."

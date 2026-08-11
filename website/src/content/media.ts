@@ -42,13 +42,26 @@ export const faqHeroClip = heroVideos.swimmer;
 export const contactHeroClip = heroVideos.estate;
 
 /**
- * Motion graphic loops — spread across pages so each route has a distinct film.
- * Heavy loops (water-ions 10MB, water-story 5MB) stay off the critical path.
+ * Motion graphic loops. One distinct film per route — `ionsWater` was
+ * previously running on the homepage, the calculator and the FAQ, which made
+ * three separate pages read as the same page. `waterIons` and `waterStory`
+ * were already in the repo but unreferenced; they now carry two of those
+ * routes. See `motionGraphicByRoute` below for the assignment.
  */
 export const motionGraphics = {
   ionsWater: {
     src: "/video/mg-ions-water.mp4",
     poster: "/video/mg-ions-water.jpg",
+  },
+  /** Sunlit pool caustics — was unused. */
+  waterIons: {
+    src: "/video/mg-water-ions.mp4",
+    poster: "/video/mg-water-ions.jpg",
+  },
+  /** Stainless outlet pouring clear water — was unused. */
+  waterStory: {
+    src: "/video/mg-water-story.mp4",
+    poster: "/video/mg-water-story.jpg",
   },
   chamber: {
     src: "/video/mg-chamber.mp4",

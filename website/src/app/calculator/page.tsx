@@ -43,8 +43,8 @@ export default function CalculatorPage() {
       </section>
 
       <MotionGraphicBand
-        src={motionGraphics.ionsWater.src}
-        poster={motionGraphics.ionsWater.poster}
+        src={motionGraphics.waterStory.src}
+        poster={motionGraphics.waterStory.poster}
         eyebrow="How sizing works"
         title="Volume and pipe size decide the series"
         body="Two numbers drive the match: how much water your pool holds, and the size of your circulation line. The bands below come straight from the installer handbook — we confirm both against your equipment pad before anything ships."

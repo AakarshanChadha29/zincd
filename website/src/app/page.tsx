@@ -188,13 +188,31 @@ export default function HomePage() {
       />
 
       {/* ============================ HARDWARE ============================ */}
-      <Section spacing="lg" background="muted" aria-label="Zinc'd hardware">
+      {/* A flat muted fill met the dark panorama with a hard edge. This carries
+          the teal down out of the photograph and dissolves it into pearl, then
+          sits the cards on a faint grid and aquatic glow so the band reads as a
+          designed surface rather than an empty swatch. */}
+      <section
+        aria-label="Zinc'd hardware"
+        className="relative overflow-hidden border-b border-border bg-[color:var(--pearl)]"
+      >
+        {/* Deep enough to carry the whole heading block. A shorter gradient put
+            the description right on the fade boundary, where white type had
+            almost no contrast left to sit on. */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 h-[27rem] bg-[linear-gradient(to_bottom,rgb(10_61_66/0.96)_0%,rgb(10_61_66/0.93)_42%,rgb(10_61_66/0.62)_64%,rgb(10_61_66/0.18)_85%,transparent_100%)]"
+        />
+        <div aria-hidden className="absolute inset-0 bg-grid opacity-70" />
+        <div aria-hidden className="absolute inset-0 hero-aura opacity-80" />
+        <Container className="relative py-16 md:py-24">
         <Reveal>
           <SectionHeading
             as="h2"
             eyebrow="The hardware"
             title="Two engineered pieces, one system"
             description="Specifications are typical and subject to model; final selection is confirmed against your circulation during assessment."
+            className="[&_h2]:text-white [&_p]:text-white/75"
           />
         </Reveal>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -225,7 +243,8 @@ export default function HomePage() {
             </Reveal>
           ))}
         </div>
-      </Section>
+        </Container>
+      </section>
 
       {/* ============================ PROCESS FILM ============================ */}
       <MotionGraphicBand
