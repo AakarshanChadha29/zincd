@@ -532,3 +532,11 @@
     animation: none;
   }
 }
+
+@media print {
+  body:has([data-print-sheet]) header,
+  body:has([data-print-sheet]) footer,
+  body:has([data-print-sheet]) .skip-link {
+    display: none !important;
+  }
+}

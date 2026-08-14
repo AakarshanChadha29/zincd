@@ -49,8 +49,8 @@ const paths = [
     icon: Handshake,
     title: "Distributors & partners",
     body: "Explore carrying Zinc'd — high-ticket add-on for the customers you already service or supply.",
-    href: "/contact?intent=partner",
-    cta: "Partner conversation",
+    href: "/apply",
+    cta: "Apply as a distributor",
   },
 ];
 
@@ -88,7 +88,7 @@ export default function ContactPage() {
           { label: "Request an assessment", href: "/contact?intent=assessment" },
           {
             label: siteConfig.ctas.distributor.label,
-            href: "/contact?intent=partner",
+            href: "/apply",
             variant: "partner",
           },
         ]}
@@ -102,8 +102,8 @@ export default function ContactPage() {
           <SectionHeading
             as="h2"
             eyebrow="Choose your path"
-            title="Three doors. One form."
-            description="Pick the conversation that matches why you're here — the form below will follow."
+            title="Three doors. The right next step."
+            description="Pick the conversation that matches why you're here — assessment and specialist questions use the form below; distributor applications have their own short form."
           />
         </Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">

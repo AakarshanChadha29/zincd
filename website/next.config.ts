@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  async redirects() {
+    return [
+      {
+        source: "/distributors/apply",
+        destination: "/apply",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

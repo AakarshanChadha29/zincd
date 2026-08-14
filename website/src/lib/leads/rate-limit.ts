@@ -9,7 +9,7 @@
  *
  * The durable fix is edge-level and needs no code: add a rate-limit rule to
  * Vercel's Firewall (Project → Firewall → Rate Limiting) targeting
- * `/api/leads`. A shared store such as Upstash Redis would also work, but adds
+ * `/api/leads` and `/api/distributor-leads`. A shared store such as Upstash Redis would also work, but adds
  * a dependency and a hosted service. See docs/project-status.md.
  */
 

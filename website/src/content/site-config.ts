@@ -40,8 +40,8 @@ export const siteConfig = {
       shortLabel: "Distributors",
     },
     distributorContact: {
-      label: "Start a Partner Conversation",
-      href: "/contact?intent=partner",
+      label: "Apply as a Distributor",
+      href: "/apply",
     },
     technology: {
       label: "Explore the Technology",
@@ -145,6 +145,7 @@ export const footerB2cLinks: NavLink[] = [
 
 export const footerB2bLinks: NavLink[] = [
   { label: "Distributors & Partners", href: "/distributors" },
+  { label: "Apply as a Distributor", href: "/apply" },
   { label: "Commercial Applications", href: "/applications/commercial" },
   { label: "Hotels & Resorts", href: "/applications/hotels-resorts" },
   {

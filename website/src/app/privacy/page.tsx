@@ -19,16 +19,17 @@ export default function PrivacyPage() {
     >
       <LegalBlock heading="Information we collect">
         <p>
-          When you submit an enquiry, we may collect the details you provide, such as
-          your name, email address, organization and message. We may also collect
-          standard analytics about how the site is used.
+          When you submit an enquiry or a distributor application, we may collect
+          the details you provide — such as your name, email, phone, company,
+          location, territory, portfolio, and partnership interest. We may also
+          collect standard analytics about how the site is used.
         </p>
       </LegalBlock>
       <LegalBlock heading="How we use information">
         <p>
-          Enquiry details are used to respond to your request and, where relevant,
-          to follow up about a pool assessment or partnership. Analytics help us
-          understand and improve the website.
+          Enquiry and distributor-application details are used to respond to your
+          request and, where relevant, to follow up about a pool assessment or
+          partnership. Analytics help us understand and improve the website.
         </p>
       </LegalBlock>
       <LegalBlock heading="Sharing">
