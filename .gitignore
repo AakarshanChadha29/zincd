@@ -6,8 +6,8 @@ source/client/
 # Reference implementations (local only, reference-only)
 reference/
 
-# Installed Cursor skill files (keep .cursor rules/config, exclude skills)
-.cursor/skills/
+# Local Cursor config and installed rules/skills — keep on disk, never commit
+.cursor/
 
 # Dependencies
 node_modules/
@@ -54,9 +54,10 @@ Thumbs.db
 *.swp
 *.swo
 
-# Agent skills installed via `npx skills add` (vendor-managed, not our source)
+# Agent skills/agents installed via `npx skills add` (local only, not our source)
 .agents/
 .claude/skills/
+.claude/agents/
 
 # Local Vercel CLI link metadata (never commit)
 .vercel/
