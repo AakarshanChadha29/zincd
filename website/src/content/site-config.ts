@@ -146,6 +146,7 @@ export const footerB2cLinks: NavLink[] = [
 export const footerB2bLinks: NavLink[] = [
   { label: "Distributors & Partners", href: "/distributors" },
   { label: "Apply as a Distributor", href: "/apply" },
+  { label: "Distributor QR", href: "/distributors/qr" },
   { label: "Commercial Applications", href: "/applications/commercial" },
   { label: "Hotels & Resorts", href: "/applications/hotels-resorts" },
   {

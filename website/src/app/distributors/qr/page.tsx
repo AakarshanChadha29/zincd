@@ -1,10 +1,6 @@
-import { siteConfig } from "@/content/site-config";
-import { createPageMetadata } from "@/lib/metadata";
-import { distributorApplyQrSvg } from "@/lib/qr";
 import { ZincdLogo } from "@/components/brand/zincd-logo";
-import { PrintQrButton } from "@/components/blocks/print-qr-button";
-
-const APPLY_PATH = "/apply";
+import { DistributorApplyQr } from "@/components/blocks/distributor-apply-qr";
+import { createPageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
 
@@ -15,15 +11,9 @@ export const metadata = createPageMetadata({
   noIndex: true,
 });
 
-export default async function DistributorQrPage() {
-  const applyUrl = `${siteConfig.getSiteUrl()}${APPLY_PATH}`;
-  const svg = await distributorApplyQrSvg(applyUrl);
-
+export default function DistributorQrPage() {
   return (
-    <section
-      data-print-sheet
-      className="bg-surface py-10 md:py-16 print:py-8"
-    >
+    <section data-print-sheet className="bg-surface py-10 md:py-16 print:py-8">
       <div className="mx-auto flex max-w-xl flex-col items-center px-[var(--page-gutter)] text-center print:max-w-none">
         <ZincdLogo href={null} size="hero" />
         <p className="text-technical mt-8 text-accent-aquatic">Scan to apply</p>
@@ -34,18 +24,7 @@ export default async function DistributorQrPage() {
           Company, territory, portfolio, and how you want to partner — sent
           straight to the Zinc&apos;d team.
         </p>
-        <div
-          className="mt-8 w-full max-w-[22rem] rounded-[var(--radius-panel)] border border-border bg-white p-6 shadow-[var(--shadow-1)] print:border-0 print:p-0 print:shadow-none [&_svg]:h-auto [&_svg]:w-full"
-          dangerouslySetInnerHTML={{ __html: svg }}
-        />
-        <p className="text-technical mt-6 break-all text-accent-aquatic">
-          {applyUrl}
-        </p>
-        <p className="text-small mt-8 text-muted-foreground print:hidden">
-          Print this page for booths, brochures, and leave-behinds. The code
-          opens the short distributor form.
-        </p>
-        <PrintQrButton />
+        <DistributorApplyQr variant="print" className="mt-8 w-full" />
       </div>
     </section>
   );

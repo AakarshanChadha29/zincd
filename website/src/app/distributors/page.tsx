@@ -12,6 +12,7 @@ import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessSteps } from "@/components/blocks/process-steps";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
+import { DistributorApplyQr } from "@/components/blocks/distributor-apply-qr";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/content/site-config";
 import { distributorsHeroClip, motionGraphics, productPhotos } from "@/content/media";
@@ -319,6 +320,33 @@ export default function DistributorsPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <ProcessSteps steps={partnerProcess} />
+          </Reveal>
+        </div>
+      </Section>
+
+      <Section spacing="lg" background="default" id="qr">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+          <Reveal>
+            <SectionHeading
+              as="h2"
+              eyebrow="QR application"
+              title="Scan to apply as a distributor"
+              description="This code opens the short partner form — company, territory, portfolio, and how you want to work with Zinc'd. Print it for booths and leave-behinds."
+            />
+            <Button
+              size="lg"
+              variant="outline"
+              className="mt-8 rounded-[var(--radius-control)]"
+              render={<Link href="/distributors/qr" />}
+            >
+              Open printable QR sheet
+              <ArrowUpRight className="size-4" aria-hidden />
+            </Button>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div className="rounded-[var(--radius)] border border-border-strong bg-surface-elevated p-6 md:p-8">
+              <DistributorApplyQr />
+            </div>
           </Reveal>
         </div>
       </Section>
