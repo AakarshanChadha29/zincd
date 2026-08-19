@@ -14,15 +14,24 @@ export const siteConfig = {
       "Ecological mineral ionization for discerning pools and professional partners.",
   },
   /**
-   * Contact details are intentionally null until client confirmation (C-017).
-   * Do not publish placeholder phone, email, or address values.
+   * C-017 resolved 2026-08-19: the client confirmed these as the live mailbox
+   * and line, and they are the details printed on the US distributor brochure.
+   * The site and the brochure must not drift apart — change both together.
+   * Mailing address is still unconfirmed, so it stays null.
    */
   contact: {
-    email: null as string | null,
-    phone: null as string | null,
+    email: "info@zincd.net",
+    emailHref: "mailto:info@zincd.net",
+    /** Display form; `phoneHref` carries the E.164 dial string. */
+    phone: "+1 (206) 690-4001",
+    phoneHref: "tel:+12066904001",
     address: null as string | null,
-    statusNote:
-      "Official contact details are pending client confirmation and are not published yet.",
+    /**
+     * Narrowed from the old contact-pending note: contact is now published,
+     * but the legal entity name and brand spelling remain unconfirmed.
+     */
+    entityNote:
+      "Legal entity name and registered address are being confirmed and will be published here.",
   },
   ctas: {
     assessment: {

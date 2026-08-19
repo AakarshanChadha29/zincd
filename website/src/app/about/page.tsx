@@ -120,10 +120,10 @@ export default function AboutPage() {
             as="h2"
             eyebrow="Company"
             title="Independent, US-based"
-            description="Zinc'd is positioned as an independent US company and brand. Full company narrative, legal entity details and official contact identity are being confirmed and will be published here."
+            description="Zinc'd is positioned as an independent US company and brand. Reach us at info@zincd.net or +1 (206) 690-4001; the full company narrative and legal entity details are being confirmed and will be published here."
           />
           <StatusNote className="mt-8">
-            {siteConfig.contact.statusNote} The company&apos;s legal entity name and
+            {siteConfig.contact.entityNote} The company&apos;s legal entity name and
             brand spelling are being finalized; you&apos;ll find confirmed details on
             this page and in the{" "}
             <a href="/legal" className="underline underline-offset-4">

@@ -84,9 +84,22 @@ export function MobileNavigation() {
             {siteConfig.ctas.distributor.label}
           </Button>
           <Separator />
-          <p className="text-small text-muted-foreground">
-            {siteConfig.contact.statusNote}
-          </p>
+          <div className="text-small space-y-1">
+            <a
+              href={siteConfig.contact.emailHref}
+              className="block text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              onClick={() => setOpen(false)}
+            >
+              {siteConfig.contact.email}
+            </a>
+            <a
+              href={siteConfig.contact.phoneHref}
+              className="block text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              onClick={() => setOpen(false)}
+            >
+              {siteConfig.contact.phone}
+            </a>
+          </div>
         </div>
       </SheetContent>
     </Sheet>

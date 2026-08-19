@@ -56,9 +56,20 @@ export function SiteFooter() {
             <p className="text-small max-w-xs text-muted-foreground">
               {siteConfig.brand.tagline}
             </p>
-            <p className="text-small text-accent-steel">
-              {siteConfig.contact.statusNote}
-            </p>
+            <div className="text-small space-y-1">
+              <a
+                href={siteConfig.contact.emailHref}
+                className="block text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              >
+                {siteConfig.contact.email}
+              </a>
+              <a
+                href={siteConfig.contact.phoneHref}
+                className="block text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              >
+                {siteConfig.contact.phone}
+              </a>
+            </div>
           </div>
           <FooterLinkList title="Explore" links={footerExploreLinks} />
           <FooterLinkList title="B2B" links={footerB2bLinks} />

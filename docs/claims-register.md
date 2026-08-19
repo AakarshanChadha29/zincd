@@ -140,9 +140,9 @@ Sources: `TS`=`TECHNICAL SPECIFICATION 2.pdf`, `MR`=`MAINTENANCE REQUIREEMNT 2.p
 - **Original:** phone `123-456-7890`, `www.zincdpool.com` (FLY1/FLY2); info@zincd.com (`meeting-5.known.recipient-known`).
 - **Proposed safe wording:** real, confirmed phone/email/domain only.
 - **Category:** contact/identity. **Source:** flyers, `meeting-5.known.recipient-known`.
-- **Evidence available:** none confirmed. **Status:** `pending-client-confirmation`.
-- **Qualification required:** verified contact details + mailbox owner. **Client confirmation:** yes. **Legal review:** no.
-- **Permitted pages:** all (once confirmed). **Blocked reason:** placeholder contact details present.
+- **Evidence available:** client confirmed 2026-08-19 — `info@zincd.net` and `+1 (206) 690-4001`, the same details printed on the US distributor brochure. **Status:** `approved-source-fact`.
+- **Qualification required:** none remaining for phone/email. Mailing address is still unconfirmed and stays unpublished. **Client confirmation:** received. **Legal review:** no.
+- **Permitted pages:** all. Published from `website/src/content/site-config.ts` (`contact.email` / `contact.phone`) — brochure and site must be changed together if the details ever move.
 
 ### C-018 — Technical specifications (voltage, power, metals, chemistry)
 - **Original:** `TS` values (110–230 V AC / 24 V DC, 75 W, 30 psi, Cu–Ag–Zn, Cu 0.3–0.4 ppm, Cl ~1.0 ppm, pH 7.2–7.6).
@@ -158,6 +158,6 @@ Sources: `TS`=`TECHNICAL SPECIFICATION 2.pdf`, `MR`=`MAINTENANCE REQUIREEMNT 2.p
 - **blocked:** C-001, C-005, C-007, C-008, C-012, C-013, C-014 (+ absolute forms of C-006)
 - **contradictory:** C-002, C-004, C-009, C-010
 - **pending-evidence:** C-004 (after reconciliation), C-007, C-011
-- **pending-client-confirmation:** C-015, C-016, C-017, C-018
+- **pending-client-confirmation:** C-015, C-016, C-018 *(C-017 resolved 2026-08-19 — contact phone/email confirmed)*
 - **qualified (with rewording):** C-003 (historical), C-006, C-018
-- **approved-source-fact:** none yet (all require confirmation/evidence/legal sign-off).
+- **approved-source-fact:** C-017 (contact phone/email, confirmed 2026-08-19). All others still require confirmation/evidence/legal sign-off.

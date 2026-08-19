@@ -17,6 +17,28 @@ export function OrganizationJsonLd() {
           "@type": "Country",
           name: "United States",
         },
+        email: siteConfig.contact.email,
+        telephone: siteConfig.contact.phone,
+        // Two named points so distributor enquiries and owner enquiries are
+        // distinguishable in search results; both reach the same mailbox today.
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "sales",
+            email: siteConfig.contact.email,
+            telephone: siteConfig.contact.phone,
+            areaServed: "US",
+            availableLanguage: "English",
+          },
+          {
+            "@type": "ContactPoint",
+            contactType: "distributor relations",
+            email: siteConfig.contact.email,
+            telephone: siteConfig.contact.phone,
+            areaServed: "US",
+            availableLanguage: "English",
+          },
+        ],
       },
       {
         "@type": "WebSite",

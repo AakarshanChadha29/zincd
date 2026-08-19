@@ -7,7 +7,9 @@ import {
   Clock3,
   Handshake,
   Home,
+  Mail,
   MessageSquareText,
+  Phone,
   ShieldCheck,
 } from "lucide-react";
 
@@ -68,7 +70,7 @@ const nextSteps = [
   {
     icon: ShieldCheck,
     title: "We reply with clarity",
-    body: "Claims-safe guidance, series fit, or a partner follow-up. Official phone/email publish once confirmed.",
+    body: "Claims-safe guidance, series fit, or a partner follow-up. Prefer to skip the form? Email or call us directly.",
   },
 ];
 
@@ -145,9 +147,35 @@ export default function ContactPage() {
                 A short form. A real follow-up.
               </h2>
               <p className="text-body-large text-muted-foreground">
-                No public phone or generic inbox yet — contact details publish
-                once confirmed. Until then, this form is the front door.
+                The form routes your enquiry to the right person. If you'd
+                rather reach us directly, both lines below are monitored.
               </p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <a
+                  href={siteConfig.contact.emailHref}
+                  className="flex items-center gap-3 rounded-[var(--radius-panel)] border border-border bg-surface p-4 transition-colors hover:border-border-strong"
+                >
+                  <Mail className="size-4.5 shrink-0 text-accent-aquatic" strokeWidth={1.5} aria-hidden />
+                  <span>
+                    <span className="text-technical block text-accent-aquatic">Email</span>
+                    <span className="text-small block text-foreground">
+                      {siteConfig.contact.email}
+                    </span>
+                  </span>
+                </a>
+                <a
+                  href={siteConfig.contact.phoneHref}
+                  className="flex items-center gap-3 rounded-[var(--radius-panel)] border border-border bg-surface p-4 transition-colors hover:border-border-strong"
+                >
+                  <Phone className="size-4.5 shrink-0 text-accent-aquatic" strokeWidth={1.5} aria-hidden />
+                  <span>
+                    <span className="text-technical block text-accent-aquatic">Phone</span>
+                    <span className="text-small block text-foreground">
+                      {siteConfig.contact.phone}
+                    </span>
+                  </span>
+                </a>
+              </div>
               <ol className="space-y-4">
                 {nextSteps.map((step, i) => {
                   const Icon = step.icon;
