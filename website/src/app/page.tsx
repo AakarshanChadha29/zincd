@@ -25,8 +25,9 @@ import {
   poolStoryPanorama,
   productPhotos,
   productStills,
+  clientStills,
 } from "@/content/media";
-import { heroContent, productSeries } from "@/content/product-data";
+import { heroContent, homepageHardwareCopy, homepageStoryPoints, productSeries, seriesRangeLabel } from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -52,56 +53,12 @@ export const metadata = createPageMetadata({
  * Three points told across one continuous pool panorama. `focus` places each
  * point over its own stretch of the photograph for the reduced-motion fallback.
  */
-const storyPoints = [
-  {
-    id: "chamber",
-    eyebrow: "01 — The chamber",
-    title: "Stainless cell, inline with your circulation",
-    body: "Pool water passes through a stainless housing carrying copper, silver and zinc alloy electrodes, plumbed into the filtration return so every turnover is treated.",
-    focus: 0,
-  },
-  {
-    id: "control",
-    eyebrow: "02 — The control",
-    title: "PWM regulation, 24 V DC, monitored on an LCD",
-    body: "A microcontroller meters the current by PWM, holding a steady ion release rate. The display reports output level and signals when routine anode cleaning is due.",
-    focus: 0.5,
-  },
-  {
-    id: "water",
-    eyebrow: "03 — The water",
-    title: "Copper 0.3–0.4 ppm. Chlorine ~1.0 ppm. pH 7.2–7.6.",
-    body: "Minerals help control algae and support biofilm control, which lowers day-to-day chlorine demand. A residual of free chlorine stays in the program — three numbers, tested with the supplied kit.",
-    focus: 1,
-  },
-] as const;
+const storyPoints = homepageStoryPoints;
 
-const hardwareBeats = [
-  {
-    id: "chamber",
-    eyebrow: "The chamber",
-    title: "Cu–Ag–Zn electrodes in a stainless housing",
-    body: "A 100 mm electrode assembly in a corrosion-resistant stainless shell, rated to 30 psi and built to sit inline with filtration for the life of the plant room.",
-    image: productPhotos.chamberStudio,
-    imageAlt: "The Zinc'd stainless water chamber on a studio background",
-  },
-  {
-    id: "control",
-    eyebrow: "The control",
-    title: "Microcontroller PWM, 110–230 V in, 75 W peak",
-    body: "Wall-mounted control electronics regulate ionization by PWM and report status on an LCD, with cable glands for a tidy, permanent install.",
-    image: productPhotos.control,
-    imageAlt: "The Zinc'd control enclosure showing ionizer status on its LCD",
-  },
-  {
-    id: "together",
-    eyebrow: "The system",
-    title: "Both pieces ship as one commissioned system",
-    body: "Chamber, control electronics, rechargeable battery and charger, and the copper / chlorine / pH testing kit — series confirmed to your volume before dispatch.",
-    image: productPhotos.system,
-    imageAlt: "The Zinc'd chamber and control together as catalog products",
-  },
-] as const;
+const hardwareBeats = homepageHardwareCopy.map((beat) => ({
+  ...beat,
+  image: productPhotos[beat.imageKey],
+}));
 
 export default function HomePage() {
   return (
@@ -278,8 +235,8 @@ export default function HomePage() {
               <ScrollParallax offset={36}>
                 <figure className="relative aspect-[16/10] overflow-hidden rounded-[var(--radius-panel)] border border-border">
                   <Image
-                    src={productPhotos.install}
-                    alt="Zinc'd installed beside a residential pool equipment pad"
+                    src={clientStills.plantRoom}
+                    alt="A professional plant room — filtration in place, return line ready for an inline chamber"
                     fill
                     sizes="(min-width: 1024px) 45vw, 100vw"
                     className="object-cover"
@@ -329,8 +286,8 @@ export default function HomePage() {
           <SectionHeading
             as="h2"
             eyebrow="US sizing guide"
-            title="Series-1 to custom multi-unit"
-            description="Volumes and pipe sizes from the installer handbook. Assessment confirms fit to your circulation — private estate or commercial manifold."
+            title={`${seriesRangeLabel}`}
+            description="Volumes from the current product manual. Assessment confirms fit to your circulation — private estate or commercial basin. Typical values, subject to model."
           />
         </Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -414,7 +371,7 @@ export default function HomePage() {
                 </h2>
                 <p className="text-body mt-3 max-w-md text-white/75">
                   A documented ionization category for US channel partners —
-                  residential Series-1 through commercial multi-unit layouts.
+                  residential Series-01 through Series-04.
                 </p>
               </div>
               <Button

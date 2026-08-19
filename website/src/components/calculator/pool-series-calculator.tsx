@@ -272,8 +272,8 @@ export function PoolSeriesCalculator() {
   const hasVolume = result.litres > 0;
   const rec = result.recommendation;
   const assessmentHref = hasVolume
-    ? `/contact?intent=assessment&series=${encodeURIComponent(rec.series)}&volume=${Math.round(result.litres)}`
-    : "/contact?intent=assessment";
+    ? `/assess?series=${encodeURIComponent(rec.series)}&volume=${Math.round(result.litres)}&gallons=${Math.round(result.gallons)}`
+    : "/assess";
 
   const formulaHint =
     shape === "irregular"
@@ -304,8 +304,8 @@ export function PoolSeriesCalculator() {
         </h1>
         <p className="text-body-large relative mt-5 max-w-2xl text-muted-foreground">
           Enter your pool&apos;s measurements to estimate its capacity in US
-          gallons, then see which Zinc&apos;d series matches — Series-1 through
-          commercial multi-unit. Takes about a minute.
+          gallons, then see which Zinc&apos;d series matches — Series-01 through
+          Series-04. Takes about a minute.
         </p>
         <div className="relative mt-8 flex max-w-2xl items-start gap-3 border-y border-border py-4">
           <Info
@@ -556,7 +556,7 @@ export function PoolSeriesCalculator() {
 
             {rec.caution && hasVolume ? (
               <p className="text-small mt-4 rounded-[var(--radius-control)] border border-[color:var(--aqua-400)]/30 bg-white/5 px-4 py-3 text-[color:var(--aqua-400)]">
-                This volume sits below the published Series-1 range. We&apos;ll
+                This volume sits above the published Series-04 band. We&apos;ll
                 confirm suitability during your assessment.
               </p>
             ) : null}

@@ -15,7 +15,7 @@ import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { FaqJsonLd } from "@/components/seo/json-ld";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/content/site-config";
-import { faqs } from "@/content/product-data";
+import { faqs, faqTopicSummaries, chlorineResidualNote } from "@/content/product-data";
 import { faqHeroClip, lifestyleStills, motionGraphics } from "@/content/media";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -31,28 +31,17 @@ export const metadata = createPageMetadata({
   ],
 });
 
-const topics = [
-  {
-    icon: Droplets,
-    title: "Chemistry & chlorine",
-    body: "Residual free chlorine stays in the plan. Ionization is designed to reduce dependency — not erase sanitizer.",
-  },
-  {
-    icon: Beaker,
-    title: "How it works",
-    body: "Stainless cell, Cu–Ag–Zn electrodes, microcontroller PWM. Engineered release into the circulation loop.",
-  },
-  {
-    icon: Ruler,
-    title: "Sizing & series",
-    body: "Series-1 through Series-3 plus custom multi-unit — start with the Pool Series Calculator, then confirm in assessment.",
-  },
-  {
-    icon: Shield,
-    title: "Claims we publish",
-    body: "Certification and performance claims appear only when documentation is ready. No fog, no filler.",
-  },
-];
+const topicIcons = {
+  chemistry: Droplets,
+  how: Beaker,
+  sizing: Ruler,
+  claims: Shield,
+} as const;
+
+const topics = faqTopicSummaries.map((topic) => ({
+  ...topic,
+  icon: topicIcons[topic.id as keyof typeof topicIcons],
+}));
 
 export default function FaqPage() {
   return (
@@ -131,8 +120,7 @@ export default function FaqPage() {
                   className="absolute inset-0 bg-gradient-to-t from-[color:var(--teal-900)]/70 via-transparent to-transparent"
                 />
                 <p className="absolute inset-x-0 bottom-0 p-5 text-small text-white/85">
-                  Residual free chlorine (~1.0 ppm) remains part of responsible
-                  operation — we say so on every major page.
+                  {chlorineResidualNote}
                 </p>
               </div>
             </div>

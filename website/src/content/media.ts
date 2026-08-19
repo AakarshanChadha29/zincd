@@ -30,8 +30,29 @@ export const chamberCutawayFilm = {
   poster: "/video/process-ionization.jpg",
 } as const;
 
-/** Homepage — lifestyle villa clips for first paint. */
-export const homepageHeroClips = [heroVideos.modern, heroVideos.ocean];
+/**
+ * Client photography ingested from `Pool ionizer/` (web-sized copies only).
+ * People-identifiable stills and the field MP4 are intentionally omitted.
+ */
+export const clientStills = {
+  commercialPool: "/assets/commercial-pool.jpg",
+  clearWaterReturn: "/assets/clear-water-return.jpg",
+  hotelInfinity: "/assets/hotel-infinity.jpg",
+  hotelWellness: "/assets/hotel-wellness.jpg",
+  technicalFlow: "/assets/technical-flow.jpg",
+  productFront: "/assets/product-front.jpg",
+  productHero: "/assets/product-hero.jpg",
+  plantRoom: "/assets/plant-room.jpg",
+  hardwareRear: "/assets/hardware-rear.jpg",
+  howItWorks: "/assets/how-zincd-works.svg",
+  territoryMarkets: "/assets/us-territory-markets.svg",
+  territoryCta: "/assets/cta-territory.svg",
+} as const;
+
+/** Homepage — client commercial-pool still (no people, no overlay claims). */
+export const homepageHeroClips: { poster: string; src?: string }[] = [
+  { poster: clientStills.commercialPool },
+];
 
 export const productHeroClip = heroVideos.modern;
 export const distributorsHeroClip = heroVideos.estate;
@@ -128,25 +149,25 @@ export const lifestyleStills = {
 
 /** Product / install stills — Zinc'd branded (no Arroyo). */
 export const productStills = {
-  flowDiagram: "/img/product/flow-diagram.png",
+  flowDiagram: "/assets/technical-flow.jpg",
   manifold: "/img/product/manifold-zincd.png",
-  /** Product page gallery only — no lifestyle/install repeats from Home. */
+  /** Product page gallery — client hardware stills (no identifiable people). */
   gallery: [
     {
-      src: "/img/clean/chamber-zincd.jpg",
-      alt: "The Zinc'd stainless water chamber, wordmark and Cu–Ag–Zn badges on the housing.",
+      src: "/assets/product-front.jpg",
+      alt: "Zinc'd Gen-2 control enclosure and stainless ionization chamber, photographed from the front.",
     },
     {
-      src: "/img/clean/control-zincd.jpg",
-      alt: "The Zinc'd control enclosure, LCD showing ionizer status and output level.",
+      src: "/assets/product-hero.jpg",
+      alt: "Zinc'd ionization system — battery-powered control above the stainless chamber.",
     },
     {
-      src: "/img/clean/system-zincd.jpg",
-      alt: "The Zinc'd chamber and control together as catalog products.",
+      src: "/assets/plant-room.jpg",
+      alt: "A professional plant room with filtration and a gap on the return line for an inline chamber.",
     },
     {
-      src: "/img/clean/system-installed.jpg",
-      alt: "A commissioned Zinc'd install — chamber inline on the circulation loop, control wired above.",
+      src: "/assets/hardware-rear.jpg",
+      alt: "Rear of the Zinc'd chamber and control, showing mounting brackets and the flow sensor.",
     },
   ],
 } as const;
@@ -154,10 +175,10 @@ export const productStills = {
 /** Still photography for application cards — environment only. */
 export const applicationImages: Record<string, string> = {
   residential: lifestyleStills.residentialPool,
-  "hotels-resorts": lifestyleStills.resortPool,
-  commercial: lifestyleStills.commercialPool,
-  "fitness-wellness": lifestyleStills.wellnessPool,
+  "hotels-resorts": clientStills.hotelWellness,
+  commercial: clientStills.commercialPool,
+  "fitness-wellness": clientStills.hotelInfinity,
 };
 
-/** Default social preview (first villa poster until dedicated OG art exists). */
-export const defaultOgImage = heroVideos.ocean.poster;
+/** Default social preview — people-free commercial pool still. */
+export const defaultOgImage = clientStills.commercialPool;

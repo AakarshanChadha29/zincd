@@ -15,7 +15,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Pool Size Calculator — What Size Ionizer Do I Need?",
   description:
-    "Free pool volume calculator in US gallons. Enter your pool's length, width, and average depth to see which Zinc'd copper–silver–zinc ionizer fits — Series-1, Series-2, Series-3, or commercial multi-unit.",
+    "Free pool volume calculator in US gallons. Enter your pool's length, width, and average depth to see which Zinc'd copper–silver–zinc ionizer fits — Series-01 through Series-04.",
   path: "/calculator",
   keywords: [
     "pool volume calculator gallons",
@@ -56,7 +56,7 @@ export default function CalculatorPage() {
           as="h2"
           eyebrow="Series range"
           title="What each series covers"
-          description="From a standard backyard pool through resort and municipal water. Your calculator result points to one of these four — a specialist confirms pipe size and duty cycle before install."
+          description="From a standard backyard pool through resort and municipal water. Your calculator result points to one of these four — Series-03 and Series-04 are customized, indicative models. A specialist confirms circulation before install."
         />
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {productSeries.map((series, i) => (
@@ -68,8 +68,11 @@ export default function CalculatorPage() {
                 <p className="text-h3 mt-3 text-foreground">{series.volume}</p>
                 <p className="text-small mt-0.5 tabular-nums text-accent-steel">
                   {series.volumeMetric}
+                  {series.customized ? " · customized, indicative" : ""}
                 </p>
-                <p className="text-small mt-2 text-accent-steel">{series.scope}</p>
+                <p className="text-small mt-2 text-accent-steel">
+                  {series.scope} · {series.power}
+                </p>
                 <p className="text-body mt-4 text-muted-foreground">
                   {series.body}
                 </p>

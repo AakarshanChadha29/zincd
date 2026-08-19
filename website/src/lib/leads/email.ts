@@ -1,5 +1,9 @@
-import type { LeadInput } from "./schema";
+import { resources } from "@/content/resources-content";
+
+import type { AssessLeadInput } from "./assess-schema";
 import type { DistributorLeadInput } from "./distributor-schema";
+import type { ResourceLeadInput } from "./resource-schema";
+import type { LeadInput } from "./schema";
 
 /**
  * Server-only. Delivers lead notifications via Resend's REST API.
@@ -27,7 +31,9 @@ export type MailConfig = {
  * confirms official contact details (see `site-config.ts`, C-017). Callers must
  * degrade gracefully rather than pretending a message was sent.
  */
-export function getMailConfig(intent: LeadInput["intent"]): MailConfig | null {
+export function getMailConfig(
+  intent: LeadInput["intent"] | "resource",
+): MailConfig | null {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   const from = process.env.LEAD_FROM_EMAIL?.trim();
   const generalTo = process.env.LEAD_TO_EMAIL?.trim();
@@ -221,6 +227,105 @@ export async function sendDistributorLeadEmail(
   return deliverEmail(config, {
     replyTo: lead.email,
     subject: `[Zinc'd] Distributor application — ${lead.company}`,
+    text,
+    html,
+  });
+}
+
+function buildAssessBody(lead: AssessLeadInput) {
+  const title = "Pool assessment (structured funnel)";
+  return rowsToBodies(
+    title,
+    [
+      ["Source", "/assess funnel"],
+      ["Name", lead.name],
+      ["Email", lead.email],
+      ["Organization", lead.organization || "—"],
+      ["Phone", lead.phone?.trim() || "—"],
+      ["Pool type", lead.poolType],
+      ["Property type", lead.propertyType],
+      ["Pain inventory", lead.pains.join("; ")],
+      ["Current treatment", lead.currentTreatment],
+      [
+        "Estimated volume",
+        [
+          lead.volumeGallons
+            ? `${Math.round(lead.volumeGallons).toLocaleString("en-US")} gal`
+            : null,
+          lead.volumeLitres
+            ? `${Math.round(lead.volumeLitres).toLocaleString("en-US")} L`
+            : null,
+        ]
+          .filter(Boolean)
+          .join(" / ") || "—",
+      ],
+      ["Calculator series", lead.recommendedSeries || "—"],
+      [
+        "Dimensions",
+        [lead.length, lead.width, lead.shallow, lead.deep]
+          .filter(Boolean)
+          .join(" × ") + (lead.dimensionUnit ? ` ${lead.dimensionUnit}` : "") ||
+          "—",
+      ],
+      ["Pipe size", lead.pipeSize],
+      ["Filtration", lead.filtration],
+      ["Heater", lead.heater],
+      ["Automation", lead.automation],
+      ["Electrical nearby", lead.electricalNearby],
+      ["Photos ready", lead.photosReady.join(", ") || "None selected"],
+      ["pH", lead.ph || "—"],
+      ["Total alkalinity", lead.alkalinity || "—"],
+      ["Calcium hardness", lead.hardness || "—"],
+      ["Free chlorine", lead.chlorine || "—"],
+      ["Copper", lead.copper || "—"],
+    ],
+    [
+      ["Pain notes", lead.painNotes || "—"],
+      ["Additional notes", lead.notes || "—"],
+    ],
+  );
+}
+
+export async function sendAssessLeadEmail(
+  lead: AssessLeadInput,
+  config: MailConfig,
+): Promise<SendResult> {
+  const { text, html } = buildAssessBody(lead);
+  return deliverEmail(config, {
+    replyTo: lead.email,
+    subject: `[Zinc'd] Pool assessment — ${lead.name}`,
+    text,
+    html,
+  });
+}
+
+function buildResourceBody(lead: ResourceLeadInput) {
+  const resource = resources.find((item) => item.id === lead.resourceId);
+  const title = "Resource request";
+  return rowsToBodies(
+    title,
+    [
+      ["Source", "/resources"],
+      ["Document", resource?.title ?? lead.resourceId],
+      ["Resource id", lead.resourceId],
+      ["Available to send now", resource?.available ? "Yes" : "No — waitlist"],
+      ["Name", lead.name],
+      ["Email", lead.email],
+      ["Organization", lead.organization || "—"],
+      ["Role", lead.role || "—"],
+    ],
+  );
+}
+
+export async function sendResourceLeadEmail(
+  lead: ResourceLeadInput,
+  config: MailConfig,
+): Promise<SendResult> {
+  const { text, html } = buildResourceBody(lead);
+  const resource = resources.find((item) => item.id === lead.resourceId);
+  return deliverEmail(config, {
+    replyTo: lead.email,
+    subject: `[Zinc'd] Resource request — ${resource?.title ?? lead.resourceId}`,
     text,
     html,
   });

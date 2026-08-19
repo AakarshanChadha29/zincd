@@ -8,15 +8,29 @@
  *  - No "eliminates" absolutes — use "helps control" (C-006).
  *  - No EPA / certification / patent / lab / testimonial / rating claims (C-001/2/11/12/13).
  *  - NASA context is historical only, never an endorsement (C-003).
- *  - Technical specs from TECHNICAL SPECIFICATION 2.pdf, marked "typical / subject to model" (C-018).
+ *  - Technical specs from the Gen-2 Pool Sanitizer manual + hotel planning
+ *    model (client-confirmed 2026-08-19), marked "typical / subject to model"
+ *    (C-018). Do not invent blanks the manual leaves open (free chlorine ppm,
+ *    warranty %, charging frequency, anode interval, support contacts).
  */
+
+/** Qualifier required on every published spec block (C-018). */
+export const specQualifier =
+  "Typical values, subject to model. Series is confirmed to your pool during assessment.";
+
+/**
+ * Residual-chlorine framing. The Gen-2 manual leaves the free-chlorine ppm
+ * blank — do not publish a number until the client supplies it.
+ */
+export const chlorineResidualNote =
+  "A residual of free chlorine remains part of responsible operation. The specific ppm target will be published when the operating manual is finalized.";
 
 export const heroContent = {
   eyebrow: "Mineral ionization for US pools",
   headline: "A quieter revolution in pool water.",
   subhead:
     "Copper–silver–zinc ionization with precision PWM control — built for American estates, hotels, and commercial aquatic facilities. Designed to reduce day-to-day chlorine demand while residual sanitizer stays in the program.",
-  primaryCta: { label: "Request a Pool Assessment", href: "/contact?intent=assessment" },
+  primaryCta: { label: "Request a Pool Assessment", href: "/assess" },
   secondaryCta: { label: "Become a Distributor", href: "/distributors" },
 } as const;
 
@@ -33,7 +47,7 @@ export const valuePillars = [
     id: "engineered",
     label: "Engineered control",
     title: "Microcontroller PWM control and monitoring",
-    body: "A microcontroller-based PWM system regulates ionization, with an LCD and electronic monitoring that signals when routine anode cleaning is due.",
+    body: "A battery-powered unit with LCD, water-flow sensor, and AC/DC switch regulates ionization by PWM — charging from AC 110–230 V, operating at 24 V DC.",
     icon: "cpu",
   },
   {
@@ -49,102 +63,160 @@ export const valuePillars = [
 export const howItWorksSteps = [
   {
     step: "01",
-    title: "Water enters the ionization cell",
-    body: "Circulating pool water passes through the stainless housing, across copper, silver and zinc alloy electrodes.",
+    title: "Water enters the stainless chamber",
+    body: "Circulating pool water passes through the stainless water chamber, across copper, silver and zinc alloy anodes. Do not bypass the water-flow sensor.",
   },
   {
     step: "02",
-    title: "PWM control releases mineral ions",
-    body: "A microcontroller regulates a low-voltage current by PWM, introducing copper and silver ions at a controlled rate into the flow.",
+    title: "Flow sensor confirms circulation",
+    body: "A water-flow sensor detects flow before ionization runs, so the unit operates with the filtration loop — not against a dead line.",
   },
   {
     step: "03",
+    title: "PWM control releases mineral ions",
+    body: "The battery-powered control (24 V DC, charged from AC 110–230 V) regulates a low-voltage current by PWM, introducing copper and silver ions at a controlled rate into the flow.",
+  },
+  {
+    step: "04",
     title: "Minerals help control algae and biofilm",
     body: "Copper is used to help control algae; zinc contributes to biofilm control — working alongside, not replacing, your sanitizer program.",
   },
   {
-    step: "04",
-    title: "Monitoring keeps chemistry in range",
-    body: "An LCD and electronic monitoring track the system and signal routine anode cleaning, while free chlorine and copper are tested to stay in range.",
+    step: "05",
+    title: "LCD and testing keep chemistry in range",
+    body: "An LCD reports status. Copper, pH, and residual free chlorine are tested to stay in range — ionization complements sanitation; it does not replace it.",
   },
 ] as const;
 
 /**
- * Technical specifications — from TECHNICAL SPECIFICATION 2.pdf.
- * Presented with a "typical / subject to model" qualifier (C-018).
+ * Technical specifications — Gen-2 Pool Sanitizer manual + hotel planning
+ * model (client-confirmed 2026-08-19). Typical / subject to model (C-018).
  */
 export const technicalSpecs = [
   { label: "Electrode alloy", value: "Copper · Silver · Zinc", note: "Cu–Ag–Zn anodes" },
-  { label: "Input voltage", value: "AC 110–230 V", note: "Mains input" },
-  { label: "Operating voltage", value: "24 V DC", note: "Cell operation" },
-  { label: "Max power", value: "75 W", note: "Peak draw" },
+  { label: "Operating voltage", value: "24 V DC", note: "Battery operation" },
+  { label: "Charging voltage", value: "AC 110–230 V", note: "Charger input" },
+  { label: "Power", value: "170–230 W", note: "By series" },
+  { label: "Battery", value: "24 V / 2200 mAh", note: "Rechargeable" },
+  { label: "Charging time", value: "1.3–2.3 hr", note: "By series" },
+  { label: "Water chamber", value: "28–56 cm", note: "Length, by series" },
+  { label: "Chamber bore", value: "5.7–15.2 cm", note: "By series" },
   { label: "Max pressure", value: "30 psi", note: "System rating" },
-  { label: "Electrode diameter", value: "100 mm", note: "Cell electrode" },
-  { label: "Housing", value: "Stainless steel", note: "Corrosion-resistant" },
-  { label: "Control", value: "Microcontroller PWM", note: "Ionization regulation" },
-] as const;
-
-/** Recommended water chemistry targets — from TS. Reinforces "chlorine still required". */
-export const chemistryTargets = [
-  { label: "Copper", value: "0.3–0.4 ppm" },
-  { label: "Free residual chlorine", value: "~1.0 ppm" },
-  { label: "pH", value: "7.2–7.6" },
-] as const;
-
-/** System components — from TS. */
-export const systemComponents = [
-  { name: "Cu–Ag–Zn ionization cell", detail: "Stainless housing with copper, silver and zinc alloy electrodes." },
-  { name: "Control electronics", detail: "Microcontroller-based PWM control with LCD readout, integrated with the anode assembly." },
-  { name: "Electronic monitoring", detail: "Signals status and when routine anode cleaning is due." },
-  { name: "Rechargeable battery & charger", detail: "Supports controlled, consistent operation." },
-  { name: "Water testing kit", detail: "For copper, free chlorine and pH — the metrics that keep chemistry in range." },
+  { label: "Housing", value: "Stainless steel", note: "Water chamber" },
+  { label: "Control", value: "LCD · flow sensor · AC/DC switch", note: "Battery-powered" },
 ] as const;
 
 /**
- * Product series — from HANDBOOK FOR PLUMBER 2.pdf (install sizing).
- * Volumes are litres; pipe size is the circulation inlet guide. Commercial
- * volumes above 150,000 L use additional units in parallel with a bypass.
+ * Recommended water chemistry — Gen-2 manual. Free chlorine ppm is blank in
+ * the source and is not invented here.
+ */
+export const chemistryTargets = [
+  { label: "Copper", value: "Ideal 0.5 ppm · acceptable 0.4–0.6 ppm" },
+  { label: "pH", value: "Ideal 7.2 · acceptable 7.0–7.8" },
+  { label: "Total alkalinity", value: "50–80 ppm" },
+  {
+    label: "Calcium hardness",
+    value: "150–200 ppm min (vinyl / fiberglass / painted) · ~300 ppm (plaster)",
+  },
+  { label: "Free residual chlorine", value: "Required — ppm pending finalized manual" },
+] as const;
+
+/** System components — Gen-2 manual. */
+export const systemComponents = [
+  {
+    name: "Stainless water chamber",
+    detail: "Stainless chamber with copper, silver and zinc alloy anodes — dimensions vary by series.",
+  },
+  {
+    name: "Battery-powered control",
+    detail: "24 V DC operation with LCD readout, charged from AC 110–230 V via the supplied charging cable.",
+  },
+  {
+    name: "Water-flow sensor",
+    detail: "Confirms circulation before ionization runs. Do not bypass the sensor.",
+  },
+  {
+    name: "AC/DC switch",
+    detail: "Selects charging and operating modes on the control unit.",
+  },
+  {
+    name: "Water testing kit",
+    detail: "For copper, free chlorine and pH — the metrics that keep chemistry in range.",
+  },
+] as const;
+
+/** Public label for the current catalogue range. */
+export const seriesRangeLabel = "Series-01 through Series-04";
+
+/**
+ * Product series — Gen-2 Pool Sanitizer manual (client-confirmed 2026-08-19).
+ * Capacities are rated volume. Series-03 and Series-04 are customized models
+ * with indicative specifications. Typical / subject to model (C-018).
  */
 export const productSeries = [
   {
-    name: "Series-1",
-    scope: "Residential · 2″ pipe",
-    volume: "5,300–18,500 gal",
-    volumeMetric: "20,000–70,000 L",
-    pipe: "2″",
-    body: "Small to standard residential pools — from compact estate basins through typical private volumes on a 2″ circulation line.",
+    name: "Series-01",
+    scope: "Residential",
+    volume: "~13,200 gal",
+    volumeMetric: "50,000 L",
+    maxLitres: 50_000,
+    power: "170 W",
+    chamberLength: "28 cm",
+    bore: "5.7 cm",
+    chargeTime: "1.3 hr",
+    customized: false,
+    pipe: "Confirmed at assessment",
+    body: "Rated for typical residential volumes around 50,000 L. Stainless chamber, battery-powered control, flow sensor, and LCD.",
     audience: "Estate owners · residential builders",
-    decisionNote: "Confirm volume band during assessment: 20–40k L (small) or 40–70k L (standard).",
+    decisionNote: "First match when estimated volume is at or below 50,000 L. Confirmed during assessment.",
   },
   {
-    name: "Series-2",
-    scope: "Large residential / club · 2–4″",
-    volume: "18,500–26,400 gal",
-    volumeMetric: "70,000–100,000 L",
-    pipe: "2–4″",
-    body: "Larger residential and club pools where flow and duty cycle sit above a single domestic install.",
+    name: "Series-02",
+    scope: "Large residential / club",
+    volume: "~39,600 gal",
+    volumeMetric: "150,000 L",
+    maxLitres: 150_000,
+    power: "190 W",
+    chamberLength: "28 cm",
+    bore: "5.7 cm",
+    chargeTime: "2.0 hr",
+    customized: false,
+    pipe: "Confirmed at assessment",
+    body: "Rated for larger residential and club volumes around 150,000 L — same chamber family as Series-01, higher power and charge time.",
     audience: "Clubs · HOAs · large estates",
-    decisionNote: "Specify when volume and pipe size move past standard residential Series-1.",
+    decisionNote: "Specify when volume moves past Series-01. Confirmed against circulation during assessment.",
   },
   {
-    name: "Series-3",
-    scope: "Luxury / small commercial · 4″",
-    volume: "26,400–39,600 gal",
-    volumeMetric: "100,000–150,000 L",
-    pipe: "4″",
-    body: "Luxury residential and small commercial basins on larger circulation — hospitality amenity scale with documented operating parameters.",
+    name: "Series-03",
+    scope: "Commercial · customized, indicative",
+    volume: "~79,300 gal",
+    volumeMetric: "300,000 L",
+    maxLitres: 300_000,
+    power: "210 W",
+    chamberLength: "37 cm",
+    bore: "11.4 cm",
+    chargeTime: "2.15 hr",
+    customized: true,
+    pipe: "Confirmed at assessment",
+    body: "Customized model with indicative specifications for hospitality and commercial basins around 300,000 L.",
     audience: "Boutique hotels · luxury estates · facility leads",
-    decisionNote: "Built for teams that need engineered control, monitoring, and clear maintenance cues.",
+    decisionNote: "Indicative catalogue point — final specification is confirmed during assessment.",
   },
   {
-    name: "Custom",
-    scope: "Commercial multi-unit",
-    volume: "Above 39,600 gal",
-    volumeMetric: "Above 150,000 L",
-    pipe: "As required",
-    body: "Commercial volumes use additional Zinc'd units in parallel on the inlet manifold, with a bypass branch — sized to the facility during assessment.",
+    name: "Series-04",
+    scope: "Large commercial · customized, indicative",
+    volume: "~105,700–132,100 gal",
+    volumeMetric: "400,000–500,000 L",
+    maxLitres: 500_000,
+    power: "230 W",
+    chamberLength: "56 cm",
+    bore: "15.2 cm",
+    chargeTime: "2.3 hr",
+    customized: true,
+    pipe: "Confirmed at assessment",
+    body: "Customized model with indicative specifications for large commercial volumes in the 400,000–500,000 L band.",
     audience: "Resort · municipal · campus operators",
-    decisionNote: "Selected when volume exceeds Series-3; multi-unit layouts follow the installer handbook.",
+    decisionNote: "Indicative catalogue point — volumes above this band are sized during assessment.",
   },
 ] as const;
 
@@ -231,7 +303,7 @@ export const applicationDetails: Record<
       "Want monitored cues for anode care instead of reactive service calls",
       "Need a documented product path for builders and service partners",
     ],
-    cta: { label: "Request a Pool Assessment", href: "/contact?intent=assessment" },
+    cta: { label: "Request a Pool Assessment", href: "/assess" },
   },
   "hotels-resorts": {
     audience: "commercial",
@@ -299,7 +371,7 @@ export const applicationDetails: Record<
       },
       {
         title: "What we state",
-        body: "Ionization reduces day-to-day chlorine dependency; a residual of free chlorine around 1.0 ppm remains part of responsible operation.",
+        body: "Ionization reduces day-to-day chlorine dependency; a residual of free chlorine remains part of responsible operation.",
       },
       {
         title: "Partner channel",
@@ -363,11 +435,11 @@ export const evaluationFramework = [
   },
   {
     title: "For operators & the next generation",
-    body: "Day-to-day clarity: PWM control, monitoring that signals anode care, and three chemistry targets to hold — copper 0.3–0.4 ppm, free chlorine ~1.0 ppm, pH 7.2–7.6.",
+    body: "Day-to-day clarity: battery-powered PWM control with a flow sensor and LCD, and chemistry targets to hold — copper ideal 0.5 ppm (0.4–0.6), pH ideal 7.2 (7.0–7.8), plus residual free chlorine.",
   },
   {
     title: "For partners & channel",
-    body: "A defined product category for distributors, builders and installers: engineered ionization that fits existing circulation, with Series-1 through custom commercial reach.",
+    body: "A defined product category for distributors, builders and installers: engineered ionization that fits existing circulation, with Series-01 through Series-04.",
   },
 ] as const;
 
@@ -400,7 +472,7 @@ export const partnerValue = [
     id: "circulation",
     label: "Integration",
     title: "Integrates with existing circulation",
-    body: "Fits the loop your customers already have — Series-1 through Series-3, plus custom multi-unit layouts on larger commercial inlets.",
+    body: "Fits the loop your customers already have — Series-01 through Series-04, with Series-03 and Series-04 as customized, indicative models.",
     icon: "waypoints",
   },
   {
@@ -570,13 +642,13 @@ export const partnerEndSegments = [
 
 /**
  * Reinstates the residential lane the brochure never mentions. Required: the
- * site ships Series-1 (residential), /calculator sizes private pools, and
+ * site ships Series-01 (residential), /calculator sizes private pools, and
  * `directOffer` is a published direct-to-owner path linked from /distributors
  * itself. "Commercial" may scope the PROGRAM's emphasis, never the PRODUCT's
  * capability.
  */
 export const partnerResidentialNote =
-  "Series-1 covers private and estate pools on a 2″ line, so partners working residential books carry the same product into a different account. Owners buying a single system for their own pool don't need a partner agreement — that path is on the product page.";
+  "Series-01 covers private and estate pools around 50,000 L, so partners working residential books carry the same product into a different account. Owners buying a single system for their own pool don't need a partner agreement — that path is on the product page.";
 
 /**
  * The plumbing loop: POOL → PUMP → FILTER → ZINC'D → RETURN.
@@ -624,7 +696,7 @@ export const treatmentLoop = {
    * sanitized". Never render the loop without it.
    */
   companion:
-    "Ionization works alongside the sanitizer program, not instead of it. Free chlorine is still tested and held in range — typically around 1.0 ppm — along with copper and pH.",
+    "Ionization works alongside the sanitizer program, not instead of it. Free chlorine is still tested and held as a residual, along with copper and pH.",
 } as const;
 
 /**
@@ -635,7 +707,7 @@ export const treatmentLoop = {
  * middle two sentences here are that missing fence.
  */
 export const partnerProgramFootnote =
-  "Professional installation and ongoing water-quality management are required. Zinc'd ionization is designed to reduce chlorine dependency as part of a responsible water program — it is not a chemical-free system. Technical documentation recommends maintaining a residual of free chlorine, typically around 1.0 ppm, with copper and pH tested to stay in range. Performance depends on pool conditions, circulation, operation and applicable water-quality requirements. Published specifications are typical and subject to model; series is confirmed to your pool during assessment.";
+  "Professional installation and ongoing water-quality management are required. Zinc'd ionization is designed to reduce chlorine dependency as part of a responsible water program — it is not a chemical-free system. A residual of free chlorine remains required, with copper and pH tested to stay in range. Performance depends on pool conditions, circulation, operation and applicable water-quality requirements. Published specifications are typical and subject to model; series is confirmed to your pool during assessment.";
 
 /** Adopted verbatim from the brochure back cover — /distributors had no equivalent. */
 export const partnerAgreementNote =
@@ -645,23 +717,23 @@ export const partnerAgreementNote =
 export const faqs = [
   {
     q: "Does Zinc'd make my pool chemical-free?",
-    a: "No. Ionization is designed to reduce chlorine dependency, but a residual of free chlorine — typically around 1.0 ppm — remains part of responsible operation. Zinc'd works alongside your sanitizer program, not instead of it.",
+    a: "No. Ionization is designed to reduce chlorine dependency, but a residual of free chlorine remains part of responsible operation. Zinc'd works alongside your sanitizer program, not instead of it. The specific residual ppm will be published when the operating manual is finalized.",
   },
   {
     q: "How does the technology work?",
-    a: "Circulating water passes through a stainless cell holding copper, silver and zinc alloy electrodes. A microcontroller regulates a low-voltage current by PWM, releasing mineral ions that help control algae and support biofilm control.",
+    a: "Circulating water passes through a stainless chamber holding copper, silver and zinc alloy anodes. A water-flow sensor confirms circulation; battery-powered PWM control releases mineral ions that help control algae and support biofilm control.",
   },
   {
     q: "What maintenance does it need?",
-    a: "Routine maintenance is minimal and centers on periodic cleaning of the copper–silver–zinc anode. The control panel's monitoring signals when cleaning is due. Water is tested for copper, free chlorine and pH to keep chemistry in range.",
+    a: "Routine maintenance centers on keeping chemistry in range and inspecting the stainless chamber and anodes on the published schedule. The LCD reports status. Water is tested for copper, free chlorine and pH. Anode replacement interval is not a published figure until the client supplies it.",
   },
   {
     q: "What water chemistry should I maintain?",
-    a: "Technical documentation recommends copper around 0.3–0.4 ppm, free residual chlorine around 1.0 ppm, and pH between 7.2 and 7.6. A supplied testing kit covers these metrics.",
+    a: "Technical documentation recommends copper at an ideal 0.5 ppm (acceptable 0.4–0.6), pH at an ideal 7.2 (acceptable 7.0–7.8), total alkalinity 50–80 ppm, and calcium hardness 150–200 ppm minimum for vinyl, fiberglass or painted finishes (~300 ppm for plaster). Residual free chlorine remains required; the specific ppm is pending the finalized manual. A supplied testing kit covers copper, free chlorine and pH.",
   },
   {
     q: "What pool sizes are supported?",
-    a: "Sizing follows the installer handbook: Series-1 (2″, roughly 20,000–70,000 L), Series-2 (2–4″, 70,000–100,000 L), Series-3 (4″, 100,000–150,000 L), and custom multi-unit layouts above 150,000 L. Use the Pool Series Calculator for a first estimate, then confirm during a pool assessment.",
+    a: "Sizing follows the current product manual: Series-01 around 50,000 L (~13,200 gal), Series-02 around 150,000 L (~39,600 gal), Series-03 around 300,000 L (~79,300 gal, customized/indicative), and Series-04 around 400,000–500,000 L (~105,700–132,100 gal, customized/indicative). Values are typical and subject to model. Use the Pool Series Calculator for a first estimate, then confirm during a pool assessment.",
   },
   {
     q: "Is there a connection to NASA?",
@@ -681,7 +753,7 @@ export const installSteps = [
   },
   {
     title: "Integration",
-    body: "The ionization cell is fitted into the circulation loop; the control panel and monitoring are set up for your system.",
+    body: "The stainless chamber is fitted into the circulation loop with the water-flow sensor in line; the battery-powered control, LCD, and AC/DC switch are set up for your system.",
   },
   {
     title: "Balancing",
@@ -715,18 +787,143 @@ export const directOffer = {
   priceConfirmed: true,
   name: "Zinc'd ionization system",
   summary:
-    "The complete system: stainless Cu–Ag–Zn ionization cell, control electronics with LCD and monitoring, rechargeable battery and charger, and the water-testing kit.",
+    "The complete system: stainless Cu–Ag–Zn water chamber, battery-powered control with LCD, water-flow sensor and AC/DC switch, charging cable, and the water-testing kit.",
   includes: [
-    "Cu–Ag–Zn ionization cell in stainless housing",
-    "Control electronics with LCD and status monitoring",
-    "Rechargeable battery and charger",
+    "Stainless water chamber with Cu–Ag–Zn alloy anodes",
+    "Battery-powered control with LCD, flow sensor and AC/DC switch",
+    "Charging cable (AC 110–230 V in / 24 V DC operation)",
     "Water-testing kit — copper, free chlorine and pH",
     "Installation handbook and water-chemistry maintenance chart",
   ],
   notes: [
-    "Series is confirmed to your pool volume and circulation flow rate before dispatch.",
-    "Installation is arranged separately with a qualified installer.",
-    "Anode warranty 5–10 years by model; electrical and electronic components 3 years.",
+    "Series is confirmed to your pool volume and circulation before dispatch. Published specs are typical and subject to model.",
+    "Installation is arranged separately with a qualified installer. Do not bypass the water-flow sensor.",
+    "Warranty terms remain pending client confirmation of the current pro-rated schedule.",
   ],
 } as const;
+
+/** Homepage story beats — numbers live here, not in the page. */
+export const homepageStoryPoints = [
+  {
+    id: "chamber",
+    eyebrow: "01 — The chamber",
+    title: "Stainless cell, inline with your circulation",
+    body: "Pool water passes through a stainless housing carrying copper, silver and zinc alloy anodes, plumbed into the filtration return so every turnover is treated. A water-flow sensor confirms circulation; do not bypass it.",
+    focus: 0,
+  },
+  {
+    id: "control",
+    eyebrow: "02 — The control",
+    title: "Battery-powered PWM, 24 V DC, LCD",
+    body: "The unit operates at 24 V DC from a 2200 mAh battery, charged from AC 110–230 V. PWM meters the current. The LCD reports status; an AC/DC switch selects operating mode.",
+    focus: 0.5,
+  },
+  {
+    id: "water",
+    eyebrow: "03 — The water",
+    title: "Copper 0.5 ppm ideal. pH 7.2 ideal. Residual chlorine still required.",
+    body: "Minerals help control algae and support biofilm control, which lowers day-to-day chlorine demand. Copper acceptable range 0.4–0.6 ppm; pH acceptable 7.0–7.8. A residual of free chlorine stays in the program.",
+    focus: 1,
+  },
+] as const;
+
+export const homepageHardwareCopy = [
+  {
+    id: "chamber",
+    eyebrow: "The chamber",
+    title: "Cu–Ag–Zn anodes in a stainless chamber",
+    body: "A stainless water chamber — 28 to 56 cm by series, bore 5.7 to 15.2 cm — rated to 30 psi and built to sit inline with filtration.",
+    imageKey: "chamberStudio" as const,
+    imageAlt: "The Zinc'd stainless water chamber on a studio background",
+  },
+  {
+    id: "control",
+    eyebrow: "The control",
+    title: "Battery PWM, 110–230 V charge, 170–230 W by series",
+    body: "Battery-powered control regulates ionization by PWM, reports status on an LCD, and includes a water-flow sensor and AC/DC switch.",
+    imageKey: "control" as const,
+    imageAlt: "The Zinc'd control enclosure showing ionizer status on its LCD",
+  },
+  {
+    id: "together",
+    eyebrow: "The system",
+    title: "Chamber, control, charger and test kit — one commissioned system",
+    body: "Stainless chamber, battery-powered control, charging cable, and the copper / chlorine / pH testing kit — series confirmed to your volume before dispatch.",
+    imageKey: "system" as const,
+    imageAlt: "The Zinc'd chamber and control together as catalog products",
+  },
+] as const;
+
+export const faqTopicSummaries = [
+  {
+    id: "chemistry",
+    title: "Chemistry & chlorine",
+    body: "Residual free chlorine stays in the plan. Ionization is designed to reduce dependency — not erase sanitizer.",
+  },
+  {
+    id: "how",
+    title: "How it works",
+    body: "Stainless chamber, Cu–Ag–Zn anodes, battery-powered PWM, water-flow sensor and LCD.",
+  },
+  {
+    id: "sizing",
+    title: "Sizing & series",
+    body: "Series-01 through Series-04 — start with the Pool Series Calculator, then confirm in assessment. Series-03 and Series-04 are customized, indicative models.",
+  },
+  {
+    id: "claims",
+    title: "Claims we publish",
+    body: "Certification and performance claims appear only when documentation is ready. No fog, no filler.",
+  },
+] as const;
+
+/**
+ * Catalytic Super Softener companion line — complete handbook.
+ * Claims-safe: designed to help reduce scale; no-salt / no-resin is a
+ * factual operating point, not a superiority claim (C-020).
+ */
+export const softenerLine = {
+  name: "Catalytic Super Softener",
+  eyebrow: "Companion treatment",
+  headline: "When hardness asks for a different tool",
+  intro:
+    "Where calcium hardness sits above about 300 ppm, the handbook points to a catalytic conditioner or a partial drain and refill — not more ionization. The Catalytic Super Softener is designed to help reduce scale formation in the circulation loop. It does not use salt, chemicals, or ion-exchange resin.",
+  hardnessNote:
+    "If calcium hardness is above about 300 ppm, consider the Catalytic Super Softener or a partial drain and refill before commissioning ionization.",
+  claimsFence:
+    "Wording is operational, not comparative. We do not claim that the softener extends equipment life, outperforms salt systems, or replaces professional water management.",
+} as const;
+
+export const softenerSeries = [
+  {
+    name: "Titan",
+    flow: "≤ 100 LPM",
+    body: "Catalytic conditioner sized for typical residential and light-commercial flow — designed to help reduce scale formation.",
+  },
+  {
+    name: "Titan Pro",
+    flow: "≤ 200 LPM",
+    body: "Higher-flow catalytic conditioner for larger residential and commercial loops.",
+  },
+  {
+    name: "Custom",
+    flow: "Any flow — assessed",
+    body: "Specified to the site when flow sits outside the Titan / Titan Pro bands.",
+  },
+] as const;
+
+export const softenerFaqs = [
+  {
+    q: "Does the softener replace Zinc'd ionization?",
+    a: "No. It is a companion for high-hardness sites. Ionization addresses mineral sanitation support; the softener is designed to help reduce scale formation when hardness is elevated.",
+  },
+  {
+    q: "Is it a salt or resin softener?",
+    a: "No. It is a catalytic conditioner. It does not use salt, added chemicals, or ion-exchange resin. That is how it operates — not a claim that it is superior to every other hardness treatment.",
+  },
+  {
+    q: "When should I consider it?",
+    a: "The installation handbook flags hardness above about 300 ppm as a reason to consider a catalytic conditioner or a partial drain and refill. Confirm with a water test during assessment.",
+  },
+] as const;
 

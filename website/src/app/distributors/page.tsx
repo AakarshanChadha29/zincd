@@ -19,7 +19,7 @@ import { DistributorApplyQr } from "@/components/blocks/distributor-apply-qr";
 import { TreatmentLoop } from "@/components/graphics/treatment-loop";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/content/site-config";
-import { distributorsHeroClip, motionGraphics, productPhotos } from "@/content/media";
+import { clientStills, distributorsHeroClip, motionGraphics } from "@/content/media";
 import {
   partnerAgreementNote,
   partnerAudiences,
@@ -31,6 +31,7 @@ import {
   partnerSupport,
   partnerValue,
   productSeries,
+  seriesRangeLabel,
   treatmentLoop,
 } from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
@@ -95,7 +96,7 @@ export default function DistributorsPage() {
             <span className="text-gradient-aqua">Add a high-ticket system</span>
           </>
         }
-        description="Zinc'd is looking for qualified distributors, pool service companies, builders, and hospitality suppliers who already hold the relationships. The program leads with commercial pools — hotels, clubs, wellness and leisure facilities — and the line runs Series-1 through custom multi-unit, so a residential account is never off the table."
+        description={`Zinc'd is looking for qualified distributors, pool service companies, builders, and hospitality suppliers who already hold the relationships. The program leads with commercial pools — hotels, clubs, wellness and leisure facilities — and the line runs ${seriesRangeLabel}, so a residential account is never off the table.`}
         actions={[
           {
             label: siteConfig.ctas.distributorContact.label,
@@ -302,13 +303,14 @@ export default function DistributorsPage() {
       <Section spacing="lg" background="default">
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <Reveal>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-panel)] border border-border bg-[color:var(--teal-900)]">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface p-4">
               <Image
-                src={productPhotos.controlAngled}
-                alt="Zinc'd control enclosure — the partner-facing face of the system."
-                fill
+                src={clientStills.territoryMarkets}
+                alt="U.S. territory map with hotel, spa, maintenance, gym, and distributor segments."
+                width={1200}
+                height={1600}
+                className="h-full w-full object-contain"
                 sizes="(min-width: 1024px) 40vw, 90vw"
-                className="object-cover"
               />
             </div>
           </Reveal>
@@ -389,7 +391,7 @@ export default function DistributorsPage() {
           <SectionHeading
             as="h2"
             eyebrow="Range"
-            title="One line, Series-1 through custom commercial"
+            title={`One line, ${seriesRangeLabel}`}
             description="Handbook sizing lets you serve private pools through multi-unit commercial and hospitality facilities."
           />
         </Reveal>
@@ -520,6 +522,19 @@ export default function DistributorsPage() {
           {partnerProgramFootnote}
         </p>
       </Section>
+
+      <section className="relative overflow-hidden border-y border-border bg-[color:var(--teal-900)]">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-8 px-6 py-10 md:px-10">
+          <Image
+            src={clientStills.territoryCta}
+            alt="Partner with Zinc'd — let's discuss your territory."
+            width={1200}
+            height={330}
+            className="h-auto w-full"
+            sizes="(max-width: 1024px) 100vw, 960px"
+          />
+        </div>
+      </section>
 
       <CtaBand
         eyebrow="For partners"

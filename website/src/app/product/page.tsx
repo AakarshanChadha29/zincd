@@ -17,7 +17,7 @@ import { BuyPanel } from "@/components/blocks/buy-panel";
 import { ProductJsonLd } from "@/components/seo/json-ld";
 import { ProductFloat } from "@/components/media/product-float";
 import { siteConfig } from "@/content/site-config";
-import { productHeroClip, productPhotos, productStills, motionGraphics, lifestyleStills } from "@/content/media";
+import { productHeroClip, productPhotos, productStills, motionGraphics, clientStills } from "@/content/media";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import {
   chemistryTargets,
@@ -30,7 +30,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Pool Ionizer System — Specs, Series & What's Included",
   description:
-    "Buy the Zinc'd copper–silver–zinc pool ionization system: stainless cell, PWM control, monitoring, and testing kit. Series-1 to Series-3 plus custom multi-unit. $5,000 complete system.",
+    "Buy the Zinc'd copper–silver–zinc pool ionization system: stainless chamber, battery-powered PWM control, flow sensor, and testing kit. Series-01 to Series-04. $5,000 complete system.",
   path: "/product",
   keywords: [
     "Zinc'd product",
@@ -53,7 +53,7 @@ export default function ProductPage() {
             <span className="text-gradient-aqua">ionization system</span>
           </>
         }
-        description="A complete, engineered system for US pools: a stainless copper–silver–zinc ionization cell, microcontroller PWM control with LCD and monitoring, and a water-testing kit — sized Series-1 through Series-3, with custom multi-unit layouts for larger commercial volumes."
+        description="A complete, engineered system for US pools: a stainless copper–silver–zinc water chamber, battery-powered PWM control with LCD, water-flow sensor and AC/DC switch, and a water-testing kit — sized Series-01 through Series-04. Series-03 and Series-04 are customized, indicative models."
         actions={[
           { label: "Buy now", href: "/product#buy" },
           { label: siteConfig.ctas.calculator.shortLabel, href: siteConfig.ctas.calculator.href, variant: "outline" },
@@ -75,7 +75,7 @@ export default function ProductPage() {
           the atmosphere continuous. */}
       <section className="relative overflow-hidden border-y border-border">
         <Image
-          src={lifestyleStills.villaOcean}
+          src={clientStills.commercialPool}
           alt=""
           fill
           sizes="100vw"
@@ -98,13 +98,13 @@ export default function ProductPage() {
                 </h2>
                 <p className="text-body-large mt-4 text-white/85">
                   A stainless chamber rated to 30&nbsp;psi, 24&nbsp;V DC
-                  operation, and a 100&nbsp;mm electrode assembly — specified to
-                  run continuously alongside the filtration you already have.
+                  battery operation, and series-specific chamber dimensions —
+                  specified to run alongside the filtration you already have.
                 </p>
                 <p className="text-small mt-5 text-white/60">
                   Ionization is designed to reduce chlorine dependency. A
-                  residual of free chlorine (~1.0&nbsp;ppm) remains part of
-                  responsible operation.
+                  residual of free chlorine remains part of responsible
+                  operation.
                 </p>
               </div>
             </Reveal>
@@ -129,8 +129,8 @@ export default function ProductPage() {
           <SectionHeading
             as="h2"
             eyebrow="Product range"
-            title="Handbook series sizing"
-            description="Volumes and pipe sizes from the Zinc'd plumber handbook. Assessment confirms the fit to your circulation system."
+            title="Series sizing"
+            description="Rated volumes from the current product manual. Typical values, subject to model. Assessment confirms the fit to your circulation system."
           />
         </Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -145,7 +145,11 @@ export default function ProductPage() {
                 <p className="text-technical mt-3 normal-case tracking-normal text-accent-aquatic">
                   {series.volume}
                   <span className="text-muted-foreground"> · </span>
-                  {series.pipe} inlet
+                  {series.power}
+                </p>
+                <p className="text-small mt-1 text-accent-steel">
+                  Chamber {series.chamberLength} · bore {series.bore}
+                  {series.customized ? " · customized, indicative" : ""}
                 </p>
                 <p className="text-small mt-3 text-muted-foreground">{series.body}</p>
                 <p className="text-technical mt-4 normal-case tracking-normal text-accent-ecological">
@@ -194,8 +198,16 @@ export default function ProductPage() {
           </figure>
         </Reveal>
         <StatusNote className="mt-8 max-w-3xl">
-          Series volumes are handbook guides in litres. Final selection is confirmed
-          against your pool volume, pipe size and circulation flow during assessment.
+          Series volumes are rated capacities in litres, shown here in US gallons.
+          Typical values, subject to model. Final selection is confirmed against
+          your pool volume and circulation during assessment. High hardness? See the{" "}
+          <Link
+            href="/product/softener"
+            className="text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
+          >
+            Catalytic Super Softener
+          </Link>
+          .
         </StatusNote>
       </Section>
 

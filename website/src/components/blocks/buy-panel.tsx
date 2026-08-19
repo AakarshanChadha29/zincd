@@ -37,9 +37,9 @@ export function BuyPanel() {
           {directOffer.summary}
         </p>
 
-        <div className="mt-7">
-          {canCheckout ? (
-            <div className="space-y-3">
+        <div className="mt-7 space-y-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            {canCheckout ? (
               <Button
                 size="lg"
                 className="w-full rounded-[var(--radius-control)] sm:w-auto"
@@ -51,34 +51,38 @@ export function BuyPanel() {
                 Buy now
                 <ArrowRight className="size-4" aria-hidden />
               </Button>
-              <p className="text-small text-muted-foreground">
-                Secure checkout via Stripe. Series is confirmed to your pool
-                before dispatch.
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-3">
+            ) : (
               <Button
                 size="lg"
                 className="w-full rounded-[var(--radius-control)] sm:w-auto"
-                render={<Link href="/contact?intent=assessment" />}
+                render={<Link href="/assess" />}
               >
                 Request a pool assessment
                 <ArrowRight className="size-4" aria-hidden />
               </Button>
-              {/* Customer-facing copy only. This previously printed the
-                  environment variable name as setup instructions, which both
-                  addressed the wrong audience and — being a 31-character
-                  unbreakable token — forced the grid track wider than a phone
-                  viewport, pushing the whole section into horizontal scroll. */}
-              <p className="text-small flex gap-2 text-accent-steel">
-                <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
-                <span>
-                  We confirm the right series for your pool before taking
-                  payment, so every system ships matched to your circulation.
-                </span>
-              </p>
-            </div>
+            )}
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full rounded-[var(--radius-control)] sm:w-auto"
+              render={<Link href="/contact?intent=specialist" />}
+            >
+              Request a quote
+            </Button>
+          </div>
+          {canCheckout ? (
+            <p className="text-small text-muted-foreground">
+              Secure checkout via Stripe, or request a quote if procurement
+              needs an invoice. Series is confirmed to your pool before dispatch.
+            </p>
+          ) : (
+            <p className="text-small flex gap-2 text-accent-steel">
+              <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
+              <span>
+                We confirm the right series for your pool before taking
+                payment, so every system ships matched to your circulation.
+              </span>
+            </p>
           )}
         </div>
       </div>

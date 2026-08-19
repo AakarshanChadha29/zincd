@@ -36,7 +36,7 @@ export const siteConfig = {
   ctas: {
     assessment: {
       label: "Request a Pool Assessment",
-      href: "/contact?intent=assessment",
+      href: "/assess",
     },
     calculator: {
       label: "Pool Series Calculator",
@@ -59,6 +59,15 @@ export const siteConfig = {
     specialist: {
       label: "Talk to a Specialist",
       href: "/contact?intent=specialist",
+    },
+    quote: {
+      label: "Request a quote",
+      href: "/contact?intent=specialist",
+    },
+    costSavings: {
+      label: "Hotel planning model",
+      href: "/cost-savings",
+      shortLabel: "Planning model",
     },
   },
   /**
@@ -84,8 +93,24 @@ export const siteConfig = {
 
 export const primaryNavigation: NavItem[] = [
   { label: "Technology", href: "/technology" },
-  { label: "Product", href: "/product" },
+  {
+    label: "Product",
+    href: "/product",
+    children: [
+      {
+        label: "Ionization system",
+        href: "/product",
+        description: "Series-01 through Series-04",
+      },
+      {
+        label: "Catalytic Super Softener",
+        href: "/product/softener",
+        description: "Companion for high hardness",
+      },
+    ],
+  },
   { label: "Calculator", href: "/calculator" },
+  { label: "Planning model", href: "/cost-savings" },
   {
     label: "Applications",
     href: "/applications",
@@ -114,6 +139,7 @@ export const primaryNavigation: NavItem[] = [
   },
   { label: "Distributors", href: "/distributors" },
   { label: "Installation & Maintenance", href: "/installation-maintenance" },
+  { label: "Resources", href: "/resources" },
   { label: "FAQ", href: "/faq" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -122,7 +148,12 @@ export const primaryNavigation: NavItem[] = [
 /** Compact desktop primary strip — remaining items live in footer / mobile sheet */
 export const desktopPrimaryNav: NavItem[] = [
   { label: "Technology", href: "/technology" },
-  { label: "Product", href: "/product" },
+  {
+    label: "Product",
+    href: "/product",
+    children: primaryNavigation.find((item) => item.href === "/product")
+      ?.children,
+  },
   { label: "Calculator", href: "/calculator" },
   {
     label: "Applications",
@@ -138,8 +169,11 @@ export const desktopPrimaryNav: NavItem[] = [
 export const footerExploreLinks: NavLink[] = [
   { label: "Technology", href: "/technology" },
   { label: "Product", href: "/product" },
+  { label: "Catalytic Super Softener", href: "/product/softener" },
   { label: "Pool Series Calculator", href: "/calculator" },
+  { label: "Hotel planning model", href: "/cost-savings" },
   { label: "Applications", href: "/applications" },
+  { label: "Resources", href: "/resources" },
   { label: "FAQ", href: "/faq" },
   { label: "About", href: "/about" },
 ];
@@ -148,7 +182,7 @@ export const footerB2cLinks: NavLink[] = [
   { label: "Residential Applications", href: "/applications/residential" },
   { label: "Fitness & Wellness", href: "/applications/fitness-wellness" },
   { label: "Pool Series Calculator", href: "/calculator" },
-  { label: "Request a Pool Assessment", href: "/contact?intent=assessment" },
+  { label: "Request a Pool Assessment", href: "/assess" },
   { label: "Talk to a Specialist", href: "/contact?intent=specialist" },
 ];
 
@@ -158,10 +192,12 @@ export const footerB2bLinks: NavLink[] = [
   { label: "Distributor QR", href: "/distributors/qr" },
   { label: "Commercial Applications", href: "/applications/commercial" },
   { label: "Hotels & Resorts", href: "/applications/hotels-resorts" },
+  { label: "Hotel planning model", href: "/cost-savings" },
   {
     label: "Installation & Maintenance",
     href: "/installation-maintenance",
   },
+  { label: "Resources", href: "/resources" },
 ];
 
 export const footerLegalLinks: NavLink[] = [

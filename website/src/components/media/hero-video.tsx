@@ -8,7 +8,8 @@ import { Play } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 export type HeroVideoClip = {
-  src: string;
+  /** Omit for a still-only hero (poster Image, no <video>). */
+  src?: string;
   poster: string;
 };
 
@@ -136,7 +137,7 @@ export function HeroVideo({
 
   if (!clip) return null;
 
-  const stillOnly = Boolean(reduceMotion);
+  const stillOnly = Boolean(reduceMotion) || !clip.src;
 
   return (
     <div
@@ -154,7 +155,7 @@ export function HeroVideo({
         sizes="100vw"
         className="pointer-events-none object-cover"
       />
-      {!stillOnly ? (
+      {!stillOnly && clip.src ? (
         <video
           key={clip.src}
           ref={videoRef}

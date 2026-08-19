@@ -61,6 +61,13 @@ The workspace was initialized.
 
 ## Change log
 
+### 2026-08-19 — Stage 2 Phases 2–4
+
+- **`/cost-savings`:** interactive hotel planning model (chemical-only + all-in). Formulas from `hotel_pool_ionization_cost_savings.pdf`. 90% labeled as a chlorine purchasing assumption. Outputs are modeled, not guaranteed. Email-the-model reuses `/api/leads` `kind: resource`.
+- **Buy path:** `BuyPanel` always offers **Request a quote** (`/contact?intent=specialist`) beside Stripe Buy (when set) or assessment (when unset). No invented checkout URL.
+- **Media:** people-free client stills in `website/public/assets/`. Homepage hero is the commercial-pool still. Product gallery uses client hardware shots. Technology ships the claims-safe how-it-works SVG + unlabeled technical-flow render. Distributors use territory SVGs. Identifiable-people photos, Sukhvir card, `installed product.jpg` (LCD Cu 0.8 + "Prevents" copy), and the field MP4 (hand in frame) were **not** ingested.
+- **Claims:** C-022 added; C-004/C-010 qualified exceptions documented. Raster PNG marketing panels skipped (OCR empty / SVG preferred).
+
 ### 2026-07-27 — Priority 0: environment & hygiene
 
 No application code changed. Guardrails re-verified green.

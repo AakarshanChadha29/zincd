@@ -1,9 +1,11 @@
 /**
  * Pool volume sizing + Zinc'd series recommendation.
  *
- * Volume formulas and series bands mirror the client Pool Series Calculator
- * and the installer handbook (Series-1 → Custom multi-unit).
+ * Volume formulas from the installer handbook. Series bands from Gen-2
+ * product data (Series-01 → Series-04).
  */
+
+import { productSeries } from "@/content/product-data";
 
 export const US_GALLONS_TO_LITRES = 3.785411784;
 
@@ -11,15 +13,16 @@ export type PoolShape = "rectangle" | "circle" | "oval" | "irregular";
 export type LengthUnit = "ft" | "m";
 export type CapacityUnit = "litres" | "gallons";
 
-export type SeriesId = "Series-1" | "Series-2" | "Series-3" | "Custom";
+export type SeriesId = (typeof productSeries)[number]["name"];
 
 export type SeriesRecommendation = {
   series: SeriesId;
   pipe: string;
   category: string;
   range: string;
-  /** True when volume is below the published Series-1 floor. */
+  /** True when volume sits outside the published Series-01–04 map. */
   caution: boolean;
+  customized?: boolean;
 };
 
 const FT_TO_M = 0.3048;
@@ -140,47 +143,25 @@ export function capacityToLitres(
  * The full series ladder, in order — rendered as a comparison so a visitor can
  * see where their pool falls against every option, not just the matched one.
  * US gallons lead because this is a US-market site; litres follow because the
- * installer handbook bands are published in litres.
+ * product manual bands are published in litres.
  */
-export const seriesLadder = [
-  {
-    series: "Series-1" as const,
-    category: "Residential",
-    pipe: '2"',
-    gallons: "5,300–18,500 gal",
-    litres: "20,000–70,000 L",
-  },
-  {
-    series: "Series-2" as const,
-    category: "Large residential / club",
-    pipe: '2–4"',
-    gallons: "18,500–26,400 gal",
-    litres: "70,000–100,000 L",
-  },
-  {
-    series: "Series-3" as const,
-    category: "Luxury / small commercial",
-    pipe: '4"',
-    gallons: "26,400–39,600 gal",
-    litres: "100,000–150,000 L",
-  },
-  {
-    series: "Custom" as const,
-    category: "Commercial multi-unit",
-    pipe: "As required",
-    gallons: "Above 39,600 gal",
-    litres: "Above 150,000 L",
-  },
-] as const;
+export const seriesLadder = productSeries.map((series) => ({
+  series: series.name,
+  category: series.scope,
+  pipe: series.pipe,
+  gallons: series.volume,
+  litres: series.volumeMetric,
+  customized: series.customized,
+}));
 
 /**
- * Handbook series bands (litres).
- * Series-1 splits Small (20–40k) vs Standard (40–70k) for display only.
+ * Gen-2 rated capacities (litres). Each series is the match up to its
+ * `maxLitres`. Volumes above Series-04 still return Series-04 with a caution.
  */
 export function recommendSeries(litres: number): SeriesRecommendation {
   if (!Number.isFinite(litres) || litres <= 0) {
     return {
-      series: "Series-1",
+      series: "Series-01",
       pipe: "—",
       category: "Enter pool details",
       range: "—",
@@ -188,62 +169,19 @@ export function recommendSeries(litres: number): SeriesRecommendation {
     };
   }
 
-  if (litres < 20_000) {
-    return {
-      series: "Series-1",
-      pipe: "2 inch",
-      category: "Below published range",
-      range: "20,000–40,000 L",
-      caution: true,
-    };
-  }
+  const match =
+    productSeries.find((series) => litres <= series.maxLitres) ??
+    productSeries[productSeries.length - 1];
 
-  if (litres <= 40_000) {
-    return {
-      series: "Series-1",
-      pipe: "2 inch",
-      category: "Small Residential",
-      range: "20,000–40,000 L",
-      caution: false,
-    };
-  }
-
-  if (litres <= 70_000) {
-    return {
-      series: "Series-1",
-      pipe: "2 inch",
-      category: "Standard Residential",
-      range: "40,000–70,000 L",
-      caution: false,
-    };
-  }
-
-  if (litres <= 100_000) {
-    return {
-      series: "Series-2",
-      pipe: "2–4 inch",
-      category: "Large Residential / Club",
-      range: "70,000–100,000 L",
-      caution: false,
-    };
-  }
-
-  if (litres <= 150_000) {
-    return {
-      series: "Series-3",
-      pipe: "4 inch",
-      category: "Luxury / Small Commercial",
-      range: "100,000–150,000 L",
-      caution: false,
-    };
-  }
+  const abovePublished = litres > productSeries[productSeries.length - 1].maxLitres;
 
   return {
-    series: "Custom",
-    pipe: "As required",
-    category: "Commercial multi-unit",
-    range: "Above 150,000 L",
-    caution: false,
+    series: match.name,
+    pipe: match.pipe,
+    category: match.scope,
+    range: match.volumeMetric,
+    caution: abovePublished,
+    customized: match.customized,
   };
 }
 

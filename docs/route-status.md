@@ -30,6 +30,11 @@ intents). See `docs/project-status.md` for behaviour and required env vars.
 | Route | Shell | Content | Design | Backend |
 |---|---|---|---|---|
 | `/` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/calculator` | shell-complete | content-draft | design-implemented | backend-not-required |
+| `/cost-savings` | shell-complete | content-draft | design-implemented | backend-wired (planning-model email via `POST /api/leads` `kind: resource`) |
+| `/assess` | shell-complete | content-draft | design-implemented | backend-wired (`POST /api/leads` `kind: assess`) |
+| `/resources` | shell-complete | content-draft | design-implemented | backend-wired (`POST /api/leads` `kind: resource`) |
+| `/product/softener` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `/technology` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `/product` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `/applications` | shell-complete | content-draft | design-implemented | backend-not-required |
@@ -49,4 +54,4 @@ intents). See `docs/project-status.md` for behaviour and required env vars.
 | `/warranty` | shell-complete | content-draft | design-implemented | backend-not-required |
 | `not-found` | shell-complete | n/a | shell design | backend-not-required |
 
-Deferred routes (not created): `/cost-savings`, `/case-studies`, `/pricing`, `/book`, `/shop`, `/amazon`, `/resources`.
+Deferred routes (not created): `/case-studies`, `/pricing`, `/book`, `/shop`, `/amazon`.

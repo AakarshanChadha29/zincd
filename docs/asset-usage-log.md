@@ -17,12 +17,31 @@
 | `website/public/img/product/chamber-premium.png` | Higgsfield Nano Banana Pro | generated-product-still | ~2 cr. Classy stainless chamber still. |
 | `website/public/img/product/chamber-hero-vertical.png` | Higgsfield Nano Banana Pro | generated-product-still | ~2 cr. Vertical chamber hero. |
 | `website/public/img/product/ref-flow-diagram.png` | Client screenshot | source-reference | Not linked in UI; retained for regen. |
-| Client manifold screenshot (Arroyo-labeled) | Client screenshot | source-reference — do not publish | Kept outside `public/`; used only as Higgsfield edit input. |
+| `website/public/assets/commercial-pool.jpg` | `Pool ionizer/zincd-premium-commercial-pool-3840x2160.jpg` | client-environment — people-free | Homepage hero + hotels/commercial stills. No overlay text. |
+| `website/public/assets/clear-water-return.jpg` | `Pool ionizer/zincd-clear-water-return-3840x2160.jpg` | client-environment — people-free | Backup/underwater still. |
+| `website/public/assets/hotel-wellness.jpg` | `Pool ionizer/premium-commercial-hotel-wellness-pool-2400x1800.png` | client-environment — people-free | Hotels & resorts application card. |
+| `website/public/assets/hotel-infinity.jpg` | `Pool ionizer/seg-hotel.jpg` | client-environment — people-free | Fitness/wellness application card. |
+| `website/public/assets/technical-flow.jpg` | `Pool ionizer/zincd-technical-flow-3840x2160.jpg` | technical-diagram — no embedded claims | Technology + homepage flow. Labels were empty placeholders. |
+| `website/public/assets/product-front.jpg` | `Pool ionizer/product front.jpg` | product-reference | Gallery. Chamber etch `ARROYO-WCH-2` visible — not used as a Zinc'd model name. Faceplate: "Low Chemical" (not chemical-free). |
+| `website/public/assets/product-hero.jpg` | `Pool ionizer/Product hero.png` | product-reference | Gallery. Same OEM etch. |
+| `website/public/assets/plant-room.jpg` | `Pool ionizer/room.png` | environment — people-free | Install / homepage plant-room context. No product claims. |
+| `website/public/assets/hardware-rear.jpg` | `Pool ionizer/20260812_132454000_iOS.jpg` | product-reference — no people | Gallery. Rear/brackets/flow sensor. |
+| `website/public/assets/how-zincd-works.svg` | `Pool ionizer/how-zincd-works-premium-panel.svg` | technical-diagram — claims-safe SVG | Technology. Raster PNG sibling not shipped (OCR empty; SVG is source of truth). |
+| `website/public/assets/us-territory-markets.svg` | `Pool ionizer/us-territory-markets-premium.svg` | territory panel — claims-safe SVG | Distributors. |
+| `website/public/assets/cta-territory.svg` | `Pool ionizer/cta-territory-premium.svg` | CTA panel — claims-safe SVG | Distributors (on teal band). |
 
 ## Explicitly not used
 
 | Asset | Reason |
 |---|---|
+| Identifiable-people stills (`zincd-distributor-discussion-3840x2160.jpg`, `zincd-pool-industry-decision-maker-3840x2160.jpg`) | No signed people-consent on file (C-013 policy) |
+| `hf-card-front-sukhvir.png` | Named founder card; not a public testimonial asset |
+| `installed product.jpg` | LCD shows Cu 0.8 (outside published 0.4–0.6) and faceplate "Prevents algae & bacteria" |
+| `20260812_130913000_iOS.MP4` | Identifiable hand in frame; not hosted in git |
+| Remaining `20260812_*` / `IMG20260812_*` field photos | Pending per-frame people-consent review |
+| Raster marketing panels (`how-zincd-works-premium-panel.png`, `market-icons-premium-panel.png`, `target-market-icons.png`, `us-territory-markets-premium.png`, `cta-territory-premium.png`, `benefit-icons-row.png`) | Prefer SVG; raster OCR was empty. Market-icons PNG visually claims-safe but black-bg and redundant with SVG segment list |
+| `zincd-product-cutout-transparent-3000px-v2.png` | Filename says transparent; file is black-bg. Not used as ProductFloat overlay |
+| `Pool Care New Design..jpg`, `cover-water.jpg`, `brochure-outside.png` | Print / oversized; not web |
 | Arroyo-branded product photo (`PHOTO-2026-07-22-23-15-23.jpg`) | Must not publish as Zinc'd |
 | Marketing flyers / packaging with blocked claims | Layout reference only; claims blocked |
 | Oversized `Pool Care New Design..jpg` | Unsuitable for web as-is |

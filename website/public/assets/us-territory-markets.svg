@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
+  <style>
+    .outline{fill:#FFFFFF;stroke:#0B5CA8;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+    .route{fill:none;stroke:#55D6D5;stroke-width:8;stroke-linecap:round;stroke-dasharray:12 20}
+    .mini{fill:#FFFFFF;stroke:#CDE8E6;stroke-width:4}
+    .icon{fill:none;stroke:#073747;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+    .accent{fill:none;stroke:#55D6D5;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+    .label{font-family:Manrope,Arial,sans-serif;font-size:25px;font-weight:750;letter-spacing:1px;fill:#073747;text-anchor:middle}
+  </style>
+  <g>
+    <path class="outline" d="M72 209 L132 174 L196 162 L240 178 L306 161 L367 170 L425 152 L483 161 L542 148 L602 163 L660 151 L722 169 L780 157 L835 184 L894 193 L939 171 L997 182 L1040 210 L1030 239 L994 247 L972 277 L951 307 L963 339 L950 373 L928 360 L913 330 L885 343 L857 367 L816 362 L779 384 L748 373 L711 402 L672 400 L639 421 L596 413 L558 424 L527 406 L485 412 L452 396 L421 403 L385 378 L350 383 L324 359 L288 353 L271 325 L240 308 L229 281 L204 264 L214 235 L196 211 L167 219 L142 205 L111 219 Z"/>
+  </g>
+  <path class="route" d="M190 293 C338 219 452 252 567 310 C681 367 804 377 957 266"/>
+  <path d="M286 199 C435 230 588 219 824 306" fill="none" stroke="#8FC3E0" stroke-width="5" stroke-linecap="round" stroke-dasharray="7 18" opacity="0.7"/>
+  <g fill="#FFFFFF" stroke="#0B5CA8" stroke-width="7"><circle cx="190" cy="293" r="20"/><circle cx="489" cy="273" r="20"/><circle cx="740" cy="372" r="20"/><circle cx="957" cy="266" r="20"/></g>
+  <g fill="#55D6D5"><circle cx="190" cy="293" r="8"/><circle cx="489" cy="273" r="8"/><circle cx="740" cy="372" r="8"/><circle cx="957" cy="266" r="8"/></g>
+
+  <!-- Six compact market icons -->
+  <g transform="translate(200 710)"><circle class="mini" r="125"/><path class="icon" d="M-56 56 V-58 H56 V56 M-70 56 H70 M-28 -28 H-10 M20 -28 H38 M-28 6 H-10 M20 6 H38 M-10 56 V24 H10 V56"/><path class="accent" d="M30 -58 V-83 H70 L58 -70 L70 -58 Z"/><text class="label" y="176">HOTELS</text></g>
+  <g transform="translate(600 710)"><circle class="mini" r="125"/><path class="icon" d="M0 49 C-34 49 -61 30 -70 2 C-35 -3 -13 8 0 27 C13 8 35 -3 70 2 C61 30 34 49 0 49 Z"/><path class="accent" d="M0 27 C-33 3 -33 -30 0 -70 C33 -30 33 3 0 27 Z"/><path class="icon" d="M-35 76 H35 M-47 96 H47"/><text class="label" y="176">SPAS</text></g>
+  <g transform="translate(1000 710)"><circle class="mini" r="125"/><path class="icon" d="M-58 63 L17 -12 M-3 -32 L37 8 M27 -70 C47 -79 67 -77 82 -63 L53 -34 L59 -12 L82 -6 C96 -24 98 -43 89 -61 M-43 48 L-28 63 L-50 85 L-65 70 Z"/><path class="accent" d="M-33 -40 C-33 -65 -7 -91 -7 -91 C-7 -91 19 -65 19 -40 C19 -26 7 -14 -7 -14 C-21 -14 -33 -26 -33 -40 Z"/><text class="label" y="176">CONTRACTORS</text></g>
+  <g transform="translate(200 1210)"><circle class="mini" r="125"/><path class="icon" d="M0 -82 L12 -62 L36 -64 L42 -40 L63 -29 L54 -7 L67 11 L50 28 L52 52 L29 57 L18 79 L-4 70 L-25 80 L-38 60 L-62 58 L-64 35 L-81 20 L-69 0 L-78 -21 L-57 -32 L-52 -55 L-28 -53 L-15 -77 Z"/><circle class="accent" cx="-5" cy="13" r="43"/><path class="icon" d="M-28 13 L-12 29 L20 -6"/><text class="label" y="176">MAINTENANCE</text></g>
+  <g transform="translate(600 1210)"><circle class="mini" r="125"/><path class="icon" d="M-68 -29 V21 M-45 -45 V37 M45 -45 V37 M68 -29 V21 M-45 -4 H45"/><path class="accent" d="M-94 66 C-72 48 -50 48 -28 66 C-6 84 16 84 38 66 C60 48 82 48 104 66"/><text class="label" y="176">GYMS</text></g>
+  <g transform="translate(1000 1210)"><circle class="mini" r="125"/><path class="icon" d="M-67 -31 L0 -67 L67 -31 V65 H-67 Z M-67 -31 H67 M-42 65 V-7 H42 V65 M-42 19 H42 M0 -7 V65"/><path class="accent" d="M-30 -79 L0 -94 L30 -79"/><text class="label" y="176">DISTRIBUTORS</text></g>
+</svg>

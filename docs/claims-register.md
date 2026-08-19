@@ -36,9 +36,9 @@ Sources: `TS`=`TECHNICAL SPECIFICATION 2.pdf`, `MR`=`MAINTENANCE REQUIREEMNT 2.p
 - **Original:** "90% Less Chlorine" (FLY1, FLY2, PKG).
 - **Proposed safe wording:** "designed to reduce chlorine dependency" (no fixed %) until evidence.
 - **Category:** performance. **Source:** FLY1/FLY2/PKG; `meeting-2.known.chlorine-known` lists 70–90% / up to 90% / 90% fewer chemicals / "no chemicals needed" as **non-equivalent**.
-- **Evidence available:** none. **Status:** `contradictory` → `pending-evidence`.
+- **Evidence available:** none. **Status:** `pending-evidence` for efficacy percentages. **Qualified exception (2026-08-19):** `/cost-savings` may expose a visitor-controlled *chlorine purchasing assumption* defaulting to 90%, labeled as an invoice-validation assumption — never as sanitizer efficacy (see C-022).
 - **Qualification required:** test conditions, measured baseline. **Client confirmation:** yes. **Legal review:** yes.
-- **Permitted pages:** none until evidence. **Blocked reason:** inconsistent figures; no validation data.
+- **Permitted pages:** none as an efficacy claim. `/cost-savings` only as a labeled purchasing assumption. **Blocked reason:** inconsistent figures; no validation data.
 
 ### C-005 — "No chemicals needed" / "chemical-free"
 - **Original:** "no chemicals needed" (`meeting-2.known.chlorine-known`); "Less Chemicals" (PKG).
@@ -84,9 +84,9 @@ Sources: `TS`=`TECHNICAL SPECIFICATION 2.pdf`, `MR`=`MAINTENANCE REQUIREEMNT 2.p
 - **Original:** Traditional "$120+"/"$220 monthly" (FLY1) vs "$585–$950" (CC); Zinc'd "$8–$20/month" (FLY1) vs "$76–$160" (CC); "Save $180+/Month" (FLY1); "Save 36,845/-month" (PKG, currency unclear).
 - **Proposed safe wording:** none — omit specific figures; "can lower ongoing operating cost" only, or numbers in approved proposals.
 - **Category:** financial/ROI. **Source:** FLY1, CC, PKG; `meeting-2.known.cost-known` documents the conflict.
-- **Evidence available:** none (`meeting-2.doc.cost-workbook`="Not requested"). **Status:** `contradictory`.
+- **Evidence available:** none (`meeting-2.doc.cost-workbook`="Not requested"). Hotel planning-model PDF received 2026-08-19 — **illustrative**, not a national average. **Status:** `contradictory` for published Zinc'd savings figures. **Qualified exception:** `/cost-savings` may show *visitor-input modeled outputs* from those formulas, labeled as a planning model. Static "$444/mo" / "9.5-mo payback" / "$26,650" must not be presented as Zinc'd savings.
 - **Qualification required:** cost workbook, assumptions, currency, region. **Client confirmation:** yes. **Legal review:** yes.
-- **Permitted pages:** none public; figures belong in approved proposals. **Blocked reason:** multiple incompatible numbers.
+- **Permitted pages:** `/cost-savings` interactive model only (visitor-owned inputs). **Blocked reason:** multiple incompatible flyer/packaging numbers; model outputs are not guarantees.
 
 ### C-011 — "Lab tested" / "Certified Lab Results" / "PBTI"
 - **Original:** "Proven ROI & Lab Tested", "Certified Lab Results" (FLY1); "Certified Lab Tested… PBTI" (FLY2).
@@ -146,18 +146,52 @@ Sources: `TS`=`TECHNICAL SPECIFICATION 2.pdf`, `MR`=`MAINTENANCE REQUIREEMNT 2.p
 
 ### C-018 — Technical specifications (voltage, power, metals, chemistry)
 - **Original:** `TS` values (110–230 V AC / 24 V DC, 75 W, 30 psi, Cu–Ag–Zn, Cu 0.3–0.4 ppm, Cl ~1.0 ppm, pH 7.2–7.6).
+- **CLIENT DECISION 2026-08-19:** the newly supplied documents are the correct/current source → site specs update to **Gen 2** (manual + hotel model): Series-01→04 (50k/150k/300k/400–500k L), power 170/190/210/230 W, 24 V DC battery / AC 110–230 V charging, copper ideal 0.5 / acceptable 0.4–0.6 ppm, pH ideal 7.2 / acceptable 7.0–7.8, TA 50–80 ppm, CH 150–200 min / ~300 (plaster), water chamber 28/28/37/56 cm, bore 5.7/5.7/11.4/15.2 cm. Free chlorine spec still BLANK in manual — not publishable until client supplies.
 - **Proposed safe wording:** publish as specifications with "typical/subject to model" qualifier.
-- **Category:** technical spec. **Source:** `TS`.
-- **Evidence available:** document. **Status:** `qualified` → `pending-client-confirmation` (confirm current/model-accurate).
-- **Qualification required:** confirm per-model accuracy. **Client confirmation:** yes. **Legal review:** no.
-- **Permitted pages:** Technology, Products. **Blocked reason:** none if confirmed; verify iron vs Cu/Ag/Zn discrepancy (`meeting-2.known.technology-known`).
+- **Category:** technical spec. **Source:** `TS`, `Zincd_Pool_Sanitizer_User_Installation_Manual_Professional_English.pdf` (Gen 2), `hotel_pool_ionization_cost_savings.pdf` (Gen 2).
+- **Evidence available:** documents. **Status:** `approved` (Gen-2 values, client-confirmed 2026-08-19). Free chlorine spec + pro-rated warranty % remain unpublished blanks.
+- **Qualification required:** complete the manual's blank chlorine spec; confirm Series-03/04 custom vs catalogue. **Client confirmation:** received 2026-08-19 (Gen 2 correct). **Legal review:** no.
+- **Permitted pages:** Technology, Products, Installation, Calculator, FAQ. **Blocked reason:** none for Gen-2 values; chlorine spec + pro-rated warranty % remain open.
+
+### C-019 — Catalytic Super Softener (scale / no-salt)
+- **Original:** complete handbook — Titan / Titan Pro / Custom; "without the use of salt, chemicals, or conventional ion-exchange resins"; "extends the service life of pool equipment".
+- **Proposed safe wording:** "designed to help reduce scale formation"; no-salt / no-resin as a *factual operating point* (not a superiority claim). Equipment-life extension blocked.
+- **Category:** product companion / performance. **Source:** `complete handboon on swimming pool and softener.pdf`.
+- **Evidence available:** handbook description only. **Status:** `qualified`.
+- **Qualification required:** keep efficacy qualitative; no comparative "better than salt" claims. **Client confirmation:** Phase 1c approved to ship with this wording (2026-08-19 Stage 2). **Legal review:** no for qualified wording.
+- **Permitted pages:** `/product/softener`, Installation (hardness note), assessment funnel. **Blocked reason (if over-claimed):** unbacked equipment-life or superiority claims.
+
+### C-020 — Distributor economics ($5,000 / $3,500 / $1,500 / 30%)
+- **Original:** distributor order and onboard forms — MSRP $5,000, cost $3,500, spread $1,500, 30% margin.
+- **Proposed safe wording:** none on public pages. Direct $5,000 offer is the published owner price (already on `/product`); wholesale figures stay gated.
+- **Category:** commercial confidential. **Source:** distributor forms.
+- **Evidence available:** internal forms. **Status:** `blocked` (public).
+- **Permitted pages:** none public. **Blocked reason:** B2B-confidential partner economics.
+
+### C-021 — Draft user manual as a public download
+- **Original:** `Zincd_Pool_Sanitizer_User_Installation_Manual_Professional_English.pdf` with `[INSERT ...]` placeholders.
+- **Proposed safe wording:** request waitlist only until chlorine spec, warranty %, diagrams, and contacts are complete.
+- **Category:** document distribution. **Source:** Gen-2 draft manual.
+- **Evidence available:** draft. **Status:** `blocked` (as-is PDF).
+- **Permitted pages:** `/resources` waitlist only. **Blocked reason:** incomplete draft.
+
+### C-022 — Hotel planning-model calculator (visitor inputs)
+- **Original:** `hotel_pool_ionization_cost_savings.pdf` — $444 monthly net, 9.5-mo payback, $26,650 five-year net, $5,000 MRP, 90% chlorine purchase reduction, $1,500 all-in / $350 chemicals example.
+- **Proposed safe wording:** "planning model — validate with site invoices, local code and a controlled pilot"; 90% = chlorine purchasing assumption; outputs labeled modeled, not guaranteed.
+- **Category:** financial/ROI. **Source:** hotel planning-model PDF.
+- **Evidence available:** illustrative model with stated assumptions; no site invoices. **Status:** `qualified`.
+- **Qualification required:** visitor-editable inputs; never publish the example totals as Zinc'd savings; exclude distributor economics.
+- **Client confirmation:** Stage 2 Phase 2a (2026-08-19). **Legal review:** no for qualified interactive model.
+- **Permitted pages:** `/cost-savings`, `/resources` (gated PDF request). **Blocked reason (if over-claimed):** presenting modeled totals as actual or typical savings.
 
 ---
 
 ## Summary
 - **blocked:** C-001, C-005, C-007, C-008, C-012, C-013, C-014 (+ absolute forms of C-006)
-- **contradictory:** C-002, C-004, C-009, C-010
-- **pending-evidence:** C-004 (after reconciliation), C-007, C-011
-- **pending-client-confirmation:** C-015, C-016, C-018 *(C-017 resolved 2026-08-19 — contact phone/email confirmed)*
-- **qualified (with rewording):** C-003 (historical), C-006, C-018
+- **contradictory:** C-002, C-009; C-004 / C-010 remain contradictory as *published Zinc'd claims*, with qualified interactive exceptions
+- **pending-evidence:** C-004 (efficacy %), C-007, C-011
+- **pending-client-confirmation:** C-015, C-016
+- **qualified (with rewording):** C-003 (historical), C-006, C-019, C-022 (hotel planning model)
+- **approved:** C-018 (Gen-2 specs, client-confirmed 2026-08-19)
 - **approved-source-fact:** C-017 (contact phone/email, confirmed 2026-08-19). All others still require confirmation/evidence/legal sign-off.
+- **blocked (additional):** C-020 (distributor economics, public), C-021 (draft manual as download)

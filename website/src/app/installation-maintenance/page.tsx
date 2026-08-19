@@ -7,34 +7,58 @@ import { StatusNote } from "@/components/ui/status-note";
 import { Reveal } from "@/components/motion/reveal";
 import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessSteps } from "@/components/blocks/process-steps";
+import { FaqList } from "@/components/blocks/faq-list";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { siteConfig } from "@/content/site-config";
-import { chemistryTargets, installSteps, warrantySummary } from "@/content/product-data";
-import { motionGraphics, productPhotos } from "@/content/media";
+import {
+  chemistryTargets,
+  installSteps,
+  seriesRangeLabel,
+  specQualifier,
+  warrantySummary,
+} from "@/content/product-data";
+import {
+  capacityFormulas,
+  installFaqs,
+  installPage,
+  maintenanceSchedule,
+  operationalStandards,
+  samplingHowTo,
+  samplingSop,
+  shockHowTo,
+  shockSop,
+  troubleshootingRows,
+} from "@/content/install-content";
+import { clientStills, motionGraphics } from "@/content/media";
 import { createPageMetadata } from "@/lib/metadata";
+import { FaqJsonLd, HowToJsonLd } from "@/components/seo/json-ld";
 import Image from "next/image";
 import { Container } from "@/components/layout/container";
 
 export const metadata = createPageMetadata({
   title: "Installation & Maintenance",
   description:
-    "How Zinc'd integrates with your circulation system and what routine care looks like — minimal maintenance centered on periodic anode cleaning.",
+    "How Zinc'd integrates with your circulation system — capacity formulas, sampling SOP, Gen-2 chemistry targets, post-storm shock, and a preventive-maintenance schedule.",
   path: "/installation-maintenance",
 });
 
 export default function InstallationMaintenancePage() {
   return (
     <>
+      <FaqJsonLd faqs={installFaqs} />
+      <HowToJsonLd {...samplingHowTo} />
+      <HowToJsonLd {...shockHowTo} />
+
       <PageHero
-        eyebrow="Installation & Maintenance"
+        eyebrow={installPage.eyebrow}
         title={
           <>
-            Fits your circulation.{" "}
-            <span className="text-gradient-aqua">Light on upkeep.</span>
+            {installPage.titleLead}{" "}
+            <span className="text-gradient-aqua">{installPage.titleAccent}</span>
           </>
         }
-        description="Zinc'd is designed to integrate with existing pool circulation systems — Series-1 through Series-3, or custom multi-unit layouts for larger commercial inlets. Routine maintenance is minimal — centered on periodic cleaning of the copper–silver–zinc anode when monitoring signals it."
+        description={installPage.description}
         actions={[
           { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
           { label: "See the product", href: "/product", variant: "outline" },
@@ -50,17 +74,17 @@ export default function InstallationMaintenancePage() {
                 Designed to sit inline — not fight your existing loop
               </h2>
               <p className="text-body mt-4 text-muted-foreground">
-                The stainless chamber plumbed on the filter return, control on
-                the wall, monitoring that signals anode care. Install once;
-                maintain lightly.
+                The stainless chamber plumbed on the filter return, battery-powered
+                control on the wall, water-flow sensor in line. {seriesRangeLabel}.
+                Do not bypass the flow sensor.
               </p>
             </div>
           </Reveal>
           <Reveal delay={0.08}>
             <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
               <Image
-                src={productPhotos.install}
-                alt="Zinc'd installed beside pool equipment plumbing"
+                src={clientStills.plantRoom}
+                alt="A professional plant room with filtration ready for an inline ionization chamber"
                 fill
                 sizes="(min-width: 768px) 45vw, 100vw"
                 className="object-cover"
@@ -78,7 +102,6 @@ export default function InstallationMaintenancePage() {
         body="Motion study of the living field around mineral ionization — kept here so Installation carries its own film, separate from Home and Technology."
       />
 
-      {/* Process */}
       <Section spacing="lg" background="default">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">
           <Reveal>
@@ -97,7 +120,180 @@ export default function InstallationMaintenancePage() {
         </div>
       </Section>
 
-      {/* Maintenance detail + chemistry */}
+      <Section spacing="lg" background="muted">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow={capacityFormulas.eyebrow}
+            title={capacityFormulas.title}
+            description={capacityFormulas.description}
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {capacityFormulas.items.map((item, i) => (
+            <Reveal key={item.shape} delay={i * 0.05}>
+              <article className="h-full rounded-[var(--radius-panel)] border border-border bg-surface p-6">
+                <TechnicalLabel className="text-accent-aquatic">
+                  {item.shape}
+                </TechnicalLabel>
+                <p className="text-technical mt-4 normal-case tracking-normal text-foreground">
+                  {item.imperial}
+                </p>
+                <p className="text-small mt-2 text-muted-foreground">{item.metric}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <StatusNote className="mt-8 max-w-3xl">{capacityFormulas.note}</StatusNote>
+      </Section>
+
+      <Section spacing="lg" background="default">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">
+          <Reveal>
+            <div className="lg:sticky lg:top-28">
+              <SectionHeading
+                as="h2"
+                eyebrow={samplingSop.eyebrow}
+                title={samplingSop.title}
+                description={samplingSop.description}
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <ProcessSteps steps={samplingSop.steps} />
+          </Reveal>
+        </div>
+      </Section>
+
+      <Section spacing="lg" background="muted">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Operational standards"
+            title="Chemistry to hold"
+            description={`${specQualifier} Residual free chlorine remains required; the specific ppm is pending the finalized manual.`}
+          />
+        </Reveal>
+        <div className="mt-10 overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
+          <table className="w-full text-left">
+            <thead className="border-b border-border bg-surface-muted/60">
+              <tr>
+                <th className="text-technical px-5 py-3 text-accent-steel">Parameter</th>
+                <th className="text-technical px-5 py-3 text-accent-steel">Target</th>
+                <th className="text-technical hidden px-5 py-3 text-accent-steel md:table-cell">
+                  Cadence
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {operationalStandards.map((row) => (
+                <tr key={row.parameter}>
+                  <td className="text-body px-5 py-4 font-medium text-foreground">
+                    {row.parameter}
+                  </td>
+                  <td className="text-small px-5 py-4 text-muted-foreground">
+                    {row.target}
+                  </td>
+                  <td className="text-small hidden px-5 py-4 text-muted-foreground md:table-cell">
+                    {row.frequency}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-small mt-4 text-muted-foreground">
+          Hardness above about 300 ppm: see the{" "}
+          <Link
+            href="/product/softener"
+            className="text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
+          >
+            Catalytic Super Softener
+          </Link>{" "}
+          or a partial drain and refill.
+        </p>
+      </Section>
+
+      <Section spacing="lg" background="default">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">
+          <Reveal>
+            <div className="lg:sticky lg:top-28">
+              <SectionHeading
+                as="h2"
+                eyebrow={shockSop.eyebrow}
+                title={shockSop.title}
+                description={shockSop.description}
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <ProcessSteps steps={shockSop.steps} />
+          </Reveal>
+        </div>
+      </Section>
+
+      <Section spacing="lg" background="muted">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Preventive schedule"
+            title="Daily through annual"
+            description="Structure from the complete handbook. Anode replacement interval is not published until the client supplies it."
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {maintenanceSchedule.map((block, i) => (
+            <Reveal key={block.cadence} delay={i * 0.04}>
+              <article className="h-full rounded-[var(--radius-panel)] border border-border bg-surface p-6">
+                <TechnicalLabel className="text-accent-aquatic">
+                  {block.cadence}
+                </TechnicalLabel>
+                <ul className="mt-4 space-y-2">
+                  {block.items.map((item) => (
+                    <li key={item} className="text-small text-muted-foreground">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section spacing="lg" background="default">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Troubleshooting"
+            title="Claims-safe checks first"
+            description="These rows help isolate circulation, chemistry, and power — they are not efficacy claims."
+          />
+        </Reveal>
+        <div className="mt-10 overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
+          <table className="w-full text-left">
+            <thead className="border-b border-border bg-surface-muted/60">
+              <tr>
+                <th className="text-technical px-5 py-3 text-accent-steel">Symptom</th>
+                <th className="text-technical px-5 py-3 text-accent-steel">Check</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {troubleshootingRows.map((row) => (
+                <tr key={row.symptom}>
+                  <td className="text-body px-5 py-4 align-top font-medium text-foreground">
+                    {row.symptom}
+                  </td>
+                  <td className="text-small px-5 py-4 text-muted-foreground">
+                    {row.check}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
       <Section spacing="lg" background="muted">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           <Reveal>
@@ -106,7 +302,7 @@ export default function InstallationMaintenancePage() {
                 as="h2"
                 eyebrow="Routine care"
                 title="What keeps the water in range"
-                description="Monitoring signals when the anode needs cleaning; regular testing keeps chemistry on target."
+                description="Test copper, pH and residual chlorine. The LCD reports status; the flow sensor must stay in the line."
               />
               <div className="mt-8 rounded-[var(--radius)] border border-border bg-surface p-7">
                 <TechnicalLabel>Keep these in range</TechnicalLabel>
@@ -114,10 +310,10 @@ export default function InstallationMaintenancePage() {
                   {chemistryTargets.map((t) => (
                     <div
                       key={t.label}
-                      className="flex items-baseline justify-between border-b border-border pb-3 last:border-0 last:pb-0"
+                      className="flex items-baseline justify-between gap-4 border-b border-border pb-3 last:border-0 last:pb-0"
                     >
                       <dt className="text-body text-foreground">{t.label}</dt>
-                      <dd className="text-technical normal-case tracking-normal text-accent-aquatic">
+                      <dd className="text-technical text-right normal-case tracking-normal text-accent-aquatic">
                         {t.value}
                       </dd>
                     </div>
@@ -127,7 +323,7 @@ export default function InstallationMaintenancePage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="lg:pt-16 space-y-6">
+            <div className="space-y-6 lg:pt-16">
               <div className="rounded-[var(--radius)] border border-border bg-surface p-7">
                 <TechnicalLabel>Warranty summary</TechnicalLabel>
                 <dl className="mt-5 space-y-4">
@@ -153,10 +349,25 @@ export default function InstallationMaintenancePage() {
                 <Link href="/warranty" className="underline underline-offset-4">
                   Warranty
                 </Link>{" "}
-                page. Covered defects follow a replacement policy.
+                page. The Gen-2 pro-rated schedule is not published until
+                percentages are supplied.
               </StatusNote>
             </div>
           </Reveal>
+        </div>
+      </Section>
+
+      <Section spacing="lg" background="default">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Install FAQ"
+            title="Sampling, volume, shock"
+            description="The same answers are marked up as FAQ and HowTo structured data for this page."
+          />
+        </Reveal>
+        <div className="mt-10">
+          <FaqList faqs={installFaqs} />
         </div>
       </Section>
 

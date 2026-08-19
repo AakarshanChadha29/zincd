@@ -77,7 +77,7 @@ export function SiteHeader() {
                       className="text-small block rounded-[var(--radius-control)] px-3 py-2 font-medium hover:bg-surface-muted"
                       onClick={() => setOpenMenu(null)}
                     >
-                      All applications
+                      {item.label}
                     </Link>
                     {item.children.map((child) => (
                       <Link

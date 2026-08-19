@@ -94,7 +94,7 @@ export function ProductJsonLd() {
     "@type": "Product",
     name: "Zinc'd ionization system",
     description:
-      "Complete copper–silver–zinc pool ionization system with microcontroller PWM control, monitoring, and water-testing kit.",
+      "Complete copper–silver–zinc pool ionization system with battery-powered PWM control, water-flow sensor, LCD, and water-testing kit.",
     brand: {
       "@type": "Brand",
       name: siteConfig.brand.name,
@@ -107,6 +107,41 @@ export function ProductJsonLd() {
       availability: "https://schema.org/PreOrder",
       url: `${url}/product`,
     },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+export function HowToJsonLd({
+  name,
+  description,
+  totalTime,
+  steps,
+}: {
+  name: string;
+  description: string;
+  totalTime?: string;
+  steps: readonly { name: string; text: string }[];
+}) {
+  const url = siteConfig.getSiteUrl();
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    description,
+    ...(totalTime ? { totalTime } : {}),
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      url: `${url}/installation-maintenance`,
+    })),
   };
 
   return (

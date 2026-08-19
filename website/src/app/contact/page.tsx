@@ -37,7 +37,7 @@ const paths = [
     icon: Home,
     title: "Homeowners & estates",
     body: "Request a pool assessment — volume, pipe size, and circulation so we can match the right series.",
-    href: "/contact?intent=assessment",
+    href: "/assess",
     cta: "Start assessment",
   },
   {
@@ -87,7 +87,7 @@ export default function ContactPage() {
         }
         description="Whether you want a pool assessment, a specialist conversation, or a distributor path — choose your intent and share a few details. We'll get back to you."
         actions={[
-          { label: "Request an assessment", href: "/contact?intent=assessment" },
+          { label: "Request an assessment", href: "/assess" },
           {
             label: siteConfig.ctas.distributor.label,
             href: "/apply",

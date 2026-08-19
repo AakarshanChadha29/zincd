@@ -16,7 +16,12 @@ Principle: ship claims-safe routes; defer pages that mainly need missing evidenc
 | `/applications/hotels-resorts` | Hospitality | No fake logos |
 | `/applications/commercial` | Community / commercial pools | |
 | `/applications/fitness-wellness` | Aquatic facilities | |
-| `/distributors` | B2B partner path | No invented margins/terms |
+| `/product/softener` | Catalytic Super Softener companion | C-019 qualified wording only |
+| `/calculator` | Series sizing by volume | Gen-2 Series-01–04 |
+| `/cost-savings` | Hotel planning-model calculator | C-022 / C-010: visitor inputs; not a savings guarantee |
+| `/assess` | Pool assessment funnel | Lead capture |
+| `/resources` | Gated document requests | Manual waitlist only (C-021) |
+| `/distributors` | B2B partner path | No invented margins/terms (C-020) |
 | `/installation-maintenance` | Install + maintenance expectations | `MR`/`TS`; warranty detail after C-015 |
 | `/faq` | Objections, chlorine honesty | Claims-safe answers only |
 | `/about` | US company positioning | No Arroyo; business description still missing—keep thin until confirmed |
@@ -40,13 +45,11 @@ About · Installation & Maintenance · Legal · Privacy · Terms · Product Disc
 
 | Route | Decision | Blocking reason |
 |---|---|---|
-| `/cost-savings` | **Defer** | Contradictory cost figures (C-010); no cost workbook |
 | `/case-studies` | **Defer** | No permissions/verified cases (C-014); named testimonial blocked (C-013) |
 | `/pricing` | **Defer** | No confirmed pricing model |
 | `/book` | **Defer** | Booking process/calendar undefined; out of website MVP ops |
 | `/shop` | **Defer** | Fulfillment/returns/support not approved; no Buy Now |
 | `/amazon` | **Defer** | Channel strategy unconfirmed; avoid distributor conflict |
-| `/resources` | **Defer** | Would invite unverified PDFs/claims; add later as gated/approved library |
 
 ## Explicitly not in public sitemap (other systems)
 

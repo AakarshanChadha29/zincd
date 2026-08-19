@@ -14,9 +14,10 @@ import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { siteConfig } from "@/content/site-config";
-import { motionGraphics, productPhotos, technologyHeroClip } from "@/content/media";
+import { clientStills, motionGraphics, productPhotos, technologyHeroClip } from "@/content/media";
 import {
   chemistryTargets,
+  chlorineResidualNote,
   howItWorksSteps,
   technicalSpecs,
   valuePillars,
@@ -168,6 +169,33 @@ export default function TechnologyPage() {
             <ProcessSteps steps={howItWorksSteps} />
           </Reveal>
         </div>
+        <Reveal delay={0.08}>
+          <figure className="mt-12 overflow-hidden rounded-[var(--radius)] border border-border bg-surface">
+            <Image
+              src={clientStills.howItWorks}
+              alt="Five-stage Zinc'd treatment path: pool, pump, filter, ionization chamber, treated-water return."
+              width={1200}
+              height={2545}
+              className="h-auto w-full bg-[color:#EFF8F7] object-contain"
+              sizes="(max-width: 1200px) 100vw, 720px"
+            />
+            <figcaption className="border-t border-border px-5 py-4 text-small text-muted-foreground md:px-6">
+              Installed after filtration and before the pool return line.
+            </figcaption>
+          </figure>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <figure className="mt-6 overflow-hidden rounded-[var(--radius)] border border-border bg-white">
+            <Image
+              src={clientStills.technicalFlow}
+              alt="Circulation diagram: pool intake, pump, filter, Zinc'd chamber, pool return."
+              width={2400}
+              height={1350}
+              className="h-auto w-full object-contain"
+              sizes="(max-width: 1200px) 100vw, 1100px"
+            />
+          </figure>
+        </Reveal>
       </Section>
 
       {/* Chemistry / chlorine honesty */}
@@ -202,9 +230,8 @@ export default function TechnologyPage() {
           <Reveal delay={0.1}>
             <div className="lg:pt-16 space-y-6">
               <StatusNote>
-                Zinc'd is not a &ldquo;chemical-free&rdquo; system. A residual of free
-                chlorine (typically ~1.0 ppm) remains part of responsible operation,
-                and the water is tested regularly to stay in range.
+                Zinc&apos;d is not a &ldquo;chemical-free&rdquo; system.{" "}
+                {chlorineResidualNote}
               </StatusNote>
               <div className="rounded-[var(--radius)] border border-border bg-surface p-7">
                 <TechnicalLabel>Historical note</TechnicalLabel>

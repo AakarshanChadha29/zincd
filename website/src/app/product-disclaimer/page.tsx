@@ -1,4 +1,5 @@
 import { LegalLayout, LegalBlock } from "@/components/blocks/legal-layout";
+import { chlorineResidualNote } from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -19,10 +20,9 @@ export default function ProductDisclaimerPage() {
     >
       <LegalBlock heading="Ionization complements sanitation">
         <p>
-          Zinc'd copper–silver–zinc ionization is designed to reduce chlorine
+          Zinc&apos;d copper–silver–zinc ionization is designed to reduce chlorine
           dependency as part of a responsible water program. It is not a
-          &ldquo;chemical-free&rdquo; system: technical documentation recommends
-          maintaining a residual of free chlorine (typically ~1.0 ppm), and water
+          &ldquo;chemical-free&rdquo; system. {chlorineResidualNote} Water
           should be tested regularly to stay in range.
         </p>
       </LegalBlock>
