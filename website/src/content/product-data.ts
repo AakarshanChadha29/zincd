@@ -371,23 +371,44 @@ export const evaluationFramework = [
   },
 ] as const;
 
-/** Distributor / partner value — B2B vocabulary allowed here. */
+/**
+ * Distributor / partner value — B2B vocabulary allowed here.
+ *
+ * Mirrors the "Why Zinc'd / Key Benefits" panel of the printed US distributor
+ * brochure, with two deliberate divergences the brochure must also adopt:
+ * "chlorine dependency" never "chemical dependency" (C-005 — "chemical" is an
+ * unbounded set the reader completes as *all of them*), and professional
+ * management stated as a *condition* rather than a benefit, matching the
+ * brochure's own footnote.
+ */
 export const partnerValue = [
   {
-    title: "A defined equipment category",
-    body: "Add an engineered ionization system to your line — documented specifications, not marketing hype.",
+    id: "chlorine",
+    label: "Chemistry",
+    title: "Designed to reduce chlorine dependency",
+    body: "Mineral ionization is designed to reduce day-to-day chlorine dependency. Residual sanitizer stays in the program — this is a quieter chemistry program, not a chemical-free one.",
+    icon: "droplets",
   },
   {
-    title: "Installation that fits circulation systems",
-    body: "Designed to integrate with existing pool circulation — Series-1 through Series-3, plus custom multi-unit layouts for larger commercial inlets.",
+    id: "managed",
+    label: "Operation",
+    title: "Works within a professionally managed program",
+    body: "Copper, free chlorine and pH are tested to stay in range, using the kit that ships with every system. Professional operation is a condition of the product working as described, not a footnote to it.",
+    icon: "flask",
   },
   {
-    title: "Maintenance & support expectations",
-    body: "Minimal routine maintenance centered on periodic anode cleaning, with monitoring that flags service needs.",
+    id: "circulation",
+    label: "Integration",
+    title: "Integrates with existing circulation",
+    body: "Fits the loop your customers already have — Series-1 through Series-3, plus custom multi-unit layouts on larger commercial inlets.",
+    icon: "waypoints",
   },
   {
-    title: "Residential and commercial reach",
-    body: "A series range spanning private pools through hospitality and commercial multi-unit layouts.",
+    id: "commercial",
+    label: "Duty",
+    title: "Built for commercial operation",
+    body: "Stainless housing, Cu–Ag–Zn anodes, microcontroller PWM control, and monitoring that signals when routine anode cleaning is due.",
+    icon: "building",
   },
 ] as const;
 
@@ -414,22 +435,39 @@ export const partnerEconomics = [
   },
 ] as const;
 
-export const partnerProfitAngles = [
+/**
+ * "Why distributors care" — the merged case for carrying the line.
+ *
+ * Supersedes the former `partnerProfitAngles` + `partnerPropositions` pair,
+ * which were two four-item arrays making the same argument in two adjacent
+ * sections (fifteen bordered cards between them, counting partner economics).
+ * The brochure's WHY DISTRIBUTORS CARE panel was a third version of it.
+ *
+ * "Flexible territory and commercial discussions" is deliberate brochure
+ * language and is safe — it promises a *discussion*, not a territory. Never let
+ * it drift toward "exclusive" or "protected", which would be an unbacked
+ * commercial guarantee (see docs/claims-register.md and the tone doc).
+ */
+export const partnerReasons = [
   {
-    title: "Sell into your existing book",
-    body: "Pool service companies, builders, and hospitality suppliers already have the hard part — trusted relationships. Zinc'd rides those conversations.",
+    title: "A product category, not another chemical program",
+    body: "One engineered system with documented specifications and a fixed component list — something to put on the shelf beside pumps, filters and heaters.",
   },
   {
-    title: "One sale, recurring service",
-    body: "After install, routine anode care and water testing create a predictable service relationship — not a one-and-done chemical drop.",
+    title: "Accounts you already hold",
+    body: "Hotels, clubs, builders, service routes and wellness facilities. The relationships are the hard part, and you already have them.",
   },
   {
-    title: "Hospitality multiplies the account",
-    body: "Hotel and resort groups can mean multiple systems across a portfolio. Treat engineering and procurement as enterprise conversations.",
+    title: "Product, installation and service revenue",
+    body: "Three lines off one sale, where you're set up to take them. After the install, periodic anode care and water testing keep the account open.",
   },
   {
-    title: "Rates shared directly",
-    body: "Exact partner pricing and territory terms are agreed in your partnership review, sized to the markets you already cover.",
+    title: "Backed hardware",
+    body: "Anode warranty of 5–10 years by model and condition; electrical and electronic components carry 3 years against manufacturing defects. Replacement rather than repair.",
+  },
+  {
+    title: "Flexible territory and commercial discussions",
+    body: "Territory, order profile and commercial terms are worked out individually, sized to the markets you already cover.",
   },
 ] as const;
 
@@ -466,7 +504,142 @@ export const partnerSupport = [
     title: "A clean sales story",
     body: "Engineered hardware with PWM control and monitoring, documented down to voltage, power and pressure — easy to put in front of an owner or an engineering lead.",
   },
+  {
+    /**
+     * The brochure's attach-revenue framing. "Where you're set up for it"
+     * carries the brochure's "where applicable" qualifier and must survive any
+     * rewrite — Zinc'd cannot warrant that a given partner is licensed or
+     * staffed to install.
+     */
+    title: "Three revenue lines, not one",
+    body: "Where you're set up for it, product sales combine with installation, customer support and routine maintenance — not just a box shipped and forgotten.",
+  },
 ] as const;
+
+/**
+ * End-market segments — the *second* audience axis.
+ *
+ * `partnerAudiences` above sorts by who the partner IS; this sorts by who the
+ * partner SELLS TO. Both are needed and they are not interchangeable: the
+ * partner-type axis is the conversion axis ("does this program want me?"),
+ * the segment axis is credibility ("are my accounts the right accounts?").
+ * Keep this list in sync with `customerCategories` in
+ * `src/lib/leads/distributor-schema.ts` — the /apply form asks the same
+ * question one step later.
+ *
+ * Two deliberate edits against the printed brochure: "specialist distributors
+ * and resellers" is dropped (it is a partner type, not an end segment — the
+ * reader of the brochure *is* that item, and it is already covered by
+ * `partnerAudiences`), and "water parks" is qualified as assessment-led so a
+ * fit list can never be misread as an installed-base claim.
+ */
+export const partnerEndSegments = [
+  {
+    title: "Hotels and resorts",
+    priority: true,
+    body: "Guest-facing amenities where water experience is part of the brand.",
+    href: "/applications/hotels-resorts",
+  },
+  {
+    title: "Commercial pool builders and constructors",
+    priority: true,
+    body: "A documented equipment category to specify into new builds and renovations.",
+    href: "/applications/commercial",
+  },
+  {
+    title: "Pool maintenance and service providers",
+    body: "The route book you already visit every week.",
+    href: null,
+  },
+  {
+    title: "Spas and wellness centers",
+    body: "Frequent-use water where a lower-chlorine program is noticed.",
+    href: "/applications/fitness-wellness",
+  },
+  {
+    title: "Gym chains with pools",
+    body: "Multi-site operators who want one repeatable specification.",
+    href: "/applications/fitness-wellness",
+  },
+  {
+    title: "Leisure and aquatic facilities",
+    body: "Larger volumes, sized during assessment on multi-unit layouts.",
+    href: "/applications/commercial",
+  },
+] as const;
+
+/**
+ * Reinstates the residential lane the brochure never mentions. Required: the
+ * site ships Series-1 (residential), /calculator sizes private pools, and
+ * `directOffer` is a published direct-to-owner path linked from /distributors
+ * itself. "Commercial" may scope the PROGRAM's emphasis, never the PRODUCT's
+ * capability.
+ */
+export const partnerResidentialNote =
+  "Series-1 covers private and estate pools on a 2″ line, so partners working residential books carry the same product into a different account. Owners buying a single system for their own pool don't need a partner agreement — that path is on the product page.";
+
+/**
+ * The plumbing loop: POOL → PUMP → FILTER → ZINC'D → RETURN.
+ *
+ * Distinct from `howItWorksSteps`, which is the *chemistry* sequence. This one
+ * answers "where does this go in my plant room?" — the question a distributor
+ * has to field on a site visit. Do not merge the two.
+ *
+ * Verified against `source/client/documents/HANDBOOK FOR PLUMBER 2.pdf`, which
+ * places the unit on the pool inlet pipe with the control panel mounted near
+ * the filtration plant, and documents the multi-unit parallel layout with a
+ * fourth bypass line for 4″/6″ inlets.
+ */
+export const treatmentLoop = {
+  intro:
+    "Zinc'd installs in the circulation line after the pool filter and before the treated-water return. No re-plumbing of the loop, no second system to explain.",
+  flowLabel: "Pool → Pump → Filter → Zinc'd → Return",
+  /**
+   * Shaped for `ProcessSteps`. The `step` strings must stay identical to the
+   * indices drawn inside `TreatmentLoop` — that pairing is what lets a reader
+   * move between the diagram and the captions.
+   */
+  steps: [
+    { step: "01", title: "Pool", body: "Water enters the circulation system." },
+    {
+      step: "02",
+      title: "Pump",
+      body: "The pump moves water through the treatment loop.",
+    },
+    {
+      step: "03",
+      title: "Filter",
+      body: "The filter removes suspended debris.",
+    },
+    {
+      step: "04",
+      title: "Zinc'd",
+      body: "Water passes through the ionization cell while PWM control regulates ionization output.",
+    },
+    { step: "05", title: "Return", body: "Treated water returns to the pool." },
+  ],
+  /**
+   * Required companion (C-005). Step 5's "treated water" is the last thing the
+   * reader sees about chemistry; without this line "treated" reads as "fully
+   * sanitized". Never render the loop without it.
+   */
+  companion:
+    "Ionization works alongside the sanitizer program, not instead of it. Free chlorine is still tested and held in range — typically around 1.0 ppm — along with copper and pH.",
+} as const;
+
+/**
+ * Performance fence for /distributors. The printed brochure's footnote stops
+ * one sentence short: it never states that residual free chlorine is still
+ * required, which leaves "reduced chemical dependency" unopposed and reads as
+ * a step toward "chemical-free" (C-005, blocked and false as stated). The
+ * middle two sentences here are that missing fence.
+ */
+export const partnerProgramFootnote =
+  "Professional installation and ongoing water-quality management are required. Zinc'd ionization is designed to reduce chlorine dependency as part of a responsible water program — it is not a chemical-free system. Technical documentation recommends maintaining a residual of free chlorine, typically around 1.0 ppm, with copper and pH tested to stay in range. Performance depends on pool conditions, circulation, operation and applicable water-quality requirements. Published specifications are typical and subject to model; series is confirmed to your pool during assessment.";
+
+/** Adopted verbatim from the brochure back cover — /distributors had no equivalent. */
+export const partnerAgreementNote =
+  "Distributor availability and commercial conditions are subject to written agreement.";
 
 /** FAQ — every answer claims-safe and source-anchored. */
 export const faqs = [
@@ -557,22 +730,3 @@ export const directOffer = {
   ],
 } as const;
 
-/** Why a partner would carry the line — the dealership path. */
-export const partnerPropositions = [
-  {
-    title: "A defined product, not a chemistry program",
-    body: "One engineered system with documented specifications, Series-1 through Series-3 plus custom multi-unit commercial layouts, and a fixed component list.",
-  },
-  {
-    title: "Recurring service, not one-off supply",
-    body: "Routine care centres on periodic anode cleaning and water testing — a predictable service relationship after the install.",
-  },
-  {
-    title: "Documentation that supports the sale",
-    body: "Installer handbook, capacity formulas, operating standards and a water-chemistry maintenance chart ship with every system.",
-  },
-  {
-    title: "Backed hardware",
-    body: "Anode warranty of 5–10 years by model and condition; electrical and electronic components carry 3 years against manufacturing defects. Replacement rather than repair.",
-  },
-] as const;
