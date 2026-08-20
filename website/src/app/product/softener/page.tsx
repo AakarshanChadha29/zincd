@@ -10,7 +10,6 @@ import { PageHero } from "@/components/blocks/page-hero";
 import { FaqList } from "@/components/blocks/faq-list";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { FaqJsonLd } from "@/components/seo/json-ld";
-import { siteConfig } from "@/content/site-config";
 import { softenerPhotos } from "@/content/media";
 import {
   softenerFaqs,
@@ -20,13 +19,13 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Catalytic Super Softener — Titan, Titan Pro, Custom",
+  title: "Catalytic Conditioner — Titan, Titan Pro, Custom",
   description:
-    "Companion catalytic conditioner for high-hardness pools. Titan ≤100 LPM, Titan Pro ≤200 LPM, Custom. Designed to help reduce scale formation — not a salt or resin softener.",
+    "Companion catalytic conditioner for high-hardness pools. Titan ≤100 LPM, Titan Pro ≤200 LPM, Custom. Designed to help reduce scale formation without salt or ion-exchange resin.",
   path: "/product/softener",
   keywords: [
     "pool scale conditioner",
-    "catalytic pool softener",
+    "catalytic pool conditioner",
     "high hardness pool treatment",
   ],
 });
@@ -45,7 +44,6 @@ export default function SoftenerPage() {
         }
         description={softenerLine.intro}
         actions={[
-          { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
           { label: "Ionization system", href: "/product", variant: "outline" },
         ]}
         video={{ poster: softenerPhotos.hero }}
@@ -90,7 +88,7 @@ export default function SoftenerPage() {
       <section className="relative min-h-[38rem] overflow-hidden">
         <Image
           src={softenerPhotos.loop}
-          alt="Zinc'd Catalytic Super Softener installed with its filter, gauges and copper flow path"
+          alt="Zinc'd Catalytic Conditioner installed with its filter, gauges and copper flow path"
           fill
           sizes="100vw"
           className="object-cover object-[68%_center]"
@@ -106,7 +104,7 @@ export default function SoftenerPage() {
                 One treatment line
               </p>
               <h2 className="text-h1 mt-5 text-white">
-                The softener is the story here.
+                The conditioner is the story here.
               </h2>
               <p className="text-body-large mt-5 text-white/80">
                 Filter housing, copper bypass, pressure gauge, flow meter and
@@ -124,7 +122,7 @@ export default function SoftenerPage() {
             <figure className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-panel)]">
               <Image
                 src={softenerPhotos.macro}
-                alt="Close view of the Zinc'd Catalytic Super Softener, flow meter and pressure gauge"
+                alt="Close view of the Zinc'd Catalytic Conditioner, flow meter and pressure gauge"
                 fill
                 sizes="(min-width: 1024px) 55vw, 100vw"
                 className="object-cover"
@@ -156,10 +154,10 @@ export default function SoftenerPage() {
       </Section>
 
       <CtaBand
-        eyebrow="Not sure if you need it"
-        title="Start with a hardness reading"
-        body="The assessment funnel asks for calcium hardness. If the number is high, we'll talk through a conditioner or a partial drain — not a bigger ionizer."
-        primary={siteConfig.ctas.assessment}
+        eyebrow="High-hardness water"
+        title="Start with the calcium-hardness reading"
+        body="If the number is high, talk with us about a conditioner or a partial drain and refill — not a bigger ionizer."
+        primary={{ label: "Talk to a specialist", href: "/contact?intent=specialist" }}
         secondary={{ label: "View the ionizer", href: "/product" }}
       />
     </>

@@ -498,14 +498,14 @@ export default function DistributorsPage() {
             </Link>
           </div>
           <p className="text-body mt-6 text-muted-foreground">
-            Where calcium hardness runs high, the Catalytic Super Softener is a
+            Where calcium hardness runs high, the Catalytic Conditioner is a
             companion line designed to help reduce scale formation — a second
             thing to quote on the same site visit.{" "}
             <Link
               href="/product/softener"
               className="font-medium text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
             >
-              See the softener line
+              See the conditioner line
             </Link>
             .
           </p>

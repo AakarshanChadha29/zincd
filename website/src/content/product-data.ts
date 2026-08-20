@@ -8,7 +8,7 @@
  *  - No "eliminates" absolutes — use "helps control" (C-006).
  *  - No EPA / certification / patent / lab / testimonial / rating claims (C-001/2/11/12/13).
  *  - NASA context is historical only, never an endorsement (C-003).
- *  - Technical specs from the Gen-2 Pool Sanitizer manual + hotel planning
+ *  - Technical specs from the Gen-2 pool-system manual + hotel planning
  *    model (client-confirmed 2026-08-19), marked "typical / subject to model"
  *    (C-018). Do not invent blanks the manual leaves open (free chlorine ppm,
  *    warranty %, charging frequency, anode interval, support contacts).
@@ -29,7 +29,7 @@ export const heroContent = {
   eyebrow: "Mineral ionization for US pools",
   headline: "A quieter revolution in pool water.",
   subhead:
-    "Copper–silver–zinc ionization with precision PWM control — built for American estates, hotels, and commercial aquatic facilities. Designed to reduce day-to-day chlorine demand while residual sanitizer stays in the program.",
+    "Copper–silver–zinc ionization with precision PWM control — built for American estates, hotels, and commercial aquatic facilities. Designed to reduce day-to-day chlorine demand while residual free chlorine stays in the program.",
   primaryCta: { label: "Request a Pool Assessment", href: "/assess" },
   secondaryCta: { label: "Become a Distributor", href: "/distributors" },
 } as const;
@@ -79,7 +79,7 @@ export const howItWorksSteps = [
   {
     step: "04",
     title: "Minerals help control algae and biofilm",
-    body: "Copper is used to help control algae; zinc contributes to biofilm control — working alongside, not replacing, your sanitizer program.",
+    body: "Copper is used to help control algae; zinc contributes to biofilm control — working alongside, not replacing, your residual free-chlorine program.",
   },
   {
     step: "05",
@@ -89,7 +89,7 @@ export const howItWorksSteps = [
 ] as const;
 
 /**
- * Technical specifications — Gen-2 Pool Sanitizer manual + hotel planning
+ * Technical specifications — Gen-2 pool-system manual + hotel planning
  * model (client-confirmed 2026-08-19). Typical / subject to model (C-018).
  */
 export const technicalSpecs = [
@@ -155,7 +155,7 @@ export function seriesPublicLabel(name: string): string {
 }
 
 /**
- * Product series — Gen-2 Pool Sanitizer manual (client-confirmed 2026-08-19).
+ * Product series — Gen-2 pool-system manual (client-confirmed 2026-08-19).
  * Capacities are rated volume. Series-03 and Series-04 are customized models
  * with indicative specifications. Typical / subject to model (C-018).
  */
@@ -317,7 +317,7 @@ export const applicationDetails: Record<
       },
     ],
     decisionPoints: [
-      "Prefer lower day-to-day chlorine dependency without abandoning sanitizer residual",
+      "Prefer lower day-to-day chlorine dependency while retaining a free-chlorine residual",
       "Want monitored cues for anode care instead of reactive service calls",
       "Need a documented product path for builders and service partners",
     ],
@@ -429,7 +429,7 @@ export const applicationDetails: Record<
       },
       {
         title: "Member experience",
-        body: "Lower-chemical framing must stay honest: residual sanitizer remains; the goal is a quieter chemistry program, not chemical-free claims.",
+        body: "Lower-chemical framing must stay honest: residual free chlorine remains; the goal is a quieter chemistry program, not chemical-free claims.",
       },
       {
         title: "Scale path",
@@ -692,7 +692,7 @@ export const treatmentLoop = {
    * sanitized". Never render the loop without it.
    */
   companion:
-    "Ionization works alongside the sanitizer program, not instead of it. Free chlorine is still tested and held as a residual, along with copper and pH.",
+    "Ionization works alongside the residual free-chlorine program, not instead of it. Free chlorine is still tested and held as a residual, along with copper and pH.",
 } as const;
 
 /**
@@ -724,7 +724,7 @@ export const partnerTerritoryNote =
 export const faqs = [
   {
     q: "Does Zinc'd make my pool chemical-free?",
-    a: "No. Ionization is designed to reduce chlorine dependency, but a residual of free chlorine remains part of responsible operation. Zinc'd works alongside your sanitizer program, not instead of it. The specific residual ppm will be published when the operating manual is finalized.",
+    a: "No. Ionization is designed to reduce chlorine dependency, but a residual of free chlorine remains part of responsible operation. Zinc'd works alongside the required disinfection program, not instead of it. The specific residual ppm will be published when the operating manual is finalized.",
   },
   {
     q: "How does the technology work?",
@@ -865,7 +865,7 @@ export const faqTopicSummaries = [
   {
     id: "chemistry",
     title: "Chemistry & chlorine",
-    body: "Residual free chlorine stays in the plan. Ionization is designed to reduce dependency — not erase sanitizer.",
+    body: "Residual free chlorine stays in the plan. Ionization is designed to reduce dependency — not eliminate the required disinfectant residual.",
   },
   {
     id: "how",
@@ -885,20 +885,20 @@ export const faqTopicSummaries = [
 ] as const;
 
 /**
- * Catalytic Super Softener companion line — complete handbook.
+ * Catalytic Conditioner companion line — complete handbook.
  * Claims-safe: designed to help reduce scale; no-salt / no-resin is a
  * factual operating point, not a superiority claim (C-020).
  */
 export const softenerLine = {
-  name: "Catalytic Super Softener",
+  name: "Catalytic Conditioner",
   eyebrow: "Companion treatment",
   headline: "When hardness asks for a different tool",
   intro:
-    "Where calcium hardness sits above about 300 ppm, the handbook points to a catalytic conditioner or a partial drain and refill — not more ionization. The Catalytic Super Softener is designed to help reduce scale formation in the circulation loop. It does not use salt, chemicals, or ion-exchange resin.",
+    "Where calcium hardness sits above about 300 ppm, the handbook points to a catalytic conditioner or a partial drain and refill — not more ionization. The Catalytic Conditioner is designed to help reduce scale formation in the circulation loop. It does not use salt, chemicals, or ion-exchange resin.",
   hardnessNote:
-    "If calcium hardness is above about 300 ppm, consider the Catalytic Super Softener or a partial drain and refill before commissioning ionization.",
+    "If calcium hardness is above about 300 ppm, consider the Catalytic Conditioner or a partial drain and refill before commissioning ionization.",
   claimsFence:
-    "Wording is operational, not comparative. We do not claim that the softener extends equipment life, outperforms salt systems, or replaces professional water management.",
+    "Wording is operational, not comparative. We do not claim that the conditioner extends equipment life, outperforms salt systems, or replaces professional water management.",
 } as const;
 
 export const softenerSeries = [
@@ -921,11 +921,11 @@ export const softenerSeries = [
 
 export const softenerFaqs = [
   {
-    q: "Does the softener replace Zinc'd ionization?",
-    a: "No. It is a companion for high-hardness sites. Ionization addresses mineral sanitation support; the softener is designed to help reduce scale formation when hardness is elevated.",
+    q: "Does the conditioner replace Zinc'd ionization?",
+    a: "No. It is a companion for high-hardness sites. Ionization supports the pool's water-treatment program; the conditioner is designed to help reduce scale formation when hardness is elevated.",
   },
   {
-    q: "Is it a salt or resin softener?",
+    q: "Is it a salt or resin system?",
     a: "No. It is a catalytic conditioner. It does not use salt, added chemicals, or ion-exchange resin. That is how it operates — not a claim that it is superior to every other hardness treatment.",
   },
   {

@@ -168,7 +168,7 @@ export default function ProductPage() {
             href="/product/softener"
             className="text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
           >
-            Catalytic Super Softener
+            Catalytic Conditioner
           </Link>
           .
         </StatusNote>

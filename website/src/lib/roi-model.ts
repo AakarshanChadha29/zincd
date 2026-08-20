@@ -19,7 +19,6 @@ export type RoiInputs = {
   /** 0–1. Default 0.90 = chlorine purchasing assumption. */
   chlorinePurchaseReduction: number;
   currentSpecialistAfter: number;
-  incrementalStaff: number;
   equipmentMrp: number;
   horizonMonths: number;
 };
@@ -66,7 +65,6 @@ export const roiExampleDefaults: RoiInputs = {
   electricity: 3,
   chlorinePurchaseReduction: 0.9,
   currentSpecialistAfter: 500,
-  incrementalStaff: 300,
   equipmentMrp: 5000,
   horizonMonths: 60,
 };
@@ -105,7 +103,6 @@ export function computeRoi(raw: RoiInputs): RoiResult {
   const reduction = clamp01(raw.chlorinePurchaseReduction);
   const contract = money(raw.contractMonthly);
   const specialist = money(raw.currentSpecialistAfter);
-  const staff = money(raw.incrementalStaff);
   const mrp = money(raw.equipmentMrp);
   const horizon = Math.max(1, money(raw.horizonMonths));
 
@@ -114,7 +111,7 @@ export function computeRoi(raw: RoiInputs): RoiResult {
   const chemicalModeled = chlorineModeled + other + electricity;
   const chemicalGross = chemicalCurrent - chemicalModeled;
 
-  const visitsModeled = specialist + staff;
+  const visitsModeled = specialist;
   const visitsCurrent = raw.chemicalsIncludedInContract
     ? Math.max(0, contract - chemicalCurrent)
     : contract;
@@ -148,7 +145,6 @@ export function computeRoi(raw: RoiInputs): RoiResult {
     ],
     allInLines: [
       { label: "Outsourced service / visits", current: visitsCurrent, modeled: specialist },
-      { label: "Incremental trained hotel staff", current: 0, modeled: staff },
       { label: "Chlorine purchases", current: chlorine, modeled: chlorineModeled },
       { label: "Routine algaecide", current: algaecide, modeled: 0 },
       { label: "Stabilizer / CYA", current: cya, modeled: 0 },

@@ -104,8 +104,8 @@ export const photoChecklist = [
     hint: "Where the chamber would sit — include a tape or fitting for scale if you can.",
   },
   {
-    id: "sanitizer",
-    label: "Existing sanitizer equipment",
+    id: "disinfection",
+    label: "Existing disinfection equipment",
     hint: "Chlorinator, salt cell, or other treatment in the loop.",
   },
   {

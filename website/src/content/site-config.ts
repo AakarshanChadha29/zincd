@@ -112,7 +112,7 @@ export const primaryNavigation: NavItem[] = [
         description: "Series 1 through Series 4",
       },
       {
-        label: "Catalytic Super Softener",
+        label: "Catalytic Conditioner",
         href: "/product/softener",
         description: "Companion for high hardness",
       },
@@ -197,7 +197,7 @@ export const desktopPrimaryNav: NavItem[] = [
 export const footerExploreLinks: NavLink[] = [
   { label: "Technology", href: "/technology" },
   { label: "Product", href: "/product" },
-  { label: "Catalytic Super Softener", href: "/product/softener" },
+  { label: "Catalytic Conditioner", href: "/product/softener" },
   { label: "Pool Series Calculator", href: "/calculator" },
   { label: "Hotel planning model", href: "/cost-savings" },
   { label: "Applications", href: "/applications" },

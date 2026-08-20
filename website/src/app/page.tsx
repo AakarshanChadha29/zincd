@@ -35,7 +35,7 @@ export const metadata = createPageMetadata({
   // that only applies to child segments — so the brand is written in here.
   title: "Copper–Silver–Zinc Pool Ionization Systems | Zinc'd",
   description:
-    "Zinc'd delivers copper–silver–zinc pool ionization with precision PWM control for US estates, hotels, and commercial aquatic facilities. Lower day-to-day chlorine demand — residual sanitizer still required.",
+    "Zinc'd delivers copper–silver–zinc pool ionization with precision PWM control for US estates, hotels, and commercial aquatic facilities. Lower day-to-day chlorine demand — residual free chlorine still required.",
   path: "/",
   keywords: [
     "pool ionization system USA",

@@ -166,7 +166,7 @@ export const productPhotos = {
   commercial: "/img/campaign/series-4.jpg",
 } as const;
 
-/** Catalytic Super Softener — one distinct scene per slot. */
+/** Catalytic Conditioner — one distinct scene per slot. */
 export const softenerPhotos = {
   install: "/img/campaign/softener.jpg",
   hero: "/img/campaign/softener-hero.png",

@@ -185,21 +185,14 @@ export function RoiCalculator() {
             </span>
           </label>
           {view === "allIn" ? (
-            <>
-              <MoneyField
-                label="Periodic specialist after / month"
-                hint="Retained oversight, not a full outsourced program."
-                value={inputs.currentSpecialistAfter}
-                onChange={(currentSpecialistAfter) =>
-                  patch({ currentSpecialistAfter })
-                }
-              />
-              <MoneyField
-                label="Incremental hotel-staff labor / month"
-                value={inputs.incrementalStaff}
-                onChange={(incrementalStaff) => patch({ incrementalStaff })}
-              />
-            </>
+            <MoneyField
+              label="Periodic specialist after / month"
+              hint="Retained oversight, not a full outsourced program."
+              value={inputs.currentSpecialistAfter}
+              onChange={(currentSpecialistAfter) =>
+                patch({ currentSpecialistAfter })
+              }
+            />
           ) : null}
           <MoneyField
             label="Electricity allowance / month"

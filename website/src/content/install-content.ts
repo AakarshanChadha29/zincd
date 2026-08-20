@@ -97,7 +97,7 @@ export const shockSop = {
   eyebrow: "After a storm",
   title: "Post-storm shock SOP",
   description:
-    "Handbook procedure for heavy rain, debris, or contamination. Shock is a sanitizer action — it is not an ionization substitute.",
+    "Handbook procedure for heavy rain, debris, or contamination. Shock is a chlorine-treatment action — it is not an ionization substitute.",
   steps: [
     {
       title: "Filtration for 24 hours",
@@ -105,11 +105,11 @@ export const shockSop = {
     },
     {
       title: "Skim and vacuum",
-      body: "Remove debris from the surface and floor before adding sanitizer.",
+      body: "Remove debris from the surface and floor before adding chlorine treatment.",
     },
     {
       title: "Shock the water",
-      body: "Shock per your sanitizer program. Handbook guidance for this step is 5.0–6.0 ppm free chlorine during the shock window.",
+      body: "Shock per your chlorine-treatment program. Handbook guidance for this step is 5.0–6.0 ppm free chlorine during the shock window.",
     },
     {
       title: "Stay out until residual returns",
@@ -140,7 +140,7 @@ export const maintenanceSchedule = [
     items: [
       "Inspect the stainless chamber and visible anodes",
       "Confirm charging cable and AC/DC switch operation",
-      "Review calcium hardness; if above about 300 ppm, see the Catalytic Super Softener note",
+      "Review calcium hardness; if above about 300 ppm, see the Catalytic Conditioner note",
     ],
   },
   {
@@ -189,7 +189,7 @@ export const troubleshootingRows = [
   },
   {
     symptom: "Scale on surfaces",
-    check: "Calcium hardness vs the 150–300 ppm guidance. Hardness above about 300 ppm: consider the Catalytic Super Softener or a partial drain and refill.",
+    check: "Calcium hardness vs the 150–300 ppm guidance. Hardness above about 300 ppm: consider the Catalytic Conditioner or a partial drain and refill.",
   },
 ] as const;
 
@@ -208,7 +208,7 @@ export const installFaqs = [
   },
   {
     q: "What do I do after a storm?",
-    a: "Run filtration 24 hours, skim and vacuum, shock per your sanitizer program, and keep swimmers out until residual chlorine is back in the operating range and the water is clear.",
+    a: "Run filtration 24 hours, skim and vacuum, shock per your chlorine-treatment program, and keep swimmers out until residual chlorine is back in the operating range and the water is clear.",
   },
 ] as const;
 
@@ -226,7 +226,7 @@ export const samplingHowTo = {
 export const shockHowTo = {
   name: "Post-storm pool shock procedure",
   description:
-    "Filtration, debris removal, sanitizer shock, and return-to-service when residual chlorine is back in range.",
+    "Filtration, debris removal, chlorine shock, and return-to-service when residual chlorine is back in range.",
   totalTime: "PT24H",
   steps: shockSop.steps.map((step) => ({
     name: step.title,

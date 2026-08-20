@@ -22,12 +22,12 @@ export const roiViews = [
     id: "allIn" as const,
     label: "All-in (in-house routine)",
     blurb:
-      "Adds reduced specialist visits and incremental hotel-staff labor. Savings occur only if the contract price actually falls and staff are trained and scheduled.",
+      "Models reduced specialist visits. Savings occur only if the contract price actually falls.",
   },
 ] as const;
 
 export const roiDisclaimers = [
-  "The 90% figure is a chlorine purchasing assumption to validate against invoices and bather-load records — not a measure of sanitizer efficacy.",
+  "The 90% figure is a chlorine purchasing assumption to validate against invoices and bather-load records — not a measure of disinfection efficacy.",
   "CYA is modeled as avoided only where an unstabilized chlorine program is allowed and workable. Outdoor pools must verify that chlorine purchases still fall without CYA.",
   "Electricity defaults to a $3/month allowance. Replace it with measured kWh and the site tariff. Charging frequency is not stated in the draft manual.",
   "Anode replacement, installation, repairs, financing, and liner/surface-life benefits are excluded — no replacement interval or surface-life evidence is on file.",
@@ -57,8 +57,8 @@ export const roiAssumptions = [
     value: "90% reduction assumption — prove against invoices, not against an efficacy test",
   },
   {
-    label: "New labor model",
-    value: "$500/month periodic specialist + $300/month incremental hotel staff (example)",
+    label: "Retained oversight",
+    value: "$500/month periodic specialist after implementation (example)",
   },
   {
     label: "Free chlorine residual",

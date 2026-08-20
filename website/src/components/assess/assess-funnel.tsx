@@ -564,7 +564,7 @@ export function AssessFunnel() {
             {Number(draft.hardness) > 300 ? (
               <StatusNote className="sm:col-span-2">
                 Hardness above about 300 ppm: we may discuss the Catalytic Super
-                Softener or a partial drain and refill during follow-up.
+                Conditioner or a partial drain and refill during follow-up.
               </StatusNote>
             ) : null}
           </fieldset>
