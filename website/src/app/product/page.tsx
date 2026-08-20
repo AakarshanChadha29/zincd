@@ -196,7 +196,20 @@ export default function ProductPage() {
             description="Studio and install photography of the Zinc'd chamber and control electronics — the same hardware that goes into the plant room."
           />
         </Reveal>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+        <Reveal delay={0.04}>
+          <figure className="mt-10 overflow-hidden rounded-[var(--radius-panel)]">
+            <div className="relative aspect-[16/9]">
+              <Image
+                src={productPhotos.waterHero}
+                alt="Zinc'd stainless ionization chamber over still mineral-teal water"
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+          </figure>
+        </Reveal>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {productStills.gallery.map((shot, i) => (
             <Reveal key={shot.src} delay={i * 0.05}>
               <figure className="overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">

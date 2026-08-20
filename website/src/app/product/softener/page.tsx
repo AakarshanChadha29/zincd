@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Section } from "@/components/layout/section";
@@ -8,7 +9,9 @@ import { PageHero } from "@/components/blocks/page-hero";
 import { FaqList } from "@/components/blocks/faq-list";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { FaqJsonLd } from "@/components/seo/json-ld";
+import { ProductFloat } from "@/components/media/product-float";
 import { siteConfig } from "@/content/site-config";
+import { softenerPhotos } from "@/content/media";
 import {
   softenerFaqs,
   softenerLine,
@@ -45,6 +48,14 @@ export default function SoftenerPage() {
           { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
           { label: "Ionization system", href: "/product", variant: "outline" },
         ]}
+        aside={
+          <ProductFloat
+            src={softenerPhotos.cutout}
+            alt="Zinc'd Catalytic Super Softener 1.5 cylindrical conditioner"
+            aspectClassName="aspect-[16/7]"
+            sizes="(min-width: 1024px) 42vw, 80vw"
+          />
+        }
       />
 
       <Section spacing="lg" background="default">
@@ -76,6 +87,34 @@ export default function SoftenerPage() {
           </Link>{" "}
           for the chemistry panel.
         </StatusNote>
+        <div className="mt-12 grid gap-4 md:grid-cols-2">
+          <Reveal>
+            <figure className="overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
+              <div className="relative aspect-[3/2]">
+                <Image
+                  src={softenerPhotos.studio}
+                  alt="Zinc'd Catalytic Super Softener 1.5 on a studio plate"
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </figure>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <figure className="overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
+              <div className="relative aspect-[3/2]">
+                <Image
+                  src={softenerPhotos.install}
+                  alt="Zinc'd Catalytic Super Softener 1.5 installed inline on a plant-room PVC loop"
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </figure>
+          </Reveal>
+        </div>
       </Section>
 
       <Section spacing="lg" background="muted">

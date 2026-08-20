@@ -84,10 +84,10 @@ export default function TechnologyPage() {
             <div className="relative aspect-[4/3] w-full">
               <Image
                 src={productPhotos.chamberLegacy}
-                alt="The Zinc'd stainless water chamber."
+                alt="Looking into the Zinc'd chamber bore, copper mineral core in the flow path."
                 fill
                 sizes="(min-width: 1024px) 42vw, 100vw"
-                className="object-contain"
+                className="object-cover"
                 priority
               />
             </div>

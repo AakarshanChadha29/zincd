@@ -128,13 +128,25 @@ export const productPhotos = {
   chamberStudio: "/img/clean/chamber-zincd.jpg",
   /** Chamber + control on a studio plate. */
   systemStudio: "/img/clean/system-zincd.jpg",
-  /** Control enclosure — LCD reads status, not a voltage. */
+  /** Control enclosure — LCD reads 24 V DC, matching published operating voltage. */
   control: "/img/clean/control-zincd.jpg",
   /** Commissioned install: chamber inline on the loop, control wired above. */
   install: "/img/clean/system-installed.jpg",
   /** Second control angle for pages that should not repeat the catalog shot. */
   controlAngled: "/img/clean/control-zincd.jpg",
-  chamberLegacy: "/img/product-chamber.jpg",
+  /** Looking into the chamber bore — copper mineral core. */
+  chamberLegacy: "/img/clean/chamber-bore.jpg",
+  anode: "/img/clean/electrode-anode.jpg",
+  waterHero: "/img/clean/chamber-water-hero.jpg",
+  packaging: "/img/clean/packaging-still.jpg",
+  family: "/img/clean/system-and-softener.jpg",
+} as const;
+
+/** Catalytic Super Softener stills — same identity lock as the ionizer set. */
+export const softenerPhotos = {
+  cutout: "/img/clean/softener-cutout.png",
+  studio: "/img/clean/softener-studio.jpg",
+  install: "/img/clean/softener-installed.jpg",
 } as const;
 
 /** Homepage story panorama — one continuous frame panned across three points. */
@@ -158,23 +170,39 @@ export const lifestyleStills = {
 export const productStills = {
   flowDiagram: "/assets/technical-flow.jpg",
   manifold: "/img/product/manifold-zincd.png",
-  /** Product page gallery — client hardware stills (no identifiable people). */
+  /** Product page gallery — studio and plant-room stills of the shipping hardware. */
   gallery: [
     {
-      src: "/assets/product-front.jpg",
-      alt: "Zinc'd Gen-2 control enclosure and stainless ionization chamber, photographed from the front.",
+      src: "/img/clean/system-zincd.jpg",
+      alt: "Zinc'd ionization system: PWM control with LCD above the stainless chamber.",
     },
     {
-      src: "/assets/product-hero.jpg",
-      alt: "Zinc'd ionization system — battery-powered control above the stainless chamber.",
+      src: "/img/clean/control-zincd.jpg",
+      alt: "Zinc'd control face with LCD reading 24 V DC and ionization level 8.",
     },
     {
       src: "/img/clean/system-installed.jpg",
       alt: "Zinc'd chamber installed inline on the filter return, control mounted above.",
     },
     {
-      src: "/assets/hardware-rear.jpg",
-      alt: "Rear of the Zinc'd chamber and control, showing mounting brackets and the flow sensor.",
+      src: "/img/clean/chamber-zincd.jpg",
+      alt: "Zinc'd stainless ionization chamber on a dark studio plate.",
+    },
+    {
+      src: "/img/clean/electrode-anode.jpg",
+      alt: "Copper mineral electrode with stainless hex fitting.",
+    },
+    {
+      src: "/img/clean/chamber-bore.jpg",
+      alt: "Looking into the Zinc'd chamber bore, copper core in the flow path.",
+    },
+    {
+      src: "/img/clean/packaging-still.jpg",
+      alt: "Zinc'd Pool Care carton beside the assembled ionization system.",
+    },
+    {
+      src: "/img/clean/system-and-softener.jpg",
+      alt: "Zinc'd ionization system photographed with the Catalytic Super Softener 1.5.",
     },
   ],
 } as const;
