@@ -15,15 +15,21 @@ import { ZincdLogo } from "@/components/brand/zincd-logo";
 import { HeroVideo } from "@/components/media/hero-video";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { ProductFloat } from "@/components/media/product-float";
+import { PoolStoryPan } from "@/components/motion/pool-story-pan";
 import { siteConfig } from "@/content/site-config";
 import {
   homepageHeroClips,
   lifestyleStills,
   motionGraphics,
+  poolStoryPanorama,
   productPhotos,
   productStills,
 } from "@/content/media";
-import { heroContent, seriesRangeLabel } from "@/content/product-data";
+import {
+  heroContent,
+  homepageStoryPoints,
+  seriesRangeLabel,
+} from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -142,6 +148,13 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      <PoolStoryPan
+        points={[...homepageStoryPoints]}
+        image={poolStoryPanorama.src}
+        imageAlt={poolStoryPanorama.alt}
+        label="How Zinc'd treats a pool — chamber, control, water chemistry"
+      />
 
       <MotionGraphicBand
         id="series"

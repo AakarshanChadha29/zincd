@@ -103,7 +103,7 @@ export function PoolStoryPan({
 
   if (reduceMotion) {
     return (
-      <section aria-label={label} className="border-y border-border">
+      <section aria-label={label}>
         {points.map((point) => (
           <StaticFrame
             key={point.id}
@@ -123,7 +123,7 @@ export function PoolStoryPan({
       // One viewport of scroll per point, plus a lead-in so the first point is
       // readable before the pan starts moving under it.
       style={{ height: `${points.length * 85 + 15}svh` }}
-      className="relative border-y border-border"
+      className="relative"
     >
       <div
         ref={stageRef}
