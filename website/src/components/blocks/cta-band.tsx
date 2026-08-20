@@ -66,9 +66,9 @@ export function CtaBand({
           a hard dark-to-white edge. */}
       <div
         aria-hidden
-        className="band-tideline pointer-events-none absolute inset-x-0 bottom-0 h-24 md:h-32"
+        className="band-tideline pointer-events-none absolute inset-x-0 bottom-0 h-8 md:h-10"
       />
-      <Container className="relative py-16 pb-24 md:py-20 md:pb-32">
+      <Container className="relative py-16 md:py-20">
         <div className="max-w-2xl">
           <TechnicalLabel className="text-[color:var(--aqua-400)]">
             {eyebrow}

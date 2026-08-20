@@ -45,7 +45,8 @@ export const clientStills = {
   plantRoom: "/assets/plant-room.jpg",
   hardwareRear: "/assets/hardware-rear.jpg",
   howItWorks: "/assets/how-zincd-works.svg",
-  territoryMarkets: "/assets/us-territory-markets.svg",
+  /** CC0 blank US map (Wikimedia), restyled to Zinc'd teal. */
+  territoryMarkets: "/assets/us-map.svg",
   territoryCta: "/assets/cta-territory.svg",
   /** Sunlit pool caustics — wide banner crop. */
   poolCausticsWide: "/assets/pool-caustics-wide.jpg",
@@ -53,9 +54,11 @@ export const clientStills = {
   poolCausticsDeep: "/assets/pool-caustics-deep.jpg",
 } as const;
 
-/** Homepage — client commercial-pool still (no people, no overlay claims). */
+/** Homepage — rotating villa films with posters as first paint. */
 export const homepageHeroClips: { poster: string; src?: string }[] = [
-  { poster: clientStills.commercialPool },
+  heroVideos.estate,
+  heroVideos.ocean,
+  heroVideos.modern,
 ];
 
 export const productHeroClip = heroVideos.modern;
@@ -166,8 +169,8 @@ export const productStills = {
       alt: "Zinc'd ionization system — battery-powered control above the stainless chamber.",
     },
     {
-      src: "/assets/plant-room.jpg",
-      alt: "A professional plant room with filtration and a gap on the return line for an inline chamber.",
+      src: "/img/clean/system-installed.jpg",
+      alt: "Zinc'd chamber installed inline on the filter return, control mounted above.",
     },
     {
       src: "/assets/hardware-rear.jpg",

@@ -109,8 +109,22 @@ export const primaryNavigation: NavItem[] = [
       },
     ],
   },
-  { label: "Calculator", href: "/calculator" },
-  { label: "Planning model", href: "/cost-savings" },
+  {
+    label: "Calculator",
+    href: "/calculator",
+    children: [
+      {
+        label: "Pool Series Calculator",
+        href: "/calculator",
+        description: "Match a pool to Series-01 through Series-04",
+      },
+      {
+        label: "Hotel planning model",
+        href: "/cost-savings",
+        description: "Hospitality chlorine and operating-cost planning",
+      },
+    ],
+  },
   {
     label: "Applications",
     href: "/applications",
@@ -154,7 +168,12 @@ export const desktopPrimaryNav: NavItem[] = [
     children: primaryNavigation.find((item) => item.href === "/product")
       ?.children,
   },
-  { label: "Calculator", href: "/calculator" },
+  {
+    label: "Calculator",
+    href: "/calculator",
+    children: primaryNavigation.find((item) => item.href === "/calculator")
+      ?.children,
+  },
   {
     label: "Applications",
     href: "/applications",
@@ -189,8 +208,6 @@ export const footerB2cLinks: NavLink[] = [
 export const footerB2bLinks: NavLink[] = [
   { label: "Distributors & Partners", href: "/distributors" },
   { label: "Apply as a Distributor", href: "/apply" },
-  { label: "Distributor QR", href: "/distributors/qr" },
-  { label: "Brochure QR", href: "/distributors/brochure-qr" },
   { label: "Commercial Applications", href: "/applications/commercial" },
   { label: "Hotels & Resorts", href: "/applications/hotels-resorts" },
   { label: "Hotel planning model", href: "/cost-savings" },

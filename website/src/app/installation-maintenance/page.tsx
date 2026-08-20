@@ -38,7 +38,7 @@ import {
   shockSop,
   troubleshootingRows,
 } from "@/content/install-content";
-import { clientStills, motionGraphics } from "@/content/media";
+import { motionGraphics, productPhotos } from "@/content/media";
 import { createPageMetadata } from "@/lib/metadata";
 import { FaqJsonLd, HowToJsonLd } from "@/components/seo/json-ld";
 
@@ -89,8 +89,8 @@ export default function InstallationMaintenancePage() {
           <Reveal delay={0.08}>
             <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
               <Image
-                src={clientStills.plantRoom}
-                alt="A professional plant room with filtration ready for an inline ionization chamber"
+                src={productPhotos.install}
+                alt="Zinc'd chamber installed inline on the filter return, control mounted above"
                 fill
                 sizes="(min-width: 768px) 45vw, 100vw"
                 className="object-cover"

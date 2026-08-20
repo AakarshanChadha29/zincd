@@ -35,7 +35,7 @@ export function ApplicationTemplate({ slug }: { slug: string }) {
         title={
           <>
             {app.title}
-            <span className="mt-2 block text-gradient-aqua text-h2 font-semibold tracking-tight">
+            <span className="mt-2 block text-h2 text-gradient-aqua">
               {app.tagline}
             </span>
           </>

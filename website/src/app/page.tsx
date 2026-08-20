@@ -18,6 +18,7 @@ import { HeroVideo } from "@/components/media/hero-video";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { ProductFloat } from "@/components/media/product-float";
 import { PoolStoryPan } from "@/components/motion/pool-story-pan";
+import { TreatmentLoop } from "@/components/graphics/treatment-loop";
 import { siteConfig } from "@/content/site-config";
 import {
   homepageHeroClips,
@@ -26,7 +27,6 @@ import {
   poolStoryPanorama,
   productPhotos,
   productStills,
-  clientStills,
 } from "@/content/media";
 import {
   heroContent,
@@ -81,7 +81,7 @@ export default function HomePage() {
         />
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[color:var(--pearl)]/90 via-[color:var(--pearl)]/25 to-transparent lg:h-36"
+          className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[color:var(--pearl)]/50 to-transparent lg:h-10"
         />
         <Container className="relative flex flex-1 flex-col justify-end pb-4 pt-24 md:pb-6 md:pt-28 lg:justify-center lg:pb-8 lg:pt-32">
           <div className="grid items-end gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-10">
@@ -241,8 +241,8 @@ export default function HomePage() {
               <ScrollParallax offset={36}>
                 <figure className="relative aspect-[16/10] overflow-hidden rounded-[var(--radius-panel)] border border-border">
                   <Image
-                    src={clientStills.plantRoom}
-                    alt="A professional plant room — filtration in place, return line ready for an inline chamber"
+                    src={productPhotos.install}
+                    alt="Zinc'd chamber installed inline on the filter return, with the control mounted above"
                     fill
                     sizes="(min-width: 1024px) 45vw, 100vw"
                     className="object-cover"
@@ -254,14 +254,8 @@ export default function HomePage() {
           <Reveal delay={0.1}>
             <div className="mt-10 grid gap-6 lg:grid-cols-2">
               <figure className="relative overflow-hidden rounded-[var(--radius)] border border-border bg-white">
-                <div className="relative aspect-[16/10]">
-                  <Image
-                    src={productStills.flowDiagram}
-                    alt="Flow diagram showing the Zinc'd chamber fitted into the pool circulation loop."
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="object-contain p-4"
-                  />
+                <div className="flex justify-center px-4 py-6 md:px-8">
+                  <TreatmentLoop />
                 </div>
                 <figcaption className="text-small border-t border-border px-5 py-3 text-muted-foreground">
                   Single-unit install — chamber inline on the filter return.

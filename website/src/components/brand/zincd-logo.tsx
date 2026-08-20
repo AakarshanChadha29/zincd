@@ -8,7 +8,8 @@ import { siteConfig } from "@/content/site-config";
  * Client brand mark from the approved raster candidate
  * (`public/brand/zincd-logo.jpg` — exact client artwork, not redrawn).
  *
- * Presentation only: light pearl plate, soft edge, optional larger hero size.
+ * Presentation only: light pearl plate, tight crop of the client raster
+ * (`public/brand/zincd-logo.jpg` — baked padding removed, not redrawn).
  */
 type ZincdLogoProps = {
   className?: string;
@@ -27,10 +28,10 @@ export function ZincdLogo({
   const image = (
     <span
       className={cn(
-        "inline-flex items-center rounded-[var(--radius-control)] bg-[color:var(--pearl)] ring-1 ring-[color:var(--teal-900)]/8",
-        size === "nav" && "px-2.5 py-1.5 shadow-[var(--shadow-1)]",
+        "inline-flex items-center overflow-hidden rounded-[var(--radius-control)] bg-[color:var(--pearl)] ring-1 ring-[color:var(--teal-900)]/8",
+        size === "nav" && "px-1 py-0.5 shadow-[var(--shadow-1)]",
         size === "hero" &&
-          "px-4 py-3 shadow-[var(--shadow-2)] ring-[color:var(--aqua-400)]/25 md:px-5 md:py-3.5",
+          "px-1.5 py-1 shadow-[var(--shadow-2)] ring-[color:var(--aqua-400)]/25 md:px-2 md:py-1",
         className
       )}
     >

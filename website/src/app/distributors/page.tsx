@@ -125,7 +125,7 @@ function CausticField({
       <div aria-hidden className="pointer-events-none absolute inset-0 hero-scrim" />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 hero-scrim-bottom"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-10 hero-scrim-bottom"
       />
     </>
   );
@@ -542,15 +542,39 @@ export default function DistributorsPage() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-white/15 bg-white/5 p-4">
+            <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-white/15 bg-white/5 p-5">
               <Image
                 src={clientStills.territoryMarkets}
-                alt="U.S. territory map with hotel, spa, maintenance, gym, and distributor segments."
-                width={1200}
-                height={1600}
+                alt="Map of the United States — Zinc'd distributor territories are discussed by market, not reserved from this page."
+                width={959}
+                height={593}
                 className="h-auto w-full object-contain"
                 sizes="(min-width: 1024px) 40vw, 90vw"
               />
+              <ul className="mt-6 grid grid-cols-3 gap-3">
+                {(
+                  [
+                    { label: "Hotels", Icon: Building2 },
+                    { label: "Spas", Icon: Waves },
+                    { label: "Contractors", Icon: Hammer },
+                    { label: "Maintenance", Icon: Wrench },
+                    { label: "Gyms", Icon: Dumbbell },
+                    { label: "Distributors", Icon: Store },
+                  ] as const
+                ).map(({ label, Icon }) => (
+                  <li
+                    key={label}
+                    className="flex flex-col items-center gap-2 text-center"
+                  >
+                    <span className="flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white">
+                      <Icon className="size-5" strokeWidth={1.5} aria-hidden />
+                    </span>
+                    <span className="text-technical text-[color:var(--aqua-400)]">
+                      {label}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
         </div>
@@ -597,22 +621,6 @@ export default function DistributorsPage() {
               </div>
               <div className="border-t border-border p-8 lg:border-l lg:border-t-0">
                 <DistributorApplyQr />
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="mt-6 w-full rounded-[var(--radius-control)]"
-                  render={<Link href="/distributors/qr" />}
-                >
-                  Open printable QR sheet
-                  <ArrowUpRight className="size-4" aria-hidden />
-                </Button>
-                <Link
-                  href="/distributors/brochure-qr"
-                  className="text-small mt-4 inline-flex w-full items-center justify-center gap-1.5 font-medium text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
-                >
-                  Brochure QR — distributors page
-                  <ArrowUpRight className="size-4" aria-hidden />
-                </Link>
               </div>
             </div>
           </div>

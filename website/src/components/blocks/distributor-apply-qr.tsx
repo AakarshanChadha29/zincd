@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { siteConfig } from "@/content/site-config";
 import { distributorApplyQrSvg } from "@/lib/qr";
 import { PrintQrButton } from "@/components/blocks/print-qr-button";
@@ -45,14 +43,7 @@ export async function DistributorApplyQr({
         </>
       ) : (
         <p className="text-small mt-4 text-muted-foreground">
-          Scan to open the application, or{" "}
-          <Link
-            href="/distributors/qr"
-            className="font-medium text-foreground underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
-          >
-            print this QR
-          </Link>
-          .
+          Scan to open the application.
         </p>
       )}
     </div>

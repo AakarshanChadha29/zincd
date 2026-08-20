@@ -161,7 +161,7 @@ export function MotionGraphicBand({
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 hero-scrim-bottom"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-10 hero-scrim-bottom"
       />
       {showVideo && needsGesture ? (
         <button
