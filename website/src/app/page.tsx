@@ -23,7 +23,6 @@ import {
   motionGraphics,
   poolStoryPanorama,
   productPhotos,
-  productStills,
 } from "@/content/media";
 import {
   heroContent,
@@ -138,9 +137,9 @@ export default function HomePage() {
               <Reveal delay={0.08}>
                 <ProductFloat
                   src={productPhotos.chamber}
-                  alt="The Zinc'd stainless ionization chamber, wordmark and Cu–Ag–Zn badges on the housing"
+                  alt="The Zinc'd stainless ionization chamber at a private infinity pool at dusk"
                   priority
-                  aspectClassName="aspect-[8/5]"
+                  aspectClassName="aspect-[4/5]"
                   sizes="(min-width: 1280px) 38vw, (min-width: 1024px) 44vw, 82vw"
                 />
               </Reveal>
@@ -218,16 +217,14 @@ export default function HomePage() {
           <Reveal delay={0.1}>
             <div className="mt-10 grid gap-6 lg:grid-cols-2">
               <ProductCaptionPanel
-                src={productPhotos.system}
-                alt="Zinc'd stainless chamber and wall control — the single-unit assembly"
-                caption="Single-unit install — chamber inline on the filter return, control on the wall."
-                contain
+                src={productPhotos.install}
+                alt="Zinc'd chamber plumbed into a designed equipment gallery"
+                caption="Single-unit install — chamber on the filter return, control nearby."
               />
               <ProductCaptionPanel
-                src={productStills.manifold}
-                alt="Manifold with three Zinc'd chambers in parallel and a bypass for service"
-                caption="Multi-unit manifold with bypass — commercial volumes."
-                contain
+                src={productPhotos.commercial}
+                alt="Parallel Zinc'd chambers in a sunlit resort mechanical gallery"
+                caption="Multi-unit gallery with bypass — commercial volumes."
               />
             </div>
           </Reveal>

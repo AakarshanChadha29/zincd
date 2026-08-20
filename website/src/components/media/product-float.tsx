@@ -7,32 +7,37 @@ type ProductFloatProps = {
   alt: string;
   priority?: boolean;
   className?: string;
-  /** Aspect box for the float. */
+  /** Aspect box for the still. */
   aspectClassName?: string;
   sizes?: string;
 };
 
 /**
- * Real product photography composited onto cinematic film — no studio plate.
- * Uses cutouts with true alpha (black bg removed).
+ * Campaign photograph in a framed still — full scene, not a workshop cutout.
  */
 export function ProductFloat({
   src,
   alt,
   priority = false,
   className,
-  aspectClassName = "aspect-[3/4]",
+  aspectClassName = "aspect-[4/5]",
   sizes = "(min-width: 1024px) 40vw, 75vw",
 }: ProductFloatProps) {
   return (
-    <div className={cn("relative w-full", aspectClassName, className)}>
+    <div
+      className={cn(
+        "relative w-full overflow-hidden rounded-[var(--radius-panel)] shadow-[var(--shadow-2)]",
+        aspectClassName,
+        className
+      )}
+    >
       <Image
         src={src}
         alt={alt}
         fill
         priority={priority}
         sizes={sizes}
-        className="object-contain drop-shadow-[0_28px_50px_rgba(4,24,32,0.55)]"
+        className="object-cover"
       />
     </div>
   );

@@ -28,13 +28,13 @@ export function SeriesRange({
       {productSeries.map((series, i) => {
         const inner = (
           <article className="flex h-full flex-col overflow-hidden rounded-[var(--radius-panel)] bg-surface/95 shadow-[var(--shadow-1)]">
-            <div className="relative aspect-[4/5] bg-white">
+            <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--teal-900)]">
               <Image
                 src={series.image}
                 alt={`${series.displayName} Zinc'd ionization hardware`}
                 fill
                 sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw"
-                className="object-contain p-5"
+                className="object-cover"
               />
             </div>
             <div className="flex flex-1 flex-col p-5">

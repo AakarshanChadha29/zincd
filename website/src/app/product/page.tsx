@@ -63,7 +63,7 @@ export default function ProductPage() {
         aside={
           <ProductFloat
             src={productPhotos.system}
-            alt="The Zinc'd ionization system: the stainless water chamber alongside the ionization cell tube."
+            alt="The Zinc'd ionization system in a residential plant room overlooking a pool"
             priority
             sizes="(min-width: 1024px) 40vw, 80vw"
           />
@@ -113,8 +113,8 @@ export default function ProductPage() {
               <div className="relative aspect-[4/3] w-full">
                 <ProductFloat
                   src={productPhotos.chamber}
-                  alt="The Zinc'd stainless water chamber with copper, silver and zinc badges."
-                  aspectClassName="aspect-[4/3]"
+                  alt="The Zinc'd stainless chamber at a private infinity pool"
+                  aspectClassName="aspect-[4/5]"
                   sizes="(min-width: 1024px) 40vw, 100vw"
                 />
               </div>

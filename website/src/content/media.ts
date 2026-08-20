@@ -112,41 +112,32 @@ export const motionGraphics = {
 } as const;
 
 /**
- * Product photography — the Zinc'd-branded set.
- *
- * Every asset here shows the hardware as it actually ships: the chamber carries
- * the Zinc'd wordmark and Cu/Ag/Zn badges, and the control's LCD copy is kept
- * consistent with the published specs in product-data.ts (it must never display
- * a voltage that contradicts the 24 V DC operating figure).
+ * Product photography — campaign stills restaged from the shipping hardware.
+ * Full scenes (pool, plant room, hospitality), not workshop crops or cutouts.
  */
 export const productPhotos = {
-  /** Chamber + control as clean catalog objects, true alpha. */
-  system: "/img/clean/system-zincd-cutout.png",
-  /** Branded chamber, true alpha — for floats over film. */
-  chamber: "/img/clean/chamber-zincd-cutout.png",
-  /** Branded chamber on a studio plate. */
-  chamberStudio: "/img/clean/chamber-zincd.jpg",
-  /** Chamber + control on a studio plate. */
-  systemStudio: "/img/clean/system-zincd.jpg",
-  /** Control enclosure — LCD reads 24 V DC, matching published operating voltage. */
-  control: "/img/clean/control-zincd.jpg",
-  /** Commissioned install: chamber inline on the loop, control wired above. */
-  install: "/img/clean/system-installed.jpg",
-  /** Second control angle for pages that should not repeat the catalog shot. */
-  controlAngled: "/img/clean/control-zincd.jpg",
-  /** Looking into the chamber bore — copper mineral core. */
-  chamberLegacy: "/img/clean/chamber-bore.jpg",
-  anode: "/img/clean/electrode-anode.jpg",
-  waterHero: "/img/clean/chamber-water-hero.jpg",
-  packaging: "/img/clean/packaging-still.jpg",
-  family: "/img/clean/system-and-softener.jpg",
+  /** Dusk infinity-pool still of the chamber — home and product hero. */
+  chamber: "/img/campaign/home-hero.jpg",
+  /** Complete system in a designed plant room. */
+  system: "/img/campaign/series-2.jpg",
+  chamberStudio: "/img/campaign/series-1.jpg",
+  systemStudio: "/img/campaign/series-2.jpg",
+  control: "/img/campaign/series-2.jpg",
+  install: "/img/campaign/install.jpg",
+  controlAngled: "/img/campaign/series-3.jpg",
+  chamberLegacy: "/img/campaign/series-1.jpg",
+  anode: "/img/campaign/series-1.jpg",
+  waterHero: "/img/campaign/water-wide.jpg",
+  packaging: "/img/campaign/family.jpg",
+  family: "/img/campaign/family.jpg",
+  commercial: "/img/campaign/series-4.jpg",
 } as const;
 
-/** Catalytic Super Softener stills — same identity lock as the ionizer set. */
+/** Catalytic Super Softener — lifestyle install, not a cropped label shot. */
 export const softenerPhotos = {
-  cutout: "/img/clean/softener-cutout.png",
-  studio: "/img/clean/softener-studio.jpg",
-  install: "/img/clean/softener-installed.jpg",
+  cutout: "/img/campaign/softener.jpg",
+  studio: "/img/campaign/softener.jpg",
+  install: "/img/campaign/softener.jpg",
 } as const;
 
 /** Homepage story panorama — one continuous frame panned across three points. */
@@ -173,36 +164,36 @@ export const productStills = {
   /** Product page gallery — studio and plant-room stills of the shipping hardware. */
   gallery: [
     {
-      src: "/img/clean/system-zincd.jpg",
-      alt: "Zinc'd ionization system: PWM control with LCD above the stainless chamber.",
+      src: "/img/campaign/home-hero.jpg",
+      alt: "Zinc'd stainless chamber at the edge of a private infinity pool at dusk.",
     },
     {
-      src: "/img/clean/control-zincd.jpg",
-      alt: "Zinc'd control face with LCD reading 24 V DC and ionization level 8.",
+      src: "/img/campaign/series-1.jpg",
+      alt: "Zinc'd ionization chamber on wet stone with mineral-teal water.",
     },
     {
-      src: "/img/clean/system-installed.jpg",
-      alt: "Zinc'd chamber installed inline on the filter return, control mounted above.",
+      src: "/img/campaign/series-2.jpg",
+      alt: "Zinc'd control and chamber in a residential plant room overlooking a pool.",
     },
     {
-      src: "/img/clean/chamber-zincd.jpg",
-      alt: "Zinc'd stainless ionization chamber on a dark studio plate.",
+      src: "/img/campaign/series-3.jpg",
+      alt: "Zinc'd system in a boutique-hotel wellness plant beside an indoor spa pool.",
     },
     {
-      src: "/img/clean/electrode-anode.jpg",
-      alt: "Copper mineral electrode with stainless hex fitting.",
+      src: "/img/campaign/install.jpg",
+      alt: "Zinc'd chamber plumbed into a designed commercial equipment gallery.",
     },
     {
-      src: "/img/clean/chamber-bore.jpg",
-      alt: "Looking into the Zinc'd chamber bore, copper core in the flow path.",
+      src: "/img/campaign/series-4.jpg",
+      alt: "Parallel Zinc'd chambers in a sunlit resort mechanical gallery.",
     },
     {
-      src: "/img/clean/packaging-still.jpg",
-      alt: "Zinc'd Pool Care carton beside the assembled ionization system.",
+      src: "/img/campaign/water-wide.jpg",
+      alt: "Zinc'd chamber in shallow pool water at a luxury villa, sunset light.",
     },
     {
-      src: "/img/clean/system-and-softener.jpg",
-      alt: "Zinc'd ionization system photographed with the Catalytic Super Softener 1.5.",
+      src: "/img/campaign/family.jpg",
+      alt: "Zinc'd ionization system and catalytic conditioner on stone beside a pool.",
     },
   ],
 } as const;

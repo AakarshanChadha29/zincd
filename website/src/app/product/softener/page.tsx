@@ -50,9 +50,9 @@ export default function SoftenerPage() {
         ]}
         aside={
           <ProductFloat
-            src={softenerPhotos.cutout}
-            alt="Zinc'd Catalytic Super Softener 1.5 cylindrical conditioner"
-            aspectClassName="aspect-[16/7]"
+            src={softenerPhotos.install}
+            alt="Zinc'd Catalytic Super Softener 1.5 installed in a bright residential equipment gallery"
+            aspectClassName="aspect-[3/2]"
             sizes="(min-width: 1024px) 42vw, 80vw"
           />
         }
