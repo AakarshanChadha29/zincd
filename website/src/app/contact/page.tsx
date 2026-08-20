@@ -18,7 +18,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
 import { ContactForm } from "@/components/blocks/contact-form";
-import { contactHeroClip, lifestyleStills } from "@/content/media";
+import { clientStills, contactHeroClip } from "@/content/media";
 import { siteConfig } from "@/content/site-config";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -177,11 +177,11 @@ export default function ContactPage() {
               </div>
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
-                  src={lifestyleStills.commercialPool}
+                  src={clientStills.clearWaterReturn}
                   alt=""
                   fill
                   sizes="(min-width: 1024px) 35vw, 100vw"
-                  className="object-cover"
+                  className="object-cover object-center"
                 />
                 <div
                   aria-hidden

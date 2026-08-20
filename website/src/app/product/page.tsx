@@ -17,7 +17,11 @@ import { BuyPanel } from "@/components/blocks/buy-panel";
 import { SeriesRange } from "@/components/blocks/series-range";
 import { ProductJsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/content/site-config";
-import { productHeroClip, productPhotos, motionGraphics } from "@/content/media";
+import {
+  chamberCutawayFilm,
+  productHeroClip,
+  productPhotos,
+} from "@/content/media";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { ProductGallery } from "@/components/media/product-gallery";
 import {
@@ -185,16 +189,20 @@ export default function ProductPage() {
       </Section>
 
       <MotionGraphicBand
-        src={motionGraphics.mineralType.src}
-        poster={motionGraphics.mineralType.poster}
-        waterMotion
-        eyebrow="Mineral type"
-        title="Copper. Silver. Zinc."
-        body="The alloy in the chamber — copper for algae, silver for ionization, zinc for biofilm — under PWM control."
+        src={chamberCutawayFilm.src}
+        poster={chamberCutawayFilm.poster}
+        eyebrow="Inside the chamber"
+        title="Flow becomes controlled ionization."
+        body="The original chamber film, now placed where it belongs: alongside the product. Water crosses the copper–silver–zinc anodes while PWM control regulates the release."
       />
 
-      <Section spacing="lg" background="default">
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
+      <Section
+        spacing="lg"
+        background="deep"
+        className="relative overflow-hidden"
+      >
+        <div aria-hidden className="absolute inset-0 bg-grid-dark opacity-20" />
+        <div className="relative grid gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
           <Reveal>
             <div>
               <SectionHeading
@@ -202,14 +210,18 @@ export default function ProductPage() {
                 eyebrow="What's in the system"
                 title="Every component, accounted for"
                 description="The Zinc'd system ships as a set of engineered components that work together."
+                className="[&_.text-technical]:text-[color:var(--aqua-400)] [&>h2]:text-white [&>p]:text-white/70"
               />
               <ul className="mt-10 space-y-8">
                 {systemComponents.map((c) => (
                   <li key={c.name} className="flex gap-4">
-                    <Check className="mt-1 size-5 shrink-0 text-accent-ecological" aria-hidden />
+                    <Check
+                      className="mt-1 size-5 shrink-0 text-[color:var(--aqua-400)]"
+                      aria-hidden
+                    />
                     <div>
-                      <p className="text-h3 text-foreground">{c.name}</p>
-                      <p className="text-body mt-2 text-muted-foreground">{c.detail}</p>
+                      <p className="text-h3 text-white">{c.name}</p>
+                      <p className="text-body mt-2 text-white/65">{c.detail}</p>
                     </div>
                   </li>
                 ))}
@@ -223,21 +235,22 @@ export default function ProductPage() {
                 eyebrow="Own one"
                 title="Buy the system outright"
                 description="For a single pool, the complete Zinc'd system is available direct at $5,000 — cell, control electronics, battery and charger, and the water-testing kit. Start with an assessment and we'll match the series to your circulation first."
+                className="[&_.text-technical]:text-[color:var(--aqua-400)] [&>h2]:text-white [&>p]:text-white/70"
               />
               <div className="mt-8">
                 <BuyPanel />
               </div>
-              <p className="text-body mt-8 text-foreground">
+              <p className="text-body mt-8 text-white">
                 Buying for more than one site?
               </p>
-              <p className="text-body mt-2 text-muted-foreground">
+              <p className="text-body mt-2 text-white/65">
                 Operators running multiple pools, and businesses that want to
                 install and service Zinc'd for their own customers, are better
                 served by the partner route.
               </p>
               <Link
                 href="/distributors"
-                className="text-body mt-4 inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
+                className="text-body mt-4 inline-flex items-center gap-1.5 font-medium text-[color:var(--aqua-400)] underline underline-offset-4 decoration-[color:var(--aqua-400)]/40 hover:decoration-[color:var(--aqua-400)]"
               >
                 See distributor &amp; partner terms
                 <ArrowUpRight className="size-4" aria-hidden />
@@ -247,7 +260,7 @@ export default function ProductPage() {
         </div>
       </Section>
 
-      <Section spacing="lg" background="muted">
+      <Section spacing="lg" background="default">
         <div className="grid gap-14 lg:grid-cols-2 lg:items-start">
           <Reveal>
             <div>
@@ -258,12 +271,15 @@ export default function ProductPage() {
                 description="From the Zinc'd technical documentation. Typical values, subject to model."
               />
               <div className="mt-8">
-                <SpecTable rows={technicalSpecs} />
+                <SpecTable
+                  rows={technicalSpecs}
+                  className="border-[color:var(--teal-700)]/20 shadow-[var(--shadow-1)]"
+                />
               </div>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div>
+            <div className="rounded-[var(--radius-panel)] bg-surface-muted p-7 md:p-9">
               <SectionHeading
                 as="h2"
                 eyebrow="Responsible operation"
@@ -305,6 +321,7 @@ export default function ProductPage() {
         primary={siteConfig.ctas.assessment}
         secondary={siteConfig.ctas.distributor}
         highlightSecondary
+        image={productPhotos.waterHero}
       />
     </>
   );

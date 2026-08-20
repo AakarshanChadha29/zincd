@@ -231,7 +231,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <Section spacing="lg" background="default">
+      <Section spacing="sm" background="default">
         <Reveal>
           <SectionHeading
             as="h2"

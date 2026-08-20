@@ -80,7 +80,7 @@ export const technologyHeroClip = {
   src: "/video/mg-chamber-orbit.mp4",
 };
 export const faqHeroClip = heroVideos.swimmer;
-export const contactHeroClip = heroVideos.estate;
+export const contactHeroClip = heroVideos.ocean;
 
 /** One distinct hero film per application sector. */
 export const applicationHeroes: Record<string, { poster: string; src?: string }> = {
