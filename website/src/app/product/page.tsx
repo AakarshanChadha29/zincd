@@ -16,9 +16,8 @@ import { CtaBand } from "@/components/blocks/cta-band";
 import { BuyPanel } from "@/components/blocks/buy-panel";
 import { SeriesRange } from "@/components/blocks/series-range";
 import { ProductJsonLd } from "@/components/seo/json-ld";
-import { ProductFloat } from "@/components/media/product-float";
 import { siteConfig } from "@/content/site-config";
-import { productHeroClip, productPhotos, productStills, motionGraphics, clientStills } from "@/content/media";
+import { productHeroClip, productPhotos, motionGraphics } from "@/content/media";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import {
   chemistryTargets,
@@ -42,6 +41,25 @@ export const metadata = createPageMetadata({
   ],
 });
 
+const productGallery = [
+  {
+    src: productPhotos.install,
+    alt: "Zinc'd chamber plumbed into a designed equipment gallery",
+  },
+  {
+    src: productPhotos.controlAngled,
+    alt: "Zinc'd control and chamber beside an indoor spa pool",
+  },
+  {
+    src: productPhotos.commercial,
+    alt: "Parallel Zinc'd chambers in a sunlit resort mechanical gallery",
+  },
+  {
+    src: productPhotos.family,
+    alt: "Zinc'd ionization system and catalytic conditioner on stone beside a pool",
+  },
+] as const;
+
 export default function ProductPage() {
   return (
     <>
@@ -60,23 +78,12 @@ export default function ProductPage() {
           { label: siteConfig.ctas.calculator.shortLabel, href: siteConfig.ctas.calculator.href, variant: "outline" },
         ]}
         video={productHeroClip}
-        aside={
-          <ProductFloat
-            src={productPhotos.system}
-            alt="The Zinc'd ionization system in a residential plant room overlooking a pool"
-            priority
-            sizes="(min-width: 1024px) 40vw, 80vw"
-          />
-        }
+        waterMotion
       />
 
-      {/* Full-bleed context band. This replaces a centred generated render
-          floating in a muted field — the page dropped into a void straight
-          after a cinematic hero. Real environment film + the real unit keeps
-          the atmosphere continuous. */}
       <section className="relative overflow-hidden">
         <Image
-          src={clientStills.commercialPool}
+          src={productPhotos.install}
           alt=""
           fill
           sizes="100vw"
@@ -85,45 +92,32 @@ export default function ProductPage() {
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-r from-[color:var(--teal-900)]/92 via-[color:var(--teal-900)]/70 to-[color:var(--teal-900)]/35"
+          className="absolute inset-0 bg-gradient-to-r from-[color:var(--teal-900)]/92 via-[color:var(--teal-900)]/72 to-[color:var(--teal-900)]/28"
         />
-        <Container className="relative py-16 md:py-20">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]">
-            <Reveal variant="left">
-              <div className="max-w-xl">
-                <TechnicalLabel className="text-[color:var(--aqua-400)]">
-                  Built for the loop
-                </TechnicalLabel>
-                <h2 className="text-h1 mt-4 text-white">
-                  Engineered to sit in the plant room, not on a shelf
-                </h2>
-                <p className="text-body-large mt-4 text-white/85">
-                  A stainless chamber rated to 30&nbsp;psi, 24&nbsp;V DC
-                  battery operation, and series-specific chamber dimensions —
-                  specified to run alongside the filtration you already have.
-                </p>
-                <p className="text-small mt-5 text-white/60">
-                  Ionization is designed to reduce chlorine dependency. A
-                  residual of free chlorine remains part of responsible
-                  operation.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal variant="scale" delay={0.08}>
-              <div className="relative aspect-[4/3] w-full">
-                <ProductFloat
-                  src={productPhotos.chamber}
-                  alt="The Zinc'd stainless chamber at a private infinity pool"
-                  aspectClassName="aspect-[4/5]"
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                />
-              </div>
-            </Reveal>
-          </div>
+        <Container className="relative py-20 md:py-28">
+          <Reveal>
+            <div className="max-w-2xl">
+              <TechnicalLabel className="text-[color:var(--aqua-400)]">
+                Built for the loop
+              </TechnicalLabel>
+              <h2 className="text-h1 mt-5 text-white">
+                Engineered to sit in the plant room, not on a shelf
+              </h2>
+              <p className="text-body-large mt-5 text-white/85">
+                A stainless chamber rated to 30&nbsp;psi, 24&nbsp;V DC
+                battery operation, and series-specific chamber dimensions —
+                specified to run alongside the filtration you already have.
+              </p>
+              <p className="text-small mt-6 text-white/60">
+                Ionization is designed to reduce chlorine dependency. A
+                residual of free chlorine remains part of responsible
+                operation.
+              </p>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
-      {/* Series range */}
       <Section id="series" spacing="lg" background="default" className="relative">
         <AmbientIons density="sparse" />
         <Reveal>
@@ -136,12 +130,12 @@ export default function ProductPage() {
         </Reveal>
         <SeriesRange showSpecs />
         <Reveal delay={0.08}>
-          <div className="mt-8 flex flex-col items-start gap-3 rounded-[var(--radius)] border border-border bg-surface-muted/60 p-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <TechnicalLabel className="text-accent-aquatic">
                 Not sure which series?
               </TechnicalLabel>
-              <p className="text-body mt-2 text-muted-foreground">
+              <p className="text-body-large mt-3 max-w-xl text-muted-foreground">
                 Estimate pool volume and see the handbook match in under a minute.
               </p>
             </div>
@@ -156,23 +150,7 @@ export default function ProductPage() {
             </Button>
           </div>
         </Reveal>
-        <Reveal delay={0.1}>
-          <figure className="mt-12 overflow-hidden rounded-[var(--radius)] border border-border bg-surface shadow-[var(--shadow-1)]">
-            <Image
-              src={productStills.manifold}
-              alt="Zinc'd three-chamber manifold with bypass for larger commercial inlets"
-              width={1200}
-              height={896}
-              className="h-auto w-full bg-white object-contain"
-              sizes="(max-width: 1200px) 100vw, 1100px"
-            />
-            <figcaption className="border-t border-border px-5 py-4 text-small text-muted-foreground md:px-6">
-              Custom / commercial multi-unit layout: parallel Zinc&apos;d chambers
-              with bypass — as specified in the installer handbook for larger inlets.
-            </figcaption>
-          </figure>
-        </Reveal>
-        <StatusNote className="mt-8 max-w-3xl">
+        <StatusNote className="mt-10 max-w-3xl">
           Series volumes are rated capacities in litres, shown here in US gallons.
           Typical values, subject to model. Final selection is confirmed against
           your pool volume and circulation during assessment. High hardness? See the{" "}
@@ -186,42 +164,28 @@ export default function ProductPage() {
         </StatusNote>
       </Section>
 
-      {/* Polished product gallery */}
-      <Section spacing="lg" background="muted">
-        <Reveal>
-          <SectionHeading
-            as="h2"
-            eyebrow="Hardware gallery"
-            title="The system, in the light"
-            description="Studio and install photography of the Zinc'd chamber and control electronics — the same hardware that goes into the plant room."
-          />
-        </Reveal>
-        <Reveal delay={0.04}>
-          <figure className="mt-10 overflow-hidden rounded-[var(--radius-panel)]">
-            <div className="relative aspect-[16/9]">
-              <Image
-                src={productPhotos.waterHero}
-                alt="Zinc'd stainless ionization chamber over still mineral-teal water"
-                fill
-                sizes="100vw"
-                className="object-cover"
-              />
-            </div>
-          </figure>
-        </Reveal>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          {productStills.gallery.map((shot, i) => (
-            <Reveal key={shot.src} delay={i * 0.05}>
-              <figure className="overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
-                <div className="relative aspect-[16/10]">
-                  <Image
-                    src={shot.src}
-                    alt={shot.alt}
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
+      <Section spacing="lg" background="muted" container={false}>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              as="h2"
+              eyebrow="In place"
+              title="The system, where it lives"
+              description="Plant room, spa gallery, and the water it treats — the same hardware that ships."
+            />
+          </Reveal>
+        </Container>
+        <div className="mt-12 grid gap-3 md:grid-cols-2">
+          {productGallery.map((shot, i) => (
+            <Reveal key={shot.src} delay={i * 0.04}>
+              <figure className="relative aspect-[16/10] overflow-hidden md:aspect-[16/11]">
+                <Image
+                  src={shot.src}
+                  alt={shot.alt}
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
               </figure>
             </Reveal>
           ))}
@@ -231,51 +195,36 @@ export default function ProductPage() {
       <MotionGraphicBand
         src={motionGraphics.mineralType.src}
         poster={motionGraphics.mineralType.poster}
+        waterMotion
         eyebrow="Mineral type"
-        title="Copper. Silver. Zinc — in motion"
-        body="Generative mineral-field film for the product story. Pair it with the chamber cutaway on Technology for the full ionization narrative."
+        title="Copper. Silver. Zinc."
+        body="The alloy in the chamber — copper for algae, silver for ionization, zinc for biofilm — under PWM control."
       />
 
-      {/* What's in the system */}
       <Section spacing="lg" background="default">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">
           <Reveal>
-            <div className="lg:sticky lg:top-28">
+            <div>
               <SectionHeading
                 as="h2"
                 eyebrow="What's in the system"
                 title="Every component, accounted for"
                 description="The Zinc'd system ships as a set of engineered components that work together."
               />
+              <ul className="mt-10 space-y-8">
+                {systemComponents.map((c) => (
+                  <li key={c.name} className="flex gap-4">
+                    <Check className="mt-1 size-5 shrink-0 text-accent-ecological" aria-hidden />
+                    <div>
+                      <p className="text-h3 text-foreground">{c.name}</p>
+                      <p className="text-body mt-2 text-muted-foreground">{c.detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <ul className="space-y-3">
-              {systemComponents.map((c) => (
-                <li
-                  key={c.name}
-                  className="flex gap-4 rounded-[var(--radius-panel)] border border-border bg-surface p-5"
-                >
-                  <Check className="mt-0.5 size-5 shrink-0 text-accent-ecological" aria-hidden />
-                  <div>
-                    <p className="text-body font-medium text-foreground">
-                      {c.name}
-                    </p>
-                    <p className="text-small mt-1 text-muted-foreground">{c.detail}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* Buy direct — the commercial path. The dealership path lives on
-          /distributors and is signposted from here so the two audiences
-          separate cleanly instead of competing in one CTA. */}
-      <Section spacing="lg" background="default">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-start">
-          <Reveal>
             <div>
               <SectionHeading
                 as="h2"
@@ -283,34 +232,31 @@ export default function ProductPage() {
                 title="Buy the system outright"
                 description="For a single pool, the complete Zinc'd system is available direct at $5,000 — cell, control electronics, battery and charger, and the water-testing kit. Start with an assessment and we'll match the series to your circulation first."
               />
-              <div className="mt-8 rounded-[var(--radius-panel)] border border-border bg-surface p-6">
-                <p className="text-body text-foreground">
-                  Buying for more than one site?
-                </p>
-                <p className="text-small mt-2 text-muted-foreground">
-                  Operators running multiple pools, and businesses that want to
-                  install and service Zinc'd for their own customers, are better
-                  served by the partner route.
-                </p>
-                <Link
-                  href="/distributors"
-                  className="text-small mt-4 inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
-                >
-                  See distributor &amp; partner terms
-                  <ArrowUpRight className="size-4" aria-hidden />
-                </Link>
+              <div className="mt-8">
+                <BuyPanel />
               </div>
+              <p className="text-body mt-8 text-foreground">
+                Buying for more than one site?
+              </p>
+              <p className="text-body mt-2 text-muted-foreground">
+                Operators running multiple pools, and businesses that want to
+                install and service Zinc'd for their own customers, are better
+                served by the partner route.
+              </p>
+              <Link
+                href="/distributors"
+                className="text-body mt-4 inline-flex items-center gap-1.5 font-medium text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary"
+              >
+                See distributor &amp; partner terms
+                <ArrowUpRight className="size-4" aria-hidden />
+              </Link>
             </div>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <BuyPanel />
           </Reveal>
         </div>
       </Section>
 
-      {/* Specs + chemistry */}
-      <Section spacing="lg" background="default">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+      <Section spacing="lg" background="muted">
+        <div className="grid gap-14 lg:grid-cols-2 lg:items-start">
           <Reveal>
             <div>
               <SectionHeading
@@ -325,27 +271,27 @@ export default function ProductPage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="lg:pt-16">
-              <div className="rounded-[var(--radius)] border border-border bg-surface-elevated p-7">
-                <TechnicalLabel>Recommended chemistry</TechnicalLabel>
-                <p className="text-small mt-3 text-muted-foreground">
-                  The supplied testing kit covers copper, free chlorine and pH.
-                </p>
-                <dl className="mt-6 space-y-3">
-                  {chemistryTargets.map((t) => (
-                    <div
-                      key={t.label}
-                      className="flex items-baseline justify-between border-b border-border pb-3 last:border-0 last:pb-0"
-                    >
-                      <dt className="text-body text-foreground">{t.label}</dt>
-                      <dd className="text-technical normal-case tracking-normal text-accent-aquatic">
-                        {t.value}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-              <p className="text-small mt-6 text-muted-foreground">
+            <div>
+              <SectionHeading
+                as="h2"
+                eyebrow="Responsible operation"
+                title="Chemistry to hold"
+                description="The supplied testing kit covers copper, free chlorine and pH."
+              />
+              <dl className="mt-8 space-y-4">
+                {chemistryTargets.map((t) => (
+                  <div
+                    key={t.label}
+                    className="flex items-baseline justify-between gap-6 border-b border-border pb-4 last:border-0 last:pb-0"
+                  >
+                    <dt className="text-body text-foreground">{t.label}</dt>
+                    <dd className="text-right text-small text-accent-aquatic">
+                      {t.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="text-small mt-8 text-muted-foreground">
                 For installation fit and routine care, see{" "}
                 <Link
                   href="/installation-maintenance"

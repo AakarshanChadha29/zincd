@@ -38,8 +38,8 @@ export function SectionHeading({
       <Heading
         className={cn(
           Heading === "h1" && "text-h1",
-          Heading === "h2" && "text-h2",
-          Heading === "h3" && "text-h3"
+          Heading === "h2" && "text-h1",
+          Heading === "h3" && "text-h2"
         )}
       >
         {title}

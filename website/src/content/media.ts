@@ -65,7 +65,9 @@ export const homepageHeroClips: { poster: string; src?: string }[] = [
   },
 ];
 
-export const productHeroClip = heroVideos.modern;
+export const productHeroClip = {
+  poster: "/img/campaign/series-2.jpg",
+};
 export const distributorsHeroClip = heroVideos.estate;
 /** Applications index — estate dusk still, distinct from the home water film. */
 export const applicationsHeroClip = {
@@ -73,7 +75,7 @@ export const applicationsHeroClip = {
   src: "/video/app-residential.mp4",
 };
 export const aboutHeroClip = heroVideos.bali;
-export const technologyHeroClip = heroVideos.ocean;
+export const technologyHeroClip = chamberCutawayFilm;
 export const faqHeroClip = heroVideos.swimmer;
 export const contactHeroClip = heroVideos.estate;
 
@@ -161,11 +163,11 @@ export const productPhotos = {
   commercial: "/img/campaign/series-4.jpg",
 } as const;
 
-/** Catalytic Super Softener — lifestyle install, not a cropped label shot. */
+/** Catalytic Super Softener — one distinct scene per slot. */
 export const softenerPhotos = {
-  cutout: "/img/campaign/softener.jpg",
-  studio: "/img/campaign/softener.jpg",
   install: "/img/campaign/softener.jpg",
+  family: "/img/campaign/family.jpg",
+  closeup: "/img/campaign/softener-close.jpg",
 } as const;
 
 /** Homepage story panorama — one continuous frame panned across three points. */

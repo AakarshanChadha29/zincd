@@ -9,7 +9,6 @@ import { PageHero } from "@/components/blocks/page-hero";
 import { FaqList } from "@/components/blocks/faq-list";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { FaqJsonLd } from "@/components/seo/json-ld";
-import { ProductFloat } from "@/components/media/product-float";
 import { siteConfig } from "@/content/site-config";
 import { softenerPhotos } from "@/content/media";
 import {
@@ -48,14 +47,8 @@ export default function SoftenerPage() {
           { label: siteConfig.ctas.assessment.label, href: siteConfig.ctas.assessment.href },
           { label: "Ionization system", href: "/product", variant: "outline" },
         ]}
-        aside={
-          <ProductFloat
-            src={softenerPhotos.install}
-            alt="Zinc'd Catalytic Super Softener 1.5 installed in a bright residential equipment gallery"
-            aspectClassName="aspect-[3/2]"
-            sizes="(min-width: 1024px) 42vw, 80vw"
-          />
-        }
+        video={{ poster: softenerPhotos.install }}
+        waterMotion
       />
 
       <Section spacing="lg" background="default">
@@ -67,55 +60,50 @@ export default function SoftenerPage() {
             description="Flow bands from the complete handbook. Final selection is confirmed during assessment."
           />
         </Reveal>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-10 md:grid-cols-3">
           {softenerSeries.map((series, i) => (
             <Reveal key={series.name} delay={i * 0.05}>
-              <article className="flex h-full flex-col rounded-[var(--radius-panel)] border border-border bg-surface p-6">
-                <h3 className="text-h3 text-foreground">{series.name}</h3>
+              <article>
+                <h3 className="text-h2 text-foreground">{series.name}</h3>
                 <p className="text-technical mt-3 normal-case tracking-normal text-accent-aquatic">
                   {series.flow}
                 </p>
-                <p className="text-small mt-3 text-muted-foreground">{series.body}</p>
+                <p className="text-body-large mt-4 text-muted-foreground">{series.body}</p>
               </article>
             </Reveal>
           ))}
         </div>
-        <StatusNote className="mt-8 max-w-3xl">
+        <StatusNote className="mt-10 max-w-3xl">
           {softenerLine.hardnessNote} See{" "}
           <Link href="/installation-maintenance" className="underline underline-offset-4">
             Installation &amp; Maintenance
           </Link>{" "}
           for the chemistry panel.
         </StatusNote>
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <Reveal>
-            <figure className="overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
-              <div className="relative aspect-[3/2]">
-                <Image
-                  src={softenerPhotos.studio}
-                  alt="Zinc'd Catalytic Super Softener 1.5 on a studio plate"
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </figure>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <figure className="overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
-              <div className="relative aspect-[3/2]">
-                <Image
-                  src={softenerPhotos.install}
-                  alt="Zinc'd Catalytic Super Softener 1.5 installed inline on a plant-room PVC loop"
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </figure>
-          </Reveal>
-        </div>
       </Section>
+
+      <section>
+        <div className="grid md:grid-cols-2">
+          <figure className="relative aspect-[4/3] overflow-hidden">
+            <Image
+              src={softenerPhotos.closeup}
+              alt="Close view of the Zinc'd Catalytic Super Softener 1.5 on copper plant-room piping"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </figure>
+          <figure className="relative aspect-[4/3] overflow-hidden">
+            <Image
+              src={softenerPhotos.family}
+              alt="Zinc'd ionization system and catalytic conditioner together beside a pool"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </figure>
+        </div>
+      </section>
 
       <Section spacing="lg" background="muted">
         <Reveal>

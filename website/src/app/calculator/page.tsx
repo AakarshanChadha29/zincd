@@ -30,13 +30,16 @@ export const metadata = createPageMetadata({
 export default function CalculatorPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-surface">
-        <div aria-hidden className="absolute inset-0 bg-grid opacity-60" />
-        <div aria-hidden className="absolute inset-0 hero-aura" />
-        <AmbientIons tone="aquatic" density="sparse" className="opacity-50" />
+      <section className="relative overflow-hidden bg-[color:var(--teal-900)]">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 pool-caustics pool-caustics-motion mix-blend-screen opacity-40"
+        />
+        <div aria-hidden className="absolute inset-0 hero-aura opacity-50" />
+        <AmbientIons tone="aquatic" density="sparse" className="opacity-40" />
         <Container className="relative py-14 md:py-20">
           <Reveal>
-            <PoolSeriesCalculator />
+            <PoolSeriesCalculator tone="deep" />
           </Reveal>
         </Container>
       </section>

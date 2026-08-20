@@ -11,19 +11,19 @@ type TechnicalLabelProps = {
 export function TechnicalLabel({
   children,
   className,
-  withDot = true,
+  withDot = false,
 }: TechnicalLabelProps) {
   return (
     <div
       className={cn(
-        "text-technical text-accent-aquatic inline-flex items-center gap-2",
+        "text-technical text-accent-aquatic inline-flex items-center gap-2.5",
         className
       )}
     >
       {withDot ? (
         <span
           aria-hidden
-          className="size-1.5 shrink-0 rounded-full bg-accent-aquatic"
+          className="h-px w-6 shrink-0 bg-current"
         />
       ) : null}
       <span>{children}</span>

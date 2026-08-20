@@ -26,7 +26,7 @@ const plexMono = IBM_Plex_Mono({
 
 const plexSerif = IBM_Plex_Serif({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal"],
   variable: "--font-plex-serif",
   display: "swap",

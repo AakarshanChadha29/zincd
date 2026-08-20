@@ -200,7 +200,11 @@ function NumberField({
   );
 }
 
-export function PoolSeriesCalculator() {
+export function PoolSeriesCalculator({
+  tone = "light",
+}: {
+  tone?: "light" | "deep";
+}) {
   const reduceMotion = useReducedMotion();
   const [shape, setShape] = useState<PoolShape>("rectangle");
   const [lengthUnit, setLengthUnit] = useState<LengthUnit>("ft");
@@ -283,38 +287,61 @@ export function PoolSeriesCalculator() {
         ? shapeMeta.formulaFt
         : shapeMeta.formulaM;
 
+  const deep = tone === "deep";
+
   return (
     <div className="relative">
-      {/* Header runs full width. Previously it sat in its own column beside the
-          form, and because it was much shorter it left a tall empty block on
-          desktop — the two columns below are now both substantial, so neither
-          side runs out of content. */}
       <header className="relative max-w-3xl">
         <div
           aria-hidden
           className="pointer-events-none absolute -left-20 -top-10 hidden h-64 w-64 opacity-30 lg:block"
         >
-          <EcoRipple className="h-full w-full text-accent-aquatic" />
+          <EcoRipple
+            className={cn(
+              "h-full w-full",
+              deep ? "text-[color:var(--aqua-400)]" : "text-accent-aquatic"
+            )}
+          />
         </div>
-        <TechnicalLabel className="relative text-accent-aquatic">
+        <TechnicalLabel
+          className={cn(
+            "relative",
+            deep ? "text-[color:var(--aqua-400)]" : "text-accent-aquatic"
+          )}
+        >
           Zinc&apos;d pool sizing calculator
         </TechnicalLabel>
-        <h1 className="text-display relative mt-4 text-foreground">
+        <h1
+          className={cn(
+            "text-display relative mt-4",
+            deep ? "text-white" : "text-foreground"
+          )}
+        >
           What size pool ionizer{" "}
           <span className="text-gradient-aqua">do I need?</span>
         </h1>
-        <p className="text-body-large relative mt-5 max-w-2xl text-muted-foreground">
+        <p
+          className={cn(
+            "text-body-large relative mt-5 max-w-2xl",
+            deep ? "text-white/80" : "text-muted-foreground"
+          )}
+        >
           Enter your pool&apos;s measurements to estimate its capacity in US
           gallons, then see which Zinc&apos;d series matches — Series 1 through
           Series 4. Takes about a minute.
         </p>
-        <div className="relative mt-8 flex max-w-2xl items-start gap-3 border-y border-border py-4">
+        <div
+          className={cn(
+            "relative mt-8 flex max-w-2xl items-start gap-3 border-y py-4",
+            deep ? "border-white/15" : "border-border"
+          )}
+        >
           <Info
-            className="mt-0.5 size-4 shrink-0 text-accent-aquatic"
+            className="mt-0.5 size-4 shrink-0 text-[color:var(--aqua-400)]"
             aria-hidden
           />
-          <p className="text-small text-muted-foreground">
-            Use <strong className="font-semibold text-foreground">average
+          <p className={cn("text-small", deep ? "text-white/70" : "text-muted-foreground")}>
+            Use <strong className={cn("font-semibold", deep ? "text-white" : "text-foreground")}>average
             depth</strong> — shallow end plus deep end, divided by two.
           </p>
         </div>
