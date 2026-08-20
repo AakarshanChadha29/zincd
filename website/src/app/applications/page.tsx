@@ -47,6 +47,7 @@ export default function ApplicationsPage() {
           },
         ]}
         video={applicationsHeroClip}
+        waterMotion
       />
 
       <Section spacing="lg" background="default" className="relative">

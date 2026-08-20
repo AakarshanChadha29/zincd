@@ -18,6 +18,8 @@ type HeroVideoProps = {
   className?: string;
   /** Seconds each clip stays visible before swap (multi-clip only). */
   intervalSec?: number;
+  /** Slow caustic overlay so still water still reads as moving. */
+  waterMotion?: boolean;
 };
 
 function armAutoplay(el: HTMLVideoElement) {
@@ -45,6 +47,7 @@ export function HeroVideo({
   clips,
   className,
   intervalSec = 8,
+  waterMotion = false,
 }: HeroVideoProps) {
   const reduceMotion = useReducedMotion();
   const [active, setActive] = useState(0);
@@ -172,6 +175,12 @@ export function HeroVideo({
           preload="metadata"
           controls={false}
           disablePictureInPicture
+        />
+      ) : null}
+      {waterMotion && !reduceMotion ? (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 pool-caustics pool-caustics-motion mix-blend-screen"
         />
       ) : null}
       {!stillOnly && needsGesture ? (

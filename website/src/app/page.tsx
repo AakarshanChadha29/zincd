@@ -7,14 +7,12 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { TechnicalLabel } from "@/components/ui/technical-label";
 import { Reveal } from "@/components/motion/reveal";
-import { HeroParallax } from "@/components/motion/hero-parallax";
 import { ScrollParallax } from "@/components/motion/scroll-parallax";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { SeriesRange } from "@/components/blocks/series-range";
 import { ZincdLogo } from "@/components/brand/zincd-logo";
 import { HeroVideo } from "@/components/media/hero-video";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
-import { ProductFloat } from "@/components/media/product-float";
 import { PoolStoryPan } from "@/components/motion/pool-story-pan";
 import { siteConfig } from "@/content/site-config";
 import {
@@ -85,66 +83,53 @@ export default function HomePage() {
   return (
     <>
       <section className="relative flex min-h-[calc(100svh-var(--nav-height))] flex-col justify-center overflow-hidden lg:min-h-[min(92vh,56rem)]">
-        <HeroVideo clips={homepageHeroClips} />
+        <HeroVideo clips={homepageHeroClips} waterMotion />
         <div aria-hidden className="absolute inset-0 hero-scrim" />
         <div
           aria-hidden
-          className="absolute inset-y-0 left-0 w-full bg-[linear-gradient(to_right,rgb(4_32_38/0.78)_0%,rgb(4_32_38/0.52)_34%,rgb(4_32_38/0.12)_58%,transparent_78%)] lg:w-[62%]"
+          className="absolute inset-y-0 left-0 w-full bg-[linear-gradient(to_right,rgb(4_32_38/0.78)_0%,rgb(4_32_38/0.52)_34%,rgb(4_32_38/0.12)_58%,transparent_78%)] lg:w-[58%]"
         />
         <Container className="relative flex flex-1 flex-col justify-end pb-10 pt-28 md:pb-12 md:pt-32 lg:justify-center lg:pb-16 lg:pt-28">
-          <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.95fr)] lg:gap-10 xl:gap-14">
-            <Reveal>
-              <div className="max-w-xl space-y-6 lg:space-y-7">
-                <div>
-                  <ZincdLogo size="hero" href={null} priority />
-                </div>
-                <TechnicalLabel className="block text-[color:var(--aqua-400)]">
-                  {heroContent.eyebrow}
-                </TechnicalLabel>
-                <h1 className="text-display text-white">
-                  A quieter{" "}
-                  <span className="text-gradient-aqua">revolution</span> in pool
-                  water.
-                </h1>
-                <p className="text-body-large max-w-lg text-white/85">
-                  {heroContent.subhead}
-                </p>
-                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <Button
-                    size="lg"
-                    className="rounded-[var(--radius-control)]"
-                    render={<Link href={siteConfig.ctas.assessment.href} />}
-                  >
-                    {siteConfig.ctas.assessment.label}
-                    <ArrowRight className="size-4" aria-hidden />
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="partner"
-                    className="rounded-[var(--radius-control)] border-white/40 bg-white/15 text-white hover:bg-white hover:text-[color:var(--teal-900)]"
-                    render={<Link href={siteConfig.ctas.distributor.href} />}
-                  >
-                    {siteConfig.ctas.distributor.label}
-                  </Button>
-                </div>
-                <p className="text-small max-w-md text-white/70">
-                  Built for US estate pools, hotels and resorts, and commercial
-                  aquatic facilities.
-                </p>
+          <Reveal>
+            <div className="max-w-xl space-y-6 lg:space-y-7">
+              <div>
+                <ZincdLogo size="hero" href={null} priority />
               </div>
-            </Reveal>
-            <HeroParallax className="relative z-[2] w-full max-lg:mx-auto max-lg:max-w-sm lg:justify-self-end">
-              <Reveal delay={0.08}>
-                <ProductFloat
-                  src={productPhotos.chamber}
-                  alt="The Zinc'd stainless ionization chamber at a private infinity pool at dusk"
-                  priority
-                  aspectClassName="aspect-[4/5]"
-                  sizes="(min-width: 1280px) 38vw, (min-width: 1024px) 44vw, 82vw"
-                />
-              </Reveal>
-            </HeroParallax>
-          </div>
+              <TechnicalLabel className="block text-[color:var(--aqua-400)]">
+                {heroContent.eyebrow}
+              </TechnicalLabel>
+              <h1 className="text-display text-white">
+                A quieter{" "}
+                <span className="text-gradient-aqua">revolution</span> in pool
+                water.
+              </h1>
+              <p className="text-body-large max-w-lg text-white/85">
+                {heroContent.subhead}
+              </p>
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button
+                  size="lg"
+                  className="rounded-[var(--radius-control)]"
+                  render={<Link href={siteConfig.ctas.assessment.href} />}
+                >
+                  {siteConfig.ctas.assessment.label}
+                  <ArrowRight className="size-4" aria-hidden />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="partner"
+                  className="rounded-[var(--radius-control)] border-white/40 bg-white/15 text-white hover:bg-white hover:text-[color:var(--teal-900)]"
+                  render={<Link href={siteConfig.ctas.distributor.href} />}
+                >
+                  {siteConfig.ctas.distributor.label}
+                </Button>
+              </div>
+              <p className="text-small max-w-md text-white/70">
+                Built for US estate pools, hotels and resorts, and commercial
+                aquatic facilities.
+              </p>
+            </div>
+          </Reveal>
         </Container>
       </section>
 

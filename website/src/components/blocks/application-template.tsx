@@ -9,9 +9,14 @@ import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessSteps } from "@/components/blocks/process-steps";
+import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { siteConfig } from "@/content/site-config";
 import { applications, applicationDetails } from "@/content/product-data";
-import { applicationImages, applicationsHeroClip } from "@/content/media";
+import {
+  applicationHeroes,
+  applicationImages,
+  applicationMotion,
+} from "@/content/media";
 
 const otherLabel: Record<string, string> = {
   residential: "Residential",
@@ -49,7 +54,8 @@ export function ApplicationTemplate({ slug }: { slug: string }) {
             variant: "partner",
           },
         ]}
-        video={applicationsHeroClip}
+        video={applicationHeroes[slug]}
+        waterMotion
       />
 
       <Section spacing="lg" background="default" className="relative">
@@ -81,6 +87,26 @@ export function ApplicationTemplate({ slug }: { slug: string }) {
         </div>
       </Section>
 
+      {applicationMotion[slug] ? (
+        <MotionGraphicBand
+          src={applicationMotion[slug].src}
+          poster={applicationMotion[slug].poster}
+          waterMotion
+        >
+          <Reveal>
+            <div className="max-w-2xl space-y-4">
+              <AudienceChip
+                label={detail.audienceLabel}
+                variant={detail.audience}
+                className="border-white/35 bg-white/10 text-white"
+              />
+              <h2 className="text-h1 text-white">{app.tagline}</h2>
+              <p className="text-body-large max-w-xl text-white/80">{app.body}</p>
+            </div>
+          </Reveal>
+        </MotionGraphicBand>
+      ) : null}
+
       <Section spacing="lg" background="default">
         <Reveal>
           <SectionHeading as="h2" eyebrow="Other sectors" title="Explore more applications" />
@@ -90,15 +116,26 @@ export function ApplicationTemplate({ slug }: { slug: string }) {
             <Reveal key={o.slug} delay={i * 0.05}>
               <Link
                 href={`/applications/${o.slug}`}
-                className="group flex items-center justify-between rounded-[var(--radius-panel)] border border-border bg-surface p-5 transition-colors hover:border-border-strong"
+                className="group overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface transition-colors hover:border-border-strong"
               >
-                <span className="text-body font-medium text-foreground">
-                  {otherLabel[o.slug]}
-                </span>
-                <ArrowRight
-                  className="size-4 text-accent-steel transition-transform group-hover:translate-x-0.5"
-                  aria-hidden
-                />
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={applicationImages[o.slug] ?? "/img/pool-residential.jpg"}
+                    alt=""
+                    fill
+                    sizes="(min-width: 640px) 30vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="flex items-center justify-between p-5">
+                  <span className="text-body font-medium text-foreground">
+                    {otherLabel[o.slug]}
+                  </span>
+                  <ArrowRight
+                    className="size-4 text-accent-steel transition-transform group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </div>
               </Link>
             </Reveal>
           ))}

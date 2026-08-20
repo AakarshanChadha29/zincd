@@ -29,6 +29,7 @@ export function PageHero({
   actions,
   aside,
   video,
+  waterMotion = false,
 }: {
   eyebrow: string;
   title: ReactNode;
@@ -36,6 +37,7 @@ export function PageHero({
   actions?: HeroAction[];
   aside?: ReactNode;
   video?: HeroVideoClip | HeroVideoClip[];
+  waterMotion?: boolean;
 }) {
   const clips = video ? (Array.isArray(video) ? video : [video]) : null;
   const cinematic = Boolean(clips?.length);
@@ -54,7 +56,7 @@ export function PageHero({
     >
       {cinematic && clips ? (
         <>
-          <HeroVideo clips={clips} />
+          <HeroVideo clips={clips} waterMotion={waterMotion} />
           <div aria-hidden className="absolute inset-0 hero-scrim" />
           <div
             aria-hidden

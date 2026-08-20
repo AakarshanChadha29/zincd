@@ -54,20 +54,48 @@ export const clientStills = {
   poolCausticsDeep: "/assets/pool-caustics-deep.jpg",
 } as const;
 
-/** Homepage — rotating villa films with posters as first paint. */
+/**
+ * Homepage hero — the chamber in the water is the picture.
+ * Villa films sit behind copy no longer; water motion is the film.
+ */
 export const homepageHeroClips: { poster: string; src?: string }[] = [
-  heroVideos.estate,
-  heroVideos.ocean,
-  heroVideos.modern,
+  {
+    poster: "/img/campaign/water-wide.jpg",
+    src: "/video/hero-product-water.mp4",
+  },
 ];
 
 export const productHeroClip = heroVideos.modern;
 export const distributorsHeroClip = heroVideos.estate;
-export const applicationsHeroClip = heroVideos.swimmer;
+/** Applications index — estate dusk still, distinct from the home water film. */
+export const applicationsHeroClip = {
+  poster: "/img/campaign/home-hero.jpg",
+  src: "/video/app-residential.mp4",
+};
 export const aboutHeroClip = heroVideos.bali;
 export const technologyHeroClip = heroVideos.ocean;
 export const faqHeroClip = heroVideos.swimmer;
 export const contactHeroClip = heroVideos.estate;
+
+/** One distinct hero film per application sector. */
+export const applicationHeroes: Record<string, { poster: string; src?: string }> = {
+  residential: {
+    poster: "/img/campaign/home-hero.jpg",
+    src: "/video/app-residential.mp4",
+  },
+  "hotels-resorts": {
+    poster: "/img/campaign/series-3.jpg",
+    src: "/video/app-hotels.mp4",
+  },
+  commercial: {
+    poster: "/img/campaign/series-4.jpg",
+    src: "/video/app-commercial.mp4",
+  },
+  "fitness-wellness": {
+    poster: "/img/campaign/series-1.jpg",
+    src: "/video/app-wellness.mp4",
+  },
+};
 
 /**
  * Motion graphic loops. One distinct film per route — `ionsWater` was
@@ -198,12 +226,35 @@ export const productStills = {
   ],
 } as const;
 
-/** Still photography for application cards — environment only. */
+/** Application cards and in-page stills — one distinct campaign scene per sector. */
 export const applicationImages: Record<string, string> = {
-  residential: lifestyleStills.residentialPool,
-  "hotels-resorts": clientStills.hotelWellness,
-  commercial: clientStills.commercialPool,
-  "fitness-wellness": clientStills.hotelInfinity,
+  residential: "/img/campaign/home-hero.jpg",
+  "hotels-resorts": "/img/campaign/series-3.jpg",
+  commercial: "/img/campaign/series-4.jpg",
+  "fitness-wellness": "/img/campaign/series-1.jpg",
+};
+
+/** In-page motion band under each application — not the same loop on every route. */
+export const applicationMotion: Record<
+  string,
+  { src: string; poster: string }
+> = {
+  residential: {
+    src: "/video/mg-water-ions.mp4",
+    poster: "/video/mg-water-ions.jpg",
+  },
+  "hotels-resorts": {
+    src: "/video/mg-water-story.mp4",
+    poster: "/video/mg-water-story.jpg",
+  },
+  commercial: {
+    src: "/video/mg-chamber.mp4",
+    poster: "/video/mg-chamber.jpg",
+  },
+  "fitness-wellness": {
+    src: "/video/mg-living-field.mp4",
+    poster: "/video/mg-living-field.jpg",
+  },
 };
 
 /** Default social preview — people-free commercial pool still. */
