@@ -139,7 +139,7 @@ export default function CostSavingsPage() {
       <CtaBand
         eyebrow="Size the hardware first"
         title="A model is not a specification"
-        body="Match Series-01 through Series-04 to the pool, then run a pilot with required residuals still in place."
+        body="Match Series-01 through Series-04 to the pool, then run a pilot against your invoices."
         primary={siteConfig.ctas.assessment}
         secondary={{ label: "Pool series calculator", href: "/calculator" }}
       />

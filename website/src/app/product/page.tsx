@@ -14,6 +14,7 @@ import { PageHero } from "@/components/blocks/page-hero";
 import { SpecTable } from "@/components/blocks/spec-table";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { BuyPanel } from "@/components/blocks/buy-panel";
+import { SeriesRange } from "@/components/blocks/series-range";
 import { ProductJsonLd } from "@/components/seo/json-ld";
 import { ProductFloat } from "@/components/media/product-float";
 import { siteConfig } from "@/content/site-config";
@@ -21,7 +22,6 @@ import { productHeroClip, productPhotos, productStills, motionGraphics, clientSt
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import {
   chemistryTargets,
-  productSeries,
   systemComponents,
   technicalSpecs,
 } from "@/content/product-data";
@@ -133,33 +133,7 @@ export default function ProductPage() {
             description="Rated volumes from the current product manual. Typical values, subject to model. Assessment confirms the fit to your circulation system."
           />
         </Reveal>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {productSeries.map((series, i) => (
-            <Reveal key={series.name} delay={i * 0.05}>
-              <div className="flex h-full flex-col rounded-[var(--radius-panel)] border border-border bg-surface p-6 transition-colors hover:border-border-strong">
-                <div className="text-technical text-accent-aquatic">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <h3 className="text-h3 mt-3 text-foreground">{series.name}</h3>
-                <p className="text-small mt-1 font-medium text-accent-steel">{series.scope}</p>
-                <p className="text-technical mt-3 normal-case tracking-normal text-accent-aquatic">
-                  {series.volume}
-                  <span className="text-muted-foreground"> · </span>
-                  {series.power}
-                </p>
-                <p className="text-small mt-1 text-accent-steel">
-                  Chamber {series.chamberLength} · bore {series.bore}
-                  {series.customized ? " · customized, indicative" : ""}
-                </p>
-                <p className="text-small mt-3 text-muted-foreground">{series.body}</p>
-                <p className="text-technical mt-4 normal-case tracking-normal text-accent-ecological">
-                  {series.audience}
-                </p>
-                <p className="text-small mt-2 text-muted-foreground">{series.decisionNote}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <SeriesRange showSpecs />
         <Reveal delay={0.08}>
           <div className="mt-8 flex flex-col items-start gap-3 rounded-[var(--radius)] border border-border bg-surface-muted/60 p-5 sm:flex-row sm:items-center sm:justify-between">
             <div>

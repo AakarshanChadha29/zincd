@@ -1,14 +1,12 @@
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { StatusNote } from "@/components/ui/status-note";
-import { AudienceChip } from "@/components/ui/audience-chip";
 import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { siteConfig } from "@/content/site-config";
-import { evaluationFramework } from "@/content/product-data";
 import { aboutHeroClip, motionGraphics } from "@/content/media";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -85,29 +83,6 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-h3 mt-3 text-foreground">{p.title}</h3>
                 <p className="text-body mt-2 text-muted-foreground">{p.body}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      <Section spacing="lg" background="muted" className="relative">
-        <AmbientIons tone="ecological" density="sparse" />
-        <Reveal>
-          <AudienceChip label="Dual audience" variant="partner" />
-          <SectionHeading
-            as="h2"
-            title="Built for ownership and the next generation"
-            description="Seasoned operators and younger leadership taking over facilities both need the same thing: a product story that is technical, calm, and claims-safe."
-            className="mt-5"
-          />
-        </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {evaluationFramework.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.06}>
-              <div className="h-full border-l-2 border-accent-ecological/40 pl-5">
-                <h3 className="text-h3 text-foreground">{item.title}</h3>
-                <p className="text-body mt-3 text-muted-foreground">{item.body}</p>
               </div>
             </Reveal>
           ))}

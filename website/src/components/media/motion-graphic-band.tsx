@@ -13,11 +13,13 @@ import { Reveal } from "@/components/motion/reveal";
 type MotionGraphicBandProps = {
   src: string;
   poster: string;
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   body: string;
   className?: string;
   tone?: "deep" | "soft";
+  /** Slow caustic overlay so still water in the film still reads as moving. */
+  waterMotion?: boolean;
 };
 
 function armAutoplay(el: HTMLVideoElement) {
@@ -43,6 +45,7 @@ export function MotionGraphicBand({
   body,
   className,
   tone = "deep",
+  waterMotion = false,
 }: MotionGraphicBandProps) {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -143,6 +146,12 @@ export function MotionGraphicBand({
           aria-hidden
         />
       ) : null}
+      {waterMotion && !reduceMotion ? (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 pool-caustics pool-caustics-motion mix-blend-screen"
+        />
+      ) : null}
       <div
         aria-hidden
         className={cn(
@@ -168,11 +177,13 @@ export function MotionGraphicBand({
       <Container className="relative z-[2] pb-10 pt-16 md:pb-20 md:pt-24">
         <Reveal>
           <div className="max-w-xl space-y-4">
-            <TechnicalLabel
-              className={tone === "deep" ? "text-[color:var(--aqua-400)]" : undefined}
-            >
-              {eyebrow}
-            </TechnicalLabel>
+            {eyebrow ? (
+              <TechnicalLabel
+                className={tone === "deep" ? "text-[color:var(--aqua-400)]" : undefined}
+              >
+                {eyebrow}
+              </TechnicalLabel>
+            ) : null}
             <h2
               className={cn(
                 "text-h1",

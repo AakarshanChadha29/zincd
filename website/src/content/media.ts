@@ -47,6 +47,10 @@ export const clientStills = {
   howItWorks: "/assets/how-zincd-works.svg",
   territoryMarkets: "/assets/us-territory-markets.svg",
   territoryCta: "/assets/cta-territory.svg",
+  /** Sunlit pool caustics — wide banner crop. */
+  poolCausticsWide: "/assets/pool-caustics-wide.jpg",
+  /** Sunlit pool caustics — tall crop for portrait bands. */
+  poolCausticsDeep: "/assets/pool-caustics-deep.jpg",
 } as const;
 
 /** Homepage — client commercial-pool still (no people, no overlay claims). */

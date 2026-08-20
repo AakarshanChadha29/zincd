@@ -1,15 +1,14 @@
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { TechnicalLabel } from "@/components/ui/technical-label";
 import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { CtaBand } from "@/components/blocks/cta-band";
+import { SeriesRange } from "@/components/blocks/series-range";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { PoolSeriesCalculator } from "@/components/calculator/pool-series-calculator";
 import { siteConfig } from "@/content/site-config";
 import { motionGraphics } from "@/content/media";
-import { productSeries } from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -56,30 +55,9 @@ export default function CalculatorPage() {
           as="h2"
           eyebrow="Series range"
           title="What each series covers"
-          description="From a standard backyard pool through resort and municipal water. Your calculator result points to one of these four — Series-03 and Series-04 are customized, indicative models. A specialist confirms circulation before install."
+          description="From a standard backyard pool through resort and municipal water. Series-03 and Series-04 are customized, indicative models — a specialist confirms circulation before install."
         />
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {productSeries.map((series, i) => (
-            <Reveal key={series.name} delay={i * 0.05}>
-              <article className="h-full rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow-1)]">
-                <TechnicalLabel className="text-accent-aquatic">
-                  {series.name}
-                </TechnicalLabel>
-                <p className="text-h3 mt-3 text-foreground">{series.volume}</p>
-                <p className="text-small mt-0.5 tabular-nums text-accent-steel">
-                  {series.volumeMetric}
-                  {series.customized ? " · customized, indicative" : ""}
-                </p>
-                <p className="text-small mt-2 text-accent-steel">
-                  {series.scope} · {series.power}
-                </p>
-                <p className="text-body mt-4 text-muted-foreground">
-                  {series.body}
-                </p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        <SeriesRange />
       </Section>
 
       <CtaBand

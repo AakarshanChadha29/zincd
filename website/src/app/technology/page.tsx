@@ -4,23 +4,17 @@ import Link from "next/link";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechnicalLabel } from "@/components/ui/technical-label";
-import { StatusNote } from "@/components/ui/status-note";
 import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
-import { ProcessSteps } from "@/components/blocks/process-steps";
 import { SpecTable } from "@/components/blocks/spec-table";
-import { FeatureGrid } from "@/components/blocks/feature-grid";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { siteConfig } from "@/content/site-config";
 import { clientStills, motionGraphics, productPhotos, technologyHeroClip } from "@/content/media";
 import {
   chemistryTargets,
-  chlorineResidualNote,
-  howItWorksSteps,
   technicalSpecs,
-  valuePillars,
 } from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -152,25 +146,18 @@ export default function TechnologyPage() {
         body="Owner chamber-cutaway film: circulating water, Cu²⁺ / Ag⁺ / Zn²⁺ release under low-voltage PWM. Illustrative — not a dosing calculator."
       />
 
-      {/* How it works process */}
+      {/* How it works — visual, not a second numbered essay */}
       <Section spacing="lg" background="muted">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">
-          <Reveal>
-            <div className="lg:sticky lg:top-28">
-              <SectionHeading
-                as="h2"
-                eyebrow="The process"
-                title="From flow to controlled ionization"
-                description="Four stages describe how treated water moves through the system."
-              />
-            </div>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <ProcessSteps steps={howItWorksSteps} />
-          </Reveal>
-        </div>
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="The process"
+            title="From flow to controlled ionization"
+            description="Installed after filtration and before the pool return line."
+          />
+        </Reveal>
         <Reveal delay={0.08}>
-          <figure className="mt-12 overflow-hidden rounded-[var(--radius)] border border-border bg-surface">
+          <figure className="mt-10 overflow-hidden rounded-[var(--radius)] border border-border bg-surface">
             <Image
               src={clientStills.howItWorks}
               alt="Five-stage Zinc'd treatment path: pool, pump, filter, ionization chamber, treated-water return."
@@ -198,7 +185,7 @@ export default function TechnologyPage() {
         </Reveal>
       </Section>
 
-      {/* Chemistry / chlorine honesty */}
+      {/* Chemistry + specs — residual chlorine is already stated in the hero */}
       <Section spacing="lg" background="default">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           <Reveal>
@@ -206,8 +193,8 @@ export default function TechnologyPage() {
               <SectionHeading
                 as="h2"
                 eyebrow="Responsible operation"
-                title="Why residual chlorine is still part of the program"
-                description="Ionization is designed to reduce chlorine dependency — not to remove it. Technical documentation recommends maintaining a residual of free chlorine so the water stays reliably sanitized."
+                title="Chemistry to hold"
+                description="The supplied testing kit covers copper, free chlorine and pH. Historical silver-ion work in spacecraft drinking water is shared scientific lineage — not an endorsement of Zinc'd."
               />
               <div className="mt-8 rounded-[var(--radius)] border border-border bg-surface-elevated p-7">
                 <TechnicalLabel>Recommended chemistry</TechnicalLabel>
@@ -228,63 +215,26 @@ export default function TechnologyPage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="lg:pt-16 space-y-6">
-              <StatusNote>
-                Zinc&apos;d is not a &ldquo;chemical-free&rdquo; system.{" "}
-                {chlorineResidualNote}
-              </StatusNote>
-              <div className="rounded-[var(--radius)] border border-border bg-surface p-7">
-                <TechnicalLabel>Historical note</TechnicalLabel>
-                <p className="text-body mt-3 text-muted-foreground">
-                  Silver-ion disinfection was used historically in spacecraft
-                  drinking-water systems; copper–silver ionization developed later.
-                  This is shared scientific lineage — not an endorsement of Zinc'd
-                  by any space agency.
-                </p>
+            <div className="lg:pt-16">
+              <SectionHeading
+                as="h2"
+                eyebrow="Specifications"
+                title="Core technical specifications"
+                description="From the Zinc'd technical documentation. Values are typical and subject to model."
+              />
+              <div className="mt-8">
+                <SpecTable rows={technicalSpecs.slice(0, 6)} />
               </div>
+              <p className="text-small mt-6 text-muted-foreground">
+                Looking for model-by-model details?{" "}
+                <Link href="/product" className="text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary">
+                  See the product range
+                </Link>
+                .
+              </p>
             </div>
           </Reveal>
         </div>
-      </Section>
-
-      {/* Value pillars */}
-      <Section spacing="lg" background="muted">
-        <Reveal>
-          <SectionHeading
-            as="h2"
-            eyebrow="What it delivers"
-            title="Engineered, monitored, built to last"
-          />
-        </Reveal>
-        <Reveal delay={0.05}>
-          <FeatureGrid features={valuePillars} className="mt-10" />
-        </Reveal>
-      </Section>
-
-      {/* Specs */}
-      <Section spacing="lg" background="default">
-        <Reveal>
-          <SectionHeading
-            as="h2"
-            eyebrow="Specifications"
-            title="Core technical specifications"
-            description="From the Zinc'd technical documentation. Values are typical and subject to model."
-            className="max-w-2xl"
-          />
-        </Reveal>
-        <Reveal delay={0.05}>
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            <SpecTable rows={technicalSpecs.slice(0, 4)} />
-            <SpecTable rows={technicalSpecs.slice(4)} />
-          </div>
-        </Reveal>
-        <p className="text-small mt-6 text-muted-foreground">
-          Looking for model-by-model details?{" "}
-          <Link href="/product" className="text-primary underline underline-offset-4 decoration-primary/40 hover:decoration-primary">
-            See the product range
-          </Link>
-          .
-        </p>
       </Section>
 
       <CtaBand

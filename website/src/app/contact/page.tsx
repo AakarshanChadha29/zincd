@@ -4,13 +4,10 @@ import Link from "next/link";
 import {
   ArrowRight,
   Building2,
-  Clock3,
   Handshake,
   Home,
   Mail,
-  MessageSquareText,
   Phone,
-  ShieldCheck,
 } from "lucide-react";
 
 import { Section } from "@/components/layout/section";
@@ -56,24 +53,6 @@ const paths = [
   },
 ];
 
-const nextSteps = [
-  {
-    icon: MessageSquareText,
-    title: "You tell us the intent",
-    body: "Assessment, specialist question, or partner interest — pick one so the right conversation starts.",
-  },
-  {
-    icon: Clock3,
-    title: "We review the details",
-    body: "Pool type, volume hints, and your note help us respond with something useful — not a generic brochure.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "We reply with clarity",
-    body: "Claims-safe guidance, series fit, or a partner follow-up. Prefer to skip the form? Email or call us directly.",
-  },
-];
-
 export default function ContactPage() {
   return (
     <>
@@ -105,7 +84,7 @@ export default function ContactPage() {
             as="h2"
             eyebrow="Choose your path"
             title="Three doors. The right next step."
-            description="Pick the conversation that matches why you're here — assessment and specialist questions use the form below; distributor applications have their own short form."
+            description="Assessment and specialist questions use the form below; distributor applications have their own short form."
           />
         </Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -147,8 +126,8 @@ export default function ContactPage() {
                 A short form. A real follow-up.
               </h2>
               <p className="text-body-large text-muted-foreground">
-                The form routes your enquiry to the right person. If you'd
-                rather reach us directly, both lines below are monitored.
+                The form routes your enquiry to the right person. Prefer email
+                or a call? Both lines below are monitored.
               </p>
               <div className="grid gap-3 sm:grid-cols-2">
                 <a
@@ -176,32 +155,6 @@ export default function ContactPage() {
                   </span>
                 </a>
               </div>
-              <ol className="space-y-4">
-                {nextSteps.map((step, i) => {
-                  const Icon = step.icon;
-                  return (
-                    <li
-                      key={step.title}
-                      className="flex gap-4 rounded-[var(--radius-panel)] border border-border bg-surface p-5"
-                    >
-                      <div className="flex size-10 shrink-0 items-center justify-center rounded-[var(--radius-control)] border border-border bg-surface-elevated text-accent-aquatic">
-                        <Icon className="size-4.5" strokeWidth={1.5} aria-hidden />
-                      </div>
-                      <div>
-                        <p className="text-technical text-accent-aquatic">
-                          {String(i + 1).padStart(2, "0")}
-                        </p>
-                        <p className="text-body mt-1 font-medium text-foreground">
-                          {step.title}
-                        </p>
-                        <p className="text-small mt-1 text-muted-foreground">
-                          {step.body}
-                        </p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ol>
               <div className="relative aspect-[16/10] overflow-hidden rounded-[var(--radius-panel)] border border-border">
                 <Image
                   src={lifestyleStills.commercialPool}

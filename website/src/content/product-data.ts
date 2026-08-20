@@ -166,6 +166,7 @@ export const productSeries = [
     chargeTime: "1.3 hr",
     customized: false,
     pipe: "Confirmed at assessment",
+    image: "/img/clean/chamber-zincd-cutout.png",
     body: "Rated for typical residential volumes around 50,000 L. Stainless chamber, battery-powered control, flow sensor, and LCD.",
     audience: "Estate owners · residential builders",
     decisionNote: "First match when estimated volume is at or below 50,000 L. Confirmed during assessment.",
@@ -182,6 +183,7 @@ export const productSeries = [
     chargeTime: "2.0 hr",
     customized: false,
     pipe: "Confirmed at assessment",
+    image: "/img/clean/system-zincd-cutout.png",
     body: "Rated for larger residential and club volumes around 150,000 L — same chamber family as Series-01, higher power and charge time.",
     audience: "Clubs · HOAs · large estates",
     decisionNote: "Specify when volume moves past Series-01. Confirmed against circulation during assessment.",
@@ -198,6 +200,7 @@ export const productSeries = [
     chargeTime: "2.15 hr",
     customized: true,
     pipe: "Confirmed at assessment",
+    image: "/img/clean/system-zincd.jpg",
     body: "Customized model with indicative specifications for hospitality and commercial basins around 300,000 L.",
     audience: "Boutique hotels · luxury estates · facility leads",
     decisionNote: "Indicative catalogue point — final specification is confirmed during assessment.",
@@ -214,6 +217,7 @@ export const productSeries = [
     chargeTime: "2.3 hr",
     customized: true,
     pipe: "Confirmed at assessment",
+    image: "/img/clean/system-installed.jpg",
     body: "Customized model with indicative specifications for large commercial volumes in the 400,000–500,000 L band.",
     audience: "Resort · municipal · campus operators",
     decisionNote: "Indicative catalogue point — volumes above this band are sized during assessment.",
@@ -459,86 +463,6 @@ export const partnerTypeLabels = [
 ] as const;
 
 /**
- * Distributor / partner value — B2B vocabulary allowed here.
- *
- * Written for a commercially experienced reader who may not know ionization.
- * Lead with the customer outcome, then one plain-language mechanism.
- * "chlorine dependency" never "chemical dependency" (C-005). Professional
- * management is a condition, not a benefit.
- */
-export const partnerValue = [
-  {
-    id: "chlorine",
-    label: "Water quality",
-    title: "Designed to reduce chlorine dependency",
-    body: "Mineral ionization is designed to lower day-to-day chlorine demand. Residual free chlorine remains part of responsible operation — this is a quieter water program, not a chemical-free one.",
-    icon: "droplets",
-  },
-  {
-    id: "managed",
-    label: "Operation",
-    title: "Built for professionally managed pools",
-    body: "Copper, free chlorine and pH are tested to stay in range with the kit that ships with every system. Professional operation is how the product is meant to be used — which is why the account stays with a specialist.",
-    icon: "flask",
-  },
-  {
-    id: "circulation",
-    label: "Installation",
-    title: "Fits the circulation system already in place",
-    body: "Zinc'd sits in the existing loop after the filter. Series-01 through Series-04 cover private pools through larger commercial and hospitality facilities, with larger models confirmed during assessment.",
-    icon: "waypoints",
-  },
-  {
-    id: "commercial",
-    label: "Control",
-    title: "The system meters itself",
-    body: "Electronic control releases minerals in a measured way, confirms that water is circulating before it runs, and signals when routine service is due. Stainless construction and published specifications give an engineering lead something they can check.",
-    icon: "cpu",
-  },
-] as const;
-
-/**
- * Customer benefits — why the end buyer wants Zinc'd.
- *
- * Written for the distributor to scan, then reuse. Every line traces to
- * already-published wording (valuePillars, applicationDetails, howItWorksSteps,
- * systemComponents). C-004/C-005 chemistry fences live INSIDE the items.
- */
-export const partnerCustomerPitch = [
-  {
-    id: "experience",
-    title: "Water many guests and owners prefer",
-    body: "Ionization is designed to reduce day-to-day chlorine dependency, for water many people find gentler to live with. Residual free chlorine stays in the program.",
-    saidTo: "Hotel GMs · estate owners · wellness operators",
-  },
-  {
-    id: "operations",
-    title: "More predictable day-to-day care",
-    body: "The system confirms water is circulating before it runs, and signals when routine service is due. Copper, free chlorine and pH are tested with the supplied kit — useful for teams who already manage the plant room.",
-    saidTo: "Facility managers · directors of engineering",
-  },
-  {
-    id: "capital",
-    title: "A documented equipment decision",
-    body: "Build, power, pressure and chemistry targets are published. That keeps the conversation in the equipment category, with numbers an engineering lead or owners' representative can review.",
-    saidTo: "Procurement · owners' reps · boards and HOAs",
-  },
-  {
-    id: "running-cost",
-    title: "A different shape of operating cost",
-    body: "A program designed to lower day-to-day chlorine demand can lower ongoing operating cost. How much depends on the site — discuss it against their invoices, never as a published figure.",
-    saidTo: "Operators comparing running cost",
-  },
-] as const;
-
-/**
- * Short chemistry fence under customer benefits. Residual chlorine must stay
- * visible on this page (C-005). Keep it factual, not coaching-in-public.
- */
-export const partnerPitchGuardrail =
-  "Zinc'd is designed to reduce chlorine dependency. Residual free chlorine remains required. It is not a chemical-free system.";
-
-/**
  * Market argument, qualitative only.
  *
  * No market size, growth rate, unit volume or share: nothing in the repo
@@ -548,28 +472,8 @@ export const partnerPitchGuardrail =
 export const partnerMarketDurability =
   "Hotels, clubs, fitness facilities and private pools cannot stop treating their water. Circulation, testing and water care are standing operating jobs. Zinc'd gives established pool businesses a differentiated system to add to relationships they already hold.";
 
-/**
- * Partner economics framing — commercial shape without publishing wholesale
- * rates, margins or discounts (C-020). Specific partner terms are shared in
- * conversation.
- */
-export const partnerEconomics = [
-  {
-    step: "01",
-    title: "Wholesale supply",
-    body: "Authorized partners purchase the complete Zinc'd system on a structured wholesale path. Rates depend on order profile and are confirmed during partnership review.",
-  },
-  {
-    step: "02",
-    title: "A clear retail position",
-    body: "A defined retail position for estate and commercial buyers, so your team can quote with confidence.",
-  },
-  {
-    step: "03",
-    title: "Product plus attach revenue",
-    body: "Product sales can combine with installation and ongoing service where you are set up to provide them. Commercial terms are discussed individually — they are not published here.",
-  },
-] as const;
+export const partnerMarketCloser =
+  "Wherever there is a pool, there is a market for Zinc'd.";
 
 /**
  * Distributor business opportunity — the commercial case for carrying the line.
@@ -598,44 +502,60 @@ export const partnerReasons = [
   },
 ] as const;
 
-/** Priority partner audiences — who the partner IS. */
-export const partnerAudiences = [
+export const partnerSupport = [
   {
-    title: "Pool service companies",
-    body: "You already know which customers struggle with chlorine load, algae and water clarity. Those are the conversations this system belongs in.",
+    title: "Technical training",
+    body: "Understand the system, its operation and its applications.",
   },
   {
-    title: "Builders & remodelers",
-    body: "Specify engineered mineral ionization into new builds and renovations. Published specs make it a clearer line on a proposal than another chemical program.",
+    title: "Installation guidance",
+    body: "Access documentation and support for integration and commissioning.",
   },
   {
-    title: "Dealers & wholesalers",
-    body: "Put Zinc'd on the shelf beside pumps, filters and heaters. Clear series sizing and a partner path built for repeat quotes.",
+    title: "Sales enablement",
+    body: "Use clear product information, presentations and customer-facing resources.",
   },
   {
-    title: "Hospitality suppliers",
-    body: "One relationship can open hotels, resorts, clubs and multi-property groups who prefer a repeatable specification.",
+    title: "Marketing support",
+    body: "Access approved imagery, brochures and digital content to promote Zinc'd.",
+  },
+  {
+    title: "Pre-sales assistance",
+    body: "Receive technical input when assessing potential projects and applications.",
+  },
+  {
+    title: "After-sales support",
+    body: "Get ongoing assistance with troubleshooting, product questions and customer needs.",
   },
 ] as const;
 
-export const partnerSupport = [
-  {
-    title: "Product training",
-    body: "We walk your team through series sizing, install basics, and how to describe residual chlorine accurately.",
-  },
-  {
-    title: "Technical documentation",
-    body: "Specifications, handbooks and chemistry charts ship with every system, so field and office teams are working from the same numbers.",
-  },
-  {
-    title: "Technical support",
-    body: "Qualified distributors receive technical backup on specification, installation and ongoing operation.",
-  },
-  {
-    title: "Territory discussions",
-    body: "Order profile, commercial terms and territory are discussed individually. Territory exclusivity may be available upon request, subject to availability, qualification and written agreement.",
-  },
-] as const;
+export const partnerSupportIntro =
+  "Zinc'd supports distributors in every step. From initial product training to ongoing technical assistance, Zinc'd gives distributors the knowledge, resources and support needed to develop opportunities confidently.";
+
+export const partnerSupportClose =
+  "Your market is waiting. Bring Zinc'd to it.";
+
+export const partnerProfessionals = {
+  title: "Designed for established pool professionals",
+  body: "Zinc'd works with distributors, builders, installers and service companies that understand their local pool market and value long-term customer relationships. Whether you serve residential properties, hospitality venues, wellness facilities or commercial operations, Zinc'd can add a differentiated ionization solution to your portfolio.",
+  pathTitle: "A clear path to partnership",
+  pathBody:
+    "We begin by understanding your market, customer base and commercial goals. Together, we assess where Zinc'd fits within your portfolio and identify the residential and commercial opportunities with the strongest potential.",
+  close:
+    "You bring the market knowledge. We provide the technology, training and support.",
+} as const;
+
+export const partnerChamberPitch = {
+  title: "Intelligent ionization, integrated into the pool system",
+  body: "Zinc'd combines a stainless-steel ionization chamber with precise electronic control, installed directly within the pool's circulation system. It operates automatically while water is flowing, delivering controlled mineral ionization as part of the pool's ongoing water-treatment process.",
+} as const;
+
+export const partnerPracticalOffer = {
+  title: "A practical system. A stronger offer.",
+  body: "Zinc'd brings differentiated ionization technology into the pool's existing treatment process without adding operational complexity. Offer customers a smarter approach to ongoing water treatment.",
+  close:
+    "Bring Zinc'd to the pools you serve and the markets you want to grow.",
+} as const;
 
 /**
  * End-market segments — who the partner SELLS TO.
@@ -725,13 +645,13 @@ export const partnerResidentialNote =
  * fourth bypass line for 4″/6″ inlets.
  */
 export const treatmentLoop = {
+  eyebrow: "Integrated into the plant room",
   intro:
-    "Zinc'd installs in the circulation line after the pool filter and before the treated-water return. No re-plumbing of the loop, no second system to explain.",
+    "Zinc'd is installed within the existing circulation line, after filtration and before treated water returns to the pool. Its straightforward integration adds ionization technology without introducing a separate treatment loop or unnecessary system complexity.",
   flowLabel: "Pool → Pump → Filter → Zinc'd → Return",
   /**
-   * Shaped for `ProcessSteps`. The `step` strings must stay identical to the
-   * indices drawn inside `TreatmentLoop` — that pairing is what lets a reader
-   * move between the diagram and the captions.
+   * Shaped for `ProcessSteps`. Stage titles match the labels drawn inside
+   * `TreatmentLoop` so a reader can move between the diagram and the captions.
    */
   steps: [
     { step: "01", title: "Pool", body: "Water enters the circulation system." },

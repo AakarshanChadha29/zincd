@@ -7,7 +7,7 @@ export const resourcesPage = {
   eyebrow: "Resources",
   title: "Technical documents, on request",
   description:
-    "Email us for the planning model, plumber handbook, or maintenance chart. The full user manual is not offered as a download until the remaining blanks (chlorine spec, warranty schedule, diagrams, contacts) are complete.",
+    "Request the hotel planning model, plumber handbook, or maintenance chart. The draft user manual is not distributed until it is finalized.",
 } as const;
 
 export const resources = [

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -21,6 +22,7 @@ export function CtaBand({
   secondary,
   note,
   highlightSecondary = false,
+  image,
 }: {
   eyebrow?: string;
   title: string;
@@ -34,10 +36,29 @@ export function CtaBand({
   note?: string;
   /** When true, secondary (typically Distributors) gets equal visual weight. */
   highlightSecondary?: boolean;
+  /** Optional pool-caustic still behind the teal scrim. */
+  image?: string;
 }) {
   return (
     <section className="band-deep relative overflow-hidden">
-      <div aria-hidden className="absolute inset-0 deep-aura" />
+      {image ? (
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes="100vw"
+          className="pointer-events-none object-cover"
+          aria-hidden
+        />
+      ) : null}
+      <div
+        aria-hidden
+        className={
+          image
+            ? "absolute inset-0 bg-[linear-gradient(105deg,rgb(10_61_66/0.82)_0%,rgb(10_61_66/0.55)_50%,rgb(10_61_66/0.72)_100%)]"
+            : "absolute inset-0 deep-aura"
+        }
+      />
       <div aria-hidden className="absolute inset-0 bg-grid-dark opacity-35" />
       <AmbientIons tone="ecological" density="sparse" className="opacity-70" />
       <IonMotif className="pointer-events-none absolute -right-10 top-1/2 hidden h-72 -translate-y-1/2 text-white/10 lg:block" />

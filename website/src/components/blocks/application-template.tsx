@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -9,9 +9,6 @@ import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessSteps } from "@/components/blocks/process-steps";
-import { CtaBand } from "@/components/blocks/cta-band";
-import { Button } from "@/components/ui/button";
-import { TechnicalLabel } from "@/components/ui/technical-label";
 import { siteConfig } from "@/content/site-config";
 import { applications, applicationDetails } from "@/content/product-data";
 import { applicationImages, applicationsHeroClip } from "@/content/media";
@@ -84,47 +81,6 @@ export function ApplicationTemplate({ slug }: { slug: string }) {
         </div>
       </Section>
 
-      <Section spacing="lg" background="muted" className="relative">
-        <AmbientIons tone="ecological" density="sparse" />
-        <Reveal>
-          <SectionHeading
-            as="h2"
-            eyebrow="For decision-makers"
-            title="How principals and operators evaluate the fit"
-            description="Language that lands with both seasoned ownership and the next generation taking operational responsibility."
-          />
-        </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {detail.operatorNotes.map((note, i) => (
-            <Reveal key={note.title} delay={i * 0.06}>
-              <div className="h-full border-l-2 border-accent-aquatic/40 pl-5">
-                <TechnicalLabel>{note.title}</TechnicalLabel>
-                <p className="text-body mt-3 text-muted-foreground">{note.body}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={0.1}>
-          {/* The label captions the list, so it sits outside the <ul>. As a
-              direct child it made a <div> a list item, which breaks the list
-              semantics screen readers rely on to announce item counts. */}
-          <div className="mt-12 rounded-[var(--radius)] border border-border bg-surface p-7 md:p-8">
-            <TechnicalLabel>Decision checkpoints</TechnicalLabel>
-            <ul className="mt-4 space-y-3">
-              {detail.decisionPoints.map((point) => (
-                <li key={point} className="text-small flex gap-3 text-foreground">
-                  <Check
-                    className="mt-0.5 size-4 shrink-0 text-accent-ecological"
-                    aria-hidden
-                  />
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
-      </Section>
-
       <Section spacing="lg" background="default">
         <Reveal>
           <SectionHeading as="h2" eyebrow="Other sectors" title="Explore more applications" />
@@ -147,34 +103,7 @@ export function ApplicationTemplate({ slug }: { slug: string }) {
             </Reveal>
           ))}
         </div>
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Button
-            size="lg"
-            className="rounded-[var(--radius-control)]"
-            render={<Link href={detail.cta.href} />}
-          >
-            {detail.cta.label}
-            <ArrowRight className="size-4" aria-hidden />
-          </Button>
-          <Button
-            size="lg"
-            variant="partner"
-            className="rounded-[var(--radius-control)]"
-            render={<Link href={siteConfig.ctas.distributor.href} />}
-          >
-            {siteConfig.ctas.distributor.label}
-          </Button>
-        </div>
       </Section>
-
-      <CtaBand
-        eyebrow="Next step"
-        title="Confirm the right system for your water"
-        body="A pool assessment matches circulation and volume to the correct Zinc'd series — whether you are specifying for an estate, a resort amenity, or a commercial basin."
-        primary={{ label: detail.cta.label, href: detail.cta.href }}
-        secondary={siteConfig.ctas.distributor}
-        highlightSecondary
-      />
     </>
   );
 }

@@ -426,6 +426,15 @@
     animation: flow-drift 3.2s linear infinite;
   }
 
+  .pool-wave {
+    animation: pool-wave 4.2s ease-in-out infinite;
+  }
+
+  .pool-caustics-motion {
+    animation: caustics-drift 14s linear infinite;
+    opacity: 0.42;
+  }
+
   .ion-pulse {
     animation: ion-pulse 3.4s var(--ease-out-premium) infinite;
   }
@@ -451,6 +460,22 @@
 @keyframes flow-drift {
   to {
     stroke-dashoffset: -32;
+  }
+}
+
+@keyframes pool-wave {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes caustics-drift {
+  to {
+    background-position: 72px 36px, -48px 28px;
   }
 }
 
@@ -528,7 +553,9 @@
   .ion-rise,
   .ion-drift-a,
   .ion-drift-b,
-  .eco-ripple-ring {
+  .eco-ripple-ring,
+  .pool-wave,
+  .pool-caustics-motion {
     animation: none;
   }
 }

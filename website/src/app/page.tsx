@@ -12,6 +12,7 @@ import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { HeroParallax } from "@/components/motion/hero-parallax";
 import { ScrollParallax } from "@/components/motion/scroll-parallax";
 import { CtaBand } from "@/components/blocks/cta-band";
+import { SeriesRange } from "@/components/blocks/series-range";
 import { ZincdLogo } from "@/components/brand/zincd-logo";
 import { HeroVideo } from "@/components/media/hero-video";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
@@ -27,7 +28,12 @@ import {
   productStills,
   clientStills,
 } from "@/content/media";
-import { heroContent, homepageHardwareCopy, homepageStoryPoints, productSeries, seriesRangeLabel } from "@/content/product-data";
+import {
+  heroContent,
+  homepageHardwareCopy,
+  homepageStoryPoints,
+  seriesRangeLabel,
+} from "@/content/product-data";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -209,7 +215,7 @@ export default function HomePage() {
         poster={motionGraphics.ionsWater.poster}
         eyebrow="Mineral field"
         title="Clear water. Mineral intelligence."
-        body="Abstract motion of ions in water — a lighter chemistry story for estates and hospitality pools, with residual chlorine still in the plan."
+        body="Abstract motion of ions in water — a lighter chemistry story for estates and hospitality pools."
       />
 
       {/* ============================ INSTALL ============================ */}
@@ -290,29 +296,7 @@ export default function HomePage() {
             description="Volumes from the current product manual. Assessment confirms fit to your circulation — private estate or commercial basin. Typical values, subject to model."
           />
         </Reveal>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {productSeries.map((series, i) => (
-            <Reveal key={series.name} delay={i * 0.05}>
-              <Link
-                href="/product#series"
-                className="group block h-full border-t-2 border-accent-aquatic/50 pt-5 transition-colors hover:border-accent-aquatic"
-              >
-                <div className="text-technical text-accent-aquatic">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <h3 className="text-h3 mt-2 text-foreground group-hover:text-primary">
-                  {series.name}
-                </h3>
-                <p className="text-technical mt-3 normal-case tracking-normal text-accent-aquatic">
-                  {series.volume}
-                </p>
-                <p className="text-small mt-1 text-muted-foreground">
-                  {series.scope}
-                </p>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+        <SeriesRange href="/product#series" />
       </Section>
 
       {/* ============================ PATHS ============================ */}

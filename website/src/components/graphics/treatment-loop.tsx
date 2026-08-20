@@ -72,20 +72,29 @@ export function TreatmentLoop({ className }: { className?: string }) {
         strokeWidth="2"
       />
       <rect x="38" y="38" width="364" height="92" rx="6" fill="var(--accent)" />
-      {[
-        "M214 62 C 262 54, 330 74, 388 62",
-        "M196 88 C 254 80, 324 100, 388 86",
-        "M214 114 C 268 106, 330 124, 388 112",
-      ].map((d) => (
-        <path
-          key={d}
-          d={d}
-          stroke="var(--aqua-400)"
-          strokeOpacity="0.5"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-      ))}
+      <clipPath id="pool-basin-clip">
+        <rect x="38" y="38" width="364" height="92" rx="6" />
+      </clipPath>
+      <g clipPath="url(#pool-basin-clip)">
+        {[
+          { d: "M214 62 C 262 54, 330 74, 388 62", delay: "0s" },
+          { d: "M196 88 C 254 80, 324 100, 388 86", delay: "0.6s" },
+          { d: "M214 114 C 268 106, 330 124, 388 112", delay: "1.2s" },
+          { d: "M52 78 C 110 70, 168 92, 214 80", delay: "0.3s" },
+          { d: "M52 104 C 118 96, 176 118, 220 106", delay: "0.9s" },
+        ].map((wave) => (
+          <path
+            key={wave.d}
+            d={wave.d}
+            stroke="var(--aqua-400)"
+            strokeOpacity="0.55"
+            strokeWidth="2"
+            strokeLinecap="round"
+            className="pool-wave"
+            style={{ animationDelay: wave.delay }}
+          />
+        ))}
+      </g>
 
       {/* Suction and return ports through the basin wall */}
       <rect x="78" y="132" width="20" height="12" rx="2" fill="var(--accent-steel)" />
@@ -279,55 +288,32 @@ export function TreatmentLoop({ className }: { className?: string }) {
         />
       ))}
 
-      {/* Stage labels. Mono + uppercase tracking to match .text-technical. */}
+      {/* Stage labels. Names only — numbered indices fought the diagram. */}
       {[
-        { n: "01", name: "POOL", x: 60, ny: 74, ly: 100, anchor: "start" as const },
-        { n: "02", name: "PUMP", x: 124, ny: 224, ly: 246, anchor: "start" as const },
-        { n: "03", name: "FILTER", x: 124, ny: 348, ly: 370, anchor: "start" as const },
-        { n: "05", name: "RETURN", x: 316, ny: 294, ly: 316, anchor: "end" as const },
+        { name: "POOL", x: 60, y: 92, anchor: "start" as const },
+        { name: "PUMP", x: 124, y: 236, anchor: "start" as const },
+        { name: "FILTER", x: 124, y: 362, anchor: "start" as const },
+        { name: "RETURN", x: 316, y: 308, anchor: "end" as const },
       ].map((label) => (
-        <g key={label.n}>
-          <text
-            x={label.x}
-            y={label.ny}
-            textAnchor={label.anchor}
-            fontSize="14"
-            fontFamily="var(--font-plex-mono), ui-monospace, monospace"
-            letterSpacing="0.08em"
-            fill="var(--accent-aquatic)"
-          >
-            {label.n}
-          </text>
-          <text
-            x={label.x}
-            y={label.ly}
-            textAnchor={label.anchor}
-            fontSize="17"
-            fontFamily="var(--font-plex-mono), ui-monospace, monospace"
-            letterSpacing="0.08em"
-            fontWeight="600"
-            fill="var(--foreground)"
-          >
-            {label.name}
-          </text>
-        </g>
+        <text
+          key={label.name}
+          x={label.x}
+          y={label.y}
+          textAnchor={label.anchor}
+          fontSize="17"
+          fontFamily="var(--font-plex-mono), ui-monospace, monospace"
+          letterSpacing="0.08em"
+          fontWeight="600"
+          fill="var(--foreground)"
+        >
+          {label.name}
+        </text>
       ))}
 
       {/* The stage the partner sells — largest label in the drawing. */}
       <text
         x="220"
-        y="530"
-        textAnchor="middle"
-        fontSize="14"
-        fontFamily="var(--font-plex-mono), ui-monospace, monospace"
-        letterSpacing="0.08em"
-        fill="var(--accent-aquatic)"
-      >
-        04
-      </text>
-      <text
-        x="220"
-        y="556"
+        y="548"
         textAnchor="middle"
         fontSize="22"
         fontFamily="var(--font-plex-mono), ui-monospace, monospace"
