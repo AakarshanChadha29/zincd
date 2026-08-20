@@ -18,7 +18,6 @@ import { HeroVideo } from "@/components/media/hero-video";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { ProductFloat } from "@/components/media/product-float";
 import { PoolStoryPan } from "@/components/motion/pool-story-pan";
-import { TreatmentLoop } from "@/components/graphics/treatment-loop";
 import { siteConfig } from "@/content/site-config";
 import {
   homepageHeroClips,
@@ -65,6 +64,37 @@ const hardwareBeats = homepageHardwareCopy.map((beat) => ({
   ...beat,
   image: productPhotos[beat.imageKey],
 }));
+
+function ProductCaptionPanel({
+  src,
+  alt,
+  caption,
+  contain = false,
+}: {
+  src: string;
+  alt: string;
+  caption: string;
+  contain?: boolean;
+}) {
+  return (
+    <figure className="relative aspect-[16/10] overflow-hidden rounded-[var(--radius-panel)] bg-[color:var(--teal-900)]">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        className={contain ? "object-contain p-6 md:p-8" : "object-cover"}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[linear-gradient(to_top,rgb(10_61_66/0.9)_0%,rgb(10_61_66/0.2)_45%,transparent_72%)]"
+      />
+      <figcaption className="absolute inset-x-0 bottom-0 p-5 text-small text-white md:px-6 md:pb-6">
+        {caption}
+      </figcaption>
+    </figure>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -209,15 +239,6 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ============================ PROCESS FILM ============================ */}
-      <MotionGraphicBand
-        src={motionGraphics.ionsWater.src}
-        poster={motionGraphics.ionsWater.poster}
-        eyebrow="Mineral field"
-        title="Clear water. Mineral intelligence."
-        body="Abstract motion of ions in water — a lighter chemistry story for estates and hospitality pools."
-      />
-
       {/* ============================ INSTALL ============================ */}
       <section className="relative overflow-hidden border-y border-border bg-[color:var(--pearl)]">
         <Container className="py-16 md:py-20">
@@ -253,45 +274,49 @@ export default function HomePage() {
           </div>
           <Reveal delay={0.1}>
             <div className="mt-10 grid gap-6 lg:grid-cols-2">
-              <figure className="relative overflow-hidden rounded-[var(--radius)] border border-border bg-white">
-                <div className="flex justify-center px-4 py-6 md:px-8">
-                  <TreatmentLoop />
-                </div>
-                <figcaption className="text-small border-t border-border px-5 py-3 text-muted-foreground">
-                  Single-unit install — chamber inline on the filter return.
-                </figcaption>
-              </figure>
-              <figure className="relative overflow-hidden rounded-[var(--radius)] border border-border bg-white">
-                <div className="relative aspect-[16/10]">
-                  <Image
-                    src={productStills.manifold}
-                    alt="Manifold layout showing multiple Zinc'd chambers in parallel with a bypass."
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="object-contain p-4"
-                  />
-                </div>
-                <figcaption className="text-small border-t border-border px-5 py-3 text-muted-foreground">
-                  Multi-unit manifold with bypass — commercial volumes.
-                </figcaption>
-              </figure>
+              <ProductCaptionPanel
+                src={productPhotos.system}
+                alt="Zinc'd stainless chamber and wall control — the single-unit assembly"
+                caption="Single-unit install — chamber inline on the filter return."
+                contain
+              />
+              <ProductCaptionPanel
+                src={productStills.manifold}
+                alt="Manifold with three Zinc'd chambers in parallel and a bypass for service"
+                caption="Multi-unit manifold with bypass — commercial volumes."
+                contain
+              />
             </div>
           </Reveal>
         </Container>
       </section>
 
       {/* ============================ SERIES ============================ */}
-      <Section id="series" spacing="lg" background="muted">
+      <MotionGraphicBand
+        id="series"
+        src={motionGraphics.ionsWater.src}
+        poster={motionGraphics.ionsWater.poster}
+        className="border-t-0"
+      >
         <Reveal>
-          <SectionHeading
-            as="h2"
-            eyebrow="US sizing guide"
-            title={`${seriesRangeLabel}`}
-            description="Volumes from the current product manual. Assessment confirms fit to your circulation — private estate or commercial basin. Typical values, subject to model."
-          />
+          <TechnicalLabel className="text-[color:var(--aqua-400)]">
+            US sizing guide
+          </TechnicalLabel>
+          <h2 className="text-h1 mt-4 text-white">{seriesRangeLabel}</h2>
+          <p className="text-h3 mt-4 max-w-2xl font-medium text-white">
+            Clear water. Mineral intelligence.
+          </p>
+          <p className="text-body-large mt-3 max-w-2xl text-white/75">
+            Volumes from the current product manual. Assessment confirms fit to
+            your circulation — private estate or commercial basin. Typical
+            values, subject to model.
+          </p>
         </Reveal>
-        <SeriesRange href="/product#series" />
-      </Section>
+        <SeriesRange
+          href="/product#series"
+          className="[&_article]:shadow-[var(--shadow-2)]"
+        />
+      </MotionGraphicBand>
 
       {/* ============================ PATHS ============================ */}
       <Section spacing="lg" background="default">
