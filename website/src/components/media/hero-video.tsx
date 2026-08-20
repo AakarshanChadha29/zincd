@@ -16,6 +16,7 @@ export type HeroVideoClip = {
 type HeroVideoProps = {
   clips: HeroVideoClip[];
   className?: string;
+  mediaPosition?: string;
   /** Seconds each clip stays visible before swap (multi-clip only). */
   intervalSec?: number;
   /** Slow caustic overlay so still water still reads as moving. */
@@ -46,6 +47,7 @@ function armAutoplay(el: HTMLVideoElement) {
 export function HeroVideo({
   clips,
   className,
+  mediaPosition = "center",
   intervalSec = 8,
   waterMotion = false,
 }: HeroVideoProps) {
@@ -157,6 +159,7 @@ export function HeroVideo({
         priority
         sizes="100vw"
         className="pointer-events-none object-cover"
+        style={{ objectPosition: mediaPosition }}
       />
       {!stillOnly && clip.src ? (
         <video
@@ -166,6 +169,7 @@ export function HeroVideo({
             "pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
             isPlaying ? "opacity-100" : "opacity-0"
           )}
+          style={{ objectPosition: mediaPosition }}
           src={clip.src}
           poster={clip.poster}
           muted

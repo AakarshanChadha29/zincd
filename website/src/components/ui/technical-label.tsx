@@ -16,7 +16,7 @@ export function TechnicalLabel({
   return (
     <div
       className={cn(
-        "text-technical text-accent-aquatic inline-flex items-center gap-2.5",
+        "text-accent-aquatic inline-flex items-center gap-2.5",
         className
       )}
     >
@@ -26,7 +26,7 @@ export function TechnicalLabel({
           className="h-px w-6 shrink-0 bg-current"
         />
       ) : null}
-      <span>{children}</span>
+      <span className="text-technical">{children}</span>
     </div>
   );
 }

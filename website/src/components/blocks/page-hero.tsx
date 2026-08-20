@@ -30,6 +30,7 @@ export function PageHero({
   aside,
   video,
   waterMotion = false,
+  mediaPosition,
 }: {
   eyebrow: string;
   title: ReactNode;
@@ -38,6 +39,7 @@ export function PageHero({
   aside?: ReactNode;
   video?: HeroVideoClip | HeroVideoClip[];
   waterMotion?: boolean;
+  mediaPosition?: string;
 }) {
   const clips = video ? (Array.isArray(video) ? video : [video]) : null;
   const cinematic = Boolean(clips?.length);
@@ -56,7 +58,11 @@ export function PageHero({
     >
       {cinematic && clips ? (
         <>
-          <HeroVideo clips={clips} waterMotion={waterMotion} />
+          <HeroVideo
+            clips={clips}
+            waterMotion={waterMotion}
+            mediaPosition={mediaPosition}
+          />
           <div aria-hidden className="absolute inset-0 hero-scrim" />
           <div
             aria-hidden
@@ -147,18 +153,16 @@ export function PageHero({
                   {eyebrow}
                 </TechnicalLabel>
                 <h1
-                  className={cn(
-                    "text-display",
+                  className={`text-display ${
                     cinematic ? "text-white" : "text-foreground"
-                  )}
+                  }`}
                 >
                   {title}
                 </h1>
                 <p
-                  className={cn(
-                    "text-body-large max-w-2xl",
+                  className={`text-body-large max-w-2xl ${
                     cinematic ? "text-white/80" : "text-muted-foreground"
-                  )}
+                  }`}
                 >
                   {description}
                 </p>

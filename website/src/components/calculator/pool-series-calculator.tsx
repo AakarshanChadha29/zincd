@@ -312,19 +312,17 @@ export function PoolSeriesCalculator({
           Zinc&apos;d pool sizing calculator
         </TechnicalLabel>
         <h1
-          className={cn(
-            "text-display relative mt-4",
+          className={`text-display relative mt-4 ${
             deep ? "text-white" : "text-foreground"
-          )}
+          }`}
         >
-          What size pool ionizer{" "}
-          <span className="text-gradient-aqua">do I need?</span>
+          What size pool ionizer
+          <span className="block">do I need?</span>
         </h1>
         <p
-          className={cn(
-            "text-body-large relative mt-5 max-w-2xl",
+          className={`text-body-large relative mt-5 max-w-2xl ${
             deep ? "text-white/80" : "text-muted-foreground"
-          )}
+          }`}
         >
           Enter your pool&apos;s measurements to estimate its capacity in US
           gallons, then see which Zinc&apos;d series matches — Series 1 through
@@ -620,10 +618,6 @@ export function PoolSeriesCalculator({
                       >
                         {seriesPublicLabel(tier.series)}
                       </b>
-                      {/* One line per tier. The pipe size drops away on the
-                          narrowest screens rather than wrapping or squeezing
-                          the volume range into an ellipsis — the range is the
-                          number people are matching against. */}
                       <span
                         className={cn(
                           "text-small flex-1 whitespace-nowrap text-right tabular-nums",
@@ -631,9 +625,6 @@ export function PoolSeriesCalculator({
                         )}
                       >
                         {tier.gallons}
-                      </span>
-                      <span className="text-small hidden w-16 shrink-0 whitespace-nowrap text-right text-white/40 sm:inline">
-                        {tier.pipe}
                       </span>
                     </li>
                   );

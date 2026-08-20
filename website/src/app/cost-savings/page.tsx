@@ -8,7 +8,7 @@ import { TechnicalLabel } from "@/components/ui/technical-label";
 import { Reveal } from "@/components/motion/reveal";
 import { RoiCalculator } from "@/components/roi-calculator/roi-calculator";
 import { siteConfig } from "@/content/site-config";
-import { clientStills } from "@/content/media";
+import { applicationHeroes } from "@/content/media";
 import {
   roiAssumptions,
   roiChecklist,
@@ -31,8 +31,8 @@ export default function CostSavingsPage() {
         eyebrow={roiPage.eyebrow}
         title={
           <>
-            {roiPage.titleLead}{" "}
-            <span className="text-gradient-aqua">{roiPage.titleAccent}</span>
+            {roiPage.titleLead}
+            <span className="block">{roiPage.titleAccent}</span>
           </>
         }
         description={roiPage.description}
@@ -44,22 +44,40 @@ export default function CostSavingsPage() {
             variant: "outline",
           },
         ]}
-        video={{ poster: clientStills.commercialPool }}
+        video={applicationHeroes["hotels-resorts"]}
+        mediaPosition="center"
       />
 
-      <Section id="model" spacing="lg" background="default">
+      <Section
+        id="model"
+        spacing="lg"
+        background="deep"
+        className="relative overflow-hidden"
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 pool-caustics pool-caustics-motion mix-blend-screen opacity-25"
+        />
+        <div aria-hidden className="absolute inset-0 hero-aura opacity-40" />
         <Reveal>
-          <SectionHeading
-            as="h2"
-            eyebrow="Interactive model"
-            title="Replace the example. Then read the modeled result."
-            description="Defaults match the hotel planning-model document's expected case ($1,500 all-in contract including $350 of chemistry). They are starting values, not Zinc'd savings."
-          />
+          <div className="relative max-w-3xl">
+            <TechnicalLabel className="text-[color:var(--aqua-400)]">
+              Interactive model
+            </TechnicalLabel>
+            <h2 className="text-h1 mt-4 text-white">
+              Replace the example. Then read the modeled result.
+            </h2>
+            <p className="text-body-large mt-4 max-w-2xl text-white/70">
+              Defaults match the hotel planning-model document&apos;s expected
+              case ($1,500 all-in contract including $350 of chemistry). They
+              are starting values, not Zinc&apos;d savings.
+            </p>
+          </div>
         </Reveal>
-        <div className="mt-10">
+        <div className="relative mt-12 rounded-[var(--radius)] border border-white/20 bg-[color:var(--pearl)] p-6 shadow-[var(--shadow-2)] md:p-10">
           <RoiCalculator />
         </div>
-        <StatusNote className="mt-8 max-w-3xl">
+        <StatusNote className="relative mt-8 max-w-3xl border-white/20 bg-white/10 text-white/75">
           Owner proposition in the source model: bring routine testing in-house
           with trained staff and a written operating guide; retain periodic
           specialist oversight; renegotiate the pool-company contract to remove

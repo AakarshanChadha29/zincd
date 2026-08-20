@@ -5,10 +5,8 @@ import { Reveal } from "@/components/motion/reveal";
 import { AmbientIons } from "@/components/motion/ambient-ions";
 import { CtaBand } from "@/components/blocks/cta-band";
 import { SeriesRange } from "@/components/blocks/series-range";
-import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import { PoolSeriesCalculator } from "@/components/calculator/pool-series-calculator";
 import { siteConfig } from "@/content/site-config";
-import { motionGraphics } from "@/content/media";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -44,14 +42,38 @@ export default function CalculatorPage() {
         </Container>
       </section>
 
-      <MotionGraphicBand
-        src={motionGraphics.waterStory.src}
-        poster={motionGraphics.waterStory.poster}
-        eyebrow="How sizing works"
-        title="Volume and pipe size decide the series"
-        body="Two numbers drive the match: how much water your pool holds, and the size of your circulation line. The bands below come straight from the installer handbook — we confirm both against your equipment pad before anything ships."
-        tone="soft"
-      />
+      <Section spacing="lg" background="default">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+          <SectionHeading
+            as="h2"
+            eyebrow="How sizing works"
+            title="Two numbers decide the series."
+            description="The calculator estimates volume. Final selection also checks the circulation line before anything ships."
+          />
+          <div className="grid gap-10 border-t border-border-strong pt-8 sm:grid-cols-2">
+            <div>
+              <p className="font-heading text-[clamp(3rem,6vw,5rem)] font-semibold leading-none text-[color:var(--teal-700)]">
+                01
+              </p>
+              <h3 className="text-h2 mt-5">Pool volume</h3>
+              <p className="text-body-large mt-3 text-muted-foreground">
+                Length, width and average depth produce the capacity used for
+                the initial match.
+              </p>
+            </div>
+            <div>
+              <p className="font-heading text-[clamp(3rem,6vw,5rem)] font-semibold leading-none text-[color:var(--teal-700)]">
+                02
+              </p>
+              <h3 className="text-h2 mt-5">Circulation line</h3>
+              <p className="text-body-large mt-3 text-muted-foreground">
+                Pipe size and operating flow confirm that the selected chamber
+                belongs in the loop.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
 
       <Section spacing="lg" background="muted">
         <SectionHeading

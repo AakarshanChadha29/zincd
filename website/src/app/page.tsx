@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { TechnicalLabel } from "@/components/ui/technical-label";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 import { ScrollParallax } from "@/components/motion/scroll-parallax";
 import { CtaBand } from "@/components/blocks/cta-band";
@@ -189,8 +190,8 @@ export default function HomePage() {
               <ScrollParallax offset={36}>
                 <figure className="relative aspect-[16/10] overflow-hidden rounded-[var(--radius-panel)]">
                   <Image
-                    src={productPhotos.install}
-                    alt="Zinc'd chamber installed inline on the filter return, with the control mounted above"
+                    src={productPhotos.controlAngled}
+                    alt="Zinc'd control and chamber installed beside an indoor spa pool"
                     fill
                     sizes="(min-width: 1024px) 45vw, 100vw"
                     className="object-cover"
@@ -200,7 +201,21 @@ export default function HomePage() {
             </Reveal>
           </div>
           <Reveal delay={0.1}>
-            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="mt-10 flex items-start gap-5 border-y border-[color:var(--teal-700)]/15 py-6">
+              <span
+                aria-hidden
+                className="mt-2 h-px w-10 shrink-0 bg-[color:var(--teal-700)]"
+              />
+              <p className="text-body-large max-w-3xl text-foreground">
+                The installation scales without changing the logic: one chamber
+                for a private return line, or parallel chambers for higher-flow
+                commercial water. In both cases, the control stays accessible
+                and the bypass keeps service practical.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.14}>
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
               <ProductCaptionPanel
                 src={productPhotos.install}
                 alt="Zinc'd chamber plumbed into a designed equipment gallery"
@@ -217,7 +232,15 @@ export default function HomePage() {
       </section>
 
       <Section spacing="lg" background="default">
-        <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="Choose your route"
+            title="One system. Two ways to begin."
+            description="Pool owners and operators start with the water and circulation details. Trade partners start with the market, customers, and installation capability they already serve."
+          />
+        </Reveal>
+        <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
           <Reveal variant="left">
             <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[var(--radius)] p-8 md:min-h-[22rem] md:p-10">
               <Image

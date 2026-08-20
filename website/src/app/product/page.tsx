@@ -19,6 +19,7 @@ import { ProductJsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/content/site-config";
 import { productHeroClip, productPhotos, motionGraphics } from "@/content/media";
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
+import { ProductGallery } from "@/components/media/product-gallery";
 import {
   chemistryTargets,
   seriesRangeLabel,
@@ -45,18 +46,22 @@ const productGallery = [
   {
     src: productPhotos.install,
     alt: "Zinc'd chamber plumbed into a designed equipment gallery",
+    label: "Complete plant-room installation",
   },
   {
     src: productPhotos.controlAngled,
     alt: "Zinc'd control and chamber beside an indoor spa pool",
+    label: "Control and chamber",
   },
   {
     src: productPhotos.commercial,
     alt: "Parallel Zinc'd chambers in a sunlit resort mechanical gallery",
+    label: "Commercial configuration",
   },
   {
-    src: productPhotos.family,
-    alt: "Zinc'd ionization system and catalytic conditioner on stone beside a pool",
+    src: productPhotos.waterHero,
+    alt: "Zinc'd stainless chamber beside moving pool water",
+    label: "The chamber by the water it treats",
   },
 ] as const;
 
@@ -68,8 +73,8 @@ export default function ProductPage() {
         eyebrow="Product"
         title={
           <>
-            The Zinc&apos;d{" "}
-            <span className="text-gradient-aqua">ionization system</span>
+            The Zinc&apos;d
+            <span className="block">ionization system</span>
           </>
         }
         description="A complete, engineered system for US pools: a stainless copper–silver–zinc water chamber, battery-powered PWM control with LCD, water-flow sensor and AC/DC switch, and a water-testing kit — sized Series 1 through Series 4. Series 3 and Series 4 are customized, indicative models."
@@ -78,35 +83,36 @@ export default function ProductPage() {
           { label: siteConfig.ctas.calculator.shortLabel, href: siteConfig.ctas.calculator.href, variant: "outline" },
         ]}
         video={productHeroClip}
-        waterMotion
+        mediaPosition="68% center"
       />
 
-      <section className="relative overflow-hidden">
+      <section className="relative min-h-[38rem] overflow-hidden bg-[color:var(--teal-900)]">
         <Image
-          src={productPhotos.install}
+          src="/img/product/manifold-zincd-transparent.png"
           alt=""
           fill
           sizes="100vw"
           aria-hidden
-          className="object-cover"
+          className="object-contain object-[78%_center] opacity-70 max-lg:scale-125 max-lg:object-center"
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-r from-[color:var(--teal-900)]/92 via-[color:var(--teal-900)]/72 to-[color:var(--teal-900)]/28"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_78%_50%,transparent_0%,rgb(4_32_38/0.42)_35%,rgb(4_32_38/0.98)_78%)]"
         />
-        <Container className="relative py-20 md:py-28">
+        <div aria-hidden className="absolute inset-0 bg-grid opacity-20" />
+        <Container className="relative flex min-h-[38rem] items-center py-20 md:py-28">
           <Reveal>
-            <div className="max-w-2xl">
+            <div className="max-w-xl">
               <TechnicalLabel className="text-[color:var(--aqua-400)]">
-                Built for the loop
+                Assembly architecture
               </TechnicalLabel>
               <h2 className="text-h1 mt-5 text-white">
-                Engineered to sit in the plant room, not on a shelf
+                One controlled loop. Built to scale.
               </h2>
               <p className="text-body-large mt-5 text-white/85">
-                A stainless chamber rated to 30&nbsp;psi, 24&nbsp;V DC
-                battery operation, and series-specific chamber dimensions —
-                specified to run alongside the filtration you already have.
+                The system sits after filtration and before the return. Larger
+                commercial configurations can run chambers in parallel while
+                preserving the same controlled flow path.
               </p>
               <p className="text-small mt-6 text-white/60">
                 Ionization is designed to reduce chlorine dependency. A
@@ -164,32 +170,18 @@ export default function ProductPage() {
         </StatusNote>
       </Section>
 
-      <Section spacing="lg" background="muted" container={false}>
-        <Container>
-          <Reveal>
-            <SectionHeading
-              as="h2"
-              eyebrow="In place"
-              title="The system, where it lives"
-              description="Plant room, spa gallery, and the water it treats — the same hardware that ships."
-            />
-          </Reveal>
-        </Container>
-        <div className="mt-12 grid gap-3 md:grid-cols-2">
-          {productGallery.map((shot, i) => (
-            <Reveal key={shot.src} delay={i * 0.04}>
-              <figure className="relative aspect-[16/10] overflow-hidden md:aspect-[16/11]">
-                <Image
-                  src={shot.src}
-                  alt={shot.alt}
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+      <Section spacing="lg" background="muted">
+        <Reveal>
+          <SectionHeading
+            as="h2"
+            eyebrow="In place"
+            title="One gallery. Four real contexts."
+            description="Move through the installed system, its control, and commercial configurations without turning the page into a wall of images."
+          />
+        </Reveal>
+        <Reveal delay={0.06}>
+          <ProductGallery images={productGallery} />
+        </Reveal>
       </Section>
 
       <MotionGraphicBand

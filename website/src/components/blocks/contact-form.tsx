@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2 } from "lucide-react";
 
@@ -52,7 +52,6 @@ export function ContactForm() {
   const {
     register,
     handleSubmit,
-    control,
     setValue,
     setError,
     formState: { errors, isSubmitting },
@@ -65,9 +64,9 @@ export function ContactForm() {
     },
   });
 
-  // `useWatch` rather than `watch()` — the latter returns a fresh function on
-  // every render, which React Compiler cannot memoize safely.
-  const selectedIntent = useWatch({ control, name: "intent" });
+  useEffect(() => {
+    setValue("intent", defaultIntent);
+  }, [defaultIntent, setValue]);
 
   const onSubmit = async (values: FormValues) => {
     setOutcome(null);
@@ -158,30 +157,9 @@ export function ContactForm() {
       className="relative rounded-[var(--radius)] bg-surface p-6 md:p-7"
       noValidate
     >
-      {/* Intent selector */}
-      <fieldset>
-        <legend className="text-technical text-accent-aquatic">I&apos;m here to…</legend>
-        <div className="mt-3 grid gap-2 sm:grid-cols-3">
-          {leadIntents.map((intent) => (
-            <button
-              key={intent.value}
-              type="button"
-              onClick={() => setValue("intent", intent.value)}
-              aria-pressed={selectedIntent === intent.value}
-              className={cn(
-                "rounded-[var(--radius-control)] border px-3 py-3 text-small font-medium transition-colors",
-                selectedIntent === intent.value
-                  ? "border-primary bg-[color:var(--accent)] text-foreground shadow-[var(--shadow-1)]"
-                  : "border-border bg-muted/30 text-muted-foreground hover:border-border-strong hover:bg-surface"
-              )}
-            >
-              {intent.label}
-            </button>
-          ))}
-        </div>
-      </fieldset>
+      <input type="hidden" {...register("intent")} />
 
-      <div className="mt-6 grid gap-5">
+      <div className="grid gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="Name" error={errors.name?.message} htmlFor="name">
             <input

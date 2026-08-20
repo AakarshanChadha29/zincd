@@ -66,7 +66,7 @@ export const homepageHeroClips: { poster: string; src?: string }[] = [
 ];
 
 export const productHeroClip = {
-  poster: "/img/campaign/series-2.jpg",
+  poster: "/img/campaign/install.jpg",
 };
 export const distributorsHeroClip = heroVideos.estate;
 /** Applications index — estate dusk still, distinct from the home water film. */
@@ -75,7 +75,10 @@ export const applicationsHeroClip = {
   src: "/video/app-residential.mp4",
 };
 export const aboutHeroClip = heroVideos.bali;
-export const technologyHeroClip = chamberCutawayFilm;
+export const technologyHeroClip = {
+  poster: "/video/mg-chamber-orbit.jpg",
+  src: "/video/mg-chamber-orbit.mp4",
+};
 export const faqHeroClip = heroVideos.swimmer;
 export const contactHeroClip = heroVideos.estate;
 
@@ -166,8 +169,10 @@ export const productPhotos = {
 /** Catalytic Super Softener — one distinct scene per slot. */
 export const softenerPhotos = {
   install: "/img/campaign/softener.jpg",
-  family: "/img/campaign/family.jpg",
-  closeup: "/img/campaign/softener-close.jpg",
+  hero: "/img/campaign/softener-hero.png",
+  detail: "/img/campaign/softener-detail.png",
+  loop: "/img/campaign/softener-loop.png",
+  macro: "/img/campaign/softener-macro.png",
 } as const;
 
 /** Homepage story panorama — one continuous frame panned across three points. */

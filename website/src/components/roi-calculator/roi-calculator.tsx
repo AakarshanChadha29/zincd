@@ -61,11 +61,13 @@ function Stat({
   hint?: string;
 }) {
   return (
-    <div className="rounded-[var(--radius-panel)] border border-border bg-surface p-5">
-      <TechnicalLabel className="text-accent-aquatic">{label}</TechnicalLabel>
-      <p className="text-h2 mt-2 text-foreground">{value}</p>
+    <div className="border-b border-white/15 py-5 first:pt-0 last:border-0 last:pb-0">
+      <TechnicalLabel className="text-[color:var(--aqua-400)]">
+        {label}
+      </TechnicalLabel>
+      <p className="text-h2 mt-2 text-white">{value}</p>
       {hint ? (
-        <p className="text-small mt-2 text-accent-steel">{hint}</p>
+        <p className="text-small mt-2 text-white/60">{hint}</p>
       ) : null}
     </div>
   );
@@ -222,12 +224,15 @@ export function RoiCalculator() {
         </Button>
       </div>
 
-      <div className="space-y-4 lg:sticky lg:top-28">
-        <StatusNote tone="warning">
+      <div className="space-y-6 rounded-[var(--radius)] bg-[linear-gradient(150deg,var(--teal-900)_0%,var(--teal-800)_58%,var(--teal-700)_100%)] p-6 text-white shadow-[var(--shadow-2)] md:p-8 lg:sticky lg:top-28">
+        <StatusNote
+          tone="warning"
+          className="border-white/20 bg-white/10 text-white/75"
+        >
           Modeled outputs from the inputs on the left. Not actual savings. Not a
           national hotel-cost average.
         </StatusNote>
-        <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+        <div>
           <Stat
             label="Modeled monthly net"
             value={formatUsd(headline.monthlyNet, true)}
@@ -245,13 +250,15 @@ export function RoiCalculator() {
           />
         </div>
 
-        <div className="overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
-          <div className="border-b border-border px-5 py-4">
-            <TechnicalLabel>Cost stack</TechnicalLabel>
+        <div className="overflow-hidden rounded-[var(--radius-panel)] border border-white/15 bg-white/[0.04]">
+          <div className="border-b border-white/15 px-5 py-4">
+            <TechnicalLabel className="text-[color:var(--aqua-400)]">
+              Cost stack
+            </TechnicalLabel>
           </div>
           <table className="w-full text-small">
             <thead>
-              <tr className="border-b border-border text-left text-accent-steel">
+              <tr className="border-b border-white/15 text-left text-white/50">
                 <th className="px-5 py-3 font-medium">Component</th>
                 <th className="px-3 py-3 font-medium">Current</th>
                 <th className="px-5 py-3 font-medium">Modeled</th>
@@ -259,17 +266,17 @@ export function RoiCalculator() {
             </thead>
             <tbody>
               {lines.map((line) => (
-                <tr key={line.label} className="border-b border-border last:border-0">
-                  <td className="px-5 py-2.5 text-muted-foreground">{line.label}</td>
-                  <td className="px-3 py-2.5 tabular-nums">
+                <tr key={line.label} className="border-b border-white/10 last:border-0">
+                  <td className="px-5 py-2.5 text-white/65">{line.label}</td>
+                  <td className="px-3 py-2.5 tabular-nums text-white/85">
                     {formatUsd(line.current, true)}
                   </td>
-                  <td className="px-5 py-2.5 tabular-nums">
+                  <td className="px-5 py-2.5 tabular-nums text-white">
                     {formatUsd(line.modeled, true)}
                   </td>
                 </tr>
               ))}
-              <tr className="bg-surface-muted/60 font-medium">
+              <tr className="bg-white/[0.07] font-medium text-white">
                 <td className="px-5 py-3">Operating total</td>
                 <td className="px-3 py-3 tabular-nums">
                   {formatUsd(currentTotal, true)}
@@ -278,7 +285,7 @@ export function RoiCalculator() {
                   {formatUsd(modeledOperating, true)}
                 </td>
               </tr>
-              <tr className="text-accent-steel">
+              <tr className="text-white/55">
                 <td className="px-5 py-3">Equipment over {inputs.horizonMonths} months</td>
                 <td className="px-3 py-3 tabular-nums">{formatUsd(0, true)}</td>
                 <td className="px-5 py-3 tabular-nums">

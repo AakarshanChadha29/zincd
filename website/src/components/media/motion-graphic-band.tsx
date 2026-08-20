@@ -209,20 +209,18 @@ export function MotionGraphicBand({
               ) : null}
               {title ? (
                 <h2
-                  className={cn(
-                    "text-h1",
+                  className={`text-h1 ${
                     tone === "deep" ? "text-white" : "text-foreground"
-                  )}
+                  }`}
                 >
                   {title}
                 </h2>
               ) : null}
               {body ? (
                 <p
-                  className={cn(
-                    "text-body-large max-w-lg",
+                  className={`text-body-large max-w-lg ${
                     tone === "deep" ? "text-white/80" : "text-muted-foreground"
-                  )}
+                  }`}
                 >
                   {body}
                 </p>

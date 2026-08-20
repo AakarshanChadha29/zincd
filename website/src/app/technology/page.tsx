@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { TechnicalLabel } from "@/components/ui/technical-label";
 import { Reveal } from "@/components/motion/reveal";
 import { PageHero } from "@/components/blocks/page-hero";
 import { ProcessNarrative } from "@/components/blocks/process-narrative";
@@ -36,31 +35,11 @@ export const metadata = createPageMetadata({
 });
 
 const processBeats = [
-  {
-    ...howItWorksSteps[0],
-    image: productPhotos.waterHero,
-    alt: "Zinc'd stainless chamber in shallow pool water",
-  },
-  {
-    ...howItWorksSteps[1],
-    image: productPhotos.system,
-    alt: "Zinc'd control and chamber in a residential plant room",
-  },
-  {
-    ...howItWorksSteps[2],
-    image: "/video/process-ionization.jpg",
-    alt: "Cutaway of the Zinc'd chamber releasing copper, silver and zinc ions into the flow",
-  },
-  {
-    ...howItWorksSteps[3],
-    image: productPhotos.chamberStudio,
-    alt: "Zinc'd chamber on wet stone with mineral-teal water",
-  },
-  {
-    ...howItWorksSteps[4],
-    image: productPhotos.controlAngled,
-    alt: "Zinc'd LCD control mounted above the chamber in a spa plant",
-  },
+  howItWorksSteps[0],
+  howItWorksSteps[1],
+  howItWorksSteps[2],
+  howItWorksSteps[3],
+  howItWorksSteps[4],
 ] as const;
 
 const metals = [
@@ -76,8 +55,8 @@ export default function TechnologyPage() {
         eyebrow="Technology"
         title={
           <>
-            Copper–silver–zinc ionization,{" "}
-            <span className="text-gradient-aqua">under control</span>
+            Copper–silver–zinc ionization,
+            <span className="block">under control</span>
           </>
         }
         description="Zinc'd introduces copper and silver ions into your circulation loop at a controlled rate — an ecological mineral approach designed to reduce chlorine dependency while a residual of free chlorine remains part of responsible operation."
@@ -86,7 +65,7 @@ export default function TechnologyPage() {
           { label: "See the product", href: "/product", variant: "outline" },
         ]}
         video={technologyHeroClip}
-        waterMotion
+        mediaPosition="center"
       />
 
       <section className="relative overflow-hidden bg-[color:var(--teal-900)]">
@@ -123,7 +102,11 @@ export default function TechnologyPage() {
             description="Installed after filtration and before the pool return. Watch the chamber, then read the path."
           />
         </Reveal>
-        <ProcessNarrative steps={processBeats} />
+        <ProcessNarrative
+          steps={processBeats}
+          video="/video/process-ionization-motion.mp4"
+          poster="/video/process-ionization.jpg"
+        />
       </Section>
 
       <MotionGraphicBand

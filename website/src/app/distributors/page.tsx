@@ -171,7 +171,7 @@ export default function DistributorsPage() {
         title={
           <>
             Bring Zinc&apos;d pool technology to{" "}
-            <span className="text-gradient-aqua">your territory</span>
+            <span className="text-gradient-aqua">the pools you serve</span>
           </>
         }
         description="Advanced pool water treatment for hotels, commercial facilities and residential pools — offered through qualified distributors, service companies, builders and dealers."
