@@ -86,9 +86,9 @@
   --shadow-1: 0 1px 2px rgb(12 31 36 / 0.06), 0 1px 3px rgb(12 31 36 / 0.04);
   --shadow-2: 0 16px 40px -16px rgb(12 31 36 / 0.18);
 
-  /* Glass — frosted light nav over video */
-  --glass-bg: rgb(245 250 251 / 0.78);
-  --glass-border: rgb(12 31 36 / 0.08);
+  /* Glass — mineral frost over film, not a white bar */
+  --glass-bg: rgb(196 226 228 / 0.78);
+  --glass-border: rgb(13 115 119 / 0.22);
   --glass-blur: 16px;
 
   /* Hero video scrim — readable type without killing the film */
@@ -313,8 +313,8 @@
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      rgb(10 61 66 / 0.2) 55%,
-      var(--pearl) 100%
+      rgb(10 61 66 / 0.45) 62%,
+      var(--teal-900) 100%
     );
   }
 

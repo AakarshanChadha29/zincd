@@ -113,10 +113,10 @@ export default function HomePage() {
           aria-hidden
           className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[color:var(--pearl)]/50 to-transparent lg:h-10"
         />
-        <Container className="relative flex flex-1 flex-col justify-end pb-4 pt-24 md:pb-6 md:pt-28 lg:justify-center lg:pb-8 lg:pt-32">
-          <div className="grid items-end gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-10">
+        <Container className="relative flex flex-1 flex-col justify-end pb-4 pt-28 md:pb-6 md:pt-32 lg:justify-center lg:pb-8 lg:pt-36">
+          <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.82fr)] lg:items-center lg:gap-16 xl:gap-24">
             <Reveal>
-              <div className="max-w-xl space-y-6 lg:max-w-2xl lg:space-y-7 lg:pb-10">
+              <div className="max-w-xl space-y-6 lg:space-y-7 lg:pb-10 lg:pr-6">
                 <div>
                   <ZincdLogo size="hero" href={null} priority />
                 </div>
@@ -154,9 +154,9 @@ export default function HomePage() {
                 </p>
               </div>
             </Reveal>
-            <HeroParallax className="relative lg:self-end">
+            <HeroParallax className="relative lg:justify-self-end lg:self-end">
               <Reveal delay={0.08}>
-                <div className="relative mx-auto w-full max-w-sm lg:max-w-md lg:translate-y-6 xl:max-w-lg xl:translate-y-8">
+                <div className="relative mx-auto w-full max-w-xs sm:max-w-sm lg:mx-0 lg:max-w-md lg:translate-y-4 xl:max-w-lg">
                   <ProductFloat
                     src={productPhotos.chamber}
                     alt="The Zinc'd stainless ionization chamber, wordmark and Cu–Ag–Zn badges on the housing"

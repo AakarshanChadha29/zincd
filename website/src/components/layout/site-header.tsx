@@ -31,8 +31,8 @@ export function SiteHeader() {
       className={cn(
         "sticky top-0 z-40 border-b transition-[background-color,box-shadow,border-color] duration-[var(--duration-micro)] ease-[var(--ease-out-premium)]",
         scrolled
-          ? "border-border bg-surface shadow-[var(--shadow-1)]"
-          : "glass-surface border-transparent"
+          ? "border-[color:var(--teal-700)]/25 bg-[rgb(196_226_228/0.92)] shadow-[var(--shadow-1)] backdrop-blur-md"
+          : "glass-surface border-[color:var(--teal-700)]/20"
       )}
     >
       <div
