@@ -49,7 +49,7 @@ export const siteConfig = {
       shortLabel: "Distributors",
     },
     distributorContact: {
-      label: "Apply as a Distributor",
+      label: "Discuss Your Territory",
       href: "/apply",
     },
     technology: {
@@ -190,6 +190,7 @@ export const footerB2bLinks: NavLink[] = [
   { label: "Distributors & Partners", href: "/distributors" },
   { label: "Apply as a Distributor", href: "/apply" },
   { label: "Distributor QR", href: "/distributors/qr" },
+  { label: "Brochure QR", href: "/distributors/brochure-qr" },
   { label: "Commercial Applications", href: "/applications/commercial" },
   { label: "Hotels & Resorts", href: "/applications/hotels-resorts" },
   { label: "Hotel planning model", href: "/cost-savings" },

@@ -19,6 +19,7 @@ export function CtaBand({
   body,
   primary,
   secondary,
+  note,
   highlightSecondary = false,
 }: {
   eyebrow?: string;
@@ -26,6 +27,11 @@ export function CtaBand({
   body: string;
   primary: CtaAction;
   secondary?: CtaAction;
+  /**
+   * Optional line beneath the buttons, for answering the last hesitation
+   * ("then what happens to me?"). Kept quiet — white/60 against the deep band.
+   */
+  note?: string;
   /** When true, secondary (typically Distributors) gets equal visual weight. */
   highlightSecondary?: boolean;
 }) {
@@ -74,6 +80,9 @@ export function CtaBand({
               </Button>
             ) : null}
           </div>
+          {note ? (
+            <p className="text-small mt-5 text-white/60">{note}</p>
+          ) : null}
         </div>
       </Container>
     </section>

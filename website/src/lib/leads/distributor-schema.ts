@@ -78,6 +78,14 @@ export const distributorLeadSchema = z
       error: "Please choose how you'd like us to reply.",
     }),
     /**
+     * /distributors states three times that territory exclusivity is available
+     * on request, subject to availability and written agreement. Without this
+     * field the page makes an offer the funnel cannot accept, and the request
+     * arrives — if at all — buried in free text. Optional on purpose: ticking
+     * it is a request, never a reservation, and never a qualifying condition.
+     */
+    exclusivityInterest: z.boolean().optional(),
+    /**
      * Honeypot. Same rationale as the contact form: do not constrain to empty
      * here — the route drops a filled value silently.
      */

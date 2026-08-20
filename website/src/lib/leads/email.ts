@@ -141,6 +141,10 @@ function buildDistributorBody(lead: DistributorLeadInput) {
       ["Geographic coverage", lead.geographicCoverage],
       ["Interest", lead.interests.join(", ")],
       ["Estimated initial order", lead.orderRange],
+      [
+        "Territory exclusivity",
+        lead.exclusivityInterest ? "Requested — discuss availability" : "Not requested",
+      ],
     ],
     [["Current pool / water-treatment portfolio", lead.portfolio]],
   );

@@ -49,6 +49,7 @@ export function DistributorApplyForm() {
       interests: [],
       phone: "",
       orderRange: undefined,
+      exclusivityInterest: false,
       preferredContact: undefined,
     },
   });
@@ -333,6 +334,24 @@ export function DistributorApplyForm() {
             {errors.interests.message}
           </p>
         ) : null}
+      </fieldset>
+
+      <fieldset>
+        <legend className="text-small mb-2 font-medium text-foreground">
+          Territory exclusivity
+        </legend>
+        <p className="text-small mb-3 text-accent-steel">
+          Available on request, subject to availability and written agreement.
+          Ticking this asks the question — it doesn&rsquo;t reserve anything.
+        </p>
+        <label className={chipClass}>
+          <input
+            type="checkbox"
+            className="mt-0.5 size-4 accent-[color:var(--teal-700)]"
+            {...register("exclusivityInterest")}
+          />
+          <span>I&rsquo;d like to discuss exclusivity for the markets I cover</span>
+        </label>
       </fieldset>
 
       <fieldset>

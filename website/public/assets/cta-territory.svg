@@ -2,6 +2,6 @@
   <style>.cta{font-family:Manrope,Arial,sans-serif;font-size:78px;font-weight:800;letter-spacing:-1px;fill:#F7F4EE}.small{font-family:Manrope,Arial,sans-serif;font-size:28px;font-weight:700;letter-spacing:5px;fill:#55D6D5}</style>
   <text class="small" x="30" y="58">PARTNER WITH ZINC’D</text>
   <text class="cta" x="28" y="158">LET’S DISCUSS</text>
-  <text class="cta" x="28" y="250">YOUR TERRITORY.</text>
+  <text class="cta" x="28" y="250">YOUR MARKET.</text>
   <path d="M910 225 H1137 M1096 184 L1137 225 L1096 266" fill="none" stroke="#55D6D5" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
