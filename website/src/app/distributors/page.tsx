@@ -542,7 +542,7 @@ export default function DistributorsPage() {
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-white/15 bg-white/5 p-5">
+            <div className="relative overflow-hidden rounded-[var(--radius-panel)] border border-white/25 bg-[color:var(--pearl)] p-5 shadow-[var(--shadow-2)]">
               <Image
                 src={clientStills.territoryMarkets}
                 alt="Map of the United States — Zinc'd distributor territories are discussed by market, not reserved from this page."
@@ -566,10 +566,10 @@ export default function DistributorsPage() {
                     key={label}
                     className="flex flex-col items-center gap-2 text-center"
                   >
-                    <span className="flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white">
+                    <span className="flex size-11 items-center justify-center rounded-full border border-border bg-surface text-accent-aquatic">
                       <Icon className="size-5" strokeWidth={1.5} aria-hidden />
                     </span>
-                    <span className="text-technical text-[color:var(--aqua-400)]">
+                    <span className="text-technical text-accent-aquatic">
                       {label}
                     </span>
                   </li>
