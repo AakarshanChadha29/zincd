@@ -71,7 +71,7 @@ export default function InstallationMaintenancePage() {
         ]}
       />
 
-      <section className="relative overflow-hidden border-b border-border">
+      <section className="relative overflow-hidden">
         <Container className="grid items-center gap-10 py-14 md:grid-cols-2 md:py-16">
           <Reveal>
             <div>

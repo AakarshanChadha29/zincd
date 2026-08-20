@@ -22,6 +22,7 @@ import { productHeroClip, productPhotos, productStills, motionGraphics, clientSt
 import { MotionGraphicBand } from "@/components/media/motion-graphic-band";
 import {
   chemistryTargets,
+  seriesRangeLabel,
   systemComponents,
   technicalSpecs,
 } from "@/content/product-data";
@@ -30,7 +31,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Pool Ionizer System — Specs, Series & What's Included",
   description:
-    "Buy the Zinc'd copper–silver–zinc pool ionization system: stainless chamber, battery-powered PWM control, flow sensor, and testing kit. Series-01 to Series-04. $5,000 complete system.",
+    "Buy the Zinc'd copper–silver–zinc pool ionization system: stainless chamber, battery-powered PWM control, flow sensor, and testing kit. Series 1 to Series 4. $5,000 complete system.",
   path: "/product",
   keywords: [
     "Zinc'd product",
@@ -53,7 +54,7 @@ export default function ProductPage() {
             <span className="text-gradient-aqua">ionization system</span>
           </>
         }
-        description="A complete, engineered system for US pools: a stainless copper–silver–zinc water chamber, battery-powered PWM control with LCD, water-flow sensor and AC/DC switch, and a water-testing kit — sized Series-01 through Series-04. Series-03 and Series-04 are customized, indicative models."
+        description="A complete, engineered system for US pools: a stainless copper–silver–zinc water chamber, battery-powered PWM control with LCD, water-flow sensor and AC/DC switch, and a water-testing kit — sized Series 1 through Series 4. Series 3 and Series 4 are customized, indicative models."
         actions={[
           { label: "Buy now", href: "/product#buy" },
           { label: siteConfig.ctas.calculator.shortLabel, href: siteConfig.ctas.calculator.href, variant: "outline" },
@@ -73,7 +74,7 @@ export default function ProductPage() {
           floating in a muted field — the page dropped into a void straight
           after a cinematic hero. Real environment film + the real unit keeps
           the atmosphere continuous. */}
-      <section className="relative overflow-hidden border-y border-border">
+      <section className="relative overflow-hidden">
         <Image
           src={clientStills.commercialPool}
           alt=""
@@ -129,8 +130,8 @@ export default function ProductPage() {
           <SectionHeading
             as="h2"
             eyebrow="Product range"
-            title="Series sizing"
-            description="Rated volumes from the current product manual. Typical values, subject to model. Assessment confirms the fit to your circulation system."
+            title={seriesRangeLabel}
+            description="Two engineered pieces — stainless chamber and battery PWM control — sized to the pool. Rated volumes from the current product manual. Typical values, subject to model. Assessment confirms the fit to your circulation."
           />
         </Reveal>
         <SeriesRange showSpecs />

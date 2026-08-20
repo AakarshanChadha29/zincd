@@ -16,8 +16,8 @@ export const siteConfig = {
   /**
    * C-017 resolved 2026-08-19: the client confirmed these as the live mailbox
    * and line, and they are the details printed on the US distributor brochure.
-   * The site and the brochure must not drift apart — change both together.
-   * Mailing address is still unconfirmed, so it stays null.
+   * Mailing address confirmed 2026-08-20. The site and the brochure must not
+   * drift apart — change both together.
    */
   contact: {
     email: "info@zincd.net",
@@ -25,13 +25,22 @@ export const siteConfig = {
     /** Display form; `phoneHref` carries the E.164 dial string. */
     phone: "+1 (206) 690-4001",
     phoneHref: "tel:+12066904001",
-    address: null as string | null,
+    address: "13613 Meridian Ave E Ste 250 Puyallup, WA 98373",
+    addressHref:
+      "https://www.google.com/maps/search/?api=1&query=13613+Meridian+Ave+E+Ste+250+Puyallup%2C+WA+98373",
+    postal: {
+      streetAddress: "13613 Meridian Ave E Ste 250",
+      addressLocality: "Puyallup",
+      addressRegion: "WA",
+      postalCode: "98373",
+      addressCountry: "US",
+    },
     /**
-     * Narrowed from the old contact-pending note: contact is now published,
-     * but the legal entity name and brand spelling remain unconfirmed.
+     * Contact channels and mailing address are published. Legal entity name
+     * and brand spelling remain unconfirmed.
      */
     entityNote:
-      "Legal entity name and registered address are being confirmed and will be published here.",
+      "Legal entity name and brand spelling are being confirmed and will be published here.",
   },
   ctas: {
     assessment: {
@@ -100,7 +109,7 @@ export const primaryNavigation: NavItem[] = [
       {
         label: "Ionization system",
         href: "/product",
-        description: "Series-01 through Series-04",
+        description: "Series 1 through Series 4",
       },
       {
         label: "Catalytic Super Softener",
@@ -116,7 +125,7 @@ export const primaryNavigation: NavItem[] = [
       {
         label: "Pool Series Calculator",
         href: "/calculator",
-        description: "Match a pool to Series-01 through Series-04",
+        description: "Match a pool to Series 1 through Series 4",
       },
       {
         label: "Hotel planning model",

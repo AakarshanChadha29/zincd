@@ -44,7 +44,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative overflow-hidden border-b border-border",
+        "relative overflow-hidden",
         cinematic
           ? splitCinematic
             ? "min-h-[min(88vh,52rem)]"
@@ -58,11 +58,14 @@ export function PageHero({
           <div aria-hidden className="absolute inset-0 hero-scrim" />
           <div
             aria-hidden
-            className="absolute inset-y-0 left-0 w-full bg-[linear-gradient(to_right,rgb(4_32_38/0.78)_0%,rgb(4_32_38/0.55)_36%,rgb(4_32_38/0.18)_62%,transparent_84%)] lg:w-[78%]"
+            className={cn(
+              "absolute inset-y-0 left-0 w-full bg-[linear-gradient(to_right,rgb(4_32_38/0.78)_0%,rgb(4_32_38/0.55)_36%,rgb(4_32_38/0.18)_62%,transparent_84%)]",
+              splitCinematic ? "lg:w-[62%]" : "lg:w-[78%]"
+            )}
           />
           <div
             aria-hidden
-            className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[color:var(--pearl)]/50 to-transparent lg:h-10"
+            className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[color:var(--pearl)]/25 to-transparent"
           />
         </>
       ) : (
@@ -81,9 +84,9 @@ export function PageHero({
         )}
       >
         {splitCinematic ? (
-          <div className="grid items-end gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-8 xl:gap-12">
+          <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.95fr)] lg:gap-10 xl:gap-12">
             <Reveal>
-              <div className="max-w-xl space-y-6 pb-2 lg:pb-8">
+              <div className="max-w-xl space-y-6">
                 <TechnicalLabel className="text-[color:var(--aqua-400)]">
                   {eyebrow}
                 </TechnicalLabel>
@@ -122,10 +125,8 @@ export function PageHero({
                 ) : null}
               </div>
             </Reveal>
-            <Reveal delay={0.08} className="relative lg:self-end">
-              <div className="relative mx-auto w-full max-w-md lg:max-w-none lg:translate-y-6 xl:translate-y-8">
-                {aside}
-              </div>
+            <Reveal delay={0.08} className="relative z-[2] w-full max-lg:mx-auto max-lg:max-w-sm lg:justify-self-end">
+              {aside}
             </Reveal>
           </div>
         ) : (

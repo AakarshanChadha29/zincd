@@ -95,7 +95,7 @@ export default function AboutPage() {
             as="h2"
             eyebrow="Company"
             title="Independent, US-based"
-            description="Zinc'd is positioned as an independent US company and brand. Reach us at info@zincd.net or +1 (206) 690-4001; the full company narrative and legal entity details are being confirmed and will be published here."
+            description="Zinc'd is positioned as an independent US company and brand. Reach us at info@zincd.net, +1 (206) 690-4001, or 13613 Meridian Ave E Ste 250 Puyallup, WA 98373. The legal entity name is being confirmed and will be published here."
           />
           <StatusNote className="mt-8">
             {siteConfig.contact.entityNote} The company&apos;s legal entity name and

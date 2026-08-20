@@ -146,7 +146,13 @@ export const systemComponents = [
 ] as const;
 
 /** Public label for the current catalogue range. */
-export const seriesRangeLabel = "Series-01 through Series-04";
+export const seriesRangeLabel = "Series 1 through Series 4";
+
+/** Catalogue IDs stay `Series-01` for matching; public UI uses Series 1. */
+export function seriesPublicLabel(name: string): string {
+  const match = /^Series-0?(\d+)$/.exec(name);
+  return match ? `Series ${Number(match[1])}` : name;
+}
 
 /**
  * Product series — Gen-2 Pool Sanitizer manual (client-confirmed 2026-08-19).
@@ -156,6 +162,7 @@ export const seriesRangeLabel = "Series-01 through Series-04";
 export const productSeries = [
   {
     name: "Series-01",
+    displayName: "Series 1",
     scope: "Residential",
     volume: "~13,200 gal",
     volumeMetric: "50,000 L",
@@ -168,11 +175,13 @@ export const productSeries = [
     pipe: "Confirmed at assessment",
     image: "/img/clean/chamber-zincd-cutout.png",
     body: "Rated for typical residential volumes around 50,000 L. Stainless chamber, battery-powered control, flow sensor, and LCD.",
+    fit: "For private homes and estate pools — typical residential volumes around 50,000 L.",
     audience: "Estate owners · residential builders",
     decisionNote: "First match when estimated volume is at or below 50,000 L. Confirmed during assessment.",
   },
   {
     name: "Series-02",
+    displayName: "Series 2",
     scope: "Large residential / club",
     volume: "~39,600 gal",
     volumeMetric: "150,000 L",
@@ -185,11 +194,13 @@ export const productSeries = [
     pipe: "Confirmed at assessment",
     image: "/img/clean/control-zincd.jpg",
     body: "Rated for larger residential and club volumes around 150,000 L — same chamber family as Series-01, higher power and charge time.",
+    fit: "For large residential pools, clubs, and HOAs — around 150,000 L.",
     audience: "Clubs · HOAs · large estates",
     decisionNote: "Specify when volume moves past Series-01. Confirmed against circulation during assessment.",
   },
   {
     name: "Series-03",
+    displayName: "Series 3",
     scope: "Commercial · customized, indicative",
     volume: "~79,300 gal",
     volumeMetric: "300,000 L",
@@ -202,11 +213,13 @@ export const productSeries = [
     pipe: "Confirmed at assessment",
     image: "/img/clean/system-zincd-cutout.png",
     body: "Customized model with indicative specifications for hospitality and commercial basins around 300,000 L.",
+    fit: "For hotels, hospitality, and commercial aquatics — customized, indicative, around 300,000 L.",
     audience: "Boutique hotels · luxury estates · facility leads",
     decisionNote: "Indicative catalogue point — final specification is confirmed during assessment.",
   },
   {
     name: "Series-04",
+    displayName: "Series 4",
     scope: "Large commercial · customized, indicative",
     volume: "~105,700–132,100 gal",
     volumeMetric: "400,000–500,000 L",
@@ -219,6 +232,7 @@ export const productSeries = [
     pipe: "Confirmed at assessment",
     image: "/img/clean/system-installed.jpg",
     body: "Customized model with indicative specifications for large commercial volumes in the 400,000–500,000 L band.",
+    fit: "For large commercial, resort, and municipal volumes — customized, indicative, 400,000–500,000 L.",
     audience: "Resort · municipal · campus operators",
     decisionNote: "Indicative catalogue point — volumes above this band are sized during assessment.",
   },
@@ -443,7 +457,7 @@ export const evaluationFramework = [
   },
   {
     title: "For partners & channel",
-    body: "A defined product category for distributors, builders and installers: engineered ionization that fits existing circulation, with Series-01 through Series-04.",
+    body: "A defined product category for distributors, builders and installers: engineered ionization that fits existing circulation, with Series 1 through Series 4.",
   },
 ] as const;
 
@@ -613,7 +627,7 @@ export const partnerEndSegments = [
   {
     title: "Residential and estate pools",
     icon: "home",
-    body: "Series-01 covers private and estate pools, so a residential book uses the same product line and spec language.",
+    body: "Series 1 covers private and estate pools, so a residential book uses the same product line and spec language.",
     href: "/applications/residential",
   },
   {
@@ -726,7 +740,7 @@ export const faqs = [
   },
   {
     q: "What pool sizes are supported?",
-    a: "Sizing follows the current product manual: Series-01 around 50,000 L (~13,200 gal), Series-02 around 150,000 L (~39,600 gal), Series-03 around 300,000 L (~79,300 gal, customized/indicative), and Series-04 around 400,000–500,000 L (~105,700–132,100 gal, customized/indicative). Values are typical and subject to model. Use the Pool Series Calculator for a first estimate, then confirm during a pool assessment.",
+    a: "Sizing follows the current product manual: Series 1 around 50,000 L (~13,200 gal), Series 2 around 150,000 L (~39,600 gal), Series 3 around 300,000 L (~79,300 gal, customized/indicative), and Series 4 around 400,000–500,000 L (~105,700–132,100 gal, customized/indicative). Values are typical and subject to model. Use the Pool Series Calculator for a first estimate, then confirm during a pool assessment.",
   },
   {
     q: "Is there a connection to NASA?",
@@ -861,7 +875,7 @@ export const faqTopicSummaries = [
   {
     id: "sizing",
     title: "Sizing & series",
-    body: "Series-01 through Series-04 — start with the Pool Series Calculator, then confirm in assessment. Series-03 and Series-04 are customized, indicative models.",
+    body: "Series 1 through Series 4 — start with the Pool Series Calculator, then confirm in assessment. Series 3 and Series 4 are customized, indicative models.",
   },
   {
     id: "claims",

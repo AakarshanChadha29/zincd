@@ -12,7 +12,7 @@ export const installPage = {
   titleLead: "Fits your circulation.",
   titleAccent: "Documented upkeep.",
   description:
-    "Zinc'd is designed to integrate with existing pool circulation — Series-01 through Series-04. The stainless chamber sits on the filter return with a water-flow sensor in line. Residual free chlorine stays in the program.",
+    "Zinc'd is designed to integrate with existing pool circulation — Series 1 through Series 4. The stainless chamber sits on the filter return with a water-flow sensor in line. Residual free chlorine stays in the program.",
 } as const;
 
 export const capacityFormulas = {

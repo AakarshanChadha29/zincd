@@ -14,7 +14,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Pool Size Calculator — What Size Ionizer Do I Need?",
   description:
-    "Free pool volume calculator in US gallons. Enter your pool's length, width, and average depth to see which Zinc'd copper–silver–zinc ionizer fits — Series-01 through Series-04.",
+    "Free pool volume calculator in US gallons. Enter your pool's length, width, and average depth to see which Zinc'd copper–silver–zinc ionizer fits — Series 1 through Series 4.",
   path: "/calculator",
   keywords: [
     "pool volume calculator gallons",
@@ -30,7 +30,7 @@ export const metadata = createPageMetadata({
 export default function CalculatorPage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border bg-surface">
+      <section className="relative overflow-hidden bg-surface">
         <div aria-hidden className="absolute inset-0 bg-grid opacity-60" />
         <div aria-hidden className="absolute inset-0 hero-aura" />
         <AmbientIons tone="aquatic" density="sparse" className="opacity-50" />
@@ -55,7 +55,7 @@ export default function CalculatorPage() {
           as="h2"
           eyebrow="Series range"
           title="What each series covers"
-          description="From a standard backyard pool through resort and municipal water. Series-03 and Series-04 are customized, indicative models — a specialist confirms circulation before install."
+          description="From a standard backyard pool through resort and municipal water. Series 3 and Series 4 are customized, indicative models — a specialist confirms circulation before install."
         />
         <SeriesRange />
       </Section>

@@ -124,7 +124,7 @@ export function MotionGraphicBand({
         // Shorter on phones. At 70vh with the copy bottom-aligned, the abstract
         // footage above it read as dead space on a narrow screen rather than as
         // a deliberate cinematic band.
-        "relative flex min-h-[min(52vh,22rem)] items-end overflow-hidden border-y border-border md:min-h-[min(70vh,32rem)]",
+        "relative flex min-h-[min(52vh,22rem)] items-end overflow-hidden md:min-h-[min(70vh,32rem)]",
         children && "min-h-0 items-stretch md:min-h-0",
         className
       )}

@@ -177,7 +177,7 @@
 
   --font-sans: var(--font-plex-sans);
   --font-mono: var(--font-plex-mono);
-  --font-heading: var(--font-plex-sans);
+  --font-heading: var(--font-plex-serif);
 
   --radius-sm: var(--radius-control);
   --radius-md: var(--radius-panel);
@@ -225,7 +225,7 @@
   h2,
   h3,
   h4 {
-    @apply font-heading text-foreground tracking-tight;
+    @apply font-heading font-medium text-foreground tracking-tight;
     line-height: 1.2;
   }
 }
@@ -238,34 +238,38 @@
      at 1440px) while keeping the same mobile floors, and tightens tracking as
      size increases — large type needs less letter-spacing, not the same. */
   .text-display {
+    font-family: var(--font-plex-serif), "Iowan Old Style", "Palatino Linotype", Palatino, serif;
     font-size: clamp(2.25rem, 5.2vw, 4.25rem);
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -0.028em;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.018em;
     text-wrap: balance;
   }
 
   .text-h1 {
+    font-family: var(--font-plex-serif), "Iowan Old Style", "Palatino Linotype", Palatino, serif;
     font-size: clamp(1.875rem, 3.4vw, 2.75rem);
-    font-weight: 600;
-    line-height: 1.16;
-    letter-spacing: -0.022em;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.014em;
     text-wrap: balance;
   }
 
   .text-h2 {
+    font-family: var(--font-plex-serif), "Iowan Old Style", "Palatino Linotype", Palatino, serif;
     font-size: clamp(1.5rem, 2.4vw, 2rem);
-    font-weight: 600;
-    line-height: 1.22;
-    letter-spacing: -0.016em;
+    font-weight: 500;
+    line-height: 1.26;
+    letter-spacing: -0.01em;
     text-wrap: balance;
   }
 
   .text-h3 {
+    font-family: var(--font-plex-serif), "Iowan Old Style", "Palatino Linotype", Palatino, serif;
     font-size: clamp(1.125rem, 1.5vw, 1.375rem);
-    font-weight: 600;
-    line-height: 1.32;
-    letter-spacing: -0.01em;
+    font-weight: 500;
+    line-height: 1.36;
+    letter-spacing: -0.006em;
   }
 
   .text-body-large {

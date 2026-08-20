@@ -19,6 +19,14 @@ export function OrganizationJsonLd() {
         },
         email: siteConfig.contact.email,
         telephone: siteConfig.contact.phone,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: siteConfig.contact.postal.streetAddress,
+          addressLocality: siteConfig.contact.postal.addressLocality,
+          addressRegion: siteConfig.contact.postal.addressRegion,
+          postalCode: siteConfig.contact.postal.postalCode,
+          addressCountry: siteConfig.contact.postal.addressCountry,
+        },
         // Two named points so distributor enquiries and owner enquiries are
         // distinguishable in search results; both reach the same mailbox today.
         contactPoint: [

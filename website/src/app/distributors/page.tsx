@@ -85,6 +85,11 @@ const contactRail = [
     value: siteConfig.contact.phone,
     href: siteConfig.contact.phoneHref,
   },
+  {
+    label: "Address",
+    value: siteConfig.contact.address,
+    href: siteConfig.contact.addressHref,
+  },
   { label: "Web", value: "www.zincd.net", href: "/" },
 ];
 
@@ -470,7 +475,7 @@ export default function DistributorsPage() {
             as="h2"
             eyebrow="Product range"
             title={`One line, ${seriesRangeLabel}`}
-            description="From a private pool to a multi-unit commercial or hospitality facility, on one product line and one spec language. Series-03 and Series-04 are customized, indicative models — final specification is confirmed during assessment."
+            description="From a private pool to a multi-unit commercial or hospitality facility, on one product line and one spec language. Series 3 and Series 4 are customized, indicative models — final specification is confirmed during assessment."
           />
         </Reveal>
         <SeriesRange />
@@ -603,7 +608,7 @@ export default function DistributorsPage() {
                     {contactRail.map(({ label, value, href }) => (
                       <div
                         key={label}
-                        className="grid grid-cols-[5.5rem_minmax(0,1fr)] gap-4"
+                        className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-start gap-4"
                       >
                         <dt className="text-technical text-accent-steel">{label}</dt>
                         <dd className="text-technical normal-case tracking-normal text-foreground">

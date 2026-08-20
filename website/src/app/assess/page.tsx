@@ -20,7 +20,7 @@ export const metadata = createPageMetadata({
 
 export default function AssessPage() {
   return (
-    <section className="relative overflow-hidden border-b border-border bg-surface">
+    <section className="relative overflow-hidden bg-surface">
       <div aria-hidden className="absolute inset-0 bg-grid" />
       <div aria-hidden className="absolute inset-0 hero-aura" />
       <Container width="narrow" className="relative py-10 md:py-14">

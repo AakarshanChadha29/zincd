@@ -99,6 +99,13 @@ export function MobileNavigation() {
             >
               {siteConfig.contact.phone}
             </a>
+            <a
+              href={siteConfig.contact.addressHref}
+              className="block text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              onClick={() => setOpen(false)}
+            >
+              {siteConfig.contact.address}
+            </a>
           </div>
         </div>
       </SheetContent>

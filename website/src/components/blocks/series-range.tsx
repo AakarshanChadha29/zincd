@@ -21,29 +21,30 @@ export function SeriesRange({
   return (
     <div
       className={cn(
-        "mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4",
+        "mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4",
         className
       )}
     >
       {productSeries.map((series, i) => {
         const inner = (
-          <article className="flex h-full flex-col overflow-hidden rounded-[var(--radius-panel)] border border-border bg-surface">
-            <div className="relative aspect-[4/5] border-b border-border bg-white">
+          <article className="flex h-full flex-col overflow-hidden rounded-[var(--radius-panel)] bg-surface/95 shadow-[var(--shadow-1)]">
+            <div className="relative aspect-[4/5] bg-white">
               <Image
                 src={series.image}
-                alt={`${series.name} Zinc'd ionization chamber`}
+                alt={`${series.displayName} Zinc'd ionization hardware`}
                 fill
                 sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 100vw"
                 className="object-contain p-5"
               />
             </div>
             <div className="flex flex-1 flex-col p-5">
-              <h3 className="text-h3 text-foreground">{series.name}</h3>
+              <h3 className="text-h3 text-foreground">{series.displayName}</h3>
               <p className="text-technical mt-2 normal-case tracking-normal text-accent-aquatic">
                 {series.volume}
+                <span className="text-muted-foreground"> · {series.volumeMetric}</span>
               </p>
-              <p className="text-small mt-1 text-muted-foreground">
-                {series.scope}
+              <p className="text-small mt-3 leading-relaxed text-muted-foreground">
+                {series.fit}
               </p>
               {showSpecs ? (
                 <p className="text-small mt-3 text-accent-steel">

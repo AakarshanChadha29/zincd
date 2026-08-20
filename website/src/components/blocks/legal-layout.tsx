@@ -28,7 +28,7 @@ export function LegalLayout({
 }) {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border bg-surface">
+      <section className="relative overflow-hidden bg-surface">
         <div aria-hidden className="absolute inset-0 bg-grid" />
         <div aria-hidden className="absolute inset-0 hero-aura" />
         <Container className="relative py-12 md:py-16">

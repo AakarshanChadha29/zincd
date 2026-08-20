@@ -81,6 +81,12 @@ export function SiteFooter() {
               >
                 {siteConfig.contact.phone}
               </a>
+              <a
+                href={siteConfig.contact.addressHref}
+                className="block max-w-xs text-white/75 underline-offset-4 hover:text-white hover:underline"
+              >
+                {siteConfig.contact.address}
+              </a>
             </div>
           </div>
           <FooterLinkList title="Explore" links={footerExploreLinks} />

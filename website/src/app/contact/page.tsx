@@ -7,6 +7,7 @@ import {
   Handshake,
   Home,
   Mail,
+  MapPin,
   Phone,
 } from "lucide-react";
 
@@ -129,10 +130,10 @@ export default function ContactPage() {
                 The form routes your enquiry to the right person. Prefer email
                 or a call? Both lines below are monitored.
               </p>
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-3">
                 <a
                   href={siteConfig.contact.emailHref}
-                  className="flex items-center gap-3 rounded-[var(--radius-panel)] border border-border bg-surface p-4 transition-colors hover:border-border-strong"
+                  className="flex items-center gap-3 rounded-[var(--radius-panel)] bg-surface p-4 transition-colors hover:bg-surface-elevated"
                 >
                   <Mail className="size-4.5 shrink-0 text-accent-aquatic" strokeWidth={1.5} aria-hidden />
                   <span>
@@ -144,13 +145,25 @@ export default function ContactPage() {
                 </a>
                 <a
                   href={siteConfig.contact.phoneHref}
-                  className="flex items-center gap-3 rounded-[var(--radius-panel)] border border-border bg-surface p-4 transition-colors hover:border-border-strong"
+                  className="flex items-center gap-3 rounded-[var(--radius-panel)] bg-surface p-4 transition-colors hover:bg-surface-elevated"
                 >
                   <Phone className="size-4.5 shrink-0 text-accent-aquatic" strokeWidth={1.5} aria-hidden />
                   <span>
                     <span className="text-technical block text-accent-aquatic">Phone</span>
                     <span className="text-small block text-foreground">
                       {siteConfig.contact.phone}
+                    </span>
+                  </span>
+                </a>
+                <a
+                  href={siteConfig.contact.addressHref}
+                  className="flex items-start gap-3 rounded-[var(--radius-panel)] bg-surface p-4 transition-colors hover:bg-surface-elevated"
+                >
+                  <MapPin className="mt-0.5 size-4.5 shrink-0 text-accent-aquatic" strokeWidth={1.5} aria-hidden />
+                  <span>
+                    <span className="text-technical block text-accent-aquatic">Mailing address</span>
+                    <span className="text-small block text-foreground">
+                      {siteConfig.contact.address}
                     </span>
                   </span>
                 </a>
